@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.eventbus.impl;
 
 import io.vertx.core.Handler;
@@ -21,7 +20,8 @@ import io.vertx.core.eventbus.Message;
 import io.vertx.core.streams.ReadStream;
 
 /**
- * A body stream that transform a <code>ReadStream&lt;Message&lt;T&gt;&gt;</code> into a
+ * A body stream that transform a
+ * <code>ReadStream&lt;Message&lt;T&gt;&gt;</code> into a
  * <code>ReadStream&lt;T&gt;</code>.
  *
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>

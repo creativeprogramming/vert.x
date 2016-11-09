@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.shareddata.impl;
 
 import io.vertx.core.buffer.Buffer;
@@ -27,20 +26,20 @@ import io.vertx.core.shareddata.Shareable;
 public class Checker {
 
   static void checkType(Object obj) {
-    if (obj instanceof String ||
-        obj instanceof Integer ||
-        obj instanceof Long ||
-        obj instanceof Boolean ||
-        obj instanceof Double ||
-        obj instanceof Float ||
-        obj instanceof Short ||
-        obj instanceof Byte ||
-        obj instanceof Character ||
-        obj instanceof byte[] ||
-        obj instanceof Buffer ||
-        obj instanceof JsonObject ||
-        obj instanceof JsonArray ||
-        obj instanceof Shareable) {
+    if (obj instanceof String
+            || obj instanceof Integer
+            || obj instanceof Long
+            || obj instanceof Boolean
+            || obj instanceof Double
+            || obj instanceof Float
+            || obj instanceof Short
+            || obj instanceof Byte
+            || obj instanceof Character
+            || obj instanceof byte[]
+            || obj instanceof Buffer
+            || obj instanceof JsonObject
+            || obj instanceof JsonArray
+            || obj instanceof Shareable) {
     } else {
       throw new IllegalArgumentException("Invalid type for shareddata data structure: " + obj.getClass().getName());
     }
@@ -48,7 +47,7 @@ public class Checker {
 
   static <T> T copyIfRequired(T obj) {
     if (obj instanceof JsonObject) {
-      return (T)((JsonObject)obj).copy();
+      return (T) ((JsonObject) obj).copy();
     } else if (obj instanceof JsonArray) {
       return (T) ((JsonArray) obj).copy();
     } else if (obj instanceof byte[]) {

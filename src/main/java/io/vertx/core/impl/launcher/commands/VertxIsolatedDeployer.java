@@ -34,20 +34,20 @@ public class VertxIsolatedDeployer {
   /**
    * Deploys the given verticle.
    *
-   * @param verticle          the verticle name
-   * @param vertx             the vert.x instance
-   * @param options           the deployment options
+   * @param verticle the verticle name
+   * @param vertx the vert.x instance
+   * @param options the deployment options
    * @param completionHandler the completion handler
    */
   public void deploy(String verticle, Vertx vertx, DeploymentOptions options,
-                     Handler<AsyncResult<String>> completionHandler) {
+          Handler<AsyncResult<String>> completionHandler) {
     this.vertx = vertx;
     String message = (options.isWorker()) ? "deploying worker verticle" : "deploying verticle";
     vertx.deployVerticle(verticle, options, createHandler(message, completionHandler));
   }
 
   /**
-   * Undeploys  the previously deployed verticle.
+   * Undeploys the previously deployed verticle.
    *
    * @param completionHandler the completion handler
    */
@@ -63,10 +63,8 @@ public class VertxIsolatedDeployer {
     });
   }
 
-
   private Handler<AsyncResult<String>> createHandler(final String message,
-                                                   final Handler<AsyncResult<String>>
-                                                       completionHandler) {
+          final Handler<AsyncResult<String>> completionHandler) {
     return res -> {
       if (res.failed()) {
         Throwable cause = res.cause();

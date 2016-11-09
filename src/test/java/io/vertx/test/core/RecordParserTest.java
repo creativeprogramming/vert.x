@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.Handler;
@@ -36,10 +35,13 @@ public class RecordParserTest {
 
   @Test
   public void testIllegalArguments() throws Exception {
-    assertNullPointerException(() -> RecordParser.newDelimited((Buffer) null, handler -> {}));
-    assertNullPointerException(() -> RecordParser.newDelimited((String) null, handler -> {}));
+    assertNullPointerException(() -> RecordParser.newDelimited((Buffer) null, handler -> {
+    }));
+    assertNullPointerException(() -> RecordParser.newDelimited((String) null, handler -> {
+    }));
 
-    RecordParser parser = RecordParser.newDelimited("", handler -> {});
+    RecordParser parser = RecordParser.newDelimited("", handler -> {
+    });
     assertNullPointerException(() -> parser.setOutput(null));
     assertNullPointerException(() -> parser.delimitedMode((Buffer) null));
     assertNullPointerException(() -> parser.delimitedMode((String) null));
@@ -50,7 +52,7 @@ public class RecordParserTest {
   Test parsing with delimiters
    */
   public void testDelimited() {
-    delimited(Buffer.buffer().appendByte((byte)'\n'));
+    delimited(Buffer.buffer().appendByte((byte) '\n'));
     delimited(Buffer.buffer().appendByte((byte) '\r').appendByte((byte) '\n'));
     delimited(Buffer.buffer(new byte[]{0, 3, 2, 5, 6, 4, 6}));
   }
@@ -97,6 +99,7 @@ public class RecordParserTest {
     final List<Object> types = new ArrayList<Object>();
 
     class MyHandler implements Handler<Buffer> {
+
       RecordParser parser = RecordParser.newFixed(10, this);
       int pos;
 
@@ -201,11 +204,11 @@ public class RecordParserTest {
     checkResults(expected, results);
   }
 
-
   private void doTestFixed(final Buffer input, Integer[] chunkSizes, final Buffer... expected) {
     final Buffer[] results = new Buffer[expected.length];
 
     class MyHandler implements Handler<Buffer> {
+
       int pos;
       RecordParser parser = RecordParser.newFixed(expected[0].length(), this);
 
@@ -228,7 +231,9 @@ public class RecordParserTest {
     int chunkPos = 0;
     while (pos < input.length()) {
       int chunkSize = chunkSizes[chunkPos++];
-      if (chunkPos == chunkSizes.length) chunkPos = 0;
+      if (chunkPos == chunkSizes.length) {
+        chunkPos = 0;
+      }
       int end = pos + chunkSize;
       end = end <= input.length() ? end : input.length();
       Buffer sub = input.getBuffer(pos, end);
@@ -239,8 +244,8 @@ public class RecordParserTest {
 
   private void checkResults(Buffer[] expected, Buffer[] results) {
     for (int i = 0; i < expected.length; i++) {
-      assertEquals("Expected:" + expected[i] + " length:" + expected[i].length() +
-        " Actual:" + results[i] + " length:" + results[i].length(), expected[i], results[i]);
+      assertEquals("Expected:" + expected[i] + " length:" + expected[i].length()
+              + " Actual:" + results[i] + " length:" + results[i].length(), expected[i], results[i]);
     }
   }
 
@@ -269,10 +274,10 @@ public class RecordParserTest {
    */
   public void testSpreadDelimiter() {
     doTestDelimited(Buffer.buffer("start-a-b-c-dddabc"), Buffer.buffer("abc"),
-      new Integer[] { 18 }, Buffer.buffer("start-a-b-c-ddd"));
+            new Integer[]{18}, Buffer.buffer("start-a-b-c-ddd"));
     doTestDelimited(Buffer.buffer("start-abc-dddabc"), Buffer.buffer("abc"),
-      new Integer[] { 18 }, Buffer.buffer("start-"), Buffer.buffer("-ddd"));
+            new Integer[]{18}, Buffer.buffer("start-"), Buffer.buffer("-ddd"));
     doTestDelimited(Buffer.buffer("start-ab-c-dddabc"), Buffer.buffer("abc"),
-      new Integer[] { 18 }, Buffer.buffer("start-ab-c-ddd"));
+            new Integer[]{18}, Buffer.buffer("start-ab-c-ddd"));
   }
 }

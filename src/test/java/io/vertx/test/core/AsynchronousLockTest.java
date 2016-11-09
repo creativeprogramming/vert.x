@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.Vertx;
@@ -34,11 +33,14 @@ public class AsynchronousLockTest extends VertxTestBase {
 
   @Test
   public void testIllegalArguments() throws Exception {
-    assertNullPointerException(() -> getVertx().sharedData().getLock(null, ar -> {}));
+    assertNullPointerException(() -> getVertx().sharedData().getLock(null, ar -> {
+    }));
     assertNullPointerException(() -> getVertx().sharedData().getLock("foo", null));
-    assertNullPointerException(() -> getVertx().sharedData().getLockWithTimeout(null, 1, ar -> {}));
+    assertNullPointerException(() -> getVertx().sharedData().getLockWithTimeout(null, 1, ar -> {
+    }));
     assertNullPointerException(() -> getVertx().sharedData().getLockWithTimeout("foo", 1, null));
-    assertIllegalArgumentException(() -> getVertx().sharedData().getLockWithTimeout("foo", -1, ar -> {}));
+    assertIllegalArgumentException(() -> getVertx().sharedData().getLockWithTimeout("foo", -1, ar -> {
+    }));
   }
 
   @Test

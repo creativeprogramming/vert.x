@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.spi.launcher;
 
 import io.vertx.core.cli.CLI;
@@ -22,9 +21,10 @@ import io.vertx.core.cli.annotations.CLIConfigurator;
 import io.vertx.core.cli.impl.ReflectionUtils;
 
 /**
- * Default implementation of {@link CommandFactory}. This implementation defines the {@link CLI} from the
- * given {@link Command} implementation (by reading the annotation). Then, {@link Command} instance are
- * created by calling an empty constructor on the given {@link Command} implementation.
+ * Default implementation of {@link CommandFactory}. This implementation defines
+ * the {@link CLI} from the given {@link Command} implementation (by reading the
+ * annotation). Then, {@link Command} instance are created by calling an empty
+ * constructor on the given {@link Command} implementation.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
@@ -42,7 +42,8 @@ public class DefaultCommandFactory<C extends Command> implements CommandFactory<
   }
 
   /**
-   * @return a new instance of the command by invoking the default constructor of the given class.
+   * @return a new instance of the command by invoking the default constructor
+   * of the given class.
    */
   @Override
   public C create(CommandLine cl) {

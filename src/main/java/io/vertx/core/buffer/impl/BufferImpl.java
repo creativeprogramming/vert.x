@@ -15,7 +15,6 @@
  */
 package io.vertx.core.buffer.impl;
 
-
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.util.CharsetUtil;
@@ -75,7 +74,6 @@ public class BufferImpl implements Buffer {
   public String toString(Charset enc) {
     return buffer.toString(enc);
   }
-
 
   @Override
   public JsonObject toJsonObject() {
@@ -504,8 +502,12 @@ public class BufferImpl implements Buffer {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     BufferImpl buffer1 = (BufferImpl) o;
     return buffer != null ? buffer.equals(buffer1.buffer) : buffer1.buffer == null;
   }

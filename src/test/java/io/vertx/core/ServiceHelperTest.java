@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core;
 
 import io.vertx.test.spi.FakeFactory;
@@ -51,14 +50,14 @@ public class ServiceHelperTest {
     File output = new File("target/externals");
     output.mkdirs();
     fileManager.setLocation(StandardLocation.CLASS_OUTPUT, Collections.singletonList(
-        output));
+            output));
 
     List<File> classesToCompile = new ArrayList<>();
     classesToCompile.add(new File("src/test/externals/MyVerticle.java"));
     classesToCompile.add(new File("src/test/externals/SomeFactoryImplA.java"));
 
-    Iterable<? extends JavaFileObject> compilationUnits1 =
-        fileManager.getJavaFileObjectsFromFiles(classesToCompile);
+    Iterable<? extends JavaFileObject> compilationUnits1
+            = fileManager.getJavaFileObjectsFromFiles(classesToCompile);
 
     compiler.getTask(null, fileManager, null, null, null, compilationUnits1).call();
 
@@ -94,13 +93,13 @@ public class ServiceHelperTest {
   public void loadFactories() throws Exception {
     Collection<FakeFactory> factories = ServiceHelper.loadFactories(FakeFactory.class);
     assertThat(factories)
-        .isNotNull()
-        .hasSize(2);
+            .isNotNull()
+            .hasSize(2);
 
     Collection<NotImplementedSPI> impl = ServiceHelper.loadFactories(NotImplementedSPI.class);
     assertThat(impl)
-        .isNotNull()
-        .hasSize(0);
+            .isNotNull()
+            .hasSize(0);
   }
 
   @Test
@@ -110,14 +109,14 @@ public class ServiceHelperTest {
     // Try without the custom classloader.
     Collection<SomeFactory> factories = ServiceHelper.loadFactories(SomeFactory.class);
     assertThat(factories)
-        .isNotNull()
-        .hasSize(0);
+            .isNotNull()
+            .hasSize(0);
 
     // Try with the custom classloader
     factories = ServiceHelper.loadFactories(SomeFactory.class, custom);
     assertThat(factories)
-        .isNotNull()
-        .hasSize(1);
+            .isNotNull()
+            .hasSize(1);
     assertThat(factories.iterator().next().classloader()).isEqualTo(custom);
   }
 
@@ -128,8 +127,8 @@ public class ServiceHelperTest {
     // Try without the TCCL classloader.
     Collection<SomeFactory> factories = ServiceHelper.loadFactories(SomeFactory.class);
     assertThat(factories)
-        .isNotNull()
-        .hasSize(0);
+            .isNotNull()
+            .hasSize(0);
 
     // Try with the TCCL classloader
     final ClassLoader originalTCCL = Thread.currentThread().getContextClassLoader();
@@ -137,8 +136,8 @@ public class ServiceHelperTest {
       Thread.currentThread().setContextClassLoader(custom);
       factories = ServiceHelper.loadFactories(SomeFactory.class);
       assertThat(factories)
-          .isNotNull()
-          .hasSize(1);
+              .isNotNull()
+              .hasSize(1);
       assertThat(factories.iterator().next().classloader()).isEqualTo(custom);
     } finally {
       Thread.currentThread().setContextClassLoader(originalTCCL);
@@ -150,10 +149,9 @@ public class ServiceHelperTest {
   public void loadFactoriesWithVertxClassloader() throws Exception {
     // This test is a bit more tricky as we need to load the ServiceHelper class from a custom classloader.
     ClassLoader custom = new URLClassLoader(new URL[]{
-        new File("target/classes").toURI().toURL(),
-        new File("target/test-classes").toURI().toURL(),
-        new File("target/externals").toURI().toURL(),
-    }, null);
+      new File("target/classes").toURI().toURL(),
+      new File("target/test-classes").toURI().toURL(),
+      new File("target/externals").toURI().toURL(),}, null);
 
     Class serviceHelperClass = custom.loadClass(ServiceHelper.class.getName());
     Class someFactoryClass = custom.loadClass(SomeFactory.class.getName());

@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.launcher.commands;
 
 import io.vertx.core.DeploymentOptions;
@@ -46,11 +45,11 @@ public class ClasspathHandlerTest extends CommandTestBase {
     File output = new File("target/externals");
     output.mkdirs();
     fileManager.setLocation(StandardLocation.CLASS_OUTPUT, Collections.singletonList(
-        output));
+            output));
 
-    Iterable<? extends JavaFileObject> compilationUnits1 =
-        fileManager.getJavaFileObjectsFromFiles(Collections.singletonList(
-            new File("src/test/externals/MyVerticle.java")));
+    Iterable<? extends JavaFileObject> compilationUnits1
+            = fileManager.getJavaFileObjectsFromFiles(Collections.singletonList(
+                    new File("src/test/externals/MyVerticle.java")));
 
     compiler.getTask(null, fileManager, null, null, null, compilationUnits1).call();
   }
@@ -90,7 +89,7 @@ public class ClasspathHandlerTest extends CommandTestBase {
     bare.setQuorum(1);
     bare.run();
 
-    waitUntil(() ->  bare.vertx != null);
+    waitUntil(() -> bare.vertx != null);
 
     // Do reproduce the verticle fail-over, set the TCCL
     final ClassLoader originalClassloader = Thread.currentThread().getContextClassLoader();
@@ -112,7 +111,7 @@ public class ClasspathHandlerTest extends CommandTestBase {
 
   private int getHttpCode() throws IOException {
     return ((HttpURLConnection) new URL("http://localhost:8080")
-        .openConnection()).getResponseCode();
+            .openConnection()).getResponseCode();
   }
 
 }

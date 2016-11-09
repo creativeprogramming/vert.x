@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http;
 
 import io.vertx.codegen.annotations.VertxGen;
@@ -23,11 +22,13 @@ import io.vertx.core.streams.ReadStream;
 /**
  * A stream for {@link HttpClient} WebSocket connection.
  * <p>
- * When the connection attempt is successful, the stream handler is called back with the {@link io.vertx.core.http.WebSocket}
- * argument, immediately followed by a call to the end handler. When the connection attempt fails, the exception handler is invoked.
+ * When the connection attempt is successful, the stream handler is called back
+ * with the {@link io.vertx.core.http.WebSocket} argument, immediately followed
+ * by a call to the end handler. When the connection attempt fails, the
+ * exception handler is invoked.
  * <p>
- * The connection occurs when the {@link #handler} method is called with a non null handler, the other handlers should be
- * set before setting the handler.
+ * The connection occurs when the {@link #handler} method is called with a non
+ * null handler, the other handlers should be set before setting the handler.
  *
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */

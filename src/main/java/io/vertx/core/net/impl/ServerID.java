@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net.impl;
 
 import java.io.Serializable;
@@ -36,13 +35,21 @@ public class ServerID implements Serializable {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || !(o instanceof ServerID)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || !(o instanceof ServerID)) {
+      return false;
+    }
 
     ServerID serverID = (ServerID) o;
 
-    if (port != serverID.port) return false;
-    if (!host.equals(serverID.host)) return false;
+    if (port != serverID.port) {
+      return false;
+    }
+    if (!host.equals(serverID.host)) {
+      return false;
+    }
 
     return true;
   }

@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http;
 
 import io.vertx.codegen.annotations.CacheReturn;
@@ -30,8 +29,9 @@ import javax.security.cert.X509Certificate;
 /**
  * Represents a server side WebSocket.
  * <p>
- * Instances of this class are passed into a {@link io.vertx.core.http.HttpServer#websocketHandler} or provided
- * when a WebSocket handshake is manually {@link HttpServerRequest#upgrade}ed.
+ * Instances of this class are passed into a
+ * {@link io.vertx.core.http.HttpServer#websocketHandler} or provided when a
+ * WebSocket handshake is manually {@link HttpServerRequest#upgrade}ed.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
@@ -105,18 +105,20 @@ public interface ServerWebSocket extends WebSocketBase {
   /**
    * Reject the WebSocket.
    * <p>
-   * Calling this method from the websocket handler when it is first passed to you gives you the opportunity to reject
-   * the websocket, which will cause the websocket handshake to fail by returning
-   * a 404 response code.
+   * Calling this method from the websocket handler when it is first passed to
+   * you gives you the opportunity to reject the websocket, which will cause the
+   * websocket handshake to fail by returning a 404 response code.
    * <p>
-   * You might use this method, if for example you only want to accept WebSockets with a particular path.
+   * You might use this method, if for example you only want to accept
+   * WebSockets with a particular path.
    */
   void reject();
 
   /**
    * @return an array of the peer certificates. Returns null if connection is
-   *         not SSL.
-   * @throws javax.net.ssl.SSLPeerUnverifiedException SSL peer's identity has not been verified.
+   * not SSL.
+   * @throws javax.net.ssl.SSLPeerUnverifiedException SSL peer's identity has
+   * not been verified.
    */
   @GenIgnore
   X509Certificate[] peerCertificateChain() throws SSLPeerUnverifiedException;

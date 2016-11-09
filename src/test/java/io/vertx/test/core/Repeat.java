@@ -13,13 +13,11 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 /**
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -31,4 +29,3 @@ public @interface Repeat {
   public abstract int times();
 
 }
-

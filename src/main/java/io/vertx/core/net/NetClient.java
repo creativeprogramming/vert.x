@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net;
 
 import io.vertx.core.AsyncResult;
@@ -25,10 +24,11 @@ import io.vertx.core.metrics.Measured;
 /**
  * A TCP client.
  * <p>
- * Multiple connections to different servers can be made using the same instance.
+ * Multiple connections to different servers can be made using the same
+ * instance.
  * <p>
- * This client supports a configurable number of connection attempts and a configurable
- * delay between attempts.
+ * This client supports a configurable number of connection attempts and a
+ * configurable delay between attempts.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
@@ -36,13 +36,15 @@ import io.vertx.core.metrics.Measured;
 public interface NetClient extends Measured {
 
   /**
-   * Open a connection to a server at the specific {@code port} and {@code host}.
+   * Open a connection to a server at the specific {@code port} and
+   * {@code host}.
    * <p>
-   * {@code host} can be a valid host name or IP address. The connect is done asynchronously and on success, a
-   * {@link NetSocket} instance is supplied via the {@code connectHandler} instance
+   * {@code host} can be a valid host name or IP address. The connect is done
+   * asynchronously and on success, a {@link NetSocket} instance is supplied via
+   * the {@code connectHandler} instance
    *
-   * @param port  the port
-   * @param host  the host
+   * @param port the port
+   * @param host the host
    * @return a reference to this, so the API can be used fluently
    */
   @Fluent
@@ -51,8 +53,9 @@ public interface NetClient extends Measured {
   /**
    * Close the client.
    * <p>
-   * Any sockets which have not been closed manually will be closed here. The close is asynchronous and may not
-   * complete until some time after the method has returned.
+   * Any sockets which have not been closed manually will be closed here. The
+   * close is asynchronous and may not complete until some time after the method
+   * has returned.
    */
   void close();
 

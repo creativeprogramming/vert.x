@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.fakemetrics;
 
 import io.vertx.core.spi.metrics.PoolMetrics;
@@ -29,6 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author <a href="http://escoffier.me">Clement Escoffier</a>
  */
 public class FakePoolMetrics implements PoolMetrics<Void> {
+
   private final static Map<String, PoolMetrics> METRICS = new ConcurrentHashMap<>();
 
   private final int poolSize;

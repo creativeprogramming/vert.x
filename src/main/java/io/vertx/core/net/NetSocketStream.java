@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net;
 
 import io.vertx.codegen.annotations.VertxGen;
@@ -21,8 +20,9 @@ import io.vertx.core.Handler;
 import io.vertx.core.streams.ReadStream;
 
 /**
- * A {@link io.vertx.core.streams.ReadStream} of {@link io.vertx.core.net.NetSocket}, used for notifying
- * socket connections to a {@link io.vertx.core.net.NetServer}.
+ * A {@link io.vertx.core.streams.ReadStream} of
+ * {@link io.vertx.core.net.NetSocket}, used for notifying socket connections to
+ * a {@link io.vertx.core.net.NetServer}.
  *
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */

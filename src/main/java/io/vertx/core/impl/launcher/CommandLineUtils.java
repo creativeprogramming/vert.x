@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.launcher;
 
 import java.io.File;
@@ -26,7 +25,8 @@ import java.io.File;
 public class CommandLineUtils {
 
   /**
-   * @return the fat-jar file used to execute the application if the fat-jar approach is used.
+   * @return the fat-jar file used to execute the application if the fat-jar
+   * approach is used.
    */
   public static String getJar() {
     // Check whether or not the "sun.java.command" system property is defined,
@@ -48,8 +48,8 @@ public class CommandLineUtils {
   }
 
   /**
-   * @return try to get the command line having launched the application using the {@code sun.java.command}
-   * system properties. {@code null} if not set.
+   * @return try to get the command line having launched the application using
+   * the {@code sun.java.command} system properties. {@code null} if not set.
    */
   public static String getCommand() {
     return System.getProperty("sun.java.command");

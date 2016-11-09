@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.http.HttpServer;
@@ -29,8 +28,9 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.hamcrest.CoreMatchers.*;
 
 /**
- * Make sure that the Netty pipeline has a handler catching the {@link java.io.IOException} if the connection is reset
- * before any data has been sent.
+ * Make sure that the Netty pipeline has a handler catching the
+ * {@link java.io.IOException} if the connection is reset before any data has
+ * been sent.
  *
  * @author Thomas Segismont
  */
@@ -45,8 +45,9 @@ public class HttpConnectionEarlyResetTest extends VertxTestBase {
     super.setUp();
     CountDownLatch listenLatch = new CountDownLatch(1);
     httpServer = vertx.createHttpServer()
-      .requestHandler(request -> {})
-      .listen(8080, onSuccess(server -> listenLatch.countDown()));
+            .requestHandler(request -> {
+            })
+            .listen(8080, onSuccess(server -> listenLatch.countDown()));
     ((HttpServerImpl) httpServer).setConnectionExceptionHandler(t -> {
       caught.set(t);
       resetLatch.countDown();

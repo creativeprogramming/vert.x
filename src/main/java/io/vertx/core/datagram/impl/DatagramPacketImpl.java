@@ -22,11 +22,11 @@ import io.vertx.core.net.impl.SocketAddressImpl;
 
 import java.net.InetSocketAddress;
 
-
 /**
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>
  */
 final class DatagramPacketImpl implements DatagramPacket {
+
   private final InetSocketAddress sender;
   private final Buffer buffer;
   private SocketAddress senderAddress;

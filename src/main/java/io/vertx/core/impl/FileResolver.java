@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 import io.vertx.core.AsyncResult;
@@ -41,15 +40,18 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 /**
- * Sometimes the file resources of an application are bundled into jars, or are somewhere on the classpath but not
- * available on the file system, e.g. in the case of a Vert.x webapp bundled as a fat jar.
+ * Sometimes the file resources of an application are bundled into jars, or are
+ * somewhere on the classpath but not available on the file system, e.g. in the
+ * case of a Vert.x webapp bundled as a fat jar.
  *
- * In this case we want the application to access the resource from the classpath as if it was on the file system.
+ * In this case we want the application to access the resource from the
+ * classpath as if it was on the file system.
  *
- * We can do this by looking for the file on the classpath, and if found, copying it to a temporary cache directory
- * on disk and serving it from there.
+ * We can do this by looking for the file on the classpath, and if found,
+ * copying it to a temporary cache directory on disk and serving it from there.
  *
- * There is one cache dir per Vert.x instance and they are deleted on Vert.x shutdown.
+ * There is one cache dir per Vert.x instance and they are deleted on Vert.x
+ * shutdown.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  * @author <a href="https://github.com/rworsnop/">Rob Worsnop</a>
@@ -162,7 +164,7 @@ public class FileResolver {
     } else {
       cacheFile.mkdirs();
       String[] listing = resource.list();
-      for (String file: listing) {
+      for (String file : listing) {
         String subResource = fileName + "/" + file;
         URL url2 = cl.getResource(subResource);
         unpackFromFileURL(url2, subResource, cl);
@@ -242,11 +244,12 @@ public class FileResolver {
   }
 
   /**
-   * bundle:// urls are used by OSGi implementations to refer to a file contained in a bundle, or in a fragment. There
-   * is not much we can do to get the file from it, except reading it from the url. This method copies the files by
-   * reading it from the url.
+   * bundle:// urls are used by OSGi implementations to refer to a file
+   * contained in a bundle, or in a fragment. There is not much we can do to get
+   * the file from it, except reading it from the url. This method copies the
+   * files by reading it from the url.
    *
-   * @param url      the url
+   * @param url the url
    * @return the extracted file
    */
   private synchronized File unpackFromBundleURL(URL url) {
@@ -272,7 +275,6 @@ public class FileResolver {
     }
     return new File(cacheDir, url.getHost() + File.separator + url.getFile());
   }
-
 
   private ClassLoader getClassLoader() {
     ClassLoader cl = Thread.currentThread().getContextClassLoader();
@@ -308,4 +310,3 @@ public class FileResolver {
     }
   }
 }
-

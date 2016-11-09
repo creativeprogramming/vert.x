@@ -28,7 +28,7 @@ public class DnsQuestion extends DnsEntry {
    *
    * @param name the domain name being queried i.e. "www.example.com"
    * @param type the question type, which represents the type of
-   *             {@link DnsResource} record that should be returned
+   * {@link DnsResource} record that should be returned
    */
   public DnsQuestion(String name, int type) {
     this(name, type, CLASS_IN);
@@ -37,9 +37,9 @@ public class DnsQuestion extends DnsEntry {
   /**
    * Constructs a question with the given class.
    *
-   * @param name   the domain name being queried i.e. "www.example.com"
-   * @param type   the question type, which represents the type of
-   *               {@link DnsResource} record that should be returned
+   * @param name the domain name being queried i.e. "www.example.com"
+   * @param type the question type, which represents the type of
+   * {@link DnsResource} record that should be returned
    * @param qClass the class of a DNS record
    */
   public DnsQuestion(String name, int type, int qClass) {

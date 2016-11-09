@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.cli;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -24,10 +23,11 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * Models command line options. Options are values passed to a command line interface using -x or --x. Supported
- * syntaxes depend on the parser.
+ * Models command line options. Options are values passed to a command line
+ * interface using -x or --x. Supported syntaxes depend on the parser.
  * <p/>
- * Short name is generally used with a single dash, while long name requires a double-dash.
+ * Short name is generally used with a single dash, while long name requires a
+ * double-dash.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
@@ -40,8 +40,8 @@ public class Option {
   public static final String DEFAULT_ARG_NAME = "value";
 
   /**
-   * The default long name / short name of the option. Notice that options requires at least a regular long name or
-   * short name.
+   * The default long name / short name of the option. Notice that options
+   * requires at least a regular long name or short name.
    */
   public static final String NO_NAME = "\0";
 
@@ -66,12 +66,14 @@ public class Option {
   protected String description;
 
   /**
-   * whether or not the option is required. A mandatory not set throws a {@link MissingOptionException}.
+   * whether or not the option is required. A mandatory not set throws a
+   * {@link MissingOptionException}.
    */
   protected boolean required;
 
   /**
-   * whether or not the option is hidden. Hidden options are not displayed in usage.
+   * whether or not the option is hidden. Hidden options are not displayed in
+   * usage.
    */
   protected boolean hidden;
 
@@ -91,21 +93,23 @@ public class Option {
   protected String defaultValue;
 
   /**
-   * whether or not the option is a flag. Flag option does not require a value. If an option is a flag, it is
-   * evaluated to {@link true} if the option is used in the command line.
+   * whether or not the option is a flag. Flag option does not require a value.
+   * If an option is a flag, it is evaluated to {@link true} if the option is
+   * used in the command line.
    */
   protected boolean flag;
 
   /**
-   * whether or not the option is a "help" option. Is the user execute the command line enabling a help option, the
-   * command line validation won't fail, and give the command the opportunity to display the usage message, instead
-   * of throwing an exception during the parsing.
+   * whether or not the option is a "help" option. Is the user execute the
+   * command line enabling a help option, the command line validation won't
+   * fail, and give the command the opportunity to display the usage message,
+   * instead of throwing an exception during the parsing.
    */
   protected boolean help;
 
   /**
-   * if the option value has to be in a definited set, this field represents the set of values. Value are sorted
-   * alphabetically.
+   * if the option value has to be in a definited set, this field represents the
+   * set of values. Value are sorted alphabetically.
    */
   protected Set<String> choices = new TreeSet<>();
 
@@ -116,7 +120,8 @@ public class Option {
   }
 
   /**
-   * Creates a new instance of {@link Option} by copying the state of another {@link Option}.
+   * Creates a new instance of {@link Option} by copying the state of another
+   * {@link Option}.
    *
    * @param other the other option
    */
@@ -159,11 +164,13 @@ public class Option {
   }
 
   /**
-   * Checks whether or not the option is valid. This implementation check that it has a short name or a long name.
-   * This method is intended to be extended by sub-class. Parser should check that the set of
-   * option of a {@link CLI} is valid before starting the parsing.
+   * Checks whether or not the option is valid. This implementation check that
+   * it has a short name or a long name. This method is intended to be extended
+   * by sub-class. Parser should check that the set of option of a {@link CLI}
+   * is valid before starting the parsing.
    * <p/>
-   * If the configuration is not valid, this method throws a {@link IllegalArgumentException}.
+   * If the configuration is not valid, this method throws a
+   * {@link IllegalArgumentException}.
    */
   public void ensureValidity() {
     if ((shortName == null || shortName.equals(NO_NAME)) && (longName == null || longName.equals(NO_NAME))) {
@@ -179,7 +186,8 @@ public class Option {
   }
 
   /**
-   * @return the option name. It returns the long name if set, the short name otherwise. It cannot return {@code
+   * @return the option name. It returns the long name if set, the short name
+   * otherwise. It cannot return {@code
    * null} for valid option
    * @see #ensureValidity()
    */
@@ -233,7 +241,8 @@ public class Option {
   }
 
   /**
-   * @return the option arg name used in usage messages, {@code null} if not set.
+   * @return the option arg name used in usage messages, {@code null} if not
+   * set.
    */
   public String getArgName() {
     return argName;
@@ -279,7 +288,8 @@ public class Option {
   /**
    * Sets whether or not this option should be hidden
    *
-   * @param hidden {@code true} to make this option hidden, {@link false} otherwise
+   * @param hidden {@code true} to make this option hidden, {@link false}
+   * otherwise
    * @return the current {@link Option} instance
    */
   public Option setHidden(boolean hidden) {
@@ -315,7 +325,8 @@ public class Option {
   /**
    * Sets whether or not this option is mandatory.
    *
-   * @param required {@code true} to make this option mandatory, {@link false} otherwise
+   * @param required {@code true} to make this option mandatory, {@link false}
+   * otherwise
    * @return the current {@link Option} instance
    */
   public Option setRequired(boolean required) {
@@ -370,9 +381,9 @@ public class Option {
   }
 
   /**
-   * Configures the current {@link Option} to be a flag. It will be evaluated to {@code true} if it's found in
-   * the command line. If you need a flag that may receive a value, use, in this order:
-   * <code><pre>
+   * Configures the current {@link Option} to be a flag. It will be evaluated to
+   * {@code true} if it's found in the command line. If you need a flag that may
+   * receive a value, use, in this order:    <code><pre>
    *   option.setFlag(true).setSingleValued(true)
    * </pre></code>
    *
@@ -406,15 +417,17 @@ public class Option {
   }
 
   /**
-   * @return get the list of choices for the given option. Empty if this option does not define choices.
+   * @return get the list of choices for the given option. Empty if this option
+   * does not define choices.
    */
   public Set<String> getChoices() {
     return choices;
   }
 
   /**
-   * Sets the list of values accepted by this option. If the value set by the user does not match once of these
-   * values, a {@link InvalidValueException} exception is thrown.
+   * Sets the list of values accepted by this option. If the value set by the
+   * user does not match once of these values, a {@link InvalidValueException}
+   * exception is thrown.
    *
    * @param choices the choices
    * @return the current {@link Option}
@@ -425,8 +438,9 @@ public class Option {
   }
 
   /**
-   * Adds a choice to the list of values accepted by this option. If the value set by the user does not match once of these
-   * values, a {@link InvalidValueException} exception is thrown.
+   * Adds a choice to the list of values accepted by this option. If the value
+   * set by the user does not match once of these values, a
+   * {@link InvalidValueException} exception is thrown.
    *
    * @param choice the choice
    * @return the current {@link Option}

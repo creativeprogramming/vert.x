@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import org.junit.ComparisonFailure;
@@ -148,8 +147,6 @@ public class AsyncTestBaseTest extends AsyncTestBase {
 //      assertTrue(delay < defaultTimeout * 1.5);
 //    }
 //  }
-
-
   @Test
   public void testFailFromOtherThread() {
     String msg = "too many aardvarks!";

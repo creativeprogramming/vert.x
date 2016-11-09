@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.buffer.ByteBuf;
@@ -104,7 +103,8 @@ abstract class VertxHttp2Stream<C extends Http2ConnectionBase> {
   }
 
   /**
-   * Check if paused buffers must be handled to the reader, this must be called from event loop.
+   * Check if paused buffers must be handled to the reader, this must be called
+   * from event loop.
    */
   private void checkNextTick(Void v) {
     synchronized (conn) {

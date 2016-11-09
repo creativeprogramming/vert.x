@@ -13,18 +13,19 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.logging;
 
 import io.vertx.core.spi.logging.LogDelegate;
 import org.apache.log4j.Level;
 
 /**
- * A {@link io.vertx.core.spi.logging.LogDelegate} which delegates to Apache Log4j
+ * A {@link io.vertx.core.spi.logging.LogDelegate} which delegates to Apache
+ * Log4j
  *
  * @author <a href="kenny.macleod@kizoom.com">Kenny MacLeod</a>
  */
 public class Log4jLogDelegate implements LogDelegate {
+
   private static final String FQCN = Logger.class.getCanonicalName();
 
   private final org.apache.log4j.Logger logger;

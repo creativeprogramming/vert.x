@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package examples;
 
 import io.vertx.core.Vertx;
@@ -109,12 +108,12 @@ public class EventBusExamples {
 
   public void example13() {
     VertxOptions options = new VertxOptions()
-        .setEventBusOptions(new EventBusOptions()
-            .setSsl(true)
-            .setKeyStoreOptions(new JksOptions().setPath("keystore.jks").setPassword("wibble"))
-            .setTrustStoreOptions(new JksOptions().setPath("keystore.jks").setPassword("wibble"))
-            .setClientAuth(ClientAuth.REQUIRED)
-        );
+            .setEventBusOptions(new EventBusOptions()
+                    .setSsl(true)
+                    .setKeyStoreOptions(new JksOptions().setPath("keystore.jks").setPassword("wibble"))
+                    .setTrustStoreOptions(new JksOptions().setPath("keystore.jks").setPassword("wibble"))
+                    .setClientAuth(ClientAuth.REQUIRED)
+            );
 
     Vertx.clusteredVertx(options, res -> {
       if (res.succeeded()) {
@@ -129,10 +128,10 @@ public class EventBusExamples {
 
   public void example14() {
     VertxOptions options = new VertxOptions()
-        .setEventBusOptions(new EventBusOptions()
-            .setClusterPublicHost("whatever")
-            .setClusterPublicPort(1234)
-        );
+            .setEventBusOptions(new EventBusOptions()
+                    .setClusterPublicHost("whatever")
+                    .setClusterPublicPort(1234)
+            );
 
     Vertx.clusteredVertx(options, res -> {
       if (res.succeeded()) {
@@ -144,6 +143,5 @@ public class EventBusExamples {
       }
     });
   }
-
 
 }

@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net;
 
 import java.util.Objects;
@@ -64,7 +63,7 @@ public class ProxyOptions {
   /**
    * Copy constructor.
    *
-   * @param other  the options to copy
+   * @param other the options to copy
    */
   public ProxyOptions(ProxyOptions other) {
     host = other.getHost();
@@ -77,7 +76,7 @@ public class ProxyOptions {
   /**
    * Create options from JSON.
    *
-   * @param json  the JSON
+   * @param json the JSON
    */
   public ProxyOptions(JsonObject json) {
     this();
@@ -87,7 +86,7 @@ public class ProxyOptions {
   /**
    * Get proxy host.
    *
-   * @return  proxy hosts
+   * @return proxy hosts
    */
   public String getHost() {
     return host;
@@ -108,7 +107,7 @@ public class ProxyOptions {
   /**
    * Get proxy port.
    *
-   * @return  proxy port
+   * @return proxy port
    */
   public int getPort() {
     return port;
@@ -131,7 +130,7 @@ public class ProxyOptions {
   /**
    * Get proxy username.
    *
-   * @return  proxy username
+   * @return proxy username
    */
   public String getUsername() {
     return username;
@@ -151,7 +150,7 @@ public class ProxyOptions {
   /**
    * Get proxy password.
    *
-   * @return  proxy password
+   * @return proxy password
    */
   public String getPassword() {
     return password;
@@ -171,9 +170,10 @@ public class ProxyOptions {
   /**
    * Get proxy type.
    *
-   *<p>ProxyType can be HTTP, SOCKS4 and SOCKS5
+   * <p>
+   * ProxyType can be HTTP, SOCKS4 and SOCKS5
    *
-   * @return  proxy type
+   * @return proxy type
    */
   public ProxyType getType() {
     return type;
@@ -182,7 +182,8 @@ public class ProxyOptions {
   /**
    * Set proxy type.
    *
-   * <p>ProxyType can be HTTP, SOCKS4 and SOCKS5
+   * <p>
+   * ProxyType can be HTTP, SOCKS4 and SOCKS5
    *
    * @param type the proxy type to connect to
    * @return a reference to this, so the API can be used fluently
@@ -195,17 +196,33 @@ public class ProxyOptions {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof ClientOptionsBase)) return false;
-    if (!super.equals(o)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof ClientOptionsBase)) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
 
     ProxyOptions that = (ProxyOptions) o;
 
-    if (type != that.type) return false;
-    if (host.equals(that.host)) return false;
-    if (port != that.port) return false;
-    if (!Objects.equals(password, that.password)) return false;
-    if (!Objects.equals(username, that.username)) return false;
+    if (type != that.type) {
+      return false;
+    }
+    if (host.equals(that.host)) {
+      return false;
+    }
+    if (port != that.port) {
+      return false;
+    }
+    if (!Objects.equals(password, that.password)) {
+      return false;
+    }
+    if (!Objects.equals(username, that.username)) {
+      return false;
+    }
 
     return true;
   }

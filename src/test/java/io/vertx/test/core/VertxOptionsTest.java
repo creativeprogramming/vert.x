@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.VertxOptions;
@@ -238,8 +237,8 @@ public class VertxOptionsTest extends VertxTestBase {
     options.setQuorumSize(quorumSize);
     options.setHAGroup(haGroup);
     options.setMetricsOptions(
-        new MetricsOptions().
-            setEnabled(metricsEnabled));
+            new MetricsOptions().
+                    setEnabled(metricsEnabled));
     options.setWarningExceptionTime(warningExceptionTime);
     options = new VertxOptions(options);
     assertEquals(clusterPort, options.getClusterPort());
@@ -329,27 +328,27 @@ public class VertxOptionsTest extends VertxTestBase {
     boolean jmxEnabled = rand.nextBoolean();
     String jmxDomain = TestUtils.randomAlphaString(100);
     options = new VertxOptions(new JsonObject().
-        put("clusterPort", clusterPort).
-        put("clusterPublicPort", clusterPublicPort).
-        put("eventLoopPoolSize", eventLoopPoolSize).
-        put("internalBlockingPoolSize", internalBlockingPoolSize).
-        put("workerPoolSize", workerPoolSize).
-        put("blockedThreadCheckInterval", blockedThreadCheckInterval).
-        put("clusterHost", clusterHost).
-        put("clusterPublicHost", clusterPublicHost).
-        put("clusterPingInterval", clusterPingInterval).
-        put("clusterPingReplyInterval", clusterPingReplyInterval).
-        put("maxEventLoopExecuteTime", maxEventLoopExecuteTime).
-        put("maxWorkerExecuteTime", maxWorkerExecuteTime).
-        put("proxyOperationTimeout", proxyOperationTimeout).
-        put("haEnabled", haEnabled).
-        put("quorumSize", quorumSize).
-        put("haGroup", haGroup).
-        put("warningExceptionTime", warningExceptionTime).
-        put("metricsOptions", new JsonObject().
-            put("enabled", metricsEnabled).
-            put("jmxEnabled", jmxEnabled).
-            put("jmxDomain", jmxDomain))
+            put("clusterPort", clusterPort).
+            put("clusterPublicPort", clusterPublicPort).
+            put("eventLoopPoolSize", eventLoopPoolSize).
+            put("internalBlockingPoolSize", internalBlockingPoolSize).
+            put("workerPoolSize", workerPoolSize).
+            put("blockedThreadCheckInterval", blockedThreadCheckInterval).
+            put("clusterHost", clusterHost).
+            put("clusterPublicHost", clusterPublicHost).
+            put("clusterPingInterval", clusterPingInterval).
+            put("clusterPingReplyInterval", clusterPingReplyInterval).
+            put("maxEventLoopExecuteTime", maxEventLoopExecuteTime).
+            put("maxWorkerExecuteTime", maxWorkerExecuteTime).
+            put("proxyOperationTimeout", proxyOperationTimeout).
+            put("haEnabled", haEnabled).
+            put("quorumSize", quorumSize).
+            put("haGroup", haGroup).
+            put("warningExceptionTime", warningExceptionTime).
+            put("metricsOptions", new JsonObject().
+                    put("enabled", metricsEnabled).
+                    put("jmxEnabled", jmxEnabled).
+                    put("jmxDomain", jmxDomain))
     );
     assertEquals(clusterPort, options.getClusterPort());
     assertEquals(clusterPublicPort, options.getClusterPublicPort());

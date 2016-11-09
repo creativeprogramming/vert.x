@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.file.impl;
 
 import io.vertx.core.AsyncResult;
@@ -356,27 +355,27 @@ public class FileSystemImpl implements FileSystem {
           Path target = vertx.resolveFile(to).toPath();
           if (recursive) {
             Files.walkFileTree(source, EnumSet.of(FileVisitOption.FOLLOW_LINKS), Integer.MAX_VALUE,
-                new SimpleFileVisitor<Path>() {
-                  public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
+                    new SimpleFileVisitor<Path>() {
+              public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
                       throws IOException {
-                    Path targetDir = target.resolve(source.relativize(dir));
-                    try {
-                      Files.copy(dir, targetDir);
-                    } catch (FileAlreadyExistsException e) {
-                      if (!Files.isDirectory(targetDir)) {
-                        throw e;
-                      }
-                    }
-                    return FileVisitResult.CONTINUE;
+                Path targetDir = target.resolve(source.relativize(dir));
+                try {
+                  Files.copy(dir, targetDir);
+                } catch (FileAlreadyExistsException e) {
+                  if (!Files.isDirectory(targetDir)) {
+                    throw e;
                   }
+                }
+                return FileVisitResult.CONTINUE;
+              }
 
-                  @Override
-                  public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+              @Override
+              public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
                       throws IOException {
-                    Files.copy(file, target.resolve(source.relativize(file)));
-                    return FileVisitResult.CONTINUE;
-                  }
-                });
+                Files.copy(file, target.resolve(source.relativize(file)));
+                return FileVisitResult.CONTINUE;
+              }
+            });
           } else {
             Files.copy(source, target);
           }
@@ -422,7 +421,9 @@ public class FileSystemImpl implements FileSystem {
             raf = new RandomAccessFile(path, "rw");
             raf.setLength(len);
           } finally {
-            if (raf != null) raf.close();
+            if (raf != null) {
+              raf.close();
+            }
           }
         } catch (IOException e) {
           throw new FileSystemException(e);
@@ -592,6 +593,7 @@ public class FileSystemImpl implements FileSystem {
                 Files.delete(file);
                 return FileVisitResult.CONTINUE;
               }
+
               public FileVisitResult postVisitDirectory(Path dir, IOException e) throws IOException {
                 if (e == null) {
                   Files.delete(dir);
@@ -772,6 +774,7 @@ public class FileSystemImpl implements FileSystem {
     Objects.requireNonNull(path);
     return new BlockingAction<Boolean>(handler) {
       File file = vertx.resolveFile(path);
+
       public Boolean perform() {
         return file.exists();
       }
@@ -802,6 +805,7 @@ public class FileSystemImpl implements FileSystem {
       this.handler = handler;
       this.context = vertx.getOrCreateContext();
     }
+
     /**
      * Run the blocking action using a thread from the worker pool.
      */

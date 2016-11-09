@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 import java.util.Map;
@@ -49,7 +48,7 @@ public class VertxThreadFactory implements ThreadFactory {
   }
 
   public static synchronized void unsetContext(ContextImpl ctx) {
-    for (VertxThread thread: weakMap.keySet()) {
+    for (VertxThread thread : weakMap.keySet()) {
       if (thread.getContext() == ctx) {
         thread.setContext(null);
       }

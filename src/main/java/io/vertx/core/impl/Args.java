@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 import java.util.HashMap;
@@ -28,7 +27,7 @@ public class Args {
 
   public Args(String[] args) {
     String currentKey = null;
-    for (String arg: args) {
+    for (String arg : args) {
       if (arg.startsWith("-")) {
         if (currentKey != null) {
           map.put(currentKey, "");

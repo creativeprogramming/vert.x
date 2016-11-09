@@ -64,8 +64,8 @@ public class RedeployTest extends CommandTestBase {
   @Test
   public void testStartingApplicationInRedeployMode() {
     cli.dispatch(new Launcher(), new String[]{"run",
-        HttpTestVerticle.class.getName(), "--redeploy=**" + File.separator + "*.txt",
-        "--launcher-class=" + Launcher.class.getName()
+      HttpTestVerticle.class.getName(), "--redeploy=**" + File.separator + "*.txt",
+      "--launcher-class=" + Launcher.class.getName()
     });
     waitUntil(() -> {
       try {
@@ -80,9 +80,9 @@ public class RedeployTest extends CommandTestBase {
   public void testStartingApplicationInRedeployModeWithInlineConf() throws IOException {
     int random = (int) (Math.random() * 100);
     cli.dispatch(new Launcher(), new String[]{"run",
-        HttpTestVerticle.class.getName(), "--redeploy=**" + File.separator + "*.txt",
-        "--launcher-class=" + Launcher.class.getName(),
-        "--conf", "{\"random\":" + random + "}"
+      HttpTestVerticle.class.getName(), "--redeploy=**" + File.separator + "*.txt",
+      "--launcher-class=" + Launcher.class.getName(),
+      "--conf", "{\"random\":" + random + "}"
     });
     waitUntil(() -> {
       try {
@@ -101,9 +101,9 @@ public class RedeployTest extends CommandTestBase {
   public void testStartingApplicationInRedeployModeWithInlineConf2() throws IOException {
     int random = (int) (Math.random() * 100);
     cli.dispatch(new Launcher(), new String[]{"run",
-        HttpTestVerticle.class.getName(), "--redeploy=**" + File.separator + "*.txt",
-        "--launcher-class=" + Launcher.class.getName(),
-        "--conf={\"random\":" + random + "}"
+      HttpTestVerticle.class.getName(), "--redeploy=**" + File.separator + "*.txt",
+      "--launcher-class=" + Launcher.class.getName(),
+      "--conf={\"random\":" + random + "}"
     });
     waitUntil(() -> {
       try {
@@ -121,9 +121,9 @@ public class RedeployTest extends CommandTestBase {
   @Test
   public void testStartingApplicationInRedeployModeWithFileConf() throws IOException {
     cli.dispatch(new Launcher(), new String[]{"run",
-        HttpTestVerticle.class.getName(), "--redeploy=**" + File.separator + "*.txt",
-        "--launcher-class=" + Launcher.class.getName(),
-        "--conf", new File("src/test/resources/conf.json").getAbsolutePath()
+      HttpTestVerticle.class.getName(), "--redeploy=**" + File.separator + "*.txt",
+      "--launcher-class=" + Launcher.class.getName(),
+      "--conf", new File("src/test/resources/conf.json").getAbsolutePath()
     });
     waitUntil(() -> {
       try {
@@ -141,9 +141,9 @@ public class RedeployTest extends CommandTestBase {
   @Test
   public void testStartingApplicationInRedeployModeWithFileConf2() throws IOException {
     cli.dispatch(new Launcher(), new String[]{"run",
-        HttpTestVerticle.class.getName(), "--redeploy=**" + File.separator + "*.txt",
-        "--launcher-class=" + Launcher.class.getName(),
-        "--conf=" + new File("src/test/resources/conf.json").getAbsolutePath()
+      HttpTestVerticle.class.getName(), "--redeploy=**" + File.separator + "*.txt",
+      "--launcher-class=" + Launcher.class.getName(),
+      "--conf=" + new File("src/test/resources/conf.json").getAbsolutePath()
     });
     waitUntil(() -> {
       try {
@@ -161,10 +161,10 @@ public class RedeployTest extends CommandTestBase {
   @Test
   public void testStartingApplicationInRedeployModeWithCluster() throws IOException {
     cli.dispatch(new Launcher(), new String[]{"run",
-        HttpTestVerticle.class.getName(), "--redeploy=**" + File.separator + "*.txt",
-        "--launcher-class=" + Launcher.class.getName(),
-        "--cluster",
-        ExecUtils.isWindows() ? "--redeploy-termination-period=3000" : ""
+      HttpTestVerticle.class.getName(), "--redeploy=**" + File.separator + "*.txt",
+      "--launcher-class=" + Launcher.class.getName(),
+      "--cluster",
+      ExecUtils.isWindows() ? "--redeploy-termination-period=3000" : ""
     });
     waitUntil(() -> {
       try {
@@ -179,9 +179,9 @@ public class RedeployTest extends CommandTestBase {
   @Test
   public void testRedeployment() throws IOException {
     cli.dispatch(new Launcher(), new String[]{"run",
-        HttpTestVerticle.class.getName(), "--redeploy=**" + File.separator + "*.txt",
-        "--launcher-class=" + Launcher.class.getName(),
-        ExecUtils.isWindows() ? "--redeploy-termination-period=3000" : ""
+      HttpTestVerticle.class.getName(), "--redeploy=**" + File.separator + "*.txt",
+      "--launcher-class=" + Launcher.class.getName(),
+      ExecUtils.isWindows() ? "--redeploy-termination-period=3000" : ""
     });
     waitUntil(() -> {
       try {
@@ -210,10 +210,10 @@ public class RedeployTest extends CommandTestBase {
   @Test
   public void testRedeploymentWithSlash() throws IOException {
     cli.dispatch(new Launcher(), new String[]{"run",
-        // Use "/", on windows it gets replaced.
-        HttpTestVerticle.class.getName(), "--redeploy=**" + "/" + "*.txt",
-        "--launcher-class=" + Launcher.class.getName(),
-        ExecUtils.isWindows() ? "--redeploy-termination-period=3000" : ""
+      // Use "/", on windows it gets replaced.
+      HttpTestVerticle.class.getName(), "--redeploy=**" + "/" + "*.txt",
+      "--launcher-class=" + Launcher.class.getName(),
+      ExecUtils.isWindows() ? "--redeploy-termination-period=3000" : ""
     });
     waitUntil(() -> {
       try {

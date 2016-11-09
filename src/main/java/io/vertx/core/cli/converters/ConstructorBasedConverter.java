@@ -19,8 +19,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * This 'default' converter tries to create objects using a constructor taking a single String argument.
- * Be aware that implementation must also handle the case where the input is {@literal null}.
+ * This 'default' converter tries to create objects using a constructor taking a
+ * single String argument. Be aware that implementation must also handle the
+ * case where the input is {@literal null}.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
@@ -33,8 +34,10 @@ public final class ConstructorBasedConverter<T> implements Converter<T> {
   }
 
   /**
-   * Checks whether the given class can be used by the {@link ConstructorBasedConverter} (i.e. has a constructor
-   * taking a single String as argument). If so, creates a new instance of converter for this type.
+   * Checks whether the given class can be used by the
+   * {@link ConstructorBasedConverter} (i.e. has a constructor taking a single
+   * String as argument). If so, creates a new instance of converter for this
+   * type.
    *
    * @param clazz the class
    * @return a {@link ConstructorBasedConverter} if the given class is eligible,
@@ -55,12 +58,13 @@ public final class ConstructorBasedConverter<T> implements Converter<T> {
   }
 
   /**
-   * Converts the given input to an object by using the constructor approach. Notice that the constructor must
-   * expect receiving a {@literal null} value.
+   * Converts the given input to an object by using the constructor approach.
+   * Notice that the constructor must expect receiving a {@literal null} value.
    *
    * @param input the input, can be {@literal null}
    * @return the instance of T
-   * @throws IllegalArgumentException if the instance of T cannot be created from the input.
+   * @throws IllegalArgumentException if the instance of T cannot be created
+   * from the input.
    */
   @Override
   public T fromString(String input) throws IllegalArgumentException {

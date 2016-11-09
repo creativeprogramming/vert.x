@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.channel.Channel;
@@ -49,7 +48,7 @@ public class Http1xPool implements ConnectionManager.Pool<ClientConnection> {
   private final int maxSockets;
 
   public Http1xPool(HttpClientImpl client, HttpClientMetrics metrics, HttpClientOptions options, ConnectionManager.ConnQueue queue,
-                    Map<Channel, HttpClientConnection> connectionMap, HttpVersion version, int maxSockets) {
+          Map<Channel, HttpClientConnection> connectionMap, HttpVersion version, int maxSockets) {
     this.queue = queue;
     this.version = version;
     this.client = client;
@@ -119,7 +118,7 @@ public class Http1xPool implements ConnectionManager.Pool<ClientConnection> {
 
   void createConn(HttpVersion version, ContextImpl context, int port, String host, Channel ch, Waiter waiter) {
     ClientConnection conn = new ClientConnection(version, client, queue.metric, ch,
-        ssl, host, port, context, this, metrics);
+            ssl, host, port, context, this, metrics);
     metrics.endpointConnected(queue.metric, conn.metric());
     ClientHandler handler = ch.pipeline().get(ClientHandler.class);
     handler.conn = conn;

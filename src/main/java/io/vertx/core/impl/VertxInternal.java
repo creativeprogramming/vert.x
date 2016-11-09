@@ -13,9 +13,7 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
-
 
 import io.netty.channel.EventLoopGroup;
 import io.netty.resolver.AddressResolverGroup;
@@ -38,9 +36,9 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 /**
- * This interface provides services for vert.x core internal use only
- * It is not part of the public API and should not be used by
- * developers creating vert.x applications
+ * This interface provides services for vert.x core internal use only It is not
+ * part of the public API and should not be used by developers creating vert.x
+ * applications
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
@@ -61,11 +59,12 @@ public interface VertxInternal extends Vertx {
 
   VertxMetrics metricsSPI();
 
-	/**
-	 * Get the current context
-	 * @return the context
-	 */
-	ContextImpl getContext();
+  /**
+   * Get the current context
+   *
+   * @return the context
+   */
+  ContextImpl getContext();
 
   /**
    * @return event loop context
@@ -105,7 +104,8 @@ public interface VertxInternal extends Vertx {
   ClusterManager getClusterManager();
 
   /**
-   * Resolve an address (e.g. {@code vertx.io} into the first found A (IPv4) or AAAA (IPv6) record.
+   * Resolve an address (e.g. {@code vertx.io} into the first found A (IPv4) or
+   * AAAA (IPv6) record.
    *
    * @param hostname the hostname to resolve
    * @param resultHandler the result handler
@@ -118,7 +118,8 @@ public interface VertxInternal extends Vertx {
   AddressResolver addressResolver();
 
   /**
-   * @return the Netty {@code AddressResolverGroup} to use in a Netty {@code Bootstrap}
+   * @return the Netty {@code AddressResolverGroup} to use in a Netty
+   * {@code Bootstrap}
    */
   AddressResolverGroup<InetSocketAddress> nettyAddressResolverGroup();
 

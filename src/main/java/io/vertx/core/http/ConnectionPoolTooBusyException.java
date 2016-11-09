@@ -13,17 +13,18 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http;
 
 import io.vertx.core.VertxException;
 
 /**
- * Represents a failure to add a HttpClientRequest to the wait queue on an ConnectionManager.
+ * Represents a failure to add a HttpClientRequest to the wait queue on an
+ * ConnectionManager.
  * <p>
- * If an HttpClient receives a request but is already handling maxPoolSize requests it will attempt to put the new
- * request on it's wait queue.  If the maxWaitQueueSize is set and the new request would cause the wait queue to exceed
- * that size then the request will receive this exception.
+ * If an HttpClient receives a request but is already handling maxPoolSize
+ * requests it will attempt to put the new request on it's wait queue. If the
+ * maxWaitQueueSize is set and the new request would cause the wait queue to
+ * exceed that size then the request will receive this exception.
  *
  * @author <a href="mailto:ddimensia@gmail.com">Gil Markham</a>
  * @author <a href="mailto:wangjunbo924@gmail.com">Junbo Wang</a>

@@ -26,6 +26,7 @@ import io.vertx.core.impl.ContextImpl;
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>
  */
 final class DatagramChannelFutureListener<T> implements ChannelFutureListener {
+
   private final Handler<AsyncResult<T>> handler;
   private final T result;
   private final ContextImpl context;

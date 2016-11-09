@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package io.vertx.test.core;
 
@@ -23,7 +23,7 @@ public abstract class TestProxyBase {
 
   /**
    * check the last accessed host:ip
-   * 
+   *
    * @return the lastUri
    */
   public String getLastUri() {
@@ -31,8 +31,8 @@ public abstract class TestProxyBase {
   }
 
   /**
-   * force uri to connect to a given string (e.g. "localhost:4443") this is used to simulate a host that only resolves
-   * on the proxy
+   * force uri to connect to a given string (e.g. "localhost:4443") this is used
+   * to simulate a host that only resolves on the proxy
    */
   public void setForceUri(String uri) {
     forceUri = uri;
@@ -43,8 +43,9 @@ public abstract class TestProxyBase {
   }
 
   public abstract int getPort();
-  
+
   public abstract void start(Vertx vertx, Handler<Void> finishedHandler);
+
   public abstract void stop();
 
 }

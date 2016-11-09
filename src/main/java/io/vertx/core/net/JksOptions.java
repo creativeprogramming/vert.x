@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -26,16 +25,20 @@ import io.vertx.core.net.impl.KeyStoreHelper;
 import javax.net.ssl.KeyManagerFactory;
 
 /**
- * Key or trust store options configuring private key and/or certificates based on Java Keystore files.
+ * Key or trust store options configuring private key and/or certificates based
+ * on Java Keystore files.
  * <p>
- * When used as a key store, it should point to a store containing a private key and its certificate.
- * When used as a trust store, it should point to a store containing a list of trusted certificates.
+ * When used as a key store, it should point to a store containing a private key
+ * and its certificate. When used as a trust store, it should point to a store
+ * containing a list of trusted certificates.
  * <p>
  * The store can either be loaded by Vert.x from the filesystem:
  * <p>
- * <pre>
+ * <
+ * pre>
  * HttpServerOptions options = HttpServerOptions.httpServerOptions();
- * options.setKeyStore(new JKSOptions().setPath("/mykeystore.jks").setPassword("foo"));
+ * options.setKeyStore(new
+ * JKSOptions().setPath("/mykeystore.jks").setPassword("foo"));
  * </pre>
  *
  * Or directly provided as a buffer:
@@ -66,7 +69,7 @@ public class JksOptions implements KeyCertOptions, TrustOptions, Cloneable {
   /**
    * Copy constructor
    *
-   * @param other  the options to copy
+   * @param other the options to copy
    */
   public JksOptions(JksOptions other) {
     super();
@@ -78,7 +81,7 @@ public class JksOptions implements KeyCertOptions, TrustOptions, Cloneable {
   /**
    * Create options from JSON
    *
-   * @param json  the JSON
+   * @param json the JSON
    */
   public JksOptions(JsonObject json) {
     super();
@@ -101,7 +104,7 @@ public class JksOptions implements KeyCertOptions, TrustOptions, Cloneable {
   /**
    * Set the password for the key store
    *
-   * @param password  the password
+   * @param password the password
    * @return a reference to this, so the API can be used fluently
    */
   public JksOptions setPassword(String password) {
@@ -121,7 +124,7 @@ public class JksOptions implements KeyCertOptions, TrustOptions, Cloneable {
   /**
    * Set the path to the key store
    *
-   * @param path  the path
+   * @param path the path
    * @return a reference to this, so the API can be used fluently
    */
   public JksOptions setPath(String path) {
@@ -132,7 +135,7 @@ public class JksOptions implements KeyCertOptions, TrustOptions, Cloneable {
   /**
    * Get the key store as a buffer
    *
-   * @return  the key store as a buffer
+   * @return the key store as a buffer
    */
   public Buffer getValue() {
     return value;
@@ -141,7 +144,7 @@ public class JksOptions implements KeyCertOptions, TrustOptions, Cloneable {
   /**
    * Set the key store as a buffer
    *
-   * @param value  the key store as a buffer
+   * @param value the key store as a buffer
    * @return a reference to this, so the API can be used fluently
    */
   public JksOptions setValue(Buffer value) {

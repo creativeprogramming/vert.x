@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.eventbus.impl.clustered;
 
 import io.vertx.core.*;
@@ -41,7 +40,7 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * An event bus implementation that clusters with other Vert.x nodes
  *
- * @author <a href="http://tfox.org">Tim Fox</a>   7                                                                                     T
+ * @author <a href="http://tfox.org">Tim Fox</a> 7 T
  */
 public class ClusteredEventBus extends EventBusImpl {
 
@@ -50,7 +49,7 @@ public class ClusteredEventBus extends EventBusImpl {
   public static final String CLUSTER_PUBLIC_HOST_PROP_NAME = "vertx.cluster.public.host";
   public static final String CLUSTER_PUBLIC_PORT_PROP_NAME = "vertx.cluster.public.port";
 
-  private static final Buffer PONG = Buffer.buffer(new byte[] { (byte)1 });
+  private static final Buffer PONG = Buffer.buffer(new byte[]{(byte) 1});
   private static final String SERVER_ID_HA_KEY = "server_id";
   private static final String SUBS_MAP_NAME = "__vertx.subs";
 
@@ -65,9 +64,9 @@ public class ClusteredEventBus extends EventBusImpl {
   private NetServer server;
 
   public ClusteredEventBus(VertxInternal vertx,
-                           VertxOptions options,
-                           ClusterManager clusterManager,
-                           HAManager haManager) {
+          VertxOptions options,
+          ClusterManager clusterManager,
+          HAManager haManager) {
     super(vertx);
     this.options = options.getEventBusOptions();
     this.clusterManager = clusterManager;
@@ -156,7 +155,7 @@ public class ClusteredEventBus extends EventBusImpl {
             log.error("Failed to close server", ar.cause());
           }
           // Close all outbound connections explicitly - don't rely on context hooks
-          for (ConnectionHolder holder: connections.values()) {
+          for (ConnectionHolder holder : connections.values()) {
             holder.close();
           }
           if (completionHandler != null) {
@@ -183,8 +182,8 @@ public class ClusteredEventBus extends EventBusImpl {
 
   @Override
   protected <T> void addRegistration(boolean newAddress, String address,
-                                     boolean replyHandler, boolean localOnly,
-                                     Handler<AsyncResult<Void>> completionHandler) {
+          boolean replyHandler, boolean localOnly,
+          Handler<AsyncResult<Void>> completionHandler) {
     if (newAddress && subs != null && !replyHandler && !localOnly) {
       // Propagate the information
       subs.add(address, serverID, completionHandler);
@@ -195,7 +194,7 @@ public class ClusteredEventBus extends EventBusImpl {
 
   @Override
   protected <T> void removeRegistration(HandlerHolder lastHolder, String address,
-                                        Handler<AsyncResult<Void>> completionHandler) {
+          Handler<AsyncResult<Void>> completionHandler) {
     if (lastHolder != null && subs != null && !lastHolder.isLocalOnly()) {
       removeSub(address, serverID, completionHandler);
     } else {
@@ -242,7 +241,7 @@ public class ClusteredEventBus extends EventBusImpl {
 
   @Override
   protected boolean isMessageLocal(MessageImpl msg) {
-    ClusteredMessage clusteredMessage = (ClusteredMessage)msg;
+    ClusteredMessage clusteredMessage = (ClusteredMessage) msg;
     return !clusteredMessage.isFromWire();
   }
 
@@ -283,6 +282,7 @@ public class ClusteredEventBus extends EventBusImpl {
       RecordParser parser = RecordParser.newFixed(4, null);
       Handler<Buffer> handler = new Handler<Buffer>() {
         int size = -1;
+
         public void handle(Buffer buff) {
           if (size == -1) {
             size = buff.getInt(0);
@@ -369,7 +369,7 @@ public class ClusteredEventBus extends EventBusImpl {
         holder.connect();
       }
     }
-    holder.writeMessage((ClusteredMessage)message);
+    holder.writeMessage((ClusteredMessage) message);
   }
 
   private void removeSub(String subName, ServerID theServerID, Handler<AsyncResult<Void>> completionHandler) {
@@ -404,4 +404,3 @@ public class ClusteredEventBus extends EventBusImpl {
   }
 
 }
-

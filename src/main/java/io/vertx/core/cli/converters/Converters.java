@@ -66,8 +66,9 @@ public class Converters {
    * Searches a suitable converter to convert String to the given type.
    *
    * @param type the target type
-   * @param <T>  the class
-   * @return the parameter converter able to creates instances of the target type from String representations.
+   * @param <T> the class
+   * @return the parameter converter able to creates instances of the target
+   * type from String representations.
    * @throws NoSuchElementException if no converter can be found
    */
   @SuppressWarnings("unchecked")
@@ -118,10 +119,9 @@ public class Converters {
     try {
       return type.newInstance();
     } catch (InstantiationException | IllegalAccessException e) {
-      throw new IllegalArgumentException("Cannot create a new instance of " + type.getName() + " - it requires an " +
-          "public constructor without argument", e);
+      throw new IllegalArgumentException("Cannot create a new instance of " + type.getName() + " - it requires an "
+              + "public constructor without argument", e);
     }
   }
-
 
 }

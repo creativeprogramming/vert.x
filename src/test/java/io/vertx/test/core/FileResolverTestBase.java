@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.Vertx;
@@ -188,7 +187,7 @@ public abstract class FileResolverTestBase extends VertxTestBase {
 
   @Test
   public void testCacheDirDeletedOnVertxClose() {
-    VertxInternal vertx2 = (VertxInternal)vertx();
+    VertxInternal vertx2 = (VertxInternal) vertx();
     File file = vertx2.resolveFile(webRoot + "/somefile.html");
     assertTrue(file.exists());
     File cacheDir = file.getParentFile().getParentFile();

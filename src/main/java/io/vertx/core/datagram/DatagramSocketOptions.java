@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.datagram;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -77,7 +76,7 @@ public class DatagramSocketOptions extends NetworkOptions {
   /**
    * Copy constructor
    *
-   * @param other  the options to copy
+   * @param other the options to copy
    */
   public DatagramSocketOptions(DatagramSocketOptions other) {
     super(other);
@@ -91,7 +90,7 @@ public class DatagramSocketOptions extends NetworkOptions {
   /**
    * Constructor to create options from JSON
    *
-   * @param json  the JSON
+   * @param json the JSON
    */
   public DatagramSocketOptions(JsonObject json) {
     super(json);
@@ -156,7 +155,7 @@ public class DatagramSocketOptions extends NetworkOptions {
   /**
    * Set if the socket can receive broadcast packets
    *
-   * @param broadcast  true if the socket can receive broadcast packets
+   * @param broadcast true if the socket can receive broadcast packets
    * @return a reference to this, so the API can be used fluently
    */
   public DatagramSocketOptions setBroadcast(boolean broadcast) {
@@ -175,7 +174,7 @@ public class DatagramSocketOptions extends NetworkOptions {
   /**
    * Set if loopback mode is disabled
    *
-   * @param loopbackModeDisabled  true if loopback mode is disabled
+   * @param loopbackModeDisabled true if loopback mode is disabled
    * @return a reference to this, so the API can be used fluently
    */
   public DatagramSocketOptions setLoopbackModeDisabled(boolean loopbackModeDisabled) {
@@ -193,7 +192,7 @@ public class DatagramSocketOptions extends NetworkOptions {
   /**
    * Set the multicast ttl value
    *
-   * @param multicastTimeToLive  the multicast ttl value
+   * @param multicastTimeToLive the multicast ttl value
    * @return a reference to this, so the API can be used fluently
    */
   public DatagramSocketOptions setMulticastTimeToLive(int multicastTimeToLive) {
@@ -205,7 +204,7 @@ public class DatagramSocketOptions extends NetworkOptions {
   /**
    * Get the multicast network interface address
    *
-   * @return  the interface address
+   * @return the interface address
    */
   public String getMulticastNetworkInterface() {
     return multicastNetworkInterface;
@@ -214,7 +213,7 @@ public class DatagramSocketOptions extends NetworkOptions {
   /**
    * Set the multicast network interface address
    *
-   * @param multicastNetworkInterface  the address
+   * @param multicastNetworkInterface the address
    * @return a reference to this, so the API can be used fluently
    */
   public DatagramSocketOptions setMulticastNetworkInterface(String multicastNetworkInterface) {
@@ -223,7 +222,7 @@ public class DatagramSocketOptions extends NetworkOptions {
   }
 
   /**
-   * @return  true if IP v6 be used?
+   * @return true if IP v6 be used?
    */
   public boolean isIpV6() {
     return ipV6;
@@ -232,7 +231,7 @@ public class DatagramSocketOptions extends NetworkOptions {
   /**
    * Set if IP v6 should be used
    *
-   * @param ipV6  true if IP v6 should be used
+   * @param ipV6 true if IP v6 should be used
    * @return a reference to this, so the API can be used fluently
    */
   public DatagramSocketOptions setIpV6(boolean ipV6) {
@@ -247,18 +246,33 @@ public class DatagramSocketOptions extends NetworkOptions {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof DatagramSocketOptions)) return false;
-    if (!super.equals(o)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof DatagramSocketOptions)) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
 
     DatagramSocketOptions that = (DatagramSocketOptions) o;
 
-    if (broadcast != that.broadcast) return false;
-    if (ipV6 != that.ipV6) return false;
-    if (loopbackModeDisabled != that.loopbackModeDisabled) return false;
-    if (multicastTimeToLive != that.multicastTimeToLive) return false;
-    if (multicastNetworkInterface != null ? !multicastNetworkInterface.equals(that.multicastNetworkInterface) : that.multicastNetworkInterface != null)
+    if (broadcast != that.broadcast) {
       return false;
+    }
+    if (ipV6 != that.ipV6) {
+      return false;
+    }
+    if (loopbackModeDisabled != that.loopbackModeDisabled) {
+      return false;
+    }
+    if (multicastTimeToLive != that.multicastTimeToLive) {
+      return false;
+    }
+    if (multicastNetworkInterface != null ? !multicastNetworkInterface.equals(that.multicastNetworkInterface) : that.multicastNetworkInterface != null) {
+      return false;
+    }
 
     return true;
   }

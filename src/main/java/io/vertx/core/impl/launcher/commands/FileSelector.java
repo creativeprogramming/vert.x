@@ -13,9 +13,7 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.launcher.commands;
-
 
 import java.io.File;
 import java.util.ArrayList;
@@ -23,18 +21,19 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /**
- * Utility methods to test path matching. This is used by the {@link Watcher} to determine whether or not a file
- * triggers a redeployment.
+ * Utility methods to test path matching. This is used by the {@link Watcher} to
+ * determine whether or not a file triggers a redeployment.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
 public final class FileSelector {
 
   /**
-   * When the pattern starts with a {@link File#separator}, {@code str} has to start with a {@link File#separator}.
+   * When the pattern starts with a {@link File#separator}, {@code str} has to
+   * start with a {@link File#separator}.
    *
-   * @return {@code true} when @{code str} starts with a {@link File#separator}, and {@code pattern} starts with a
-   * {@link File#separator}.
+   * @return {@code true} when @{code str} starts with a {@link File#separator},
+   * and {@code pattern} starts with a {@link File#separator}.
    */
   private static boolean separatorPatternStartSlashMismatch(String pattern, String str, String separator) {
     return str.startsWith(separator) != pattern.startsWith(separator);
@@ -43,12 +42,10 @@ public final class FileSelector {
   /**
    * Tests whether or not a given path matches a given pattern.
    *
-   * @param pattern The pattern to match against. Must not be
-   *                {@code null}.
-   * @param str     The path to match, as a String. Must not be
-   *                {@code null}.
-   * @return {@code true} if the pattern matches against the string,
-   * or {@code false} otherwise.
+   * @param pattern The pattern to match against. Must not be {@code null}.
+   * @param str The path to match, as a String. Must not be {@code null}.
+   * @return {@code true} if the pattern matches against the string, or
+   * {@code false} otherwise.
    */
   public static boolean matchPath(String pattern, String str) {
     return matchPath(pattern, str, true);
@@ -57,14 +54,12 @@ public final class FileSelector {
   /**
    * Tests whether or not a given path matches a given pattern.
    *
-   * @param pattern         The pattern to match against. Must not be
-   *                        {@code null}.
-   * @param str             The path to match, as a String. Must not be
-   *                        {@code null}.
-   * @param isCaseSensitive Whether or not matching should be performed
-   *                        case sensitively.
-   * @return {@code true} if the pattern matches against the string,
-   * or {@code false} otherwise.
+   * @param pattern The pattern to match against. Must not be {@code null}.
+   * @param str The path to match, as a String. Must not be {@code null}.
+   * @param isCaseSensitive Whether or not matching should be performed case
+   * sensitively.
+   * @return {@code true} if the pattern matches against the string, or
+   * {@code false} otherwise.
    */
   public static boolean matchPath(String pattern, String str, boolean isCaseSensitive) {
     return matchPath(pattern, str, File.separator, isCaseSensitive);
@@ -189,36 +184,34 @@ public final class FileSelector {
   }
 
   /**
-   * Tests whether or not a string matches against a pattern.
-   * The pattern may contain two special characters:<br>
+   * Tests whether or not a string matches against a pattern. The pattern may
+   * contain two special characters:<br>
    * '*' means zero or more characters<br>
    * '?' means one and only one character
    *
-   * @param pattern The pattern to match against.
-   *                Must not be{@code null}.
-   * @param str     The string which must be matched against the pattern.
-   *                Must not be{@code null}.
-   * @return {@code true} if the string matches against the pattern,
-   * or {@code false} otherwise.
+   * @param pattern The pattern to match against. Must not be{@code null}.
+   * @param str The string which must be matched against the pattern. Must not
+   * be{@code null}.
+   * @return {@code true} if the string matches against the pattern, or
+   * {@code false} otherwise.
    */
   public static boolean match(String pattern, String str) {
     return match(pattern, str, true);
   }
 
   /**
-   * Tests whether or not a string matches against a pattern.
-   * The pattern may contain two special characters:<br>
+   * Tests whether or not a string matches against a pattern. The pattern may
+   * contain two special characters:<br>
    * '*' means zero or more characters<br>
    * '?' means one and only one character
    *
-   * @param pattern         The pattern to match against.
-   *                        Must not be{@code null}.
-   * @param str             The string which must be matched against the pattern.
-   *                        Must not be{@code null}.
-   * @param isCaseSensitive Whether or not matching should be performed
-   *                        case sensitively.
-   * @return {@code true} if the string matches against the pattern,
-   * or {@code false} otherwise.
+   * @param pattern The pattern to match against. Must not be{@code null}.
+   * @param str The string which must be matched against the pattern. Must not
+   * be{@code null}.
+   * @param isCaseSensitive Whether or not matching should be performed case
+   * sensitively.
+   * @return {@code true} if the string matches against the pattern, or
+   * {@code false} otherwise.
    */
   public static boolean match(String pattern, String str, boolean isCaseSensitive) {
     char[] patArr = pattern.toCharArray();
@@ -352,7 +345,7 @@ public final class FileSelector {
     if (!isCaseSensitive) {
       // NOTE: Try both upper case and lower case as done by String.equalsIgnoreCase()
       if (Character.toUpperCase(c1) == Character.toUpperCase(c2)
-          || Character.toLowerCase(c1) == Character.toLowerCase(c2)) {
+              || Character.toLowerCase(c1) == Character.toLowerCase(c2)) {
         return true;
       }
     }

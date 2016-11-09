@@ -33,8 +33,8 @@ import java.lang.annotation.Target;
 public @interface DefaultValue {
 
   /**
-   * The (optional) default value of the option. The value is converted to the right type using the
-   * {@link Converter} set in {@link ConvertedBy}.
+   * The (optional) default value of the option. The value is converted to the
+   * right type using the {@link Converter} set in {@link ConvertedBy}.
    */
   String value();
 }

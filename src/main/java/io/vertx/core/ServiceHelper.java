@@ -13,13 +13,13 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core;
 
 import java.util.*;
 
 /**
- * A helper class for loading factories from the classpath and from the vert.x OSGi bundle.
+ * A helper class for loading factories from the classpath and from the vert.x
+ * OSGi bundle.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
@@ -41,7 +41,6 @@ public class ServiceHelper {
       return null;
     }
   }
-
 
   public static <T> Collection<T> loadFactories(Class<T> clazz) {
     return loadFactories(clazz, null);

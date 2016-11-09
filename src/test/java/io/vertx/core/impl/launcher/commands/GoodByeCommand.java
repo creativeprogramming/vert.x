@@ -25,13 +25,12 @@ public class GoodByeCommand extends DefaultCommand {
 
   public static CLI define() {
     return new DefaultCLI().setName("bye").addOption(new TypedOption<String>()
-        .setType(String.class)
-        .setRequired(true)
-        .setShortName("n")
-        .setSingleValued(true))
-        .setSummary("A command saying goodbye.");
+            .setType(String.class)
+            .setRequired(true)
+            .setShortName("n")
+            .setSingleValued(true))
+            .setSummary("A command saying goodbye.");
   }
-
 
   /**
    * Executes the command.

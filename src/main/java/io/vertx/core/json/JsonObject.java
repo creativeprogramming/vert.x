@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.json;
 
 import io.vertx.codegen.annotations.Fluent;
@@ -30,11 +29,13 @@ import static java.time.format.DateTimeFormatter.ISO_INSTANT;
 /**
  * A representation of a <a href="http://json.org/">JSON</a> object in Java.
  * <p>
- * Unlike some other languages Java does not have a native understanding of JSON. To enable JSON to be used easily
- * in Vert.x code we use this class to encapsulate the notion of a JSON object.
+ * Unlike some other languages Java does not have a native understanding of
+ * JSON. To enable JSON to be used easily in Vert.x code we use this class to
+ * encapsulate the notion of a JSON object.
  *
- * The implementation adheres to the <a href="http://rfc-editor.org/rfc/rfc7493.txt">RFC-7493</a> to support Temporal
- * data types as well as binary data.
+ * The implementation adheres to the
+ * <a href="http://rfc-editor.org/rfc/rfc7493.txt">RFC-7493</a> to support
+ * Temporal data types as well as binary data.
  * <p>
  * Please see the documentation for more information.
  *
@@ -47,7 +48,7 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Create an instance from a string of JSON
    *
-   * @param json  the string of JSON
+   * @param json the string of JSON
    */
   public JsonObject(String json) {
     fromJson(json);
@@ -63,7 +64,7 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Create an instance from a Map. The Map is not copied.
    *
-   * @param map  the map to create the instance from.
+   * @param map the map to create the instance from.
    */
   public JsonObject(Map<String, Object> map) {
     this.map = map;
@@ -72,30 +73,30 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Get the string value with the specified key
    *
-   * @param key  the key to return the value for
+   * @param key the key to return the value for
    * @return the value or null if no value for that key
    * @throws java.lang.ClassCastException if the value is not a String
    */
   public String getString(String key) {
     Objects.requireNonNull(key);
-    CharSequence cs = (CharSequence)map.get(key);
+    CharSequence cs = (CharSequence) map.get(key);
     return cs == null ? null : cs.toString();
   }
 
   /**
    * Get the Integer value with the specified key
    *
-   * @param key  the key to return the value for
+   * @param key the key to return the value for
    * @return the value or null if no value for that key
    * @throws java.lang.ClassCastException if the value is not an Integer
    */
   public Integer getInteger(String key) {
     Objects.requireNonNull(key);
-    Number number = (Number)map.get(key);
+    Number number = (Number) map.get(key);
     if (number == null) {
       return null;
     } else if (number instanceof Integer) {
-      return (Integer)number;  // Avoids unnecessary unbox/box
+      return (Integer) number;  // Avoids unnecessary unbox/box
     } else {
       return number.intValue();
     }
@@ -104,17 +105,17 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Get the Long value with the specified key
    *
-   * @param key  the key to return the value for
+   * @param key the key to return the value for
    * @return the value or null if no value for that key
    * @throws java.lang.ClassCastException if the value is not a Long
    */
   public Long getLong(String key) {
     Objects.requireNonNull(key);
-    Number number = (Number)map.get(key);
+    Number number = (Number) map.get(key);
     if (number == null) {
       return null;
     } else if (number instanceof Long) {
-      return (Long)number;  // Avoids unnecessary unbox/box
+      return (Long) number;  // Avoids unnecessary unbox/box
     } else {
       return number.longValue();
     }
@@ -123,17 +124,17 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Get the Double value with the specified key
    *
-   * @param key  the key to return the value for
+   * @param key the key to return the value for
    * @return the value or null if no value for that key
    * @throws java.lang.ClassCastException if the value is not a Double
    */
   public Double getDouble(String key) {
     Objects.requireNonNull(key);
-    Number number = (Number)map.get(key);
+    Number number = (Number) map.get(key);
     if (number == null) {
       return null;
     } else if (number instanceof Double) {
-      return (Double)number;  // Avoids unnecessary unbox/box
+      return (Double) number;  // Avoids unnecessary unbox/box
     } else {
       return number.doubleValue();
     }
@@ -142,17 +143,17 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Get the Float value with the specified key
    *
-   * @param key  the key to return the value for
+   * @param key the key to return the value for
    * @return the value or null if no value for that key
    * @throws java.lang.ClassCastException if the value is not a Float
    */
   public Float getFloat(String key) {
     Objects.requireNonNull(key);
-    Number number = (Number)map.get(key);
+    Number number = (Number) map.get(key);
     if (number == null) {
       return null;
     } else if (number instanceof Float) {
-      return (Float)number;  // Avoids unnecessary unbox/box
+      return (Float) number;  // Avoids unnecessary unbox/box
     } else {
       return number.floatValue();
     }
@@ -161,19 +162,19 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Get the Boolean value with the specified key
    *
-   * @param key  the key to return the value for
+   * @param key the key to return the value for
    * @return the value or null if no value for that key
    * @throws java.lang.ClassCastException if the value is not a Boolean
    */
   public Boolean getBoolean(String key) {
     Objects.requireNonNull(key);
-    return (Boolean)map.get(key);
+    return (Boolean) map.get(key);
   }
 
   /**
    * Get the JsonObject value with the specified key
    *
-   * @param key  the key to return the value for
+   * @param key the key to return the value for
    * @return the value or null if no value for that key
    * @throws java.lang.ClassCastException if the value is not a JsonObject
    */
@@ -181,15 +182,15 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
     Objects.requireNonNull(key);
     Object val = map.get(key);
     if (val instanceof Map) {
-      val = new JsonObject((Map)val);
+      val = new JsonObject((Map) val);
     }
-    return (JsonObject)val;
+    return (JsonObject) val;
   }
 
   /**
    * Get the JsonArray value with the specified key
    *
-   * @param key  the key to return the value for
+   * @param key the key to return the value for
    * @return the value or null if no value for that key
    * @throws java.lang.ClassCastException if the value is not a JsonArray
    */
@@ -197,23 +198,25 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
     Objects.requireNonNull(key);
     Object val = map.get(key);
     if (val instanceof List) {
-      val = new JsonArray((List)val);
+      val = new JsonArray((List) val);
     }
-    return (JsonArray)val;
+    return (JsonArray) val;
   }
 
   /**
    * Get the binary value with the specified key.
    * <p>
-   * JSON itself has no notion of a binary, this extension complies to the RFC-7493, so this method assumes there is a
-   * String value with the key and it contains a Base64 encoded binary, which it decodes if found and returns.
+   * JSON itself has no notion of a binary, this extension complies to the
+   * RFC-7493, so this method assumes there is a String value with the key and
+   * it contains a Base64 encoded binary, which it decodes if found and returns.
    * <p>
    * This method should be used in conjunction with {@link #put(String, byte[])}
    *
-   * @param key  the key to return the value for
+   * @param key the key to return the value for
    * @return the value or null if no value for that key
    * @throws java.lang.ClassCastException if the value is not a String
-   * @throws java.lang.IllegalArgumentException if the String value is not a legal Base64 encoded value
+   * @throws java.lang.IllegalArgumentException if the String value is not a
+   * legal Base64 encoded value
    */
   public byte[] getBinary(String key) {
     Objects.requireNonNull(key);
@@ -224,15 +227,18 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Get the instant value with the specified key.
    * <p>
-   * JSON itself has no notion of a date, this extension complies to the RFC-7493, so this method assumes there is a
-   * String value with the key and it contains a ISODATE encoded date, which it decodes if found and returns.
+   * JSON itself has no notion of a date, this extension complies to the
+   * RFC-7493, so this method assumes there is a String value with the key and
+   * it contains a ISODATE encoded date, which it decodes if found and returns.
    * <p>
-   * This method should be used in conjunction with {@link #put(String, java.time.Instant)}
+   * This method should be used in conjunction with
+   * {@link #put(String, java.time.Instant)}
    *
-   * @param key  the key to return the value for
+   * @param key the key to return the value for
    * @return the value or null if no value for that key
    * @throws java.lang.ClassCastException if the value is not a String
-   * @throws java.lang.IllegalArgumentException if the String value is not a legal Base64 encoded value
+   * @throws java.lang.IllegalArgumentException if the String value is not a
+   * legal Base64 encoded value
    */
   public Instant getInstant(String key) {
     Objects.requireNonNull(key);
@@ -242,43 +248,46 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
 
   /**
    * Get the value with the specified key, as an Object
-   * @param key  the key to lookup
+   *
+   * @param key the key to lookup
    * @return the value
    */
   public Object getValue(String key) {
     Objects.requireNonNull(key);
     Object val = map.get(key);
     if (val instanceof Map) {
-      val = new JsonObject((Map)val);
+      val = new JsonObject((Map) val);
     } else if (val instanceof List) {
-      val = new JsonArray((List)val);
+      val = new JsonArray((List) val);
     }
     return val;
   }
 
   /**
-   * Like {@link #getString(String)} but specifying a default value to return if there is no entry.
+   * Like {@link #getString(String)} but specifying a default value to return if
+   * there is no entry.
    *
-   * @param key  the key to lookup
-   * @param def  the default value to use if the entry is not present
+   * @param key the key to lookup
+   * @param def the default value to use if the entry is not present
    * @return the value or {@code def} if no entry present
    */
   public String getString(String key, String def) {
     Objects.requireNonNull(key);
-    CharSequence cs = (CharSequence)map.get(key);
+    CharSequence cs = (CharSequence) map.get(key);
     return cs != null || map.containsKey(key) ? cs == null ? null : cs.toString() : def;
   }
 
   /**
-   * Like {@link #getInteger(String)} but specifying a default value to return if there is no entry.
+   * Like {@link #getInteger(String)} but specifying a default value to return
+   * if there is no entry.
    *
-   * @param key  the key to lookup
-   * @param def  the default value to use if the entry is not present
+   * @param key the key to lookup
+   * @param def the default value to use if the entry is not present
    * @return the value or {@code def} if no entry present
    */
   public Integer getInteger(String key, Integer def) {
     Objects.requireNonNull(key);
-    Number val = (Number)map.get(key);
+    Number val = (Number) map.get(key);
     if (val == null) {
       if (map.containsKey(key)) {
         return null;
@@ -286,22 +295,23 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
         return def;
       }
     } else if (val instanceof Integer) {
-      return (Integer)val;  // Avoids unnecessary unbox/box
+      return (Integer) val;  // Avoids unnecessary unbox/box
     } else {
       return val.intValue();
     }
   }
 
   /**
-   * Like {@link #getLong(String)} but specifying a default value to return if there is no entry.
+   * Like {@link #getLong(String)} but specifying a default value to return if
+   * there is no entry.
    *
-   * @param key  the key to lookup
-   * @param def  the default value to use if the entry is not present
+   * @param key the key to lookup
+   * @param def the default value to use if the entry is not present
    * @return the value or {@code def} if no entry present
    */
   public Long getLong(String key, Long def) {
     Objects.requireNonNull(key);
-    Number val = (Number)map.get(key);
+    Number val = (Number) map.get(key);
     if (val == null) {
       if (map.containsKey(key)) {
         return null;
@@ -309,22 +319,23 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
         return def;
       }
     } else if (val instanceof Long) {
-      return (Long)val;  // Avoids unnecessary unbox/box
+      return (Long) val;  // Avoids unnecessary unbox/box
     } else {
       return val.longValue();
     }
   }
 
   /**
-   * Like {@link #getDouble(String)} but specifying a default value to return if there is no entry.
+   * Like {@link #getDouble(String)} but specifying a default value to return if
+   * there is no entry.
    *
-   * @param key  the key to lookup
-   * @param def  the default value to use if the entry is not present
+   * @param key the key to lookup
+   * @param def the default value to use if the entry is not present
    * @return the value or {@code def} if no entry present
    */
   public Double getDouble(String key, Double def) {
     Objects.requireNonNull(key);
-    Number val = (Number)map.get(key);
+    Number val = (Number) map.get(key);
     if (val == null) {
       if (map.containsKey(key)) {
         return null;
@@ -332,22 +343,23 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
         return def;
       }
     } else if (val instanceof Double) {
-      return (Double)val;  // Avoids unnecessary unbox/box
+      return (Double) val;  // Avoids unnecessary unbox/box
     } else {
       return val.doubleValue();
     }
   }
 
   /**
-   * Like {@link #getFloat(String)} but specifying a default value to return if there is no entry.
+   * Like {@link #getFloat(String)} but specifying a default value to return if
+   * there is no entry.
    *
-   * @param key  the key to lookup
-   * @param def  the default value to use if the entry is not present
+   * @param key the key to lookup
+   * @param def the default value to use if the entry is not present
    * @return the value or {@code def} if no entry present
    */
   public Float getFloat(String key, Float def) {
     Objects.requireNonNull(key);
-    Number val = (Number)map.get(key);
+    Number val = (Number) map.get(key);
     if (val == null) {
       if (map.containsKey(key)) {
         return null;
@@ -355,30 +367,32 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
         return def;
       }
     } else if (val instanceof Float) {
-      return (Float)val;  // Avoids unnecessary unbox/box
+      return (Float) val;  // Avoids unnecessary unbox/box
     } else {
       return val.floatValue();
     }
   }
 
   /**
-   * Like {@link #getBoolean(String)} but specifying a default value to return if there is no entry.
+   * Like {@link #getBoolean(String)} but specifying a default value to return
+   * if there is no entry.
    *
-   * @param key  the key to lookup
-   * @param def  the default value to use if the entry is not present
+   * @param key the key to lookup
+   * @param def the default value to use if the entry is not present
    * @return the value or {@code def} if no entry present
    */
   public Boolean getBoolean(String key, Boolean def) {
     Objects.requireNonNull(key);
     Object val = map.get(key);
-    return val != null || map.containsKey(key) ? (Boolean)val : def;
+    return val != null || map.containsKey(key) ? (Boolean) val : def;
   }
 
   /**
-   * Like {@link #getJsonObject(String)} but specifying a default value to return if there is no entry.
+   * Like {@link #getJsonObject(String)} but specifying a default value to
+   * return if there is no entry.
    *
-   * @param key  the key to lookup
-   * @param def  the default value to use if the entry is not present
+   * @param key the key to lookup
+   * @param def the default value to use if the entry is not present
    * @return the value or {@code def} if no entry present
    */
   public JsonObject getJsonObject(String key, JsonObject def) {
@@ -387,10 +401,11 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   }
 
   /**
-   * Like {@link #getJsonArray(String)} but specifying a default value to return if there is no entry.
+   * Like {@link #getJsonArray(String)} but specifying a default value to return
+   * if there is no entry.
    *
-   * @param key  the key to lookup
-   * @param def  the default value to use if the entry is not present
+   * @param key the key to lookup
+   * @param def the default value to use if the entry is not present
    * @return the value or {@code def} if no entry present
    */
   public JsonArray getJsonArray(String key, JsonArray def) {
@@ -399,37 +414,40 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   }
 
   /**
-   * Like {@link #getBinary(String)} but specifying a default value to return if there is no entry.
+   * Like {@link #getBinary(String)} but specifying a default value to return if
+   * there is no entry.
    *
-   * @param key  the key to lookup
-   * @param def  the default value to use if the entry is not present
+   * @param key the key to lookup
+   * @param def the default value to use if the entry is not present
    * @return the value or {@code def} if no entry present
    */
   public byte[] getBinary(String key, byte[] def) {
     Objects.requireNonNull(key);
     Object val = map.get(key);
-    return val != null || map.containsKey(key) ? (val == null ? null : Base64.getDecoder().decode((String)val)) : def;
+    return val != null || map.containsKey(key) ? (val == null ? null : Base64.getDecoder().decode((String) val)) : def;
   }
 
   /**
-   * Like {@link #getInstant(String)} but specifying a default value to return if there is no entry.
+   * Like {@link #getInstant(String)} but specifying a default value to return
+   * if there is no entry.
    *
-   * @param key  the key to lookup
-   * @param def  the default value to use if the entry is not present
+   * @param key the key to lookup
+   * @param def the default value to use if the entry is not present
    * @return the value or {@code def} if no entry present
    */
   public Instant getInstant(String key, Instant def) {
     Objects.requireNonNull(key);
     Object val = map.get(key);
-    return val != null || map.containsKey(key) ?
-        (val == null ? null : Instant.from(ISO_INSTANT.parse((String) val))) : def;
+    return val != null || map.containsKey(key)
+            ? (val == null ? null : Instant.from(ISO_INSTANT.parse((String) val))) : def;
   }
 
   /**
-   * Like {@link #getValue(String)} but specifying a default value to return if there is no entry.
+   * Like {@link #getValue(String)} but specifying a default value to return if
+   * there is no entry.
    *
-   * @param key  the key to lookup
-   * @param def  the default value to use if the entry is not present
+   * @param key the key to lookup
+   * @param def the default value to use if the entry is not present
    * @return the value or {@code def} if no entry present
    */
   public Object getValue(String key, Object def) {
@@ -441,7 +459,7 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Does the JSON object contain the specified key?
    *
-   * @param key  the key
+   * @param key the key
    * @return true if it contains the key, false if not.
    */
   public boolean containsKey(String key) {
@@ -461,12 +479,13 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Put an Enum into the JSON object with the specified key.
    * <p>
-   * JSON has no concept of encoding Enums, so the Enum will be converted to a String using the {@link java.lang.Enum#name}
-   * method and the value put as a String.
+   * JSON has no concept of encoding Enums, so the Enum will be converted to a
+   * String using the {@link java.lang.Enum#name} method and the value put as a
+   * String.
    *
-   * @param key  the key
-   * @param value  the value
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the key
+   * @param value the value
+   * @return a reference to this, so the API can be used fluently
    */
   public JsonObject put(String key, Enum value) {
     Objects.requireNonNull(key);
@@ -477,9 +496,9 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Put an CharSequence into the JSON object with the specified key.
    *
-   * @param key  the key
-   * @param value  the value
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the key
+   * @param value the value
+   * @return a reference to this, so the API can be used fluently
    */
   public JsonObject put(String key, CharSequence value) {
     Objects.requireNonNull(key);
@@ -490,9 +509,9 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Put a String into the JSON object with the specified key.
    *
-   * @param key  the key
-   * @param value  the value
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the key
+   * @param value the value
+   * @return a reference to this, so the API can be used fluently
    */
   public JsonObject put(String key, String value) {
     Objects.requireNonNull(key);
@@ -503,9 +522,9 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Put an Integer into the JSON object with the specified key.
    *
-   * @param key  the key
-   * @param value  the value
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the key
+   * @param value the value
+   * @return a reference to this, so the API can be used fluently
    */
   public JsonObject put(String key, Integer value) {
     Objects.requireNonNull(key);
@@ -516,9 +535,9 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Put a Long into the JSON object with the specified key.
    *
-   * @param key  the key
-   * @param value  the value
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the key
+   * @param value the value
+   * @return a reference to this, so the API can be used fluently
    */
   public JsonObject put(String key, Long value) {
     Objects.requireNonNull(key);
@@ -529,9 +548,9 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Put a Double into the JSON object with the specified key.
    *
-   * @param key  the key
-   * @param value  the value
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the key
+   * @param value the value
+   * @return a reference to this, so the API can be used fluently
    */
   public JsonObject put(String key, Double value) {
     Objects.requireNonNull(key);
@@ -542,9 +561,9 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Put a Float into the JSON object with the specified key.
    *
-   * @param key  the key
-   * @param value  the value
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the key
+   * @param value the value
+   * @return a reference to this, so the API can be used fluently
    */
   public JsonObject put(String key, Float value) {
     Objects.requireNonNull(key);
@@ -555,9 +574,9 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Put a Boolean into the JSON object with the specified key.
    *
-   * @param key  the key
-   * @param value  the value
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the key
+   * @param value the value
+   * @return a reference to this, so the API can be used fluently
    */
   public JsonObject put(String key, Boolean value) {
     Objects.requireNonNull(key);
@@ -568,8 +587,8 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Put a null value into the JSON object with the specified key.
    *
-   * @param key  the key
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the key
+   * @return a reference to this, so the API can be used fluently
    */
   public JsonObject putNull(String key) {
     Objects.requireNonNull(key);
@@ -580,9 +599,9 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Put another JSON object into the JSON object with the specified key.
    *
-   * @param key  the key
-   * @param value  the value
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the key
+   * @param value the value
+   * @return a reference to this, so the API can be used fluently
    */
   public JsonObject put(String key, JsonObject value) {
     Objects.requireNonNull(key);
@@ -593,9 +612,9 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Put a JSON array into the JSON object with the specified key.
    *
-   * @param key  the key
-   * @param value  the value
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the key
+   * @param value the value
+   * @return a reference to this, so the API can be used fluently
    */
   public JsonObject put(String key, JsonArray value) {
     Objects.requireNonNull(key);
@@ -606,11 +625,12 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Put a byte[] into the JSON object with the specified key.
    * <p>
-   * JSON extension RFC7493, binary will first be Base64 encoded before being put as a String.
+   * JSON extension RFC7493, binary will first be Base64 encoded before being
+   * put as a String.
    *
-   * @param key  the key
-   * @param value  the value
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the key
+   * @param value the value
+   * @return a reference to this, so the API can be used fluently
    */
   public JsonObject put(String key, byte[] value) {
     Objects.requireNonNull(key);
@@ -623,9 +643,9 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
    * <p>
    * JSON extension RFC7493, instant will first be encoded to ISODATE String.
    *
-   * @param key  the key
-   * @param value  the value
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the key
+   * @param value the value
+   * @return a reference to this, so the API can be used fluently
    */
   public JsonObject put(String key, Instant value) {
     Objects.requireNonNull(key);
@@ -636,9 +656,9 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Put an Object into the JSON object with the specified key.
    *
-   * @param key  the key
-   * @param value  the value
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the key
+   * @param value the value
+   * @return a reference to this, so the API can be used fluently
    */
   public JsonObject put(String key, Object value) {
     Objects.requireNonNull(key);
@@ -650,7 +670,7 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Remove an entry from this object.
    *
-   * @param key  the key
+   * @param key the key
    * @return the value that was removed, or null if none
    */
   public Object remove(String key) {
@@ -660,8 +680,10 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Merge in another JSON object.
    * <p>
-   * This is the equivalent of putting all the entries of the other JSON object into this object.
-   * @param other  the other JSON object
+   * This is the equivalent of putting all the entries of the other JSON object
+   * into this object.
+   *
+   * @param other the other JSON object
    * @return a reference to this, so the API can be used fluently
    */
   public JsonObject mergeIn(JsonObject other) {
@@ -679,8 +701,8 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   }
 
   /**
-   * Encode this JSON object a a string, with whitespace to make the object easier to read by a human, or other
-   * sentient organism.
+   * Encode this JSON object a a string, with whitespace to make the object
+   * easier to read by a human, or other sentient organism.
    *
    * @return the pretty string encoding.
    */
@@ -700,7 +722,7 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
     } else {
       copiedMap = new HashMap<>(map.size());
     }
-    for (Map.Entry<String, Object> entry: map.entrySet()) {
+    for (Map.Entry<String, Object> entry : map.entrySet()) {
       Object val = entry.getValue();
       val = Json.checkAndCopy(val, true);
       copiedMap.put(entry.getKey(), val);
@@ -711,7 +733,8 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   /**
    * Get the underlying {@code Map} as is.
    *
-   * This map may contain values that are not the types returned by the {@code JsonObject}.
+   * This map may contain values that are not the types returned by the
+   * {@code JsonObject}.
    *
    * @return the underlying Map.
    */
@@ -740,6 +763,7 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
 
   /**
    * Get the number of entries in the JSON object
+   *
    * @return the number of entries
    */
   public int size() {
@@ -771,10 +795,12 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
 
   @Override
   public boolean equals(Object o) {
-    if (this == o)
+    if (this == o) {
       return true;
-    if (o == null || getClass() != o.getClass())
+    }
+    if (o == null || getClass() != o.getClass()) {
       return false;
+    }
     return objectEquals(map, o);
   }
 
@@ -787,8 +813,9 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
     } else {
       return false;
     }
-    if (m1.size() != m2.size())
+    if (m1.size() != m2.size()) {
       return false;
+    }
     for (Map.Entry<?, ?> entry : m1.entrySet()) {
       Object val = entry.getValue();
       if (val == null) {
@@ -805,8 +832,9 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   }
 
   static boolean equals(Object o1, Object o2) {
-    if (o1 == o2)
+    if (o1 == o2) {
       return true;
+    }
     if (o1 instanceof JsonObject) {
       return objectEquals(((JsonObject) o1).map, o2);
     }
@@ -874,7 +902,7 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
     public Map.Entry<String, Object> next() {
       Map.Entry<String, Object> entry = mapIter.next();
       if (entry.getValue() instanceof Map) {
-        return new Entry(entry.getKey(), new JsonObject((Map)entry.getValue()));
+        return new Entry(entry.getKey(), new JsonObject((Map) entry.getValue()));
       } else if (entry.getValue() instanceof List) {
         return new Entry(entry.getKey(), new JsonArray((List) entry.getValue()));
       }
@@ -888,6 +916,7 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   }
 
   private static final class Entry implements Map.Entry<String, Object> {
+
     final String key;
     final Object value;
 

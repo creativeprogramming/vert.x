@@ -47,7 +47,7 @@ public interface HttpServerFileUpload extends ReadStream<Buffer> {
   /**
    * Stream the content of this upload to the given file on storage.
    *
-   * @param filename  the name of the file
+   * @param filename the name of the file
    */
   @Fluent
   HttpServerFileUpload streamToFileSystem(String filename);
@@ -63,7 +63,7 @@ public interface HttpServerFileUpload extends ReadStream<Buffer> {
   String name();
 
   /**
-   * @return  the content type for the upload
+   * @return the content type for the upload
    */
   String contentType();
 
@@ -78,15 +78,16 @@ public interface HttpServerFileUpload extends ReadStream<Buffer> {
   String charset();
 
   /**
-   * The size of the upload may not be available until it is all read.
-   * Check {@link #isSizeAvailable} to determine this
+   * The size of the upload may not be available until it is all read. Check
+   * {@link #isSizeAvailable} to determine this
    *
    * @return the size of the upload (in bytes)
    */
   long size();
 
   /**
-   * @return true if the size of the upload can be retrieved via {@link #size()}.
+   * @return true if the size of the upload can be retrieved via
+   * {@link #size()}.
    */
   boolean isSizeAvailable();
 }

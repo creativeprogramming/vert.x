@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.eventbus.EventBus;
@@ -95,7 +94,7 @@ public class JSONEventBusTest extends VertxTestBase {
   @Test
   public void testChangesNotVisibleArray2() {
     final JsonArray obj = new JsonArray();
-    eb.<JsonArray>consumer("foo").handler((Message<JsonArray> msg) ->  msg.body().add("blah"));
+    eb.<JsonArray>consumer("foo").handler((Message<JsonArray> msg) -> msg.body().add("blah"));
     eb.send("foo", obj);
     vertx.setTimer(1000, id -> {
       assertEquals(0, obj.size());

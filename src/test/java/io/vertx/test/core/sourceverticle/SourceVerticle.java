@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core.sourceverticle;
 
 import io.vertx.core.AbstractVerticle;
@@ -25,7 +24,6 @@ import io.vertx.test.core.sourceverticle.somepackage.OtherSourceVerticle;
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
 public class SourceVerticle extends AbstractVerticle {
-
 
   @Override
   public void start(Future<Void> startFuture) throws Exception {

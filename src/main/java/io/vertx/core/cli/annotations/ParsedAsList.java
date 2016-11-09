@@ -21,11 +21,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotates a setter to be called with the value of a command line option. The setter must also have been annotated
- * with {@link Option}.
+ * Annotates a setter to be called with the value of a command line option. The
+ * setter must also have been annotated with {@link Option}.
  * <p/>
- * When annotated with {@link ParsedAsList}, the option value is parsed as a list. The value is split and then each
- * segment is trimmed.
+ * When annotated with {@link ParsedAsList}, the option value is parsed as a
+ * list. The value is split and then each segment is trimmed.
  *
  * @author Clement Escoffier <clement@apache.org>
  * @see Option

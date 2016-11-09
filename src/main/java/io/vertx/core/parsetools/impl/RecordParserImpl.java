@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.parsetools.impl;
 
 import io.vertx.core.Handler;
@@ -50,10 +49,10 @@ public class RecordParserImpl implements RecordParser {
   }
 
   /**
-   * Helper method to convert a latin-1 String to an array of bytes for use as a delimiter
-   * Please do not use this for non latin-1 characters
+   * Helper method to convert a latin-1 String to an array of bytes for use as a
+   * delimiter Please do not use this for non latin-1 characters
    *
-   * @param str  the string
+   * @param str the string
    * @return The byte[] form of the string
    */
   public static Buffer latin1StringToBytes(String str) {
@@ -66,26 +65,28 @@ public class RecordParserImpl implements RecordParser {
   }
 
   /**
-   * Create a new {@code RecordParser} instance, initially in delimited mode, and where the delimiter can be represented
-   * by the String {@code} delim endcoded in latin-1 . Don't use this if your String contains other than latin-1 characters.
+   * Create a new {@code RecordParser} instance, initially in delimited mode,
+   * and where the delimiter can be represented by the String {@code} delim
+   * endcoded in latin-1 . Don't use this if your String contains other than
+   * latin-1 characters.
    * <p>
    * {@code output} Will receive whole records which have been parsed.
    *
-   * @param delim  the initial delimiter string
-   * @param output  handler that will receive the output
+   * @param delim the initial delimiter string
+   * @param output handler that will receive the output
    */
   public static RecordParser newDelimited(String delim, Handler<Buffer> output) {
     return newDelimited(latin1StringToBytes(delim), output);
   }
 
   /**
-   * Create a new {@code RecordParser} instance, initially in delimited mode, and where the delimiter can be represented
-   * by the {@code buffer} delim.
+   * Create a new {@code RecordParser} instance, initially in delimited mode,
+   * and where the delimiter can be represented by the {@code buffer} delim.
    * <p>
    * {@code output} Will receive whole records which have been parsed.
    *
-   * @param delim  the initial delimiter buffer
-   * @param output  handler that will receive the output
+   * @param delim the initial delimiter buffer
+   * @param output handler that will receive the output
    */
   public static RecordParser newDelimited(Buffer delim, Handler<Buffer> output) {
     RecordParserImpl ls = new RecordParserImpl(output);
@@ -94,13 +95,13 @@ public class RecordParserImpl implements RecordParser {
   }
 
   /**
-   * Create a new {@code RecordParser} instance, initially in fixed size mode, and where the record size is specified
-   * by the {@code size} parameter.
+   * Create a new {@code RecordParser} instance, initially in fixed size mode,
+   * and where the record size is specified by the {@code size} parameter.
    * <p>
    * {@code output} Will receive whole records which have been parsed.
    *
-   * @param size  the initial record size
-   * @param output  handler that will receive the output
+   * @param size the initial record size
+   * @param output handler that will receive the output
    */
   public static RecordParser newFixed(int size, Handler<Buffer> output) {
     Arguments.require(size > 0, "Size must be > 0");
@@ -110,24 +111,27 @@ public class RecordParserImpl implements RecordParser {
   }
 
   /**
-   * Flip the parser into delimited mode, and where the delimiter can be represented
-   * by the String {@code delim} encoded in latin-1 . Don't use this if your String contains other than latin-1 characters.
+   * Flip the parser into delimited mode, and where the delimiter can be
+   * represented by the String {@code delim} encoded in latin-1 . Don't use this
+   * if your String contains other than latin-1 characters.
    * <p>
-   * This method can be called multiple times with different values of delim while data is being parsed.
+   * This method can be called multiple times with different values of delim
+   * while data is being parsed.
    *
-   * @param delim  the new delimeter
+   * @param delim the new delimeter
    */
   public void delimitedMode(String delim) {
     delimitedMode(latin1StringToBytes(delim));
   }
 
   /**
-   * Flip the parser into delimited mode, and where the delimiter can be represented
-   * by the delimiter {@code delim}.
+   * Flip the parser into delimited mode, and where the delimiter can be
+   * represented by the delimiter {@code delim}.
    * <p>
-   * This method can be called multiple times with different values of delim while data is being parsed.
+   * This method can be called multiple times with different values of delim
+   * while data is being parsed.
    *
-   * @param delim  the new delimiter
+   * @param delim the new delimiter
    */
   public void delimitedMode(Buffer delim) {
     Objects.requireNonNull(delim, "delim");
@@ -138,11 +142,13 @@ public class RecordParserImpl implements RecordParser {
   }
 
   /**
-   * Flip the parser into fixed size mode, where the record size is specified by {@code size} in bytes.
+   * Flip the parser into fixed size mode, where the record size is specified by
+   * {@code size} in bytes.
    * <p>
-   * This method can be called multiple times with different values of size while data is being parsed.
+   * This method can be called multiple times with different values of size
+   * while data is being parsed.
    *
-   * @param size  the new record size
+   * @param size the new record size
    */
   public void fixedSizeMode(int size) {
     Arguments.require(size > 0, "Size must be > 0");
@@ -207,7 +213,7 @@ public class RecordParserImpl implements RecordParser {
   /**
    * This method is called to provide the parser with data.
    *
-   * @param buffer  a chunk of data
+   * @param buffer a chunk of data
    */
   public void handle(Buffer buffer) {
     if (buff == null) {

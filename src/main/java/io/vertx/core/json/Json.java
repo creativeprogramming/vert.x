@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.json;
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -77,8 +76,7 @@ public class Json {
   public static <T> T decodeValue(String str, Class<T> clazz) throws DecodeException {
     try {
       return mapper.readValue(str, clazz);
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       throw new DecodeException("Failed to decode:" + e.getMessage());
     }
   }
@@ -107,18 +105,18 @@ public class Json {
       }
     } else if (val instanceof Map) {
       if (copy) {
-        val = (new JsonObject((Map)val)).copy();
+        val = (new JsonObject((Map) val)).copy();
       } else {
-        val = new JsonObject((Map)val);
+        val = new JsonObject((Map) val);
       }
     } else if (val instanceof List) {
       if (copy) {
-        val = (new JsonArray((List)val)).copy();
+        val = (new JsonArray((List) val)).copy();
       } else {
-        val = new JsonArray((List)val);
+        val = new JsonArray((List) val);
       }
     } else if (val instanceof byte[]) {
-      val = Base64.getEncoder().encodeToString((byte[])val);
+      val = Base64.getEncoder().encodeToString((byte[]) val);
     } else if (val instanceof Instant) {
       val = ISO_INSTANT.format((Instant) val);
     } else {
@@ -133,6 +131,7 @@ public class Json {
   }
 
   private static class JsonObjectSerializer extends JsonSerializer<JsonObject> {
+
     @Override
     public void serialize(JsonObject value, JsonGenerator jgen, SerializerProvider provider) throws IOException {
       jgen.writeObject(value.getMap());
@@ -140,6 +139,7 @@ public class Json {
   }
 
   private static class JsonArraySerializer extends JsonSerializer<JsonArray> {
+
     @Override
     public void serialize(JsonArray value, JsonGenerator jgen, SerializerProvider provider) throws IOException {
       jgen.writeObject(value.getList());

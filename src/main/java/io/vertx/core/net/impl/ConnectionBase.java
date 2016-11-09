@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net.impl;
 
 import io.netty.channel.*;
@@ -38,10 +37,12 @@ import java.net.InetSocketAddress;
 /**
  * Abstract base class for TCP connections.
  *
- * This class is optimised for performance when used on the same event loop. However it can be used safely from other threads.
+ * This class is optimised for performance when used on the same event loop.
+ * However it can be used safely from other threads.
  *
- * The internal state is protected using the synchronized keyword. If always used on the same event loop, then
- * we benefit from biased locking which makes the overhead of synchronized near zero.
+ * The internal state is protected using the synchronized keyword. If always
+ * used on the same event loop, then we benefit from biased locking which makes
+ * the overhead of synchronized near zero.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
@@ -177,7 +178,6 @@ public abstract class ConnectionBase {
     }
   }
 
-
   protected ContextImpl getContext() {
     return context;
   }
@@ -272,20 +272,26 @@ public abstract class ConnectionBase {
 
   public String remoteName() {
     InetSocketAddress addr = (InetSocketAddress) channel.remoteAddress();
-    if (addr == null) return null;
+    if (addr == null) {
+      return null;
+    }
     // Use hostString that does not trigger a DNS resolution
     return addr.getHostString();
   }
 
   public SocketAddress remoteAddress() {
     InetSocketAddress addr = (InetSocketAddress) channel.remoteAddress();
-    if (addr == null) return null;
+    if (addr == null) {
+      return null;
+    }
     return new SocketAddressImpl(addr);
   }
 
   public SocketAddress localAddress() {
     InetSocketAddress addr = (InetSocketAddress) channel.localAddress();
-    if (addr == null) return null;
+    if (addr == null) {
+      return null;
+    }
     return new SocketAddressImpl(addr);
   }
 }

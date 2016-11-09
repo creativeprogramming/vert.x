@@ -24,10 +24,10 @@ import io.netty.handler.codec.http.HttpResponse;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.handler.codec.http.HttpVersion;
 
-
 /**
- * Helper wrapper class which allows to assemble a HttpContent and a HttpResponse into one "packet" and so more
- * efficient write it through the pipeline.
+ * Helper wrapper class which allows to assemble a HttpContent and a
+ * HttpResponse into one "packet" and so more efficient write it through the
+ * pipeline.
  *
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>
  */

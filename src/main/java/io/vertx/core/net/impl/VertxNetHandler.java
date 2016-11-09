@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net.impl;
 
 import io.netty.buffer.ByteBuf;
@@ -29,7 +28,6 @@ import java.util.Map;
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>
  */
 public class VertxNetHandler extends VertxHandler<NetSocketImpl> {
-
 
   private final Channel ch;
   private final Map<Channel, NetSocketImpl> connectionMap;
@@ -58,7 +56,6 @@ public class VertxNetHandler extends VertxHandler<NetSocketImpl> {
     this.conn = null;
     return conn;
   }
-
 
   @Override
   protected void channelRead(NetSocketImpl sock, ContextImpl context, ChannelHandlerContext chctx, Object msg) throws Exception {

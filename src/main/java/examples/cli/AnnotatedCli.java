@@ -13,13 +13,13 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package examples.cli;
 
 import io.vertx.core.cli.annotations.*;
 
 /**
  * An example of annotated cli.
+ *
  * @author <a href="http://escoffier.me">Clement Escoffier</a>
  */
 // tag::content[]

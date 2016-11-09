@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.eventbus.impl.codecs;
 
 import io.netty.util.CharsetUtil;
@@ -29,12 +28,12 @@ public class ReplyExceptionMessageCodec implements MessageCodec<ReplyException, 
 
   @Override
   public void encodeToWire(Buffer buffer, ReplyException body) {
-    buffer.appendByte((byte)body.failureType().toInt());
+    buffer.appendByte((byte) body.failureType().toInt());
     buffer.appendInt(body.failureCode());
     if (body.getMessage() == null) {
-      buffer.appendByte((byte)0);
+      buffer.appendByte((byte) 0);
     } else {
-      buffer.appendByte((byte)1);
+      buffer.appendByte((byte) 1);
       byte[] encoded = body.getMessage().getBytes(CharsetUtil.UTF_8);
       buffer.appendInt(encoded.length);
       buffer.appendBytes(encoded);
@@ -48,7 +47,7 @@ public class ReplyExceptionMessageCodec implements MessageCodec<ReplyException, 
     pos++;
     int failureCode = buffer.getInt(pos);
     pos += 4;
-    boolean isNull = buffer.getByte(pos) == (byte)0;
+    boolean isNull = buffer.getByte(pos) == (byte) 0;
     String message;
     if (!isNull) {
       pos++;

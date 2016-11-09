@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package docoverride.buffer;
 
 import io.vertx.core.buffer.Buffer;
@@ -26,7 +25,7 @@ import io.vertx.docgen.Source;
 public class Examples {
 
   public void example4() {
-    byte[] bytes = new byte[] {1, 3, 5};
+    byte[] bytes = new byte[]{1, 3, 5};
     Buffer buff = Buffer.buffer(bytes);
   }
 }

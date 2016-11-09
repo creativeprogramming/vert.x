@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net.impl;
 
 import io.netty.buffer.ByteBufAllocator;
@@ -57,7 +56,8 @@ import java.util.stream.Stream;
 public class SSLHelper {
 
   /**
-   * Resolve the ssl engine options to use for properly running the configured options.
+   * Resolve the ssl engine options to use for properly running the configured
+   * options.
    */
   public static SSLEngineOptions resolveEngineOptions(TCPSSLOptions options) {
     SSLEngineOptions engineOptions = options.getSslEngineOptions();
@@ -236,7 +236,7 @@ public class SSLHelper {
 
     If you don't specify a key store, and don't specify a system property no key store will be used
     You can override this by specifying the javax.echo.ssl.keyStore system property
-     */
+   */
   private SslContext createContext(VertxInternal vertx) {
     try {
       KeyManagerFactory keyMgrFactory = getKeyMgrFactory(vertx);
@@ -273,10 +273,10 @@ public class SSLHelper {
       }
       if (useAlpn && applicationProtocols != null && applicationProtocols.size() > 0) {
         builder.applicationProtocolConfig(new ApplicationProtocolConfig(
-            ApplicationProtocolConfig.Protocol.ALPN,
-            ApplicationProtocolConfig.SelectorFailureBehavior.NO_ADVERTISE,
-            ApplicationProtocolConfig.SelectedListenerFailureBehavior.ACCEPT,
-            applicationProtocols.stream().map(PROTOCOL_NAME_MAPPING::get).collect(Collectors.toList())
+                ApplicationProtocolConfig.Protocol.ALPN,
+                ApplicationProtocolConfig.SelectorFailureBehavior.NO_ADVERTISE,
+                ApplicationProtocolConfig.SelectedListenerFailureBehavior.ACCEPT,
+                applicationProtocols.stream().map(PROTOCOL_NAME_MAPPING::get).collect(Collectors.toList())
         ));
       }
       return builder.build();
@@ -295,10 +295,12 @@ public class SSLHelper {
       TrustManager[] mgrs = new TrustManager[]{createTrustAllTrustManager()};
       fact = new SimpleTrustManagerFactory() {
         @Override
-        protected void engineInit(KeyStore keyStore) throws Exception {}
+        protected void engineInit(KeyStore keyStore) throws Exception {
+        }
 
         @Override
-        protected void engineInit(ManagerFactoryParameters managerFactoryParameters) throws Exception {}
+        protected void engineInit(ManagerFactoryParameters managerFactoryParameters) throws Exception {
+        }
 
         @Override
         protected TrustManager[] engineGetTrustManagers() {
@@ -312,9 +314,9 @@ public class SSLHelper {
     }
     if (crlPaths != null && crlValues != null && (crlPaths.size() > 0 || crlValues.size() > 0)) {
       Stream<Buffer> tmp = crlPaths.
-          stream().
-          map(path -> vertx.resolveFile(path).getAbsolutePath()).
-          map(vertx.fileSystem()::readFileBlocking);
+              stream().
+              map(path -> vertx.resolveFile(path).getAbsolutePath()).
+              map(vertx.fileSystem()::readFileBlocking);
       tmp = Stream.concat(tmp, crlValues.stream());
       CertificateFactory certificatefactory = CertificateFactory.getInstance("X.509");
       ArrayList<CRL> crls = new ArrayList<>();
@@ -324,10 +326,12 @@ public class SSLHelper {
       TrustManager[] mgrs = createUntrustRevokedCertTrustManager(fact.getTrustManagers(), crls);
       fact = new SimpleTrustManagerFactory() {
         @Override
-        protected void engineInit(KeyStore keyStore) throws Exception {}
+        protected void engineInit(KeyStore keyStore) throws Exception {
+        }
 
         @Override
-        protected void engineInit(ManagerFactoryParameters managerFactoryParameters) throws Exception {}
+        protected void engineInit(ManagerFactoryParameters managerFactoryParameters) throws Exception {
+        }
 
         @Override
         protected TrustManager[] engineGetTrustManagers() {
@@ -344,7 +348,7 @@ public class SSLHelper {
    */
   private static TrustManager[] createUntrustRevokedCertTrustManager(TrustManager[] trustMgrs, ArrayList<CRL> crls) {
     trustMgrs = trustMgrs.clone();
-    for (int i = 0;i < trustMgrs.length;i++) {
+    for (int i = 0; i < trustMgrs.length; i++) {
       TrustManager trustMgr = trustMgrs[i];
       if (trustMgr instanceof X509TrustManager) {
         X509TrustManager x509TrustManager = (X509TrustManager) trustMgr;
@@ -354,11 +358,13 @@ public class SSLHelper {
             checkRevoked(x509Certificates);
             x509TrustManager.checkClientTrusted(x509Certificates, s);
           }
+
           @Override
           public void checkServerTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
             checkRevoked(x509Certificates);
             x509TrustManager.checkServerTrusted(x509Certificates, s);
           }
+
           private void checkRevoked(X509Certificate[] x509Certificates) throws CertificateException {
             for (X509Certificate cert : x509Certificates) {
               for (CRL crl : crls) {
@@ -368,6 +374,7 @@ public class SSLHelper {
               }
             }
           }
+
           @Override
           public X509Certificate[] getAcceptedIssuers() {
             return x509TrustManager.getAcceptedIssuers();
@@ -437,10 +444,10 @@ public class SSLHelper {
   public SslContext getContext(VertxInternal vertx) {
     if (sslContext == null) {
       sslContext = createContext(vertx);
-      if (sslContext instanceof OpenSslServerContext){
+      if (sslContext instanceof OpenSslServerContext) {
         SSLSessionContext sslSessionContext = sslContext.sessionContext();
-        if (sslSessionContext instanceof OpenSslServerSessionContext){
-          ((OpenSslServerSessionContext)sslSessionContext).setSessionCacheEnabled(openSslSessionCacheEnabled);
+        if (sslSessionContext instanceof OpenSslServerSessionContext) {
+          ((OpenSslServerSessionContext) sslSessionContext).setSessionCacheEnabled(openSslSessionCacheEnabled);
         }
       }
     }

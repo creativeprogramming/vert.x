@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.AbstractVerticle;
@@ -21,9 +20,10 @@ import io.vertx.core.impl.IsolatingClassLoader;
 import org.junit.Assert;
 
 /**
-* @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
-*/
+ * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+ */
 public class ExtraCPVerticleAlreadyInParentLoader extends AbstractVerticle {
+
   @Override
   public void start() throws Exception {
     IsolatingClassLoader cl = (IsolatingClassLoader) Thread.currentThread().getContextClassLoader();

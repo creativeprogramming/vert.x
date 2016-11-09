@@ -42,26 +42,25 @@ public class ComplexCommand extends DefaultCommand {
   }
 
   @Option(
-      longName = "option1",
-      shortName = "o1",
-      argName = "opt",
-      required = true
+          longName = "option1",
+          shortName = "o1",
+          argName = "opt",
+          required = true
   )
   public void setOption1(String option1) {
     this.option1 = option1;
   }
 
   @Option(
-      longName = "option2",
-      shortName = "o2",
-      acceptValue = false,
-      required = false,
-      flag = true
+          longName = "option2",
+          shortName = "o2",
+          acceptValue = false,
+          required = false,
+          flag = true
   )
   public void setOption2(boolean option2) {
     this.option2 = option2;
   }
-
 
   @Override
   public void run() throws CLIException {

@@ -26,7 +26,7 @@ public class DnsQueryHeader extends DnsHeader {
    * will be replicated in the response packet by the server.
    *
    * @param parent the {@link DnsMessage} this header belongs to
-   * @param id     a 2 bit unsigned identification number for this query
+   * @param id a 2 bit unsigned identification number for this query
    */
   public DnsQueryHeader(DnsMessage<? extends DnsQueryHeader> parent, int id) {
     super(parent);

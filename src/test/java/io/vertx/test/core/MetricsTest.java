@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.*;
@@ -586,42 +585,44 @@ public class MetricsTest extends VertxTestBase {
       });
     });
     CountDownLatch listenLatch = new CountDownLatch(1);
-    server.listen(8080, "localhost", onSuccess(s -> { listenLatch.countDown(); }));
+    server.listen(8080, "localhost", onSuccess(s -> {
+      listenLatch.countDown();
+    }));
     awaitLatch(listenLatch);
     HttpClient client = vertx.createHttpClient();
     FakeHttpClientMetrics metrics = FakeHttpClientMetrics.getMetrics(client);
     CountDownLatch responsesLatch = new CountDownLatch(5);
-    for (int i = 0;i < 5;i++) {
+    for (int i = 0; i < 5; i++) {
       client.getNow(8080, "localhost", "/somepath", resp -> {
         responsesLatch.countDown();
       });
     }
     waitUntil(() -> requests.size() == 5);
     assertEquals(Collections.singleton("localhost:8080"), metrics.endpoints());
-    assertEquals(0, (int)metrics.queueSize("localhost:8080"));
-    assertEquals(5, (int)metrics.connectionCount("localhost:8080"));
-    for (int i = 0;i < 8;i++) {
+    assertEquals(0, (int) metrics.queueSize("localhost:8080"));
+    assertEquals(5, (int) metrics.connectionCount("localhost:8080"));
+    for (int i = 0; i < 8; i++) {
       client.getNow(8080, "localhost", "/somepath", resp -> {
       });
     }
     assertEquals(Collections.singleton("localhost:8080"), metrics.endpoints());
-    assertEquals(8, (int)metrics.queueSize("localhost:8080"));
-    assertEquals(5, (int)metrics.connectionCount("localhost:8080"));
+    assertEquals(8, (int) metrics.queueSize("localhost:8080"));
+    assertEquals(5, (int) metrics.connectionCount("localhost:8080"));
     ArrayList<Runnable> copy = new ArrayList<>(requests);
     requests.clear();
     copy.forEach(Runnable::run);
     awaitLatch(responsesLatch);
     waitUntil(() -> requests.size() == 5);
     assertEquals(Collections.singleton("localhost:8080"), metrics.endpoints());
-    assertEquals(3, (int)metrics.queueSize("localhost:8080"));
-    assertEquals(5, (int)metrics.connectionCount("localhost:8080"));
+    assertEquals(3, (int) metrics.queueSize("localhost:8080"));
+    assertEquals(5, (int) metrics.connectionCount("localhost:8080"));
     copy = new ArrayList<>(requests);
     requests.clear();
     copy.forEach(Runnable::run);
     waitUntil(() -> requests.size() == 3);
     assertEquals(Collections.singleton("localhost:8080"), metrics.endpoints());
-    assertEquals(0, (int)metrics.queueSize("localhost:8080"));
-    assertEquals(5, (int)metrics.connectionCount("localhost:8080"));
+    assertEquals(0, (int) metrics.queueSize("localhost:8080"));
+    assertEquals(5, (int) metrics.connectionCount("localhost:8080"));
   }
 
   @Test
@@ -636,11 +637,13 @@ public class MetricsTest extends VertxTestBase {
       });
     });
     CountDownLatch listenLatch = new CountDownLatch(1);
-    server.listen(8080, "localhost", onSuccess(s -> { listenLatch.countDown(); }));
+    server.listen(8080, "localhost", onSuccess(s -> {
+      listenLatch.countDown();
+    }));
     awaitLatch(listenLatch);
     HttpClient client = vertx.createHttpClient();
     FakeHttpClientMetrics metrics = FakeHttpClientMetrics.getMetrics(client);
-    for (int i = 0;i < 5;i++) {
+    for (int i = 0; i < 5; i++) {
       client.getNow(8080, "localhost", "/somepath", resp -> {
       });
     }
@@ -660,7 +663,7 @@ public class MetricsTest extends VertxTestBase {
     HttpClient client = vertx.createHttpClient();
     AtomicReference<EndpointMetric> endpointMetrics = new AtomicReference<>();
     vertx.createHttpServer().requestHandler(req -> {
-      endpointMetrics.set(((FakeHttpClientMetrics)FakeHttpClientMetrics.getMetrics(client)).endpoint("localhost:8080"));
+      endpointMetrics.set(((FakeHttpClientMetrics) FakeHttpClientMetrics.getMetrics(client)).endpoint("localhost:8080"));
       req.response().end();
     }).listen(8080, "localhost", ar -> {
       assertTrue(ar.succeeded());
@@ -830,21 +833,21 @@ public class MetricsTest extends VertxTestBase {
     AtomicBoolean hadRunning = new AtomicBoolean();
     for (int i = 0; i < 100; i++) {
       vertx.executeBlocking(
-          job,
-          ar -> {
-            if (metrics.numberOfWaitingTasks() > 0) {
-              hadWaitingQueue.set(true);
-            }
-            if (metrics.numberOfIdleThreads() > 0) {
-              hadIdle.set(true);
-            }
-            if (metrics.numberOfRunningTasks() > 0) {
-              hadRunning.set(true);
-            }
-            if (counter.incrementAndGet() == 100) {
-              testComplete();
-            }
-          }
+              job,
+              ar -> {
+                if (metrics.numberOfWaitingTasks() > 0) {
+                  hadWaitingQueue.set(true);
+                }
+                if (metrics.numberOfIdleThreads() > 0) {
+                  hadIdle.set(true);
+                }
+                if (metrics.numberOfRunningTasks() > 0) {
+                  hadRunning.set(true);
+                }
+                if (counter.incrementAndGet() == 100) {
+                  testComplete();
+                }
+              }
       );
     }
 
@@ -879,25 +882,25 @@ public class MetricsTest extends VertxTestBase {
     FileSystem system = vertx.fileSystem();
     for (int i = 0; i < 100; i++) {
       vertx.executeBlocking(
-          fut -> {
-            system.readFile("afile.html", buffer -> {
-              fut.complete(null);
-            });
-          },
-          ar -> {
-            if (metrics.numberOfWaitingTasks() > 0) {
-              hadWaitingQueue.set(true);
-            }
-            if (metrics.numberOfIdleThreads() > 0) {
-              hadIdle.set(true);
-            }
-            if (metrics.numberOfRunningTasks() > 0) {
-              hadRunning.set(true);
-            }
-            if (counter.incrementAndGet() == 100) {
-              testComplete();
-            }
-          }
+              fut -> {
+                system.readFile("afile.html", buffer -> {
+                  fut.complete(null);
+                });
+              },
+              ar -> {
+                if (metrics.numberOfWaitingTasks() > 0) {
+                  hadWaitingQueue.set(true);
+                }
+                if (metrics.numberOfIdleThreads() > 0) {
+                  hadIdle.set(true);
+                }
+                if (metrics.numberOfRunningTasks() > 0) {
+                  hadRunning.set(true);
+                }
+                if (counter.incrementAndGet() == 100) {
+                  testComplete();
+                }
+              }
       );
     }
 
@@ -942,32 +945,31 @@ public class MetricsTest extends VertxTestBase {
       @Override
       public void start(Future<Void> done) throws Exception {
         vertx.eventBus().localConsumer("message", d -> {
-              try {
-                Thread.sleep(10);
+          try {
+            Thread.sleep(10);
 
-                if (metrics.numberOfWaitingTasks() > 0) {
-                  hadWaitingQueue.set(true);
-                }
-                if (metrics.numberOfIdleThreads() > 0) {
-                  hadIdle.set(true);
-                }
-                if (metrics.numberOfRunningTasks() > 0) {
-                  hadRunning.set(true);
-                }
-
-                if (counter.incrementAndGet() == count) {
-                  testComplete();
-                }
-
-              } catch (InterruptedException e) {
-                Thread.currentThread().isInterrupted();
-              }
+            if (metrics.numberOfWaitingTasks() > 0) {
+              hadWaitingQueue.set(true);
             }
+            if (metrics.numberOfIdleThreads() > 0) {
+              hadIdle.set(true);
+            }
+            if (metrics.numberOfRunningTasks() > 0) {
+              hadRunning.set(true);
+            }
+
+            if (counter.incrementAndGet() == count) {
+              testComplete();
+            }
+
+          } catch (InterruptedException e) {
+            Thread.currentThread().isInterrupted();
+          }
+        }
         );
         done.complete();
       }
     };
-
 
     vertx.deployVerticle(worker, options, s -> {
       for (int i = 0; i < count; i++) {
@@ -1011,22 +1013,22 @@ public class MetricsTest extends VertxTestBase {
     AtomicBoolean hadRunning = new AtomicBoolean();
     for (int i = 0; i < 100; i++) {
       workerExec.executeBlocking(
-          job,
-          false,
-          ar -> {
-            if (metrics.numberOfWaitingTasks() > 0) {
-              hadWaitingQueue.set(true);
-            }
-            if (metrics.numberOfIdleThreads() > 0) {
-              hadIdle.set(true);
-            }
-            if (metrics.numberOfRunningTasks() > 0) {
-              hadRunning.set(true);
-            }
-            if (counter.incrementAndGet() == 100) {
-              testComplete();
-            }
-          });
+              job,
+              false,
+              ar -> {
+                if (metrics.numberOfWaitingTasks() > 0) {
+                  hadWaitingQueue.set(true);
+                }
+                if (metrics.numberOfIdleThreads() > 0) {
+                  hadIdle.set(true);
+                }
+                if (metrics.numberOfRunningTasks() > 0) {
+                  hadRunning.set(true);
+                }
+                if (counter.incrementAndGet() == 100) {
+                  testComplete();
+                }
+              });
     }
 
     await();

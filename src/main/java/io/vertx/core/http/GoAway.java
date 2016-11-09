@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -58,8 +57,8 @@ public class GoAway {
   }
 
   /**
-   * @return the highest numbered stream identifier for which the sender of the frame might have taken some
-   *         action on or might yet take action
+   * @return the highest numbered stream identifier for which the sender of the
+   * frame might have taken some action on or might yet take action
    */
   public int getLastStreamId() {
     return lastStreamId;

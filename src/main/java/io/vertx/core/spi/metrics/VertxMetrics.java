@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.spi.metrics;
 
 import io.vertx.core.Verticle;
@@ -28,30 +27,35 @@ import io.vertx.core.metrics.Measured;
 import io.vertx.core.net.*;
 
 /**
- * The main Vert.x metrics SPI which Vert.x will use internally. This interface serves two purposes, one
- * to be called by Vert.x itself for events like verticles deployed, timers created, etc. The other
- * to provide Vert.x with other metrics SPI's which will be used for specific components i.e.
- * {@link io.vertx.core.http.HttpServer}, {@link io.vertx.core.spi.metrics.EventBusMetrics}, etc.
+ * The main Vert.x metrics SPI which Vert.x will use internally. This interface
+ * serves two purposes, one to be called by Vert.x itself for events like
+ * verticles deployed, timers created, etc. The other to provide Vert.x with
+ * other metrics SPI's which will be used for specific components i.e.
+ * {@link io.vertx.core.http.HttpServer}, {@link io.vertx.core.spi.metrics.EventBusMetrics},
+ * etc.
  *
  * @author <a href="mailto:nscavell@redhat.com">Nick Scavelli</a>
  */
 public interface VertxMetrics extends Metrics, Measured {
 
   /**
-   * Called when a verticle is deployed in Vert.x .<p/>
+   * Called when a verticle is deployed in Vert.x
+   * .<p/>
    * <p>
-   * This method is invoked with {@link io.vertx.core.Context} and thread of the deployed verticle and therefore
-   * might be  different on every invocation.
+   * This method is invoked with {@link io.vertx.core.Context} and thread of the
+   * deployed verticle and therefore might be different on every invocation.
    *
    * @param verticle the verticle which was deployed
    */
   void verticleDeployed(Verticle verticle);
 
   /**
-   * Called when a verticle is undeployed in Vert.x .<p/>
+   * Called when a verticle is undeployed in Vert.x
+   * .<p/>
    * <p>
-   * This method is invoked with {@link io.vertx.core.Context} and thread of the deployed verticle and therefore
-   * might be  different on every invocation, however these are the same than the {@link #verticleDeployed} invocation.
+   * This method is invoked with {@link io.vertx.core.Context} and thread of the
+   * deployed verticle and therefore might be different on every invocation,
+   * however these are the same than the {@link #verticleDeployed} invocation.
    *
    * @param verticle the verticle which was undeployed
    */
@@ -71,7 +75,7 @@ public interface VertxMetrics extends Metrics, Measured {
    * <p>
    * No specific thread and context can be expected when this method is called.
    *
-   * @param id        the id of the timer
+   * @param id the id of the timer
    * @param cancelled if the timer was cancelled by the user
    */
   void timerEnded(long id, boolean cancelled);
@@ -79,7 +83,8 @@ public interface VertxMetrics extends Metrics, Measured {
   /**
    * Provides the event bus metrics SPI when the event bus is created.<p/>
    * <p>
-   * No specific thread and context can be expected when this method is called.<p/>
+   * No specific thread and context can be expected when this method is
+   * called.<p/>
    * <p>
    * This method should be called only once.
    *
@@ -91,27 +96,33 @@ public interface VertxMetrics extends Metrics, Measured {
   /**
    * Provides the http server metrics SPI when an http server is created.<p/>
    * <p>
-   * No specific thread and context can be expected when this method is called.<p/>
+   * No specific thread and context can be expected when this method is
+   * called.<p/>
    * <p>
-   * Note: this method can be called more than one time for the same {@code localAddress} when a server is
-   * scaled, it is the responsibility of the metrics implementation to eventually merge metrics. In this case
-   * the provided {@code server} argument can be used to distinguish the different {@code HttpServerMetrics}
-   * instances.
+   * Note: this method can be called more than one time for the same
+   * {@code localAddress} when a server is scaled, it is the responsibility of
+   * the metrics implementation to eventually merge metrics. In this case the
+   * provided {@code server} argument can be used to distinguish the different
+   * {@code HttpServerMetrics} instances.
    *
-   * @param server       the Vert.x http server
-   * @param localAddress localAddress the local address the net socket is listening on
-   * @param options      the options used to create the {@link io.vertx.core.http.HttpServer}
+   * @param server the Vert.x http server
+   * @param localAddress localAddress the local address the net socket is
+   * listening on
+   * @param options the options used to create the
+   * {@link io.vertx.core.http.HttpServer}
    * @return the http server metrics SPI
    */
   HttpServerMetrics<?, ?, ?> createMetrics(HttpServer server, SocketAddress localAddress, HttpServerOptions options);
 
   /**
-   * Provides the http client metrics SPI when an http client has been created.<p/>
+   * Provides the http client metrics SPI when an http client has been
+   * created.<p/>
    * <p>
    * No specific thread and context can be expected when this method is called.
    *
-   * @param client  the Vert.x http client
-   * @param options the options used to create the {@link io.vertx.core.http.HttpClient}
+   * @param client the Vert.x http client
+   * @param options the options used to create the
+   * {@link io.vertx.core.http.HttpClient}
    * @return the http client metrics SPI
    */
   HttpClientMetrics<?, ?, ?, ?, ?> createMetrics(HttpClient client, HttpClientOptions options);
@@ -119,16 +130,20 @@ public interface VertxMetrics extends Metrics, Measured {
   /**
    * Provides the net server metrics SPI when a net server is created.<p/>
    * <p>
-   * No specific thread and context can be expected when this method is called.<p/>
+   * No specific thread and context can be expected when this method is
+   * called.<p/>
    * <p>
-   * Note: this method can be called more than one time for the same {@code localAddress} when a server is
-   * scaled, it is the responsibility of the metrics implementation to eventually merge metrics. In this case
-   * the provided {@code server} argument can be used to distinguish the different {@code TCPMetrics}
-   * instances.
+   * Note: this method can be called more than one time for the same
+   * {@code localAddress} when a server is scaled, it is the responsibility of
+   * the metrics implementation to eventually merge metrics. In this case the
+   * provided {@code server} argument can be used to distinguish the different
+   * {@code TCPMetrics} instances.
    *
-   * @param server       the Vert.x net server
-   * @param localAddress localAddress the local address the net socket is listening on
-   * @param options      the options used to create the {@link io.vertx.core.net.NetServer}
+   * @param server the Vert.x net server
+   * @param localAddress localAddress the local address the net socket is
+   * listening on
+   * @param options the options used to create the
+   * {@link io.vertx.core.net.NetServer}
    * @return the net server metrics SPI
    */
   TCPMetrics<?> createMetrics(NetServer server, SocketAddress localAddress, NetServerOptions options);
@@ -138,27 +153,31 @@ public interface VertxMetrics extends Metrics, Measured {
    * <p>
    * No specific thread and context can be expected when this method is called.
    *
-   * @param client  the Vert.x net client
-   * @param options the options used to create the {@link io.vertx.core.net.NetClient}
+   * @param client the Vert.x net client
+   * @param options the options used to create the
+   * {@link io.vertx.core.net.NetClient}
    * @return the net client metrics SPI
    */
   TCPMetrics<?> createMetrics(NetClient client, NetClientOptions options);
 
   /**
-   * Provides the datagram/udp metrics SPI when a datagram socket is created.<p/>
+   * Provides the datagram/udp metrics SPI when a datagram socket is
+   * created.<p/>
    * <p>
    * No specific thread and context can be expected when this method is called.
    *
-   * @param socket  the Vert.x datagram socket
-   * @param options the options used to create the {@link io.vertx.core.datagram.DatagramSocket}
+   * @param socket the Vert.x datagram socket
+   * @param options the options used to create the
+   * {@link io.vertx.core.datagram.DatagramSocket}
    * @return the datagram metrics SPI
    */
   DatagramSocketMetrics createMetrics(DatagramSocket socket, DatagramSocketOptions options);
 
   /**
-   * Metrics cannot use the event bus in their constructor as the event bus is not yet initialized. When the event
-   * bus is initialized, this method is called with the event bus instance as parameter. By default, this method does
-   * nothing.
+   * Metrics cannot use the event bus in their constructor as the event bus is
+   * not yet initialized. When the event bus is initialized, this method is
+   * called with the event bus instance as parameter. By default, this method
+   * does nothing.
    *
    * @param bus the event bus
    */
@@ -169,10 +188,12 @@ public interface VertxMetrics extends Metrics, Measured {
   /**
    * Provides the pool metrics SPI.
    *
-   * @param pool the pool of resource, it can be used by the metrics implementation to gather extra statistics
+   * @param pool the pool of resource, it can be used by the metrics
+   * implementation to gather extra statistics
    * @param poolType the type of the pool e.g worker, datasource, etc..
    * @param poolName the name of the pool
-   * @param maxPoolSize the pool max size, or -1 if the number cannot be determined   @return the thread pool metrics SPI
+   * @param maxPoolSize the pool max size, or -1 if the number cannot be
+   * determined @return the thread pool metrics SPI
    */
   <P> PoolMetrics<?> createMetrics(P pool, String poolType, String poolName, int maxPoolSize);
 }

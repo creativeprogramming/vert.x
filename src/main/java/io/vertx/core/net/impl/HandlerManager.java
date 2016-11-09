@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net.impl;
 
 import io.netty.channel.EventLoop;
@@ -84,8 +83,10 @@ public class HandlerManager<T> {
   }
 
   private static final class Handlers<T> {
+
     private int pos;
     private final List<HandlerHolder<T>> list = new CopyOnWriteArrayList<>();
+
     HandlerHolder<T> chooseHandler() {
       HandlerHolder<T> handler = list.get(pos);
       pos++;

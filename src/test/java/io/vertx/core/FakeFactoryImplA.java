@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core;
 
 import io.vertx.test.spi.FakeFactory;
@@ -22,6 +21,7 @@ import io.vertx.test.spi.FakeFactory;
  * @author <a href="http://escoffier.me">Clement Escoffier</a>
  */
 public class FakeFactoryImplA implements FakeFactory {
+
   @Override
   public String name() {
     return "A";

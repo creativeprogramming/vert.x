@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.cli.impl;
 
 import io.vertx.core.cli.*;
@@ -37,7 +36,8 @@ public class DefaultCLI implements CLI {
   private List<Argument> arguments = new ArrayList<>();
 
   /**
-   * Parses the user command line interface and create a new {@link CommandLine} containing extracting values.
+   * Parses the user command line interface and create a new {@link CommandLine}
+   * containing extracting values.
    *
    * @param arguments the arguments
    * @return the creates command line
@@ -48,10 +48,11 @@ public class DefaultCLI implements CLI {
   }
 
   /**
-   * Parses the user command line interface and create a new {@link CommandLine} containing extracting values.
+   * Parses the user command line interface and create a new {@link CommandLine}
+   * containing extracting values.
    *
    * @param arguments the arguments
-   * @param validate  enable / disable parsing validation
+   * @param validate enable / disable parsing validation
    * @return the creates command line
    */
   @Override
@@ -213,11 +214,10 @@ public class DefaultCLI implements CLI {
     return null;
   }
 
-
   @Override
   public CLI removeOption(String name) {
     options = options.stream().filter(o -> !o.getLongName().equals(name) && !o.getShortName().equals(name))
-        .collect(Collectors.toList());
+            .collect(Collectors.toList());
     return this;
   }
 

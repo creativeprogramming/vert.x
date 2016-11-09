@@ -25,13 +25,15 @@ public interface NodeListener {
 
   /**
    * A node has been added
+   *
    * @param nodeID The unique ID of the node
    */
   void nodeAdded(String nodeID);
 
   /**
    * A node has left
-   * @param nodeID  The unique ID of the node
+   *
+   * @param nodeID The unique ID of the node
    */
   void nodeLeft(String nodeID);
 }

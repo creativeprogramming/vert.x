@@ -63,9 +63,9 @@ public class BareCommandTest extends CommandTestBase {
     stop();
 
     assertThat(error.toString())
-        .contains("Starting clustering...")
-        .contains("No cluster-host specified")
-        .contains("Any deploymentIDs waiting on a quorum will now be deployed");
+            .contains("Starting clustering...")
+            .contains("No cluster-host specified")
+            .contains("Any deploymentIDs waiting on a quorum will now be deployed");
   }
 
   @Test
@@ -73,14 +73,13 @@ public class BareCommandTest extends CommandTestBase {
     record();
     cli.dispatch(new String[]{"-ha"});
 
-
     waitUntil(() -> error.toString().contains("A quorum has been obtained."));
     stop();
 
     assertThat(error.toString())
-        .contains("Starting clustering...")
-        .contains("No cluster-host specified")
-        .contains("Any deploymentIDs waiting on a quorum will now be deployed");
+            .contains("Starting clustering...")
+            .contains("No cluster-host specified")
+            .contains("Any deploymentIDs waiting on a quorum will now be deployed");
   }
 
   @Test
@@ -93,9 +92,9 @@ public class BareCommandTest extends CommandTestBase {
     assertThatVertxInstanceHasBeenCreated();
     stop();
     assertThat(error.toString())
-        .contains("Starting clustering...")
-        .doesNotContain("No cluster-host specified")
-        .contains("Any deploymentIDs waiting on a quorum will now be deployed");
+            .contains("Starting clustering...")
+            .doesNotContain("No cluster-host specified")
+            .contains("Any deploymentIDs waiting on a quorum will now be deployed");
   }
 
   @Test
@@ -103,15 +102,13 @@ public class BareCommandTest extends CommandTestBase {
     record();
     cli.dispatch(new String[]{"-ha", "-cluster-host", "127.0.0.1"});
 
-
     waitUntil(() -> error.toString().contains("A quorum has been obtained."));
     stop();
 
     assertThat(error.toString())
-        .contains("Starting clustering...")
-        .doesNotContain("No cluster-host specified")
-        .contains("Any deploymentIDs waiting on a quorum will now be deployed");
+            .contains("Starting clustering...")
+            .doesNotContain("No cluster-host specified")
+            .contains("Any deploymentIDs waiting on a quorum will now be deployed");
   }
-
 
 }

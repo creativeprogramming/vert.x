@@ -27,7 +27,8 @@ public class OpenSSLEngineOptions extends SSLEngineOptions {
   }
 
   /**
-   * Default value of whether session cache is enabled in open SSL session server context = true
+   * Default value of whether session cache is enabled in open SSL session
+   * server context = true
    */
   public static final boolean DEFAULT_SESSION_CACHE_ENABLED = true;
 
@@ -67,12 +68,18 @@ public class OpenSSLEngineOptions extends SSLEngineOptions {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof OpenSSLEngineOptions)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof OpenSSLEngineOptions)) {
+      return false;
+    }
 
     OpenSSLEngineOptions that = (OpenSSLEngineOptions) o;
 
-    if (sessionCacheEnabled != that.sessionCacheEnabled) return false;
+    if (sessionCacheEnabled != that.sessionCacheEnabled) {
+      return false;
+    }
 
     return true;
   }

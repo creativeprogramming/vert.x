@@ -29,7 +29,6 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 
-
 public class ServiceCommandLoaderTest {
 
   private ServiceCommandFactoryLoader loader = new ServiceCommandFactoryLoader();
@@ -61,7 +60,6 @@ public class ServiceCommandLoaderTest {
     loader = new ServiceCommandFactoryLoader(classLoader);
     assertThat(loader.lookup()).isNotEmpty();
   }
-
 
   @Test
   public void testCommandsWhenUsingClassloaderHierarchy() {

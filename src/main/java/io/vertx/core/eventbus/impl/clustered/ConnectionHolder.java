@@ -103,8 +103,8 @@ class ConnectionHolder {
         log.warn("No pong from server " + serverID + " - will consider it dead");
         close();
       });
-      ClusteredMessage pingMessage =
-        new ClusteredMessage<>(serverID, PING_ADDRESS, null, null, null, new PingMessageCodec(), true, eventBus);
+      ClusteredMessage pingMessage
+              = new ClusteredMessage<>(serverID, PING_ADDRESS, null, null, null, new PingMessageCodec(), true, eventBus);
       Buffer data = pingMessage.encodeToWire();
       socket.write(data);
     });

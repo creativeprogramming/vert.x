@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.handler.codec.http.HttpHeaderNames;
@@ -43,7 +42,7 @@ public class Http2HeadersAdaptor implements MultiMap {
         if (buffer == null) {
           buffer = new StringBuilder(s);
         }
-        buffer.setCharAt(index, (char)(c + ('a' - 'A')));
+        buffer.setCharAt(index, (char) (c + ('a' - 'A')));
       }
     }
     if (buffer != null) {
@@ -84,6 +83,7 @@ public class Http2HeadersAdaptor implements MultiMap {
         public String get(int index) {
           return all.get(index).toString();
         }
+
         @Override
         public int size() {
           return all.size();
@@ -96,9 +96,9 @@ public class Http2HeadersAdaptor implements MultiMap {
   @Override
   public List<Map.Entry<String, String>> entries() {
     return headers.names()
-        .stream()
-        .map(name -> new AbstractMap.SimpleEntry<>(name.toString(), headers.get(name).toString()))
-        .collect(Collectors.toList());
+            .stream()
+            .map(name -> new AbstractMap.SimpleEntry<>(name.toString(), headers.get(name).toString()))
+            .collect(Collectors.toList());
   }
 
   @Override
@@ -123,12 +123,14 @@ public class Http2HeadersAdaptor implements MultiMap {
             public boolean hasNext() {
               return it.hasNext();
             }
+
             @Override
             public String next() {
               return it.next().toString();
             }
           };
         }
+
         @Override
         public int size() {
           return headers.size();
@@ -152,7 +154,7 @@ public class Http2HeadersAdaptor implements MultiMap {
 
   @Override
   public MultiMap addAll(MultiMap headers) {
-    for (Map.Entry<String, String> entry: headers.entries()) {
+    for (Map.Entry<String, String> entry : headers.entries()) {
       add(entry.getKey(), entry.getValue());
     }
     return this;
@@ -160,7 +162,7 @@ public class Http2HeadersAdaptor implements MultiMap {
 
   @Override
   public MultiMap addAll(Map<String, String> map) {
-    for (Map.Entry<String, String> entry: map.entrySet()) {
+    for (Map.Entry<String, String> entry : map.entrySet()) {
       add(entry.getKey(), entry.getValue());
     }
     return this;
@@ -181,7 +183,7 @@ public class Http2HeadersAdaptor implements MultiMap {
   @Override
   public MultiMap setAll(MultiMap httpHeaders) {
     clear();
-    for (Map.Entry<String, String> entry: httpHeaders) {
+    for (Map.Entry<String, String> entry : httpHeaders) {
       add(entry.getKey(), entry.getValue());
     }
     return this;
@@ -211,7 +213,7 @@ public class Http2HeadersAdaptor implements MultiMap {
 
   @Override
   public MultiMap setAll(Map<String, String> headers) {
-    for (Map.Entry<String, String> entry: headers.entrySet()) {
+    for (Map.Entry<String, String> entry : headers.entrySet()) {
       add(entry.getKey(), entry.getValue());
     }
     return this;

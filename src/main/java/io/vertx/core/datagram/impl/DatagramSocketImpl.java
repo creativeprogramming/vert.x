@@ -55,7 +55,7 @@ public class DatagramSocketImpl extends ConnectionBase implements DatagramSocket
 
   public DatagramSocketImpl(VertxInternal vertx, DatagramSocketOptions options) {
     super(vertx, createChannel(options.isIpV6() ? io.vertx.core.datagram.impl.InternetProtocolFamily.IPv6 : io.vertx.core.datagram.impl.InternetProtocolFamily.IPv4,
-          new DatagramSocketOptions(options)), vertx.getOrCreateContext(), options);
+            new DatagramSocketOptions(options)), vertx.getOrCreateContext(), options);
     ContextImpl creatingContext = vertx.getContext();
     if (creatingContext != null && creatingContext.isMultiThreadedWorkerContext()) {
       throw new IllegalStateException("Cannot use DatagramSocket in a multi-threaded worker verticle");
@@ -148,7 +148,7 @@ public class DatagramSocketImpl extends ConnectionBase implements DatagramSocket
     } catch (Exception e) {
       notifyException(handler, e);
     }
-    return  this;
+    return this;
   }
 
   @Override
@@ -292,7 +292,7 @@ public class DatagramSocketImpl extends ConnectionBase implements DatagramSocket
   }
 
   private static NioDatagramChannel createChannel(io.vertx.core.datagram.impl.InternetProtocolFamily family,
-                                                  DatagramSocketOptions options) {
+          DatagramSocketOptions options) {
     NioDatagramChannel channel;
     if (family == null) {
       channel = new NioDatagramChannel();

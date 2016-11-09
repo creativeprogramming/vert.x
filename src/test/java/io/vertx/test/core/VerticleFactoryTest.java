@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.*;
@@ -229,7 +228,7 @@ public class VerticleFactoryTest extends VertxTestBase {
       assertTrue(verticle.startCalled);
       assertTrue(verticle.startCalled);
       assertEquals(1, vertx.deploymentIDs().size());
-      Deployment dep = ((VertxInternal)vertx).getDeployment(res.result());
+      Deployment dep = ((VertxInternal) vertx).getDeployment(res.result());
       assertNotNull(dep);
       assertFalse(original.equals(dep.deploymentOptions()));
       assertFalse(dep.deploymentOptions().getConfig().containsKey("foo"));
@@ -471,7 +470,6 @@ public class VerticleFactoryTest extends VertxTestBase {
     await();
   }
 
-
   class TestVerticleFactory implements VerticleFactory {
 
     String prefix;
@@ -562,7 +560,6 @@ public class VerticleFactoryTest extends VertxTestBase {
     public String prefix() {
       return prefix;
     }
-
 
     @Override
     public Verticle createVerticle(String verticleName, ClassLoader classLoader) throws Exception {

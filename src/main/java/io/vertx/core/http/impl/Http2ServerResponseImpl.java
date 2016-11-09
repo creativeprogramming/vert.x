@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.buffer.ByteBuf;
@@ -88,12 +87,12 @@ public class Http2ServerResponseImpl implements HttpServerResponse {
   }
 
   public Http2ServerResponseImpl(
-      Http2ServerConnection conn,
-      VertxHttp2Stream stream,
-      HttpMethod method,
-      String path,
-      boolean push,
-      String contentEncoding) {
+          Http2ServerConnection conn,
+          VertxHttp2Stream stream,
+          HttpMethod method,
+          String path,
+          boolean push,
+          String contentEncoding) {
     this.stream = stream;
     this.ctx = conn.handlerContext;
     this.conn = conn;
@@ -497,7 +496,7 @@ public class Http2ServerResponseImpl implements HttpServerResponse {
         if (resultHandler != null) {
           resultCtx.runOnContext((v) -> resultHandler.handle(Future.failedFuture(new FileNotFoundException())));
         } else {
-           log.error("File not found: " + filename);
+          log.error("File not found: " + filename);
         }
         return this;
       }

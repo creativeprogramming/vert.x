@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package examples;
 
 import io.vertx.core.Vertx;
@@ -40,9 +39,9 @@ public class HTTP2Examples {
 
   public void example0(Vertx vertx) {
     HttpServerOptions options = new HttpServerOptions()
-        .setUseAlpn(true)
-        .setSsl(true)
-        .setKeyStoreOptions(new JksOptions().setPath("/path/to/my/keystore"));
+            .setUseAlpn(true)
+            .setSsl(true)
+            .setKeyStoreOptions(new JksOptions().setPath("/path/to/my/keystore"));
 
     HttpServer server = vertx.createHttpServer(options);
   }
@@ -51,8 +50,8 @@ public class HTTP2Examples {
 
     request.customFrameHandler(frame -> {
 
-      System.out.println("Received a frame type=" + frame.type() +
-          " payload" + frame.payload().toString());
+      System.out.println("Received a frame type=" + frame.type()
+              + " payload" + frame.payload().toString());
     });
   }
 
@@ -102,8 +101,8 @@ public class HTTP2Examples {
 
         // Send main.js response
         pushedResponse.
-            putHeader("content-type", "application/json").
-            end("alert(\"Push response hello\")");
+                putHeader("content-type", "application/json").
+                end("alert(\"Push response hello\")");
       } else {
         System.out.println("Could not push client resource " + ar.cause());
       }
@@ -116,10 +115,10 @@ public class HTTP2Examples {
   public void example7(Vertx vertx) {
 
     HttpClientOptions options = new HttpClientOptions().
-        setProtocolVersion(HttpVersion.HTTP_2).
-        setSsl(true).
-        setUseAlpn(true).
-        setTrustAll(true);
+            setProtocolVersion(HttpVersion.HTTP_2).
+            setSsl(true).
+            setUseAlpn(true).
+            setTrustAll(true);
 
     HttpClient client = vertx.createHttpClient(options);
   }
@@ -198,8 +197,8 @@ public class HTTP2Examples {
   public void example15(HttpClientResponse response) {
     response.customFrameHandler(frame -> {
 
-      System.out.println("Received a frame type=" + frame.type() +
-          " payload" + frame.payload().toString());
+      System.out.println("Received a frame type=" + frame.type()
+              + " payload" + frame.payload().toString());
     });
   }
 
@@ -245,7 +244,7 @@ public class HTTP2Examples {
 
   public void example23(HttpConnection connection) {
     Buffer data = Buffer.buffer();
-    for (byte i = 0;i < 8;i++) {
+    for (byte i = 0; i < 8; i++) {
       data.appendByte(i);
     }
     connection.ping(data, pong -> {
@@ -285,8 +284,8 @@ public class HTTP2Examples {
   public void useMaxStreams(Vertx vertx) {
 
     HttpClientOptions clientOptions = new HttpClientOptions().
-        setHttp2MultiplexingLimit(10).
-        setHttp2MaxPoolSize(3);
+            setHttp2MultiplexingLimit(10).
+            setHttp2MaxPoolSize(3);
 
     // Uses up to 3 connections and up to 10 streams per connection
     HttpClient client = vertx.createHttpClient(clientOptions);

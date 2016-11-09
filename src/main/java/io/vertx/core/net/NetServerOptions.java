@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -30,14 +29,15 @@ import io.vertx.core.json.JsonObject;
 public class NetServerOptions extends TCPSSLOptions {
 
   // Server specific HTTP stuff
-
   /**
-   * The default port to listen on = 0 (meaning a random ephemeral free port will be chosen)
+   * The default port to listen on = 0 (meaning a random ephemeral free port
+   * will be chosen)
    */
   public static final int DEFAULT_PORT = 0;
 
   /**
-   * The default host to listen on = "0.0.0.0" (meaning listen on all available interfaces).
+   * The default host to listen on = "0.0.0.0" (meaning listen on all available
+   * interfaces).
    */
   public static final String DEFAULT_HOST = "0.0.0.0";
 
@@ -67,7 +67,7 @@ public class NetServerOptions extends TCPSSLOptions {
   /**
    * Copy constructor
    *
-   * @param other  the options to copy
+   * @param other the options to copy
    */
   public NetServerOptions(NetServerOptions other) {
     super(other);
@@ -80,7 +80,7 @@ public class NetServerOptions extends TCPSSLOptions {
   /**
    * Create some options from JSON
    *
-   * @param json  the JSON
+   * @param json the JSON
    */
   public NetServerOptions(JsonObject json) {
     super(json);
@@ -265,7 +265,7 @@ public class NetServerOptions extends TCPSSLOptions {
   /**
    * Set the port
    *
-   * @param port  the port
+   * @param port the port
    * @return a reference to this, so the API can be used fluently
    */
   public NetServerOptions setPort(int port) {
@@ -286,7 +286,8 @@ public class NetServerOptions extends TCPSSLOptions {
 
   /**
    * Set the host
-   * @param host  the host
+   *
+   * @param host the host
    * @return a reference to this, so the API can be used fluently
    */
   public NetServerOptions setHost(String host) {
@@ -306,7 +307,7 @@ public class NetServerOptions extends TCPSSLOptions {
   /**
    * Set whether client auth is required
    *
-   * @param clientAuthRequired  true if client auth is required
+   * @param clientAuthRequired true if client auth is required
    * @return a reference to this, so the API can be used fluently
    */
   @Deprecated
@@ -322,9 +323,10 @@ public class NetServerOptions extends TCPSSLOptions {
   /**
    * Set whether client auth is required
    *
-   * @param clientAuth One of "NONE, REQUEST, REQUIRED". If it's set to "REQUIRED" then server will require the
-   *                   SSL cert to be presented otherwise it won't accept the request. If it's set to "REQUEST" then
-   *                   it won't mandate the certificate to be presented, basically make it optional.
+   * @param clientAuth One of "NONE, REQUEST, REQUIRED". If it's set to
+   * "REQUIRED" then server will require the SSL cert to be presented otherwise
+   * it won't accept the request. If it's set to "REQUEST" then it won't mandate
+   * the certificate to be presented, basically make it optional.
    * @return a reference to this, so the API can be used fluently
    */
   public NetServerOptions setClientAuth(ClientAuth clientAuth) {
@@ -339,16 +341,30 @@ public class NetServerOptions extends TCPSSLOptions {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof NetServerOptions)) return false;
-    if (!super.equals(o)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof NetServerOptions)) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
 
     NetServerOptions that = (NetServerOptions) o;
 
-    if (acceptBacklog != that.acceptBacklog) return false;
-    if (clientAuth != that.clientAuth) return false;
-    if (port != that.port) return false;
-    if (host != null ? !host.equals(that.host) : that.host != null) return false;
+    if (acceptBacklog != that.acceptBacklog) {
+      return false;
+    }
+    if (clientAuth != that.clientAuth) {
+      return false;
+    }
+    if (port != that.port) {
+      return false;
+    }
+    if (host != null ? !host.equals(that.host) : that.host != null) {
+      return false;
+    }
 
     return true;
   }

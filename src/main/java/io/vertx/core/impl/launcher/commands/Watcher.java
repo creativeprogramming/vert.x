@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.launcher.commands;
 
 import io.vertx.core.Handler;
@@ -26,12 +25,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * A file alteration monitor based on a home made file system scan and watching files matching a set of includes
- * patterns. These patterns are Ant patterns (can use {@literal **, * or ?}). This class takes 2 {@link Handler} as
- * parameter and orchestrate the redeployment method when a matching file is modified (created, updated or deleted).
- * Users have the possibility to execute a shell command during the redeployment. On a file change, the {@code undeploy}
- * {@link Handler} is called, followed by the execution of the user command. Then the {@code deploy} {@link Handler}
- * is invoked.
+ * A file alteration monitor based on a home made file system scan and watching
+ * files matching a set of includes patterns. These patterns are Ant patterns
+ * (can use {@literal **, * or ?}). This class takes 2 {@link Handler} as
+ * parameter and orchestrate the redeployment method when a matching file is
+ * modified (created, updated or deleted). Users have the possibility to execute
+ * a shell command during the redeployment. On a file change, the
+ * {@code undeploy} {@link Handler} is called, followed by the execution of the
+ * user command. Then the {@code deploy} {@link Handler} is invoked.
  * <p/>
  * The watcher watches all files from the current directory and sub-directories.
  *
@@ -63,17 +64,19 @@ public class Watcher implements Runnable {
   /**
    * Creates a new {@link Watcher}.
    *
-   * @param root              the root directory
-   * @param includes          the list of include patterns, should not be {@code null} or empty
-   * @param deploy            the function called when deployment is required
-   * @param undeploy          the function called when un-deployment is required
-   * @param onRedeployCommand an optional command executed after the un-deployment and before the deployment
-   * @param gracePeriod       the amount of time in milliseconds to wait between two redeploy even
-   *                          if there are changes
-   * @param scanPeriod        the time in millisecond between 2 file system scans
+   * @param root the root directory
+   * @param includes the list of include patterns, should not be {@code null} or
+   * empty
+   * @param deploy the function called when deployment is required
+   * @param undeploy the function called when un-deployment is required
+   * @param onRedeployCommand an optional command executed after the
+   * un-deployment and before the deployment
+   * @param gracePeriod the amount of time in milliseconds to wait between two
+   * redeploy even if there are changes
+   * @param scanPeriod the time in millisecond between 2 file system scans
    */
   public Watcher(File root, List<String> includes, Handler<Handler<Void>> deploy, Handler<Handler<Void>> undeploy,
-                 String onRedeployCommand, long gracePeriod, long scanPeriod) {
+          String onRedeployCommand, long gracePeriod, long scanPeriod) {
     this.gracePeriod = gracePeriod;
     this.includes = sanitizeIncludePatterns(includes);
     this.roots = extractRoots(root, this.includes);
@@ -138,9 +141,11 @@ public class Watcher implements Runnable {
   }
 
   /**
-   * Checks whether or not a change has occurred in one of the watched file that match one of the given include pattern
-   * . Are detected: new files, modified file and deleted files. File modification is detected using
-   * {@link File#lastModified()}, so the behavior depends on the file system precision.
+   * Checks whether or not a change has occurred in one of the watched file that
+   * match one of the given include pattern . Are detected: new files, modified
+   * file and deleted files. File modification is detected using
+   * {@link File#lastModified()}, so the behavior depends on the file system
+   * precision.
    *
    * @return {@code true} if a change occurred requiring the redeployment.
    */
@@ -221,12 +226,13 @@ public class Watcher implements Runnable {
     return false;
   }
 
-
   /**
-   * Checks whether the given file matches one of the {@link #includes} patterns.
+   * Checks whether the given file matches one of the {@link #includes}
+   * patterns.
    *
    * @param file the file
-   * @return {@code true} if the file matches at least one pattern, {@code false} otherwise.
+   * @return {@code true} if the file matches at least one pattern,
+   * {@code false} otherwise.
    */
   protected boolean match(File file) {
     // Compute relative path.
@@ -242,8 +248,8 @@ public class Watcher implements Runnable {
       }
     }
     if (rel == null) {
-      LOGGER.warn("A change in " + file.getAbsolutePath() + " has been detected, but the file does not belong to a " +
-          "watched roots: " + roots);
+      LOGGER.warn("A change in " + file.getAbsolutePath() + " has been detected, but the file does not belong to a "
+              + "watched roots: " + roots);
       return false;
     }
 
@@ -256,7 +262,7 @@ public class Watcher implements Runnable {
       // 3 checks: two for the relative file (root and cwd), and one taking the absolute path, for pattern using
       // absolute path
       if ((relFromCwd != null && FileSelector.matchPath(include, relFromCwd, !ExecUtils.isWindows()))
-          || FileSelector.matchPath(include, file.getAbsolutePath(), !ExecUtils.isWindows())) {
+              || FileSelector.matchPath(include, file.getAbsolutePath(), !ExecUtils.isWindows())) {
         return true;
       }
     }
@@ -264,7 +270,8 @@ public class Watcher implements Runnable {
   }
 
   /**
-   * Starts watching. The watch processing is made in another thread started in this method.
+   * Starts watching. The watch processing is made in another thread started in
+   * this method.
    *
    * @return the current watcher.
    */
@@ -340,9 +347,9 @@ public class Watcher implements Runnable {
         command.add(cmd);
 
         final Process process = new ProcessBuilder(command)
-            .redirectError(ProcessBuilder.Redirect.INHERIT)
-            .redirectOutput(ProcessBuilder.Redirect.INHERIT)
-            .start();
+                .redirectError(ProcessBuilder.Redirect.INHERIT)
+                .redirectOutput(ProcessBuilder.Redirect.INHERIT)
+                .start();
 
         int status = process.waitFor();
         LOGGER.info("User command terminated with status " + status);
@@ -354,6 +361,7 @@ public class Watcher implements Runnable {
   }
 
   private static final class FileInfo {
+
     long lastModified;
     long length;
 

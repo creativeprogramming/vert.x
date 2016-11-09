@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -97,7 +96,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
   /**
    * Copy constructor
    *
-   * @param other  the options to copy
+   * @param other the options to copy
    */
   public TCPSSLOptions(TCPSSLOptions other) {
     super(other);
@@ -125,7 +124,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
   public TCPSSLOptions(JsonObject json) {
     super(json);
     init();
-    TCPSSLOptionsConverter.fromJson(json ,this);
+    TCPSSLOptionsConverter.fromJson(json, this);
   }
 
   private void init() {
@@ -219,10 +218,11 @@ public abstract class TCPSSLOptions extends NetworkOptions {
   }
 
   /**
-   * Set the idle timeout, in seconds. zero means don't timeout.
-   * This determines if a connection will timeout and be closed if no data is received within the timeout.
+   * Set the idle timeout, in seconds. zero means don't timeout. This determines
+   * if a connection will timeout and be closed if no data is received within
+   * the timeout.
    *
-   * @param idleTimeout  the timeout, in seconds
+   * @param idleTimeout the timeout, in seconds
    * @return a reference to this, so the API can be used fluently
    */
   public TCPSSLOptions setIdleTimeout(int idleTimeout) {
@@ -234,7 +234,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
   }
 
   /**
-   * @return  the idle timeout, in seconds
+   * @return the idle timeout, in seconds
    */
   public int getIdleTimeout() {
     return idleTimeout;
@@ -251,7 +251,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
   /**
    * Set whether SSL/TLS is enabled
    *
-   * @param ssl  true if enabled
+   * @param ssl true if enabled
    * @return a reference to this, so the API can be used fluently
    */
   public TCPSSLOptions setSsl(boolean ssl) {
@@ -281,6 +281,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
 
   /**
    * Set the key/cert options in jks format, aka Java keystore.
+   *
    * @param options the key store in jks format
    * @return a reference to this, so the API can be used fluently
    */
@@ -291,6 +292,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
 
   /**
    * Set the key/cert options in pfx format.
+   *
    * @param options the key cert options in pfx format
    * @return a reference to this, so the API can be used fluently
    */
@@ -301,6 +303,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
 
   /**
    * Set the key/cert store options in pem format.
+   *
    * @param options the options in pem format
    * @return a reference to this, so the API can be used fluently
    */
@@ -318,6 +321,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
 
   /**
    * Set the trust options.
+   *
    * @param options the trust options
    * @return a reference to this, so the API can be used fluently
    */
@@ -328,6 +332,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
 
   /**
    * Set the trust options in jks format, aka Java trustore
+   *
    * @param options the trust options in jks format
    * @return a reference to this, so the API can be used fluently
    */
@@ -338,6 +343,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
 
   /**
    * Set the trust options in pfx format
+   *
    * @param options the trust options in pfx format
    * @return a reference to this, so the API can be used fluently
    */
@@ -348,6 +354,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
 
   /**
    * Set the trust options in pem format
+   *
    * @param options the trust options in pem format
    * @return a reference to this, so the API can be used fluently
    */
@@ -359,7 +366,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
   /**
    * Add an enabled cipher suite, appended to the ordered suites.
    *
-   * @param suite  the suite
+   * @param suite the suite
    * @return a reference to this, so the API can be used fluently
    */
   public TCPSSLOptions addEnabledCipherSuite(String suite) {
@@ -385,7 +392,8 @@ public abstract class TCPSSLOptions extends NetworkOptions {
 
   /**
    * Add a CRL path
-   * @param crlPath  the path
+   *
+   * @param crlPath the path
    * @return a reference to this, so the API can be used fluently
    * @throws NullPointerException
    */
@@ -407,7 +415,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
   /**
    * Add a CRL value
    *
-   * @param crlValue  the value
+   * @param crlValue the value
    * @return a reference to this, so the API can be used fluently
    * @throws NullPointerException
    */
@@ -427,7 +435,8 @@ public abstract class TCPSSLOptions extends NetworkOptions {
   /**
    * Set the ALPN usage.
    *
-   * @param useAlpn true when Application-Layer Protocol Negotiation should be used
+   * @param useAlpn true when Application-Layer Protocol Negotiation should be
+   * used
    */
   public TCPSSLOptions setUseAlpn(boolean useAlpn) {
     this.useAlpn = useAlpn;
@@ -463,7 +472,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
   /**
    * Add an enabled SSL/TLS protocols, appended to the ordered protocols.
    *
-   * @param protocol  the SSL/TLS protocol do enabled
+   * @param protocol the SSL/TLS protocol do enabled
    * @return a reference to this, so the API can be used fluently
    */
   public TCPSSLOptions addEnabledSecureTransportProtocol(String protocol) {
@@ -473,6 +482,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
 
   /**
    * Returns the enabled SSL/TLS protocols
+   *
    * @return the enabled protocols
    */
   public Set<String> getEnabledSecureTransportProtocols() {
@@ -486,27 +496,60 @@ public abstract class TCPSSLOptions extends NetworkOptions {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof TCPSSLOptions)) return false;
-    if (!super.equals(o)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof TCPSSLOptions)) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
 
     TCPSSLOptions that = (TCPSSLOptions) o;
 
-    if (idleTimeout != that.idleTimeout) return false;
-    if (soLinger != that.soLinger) return false;
-    if (ssl != that.ssl) return false;
-    if (tcpKeepAlive != that.tcpKeepAlive) return false;
-    if (tcpNoDelay != that.tcpNoDelay) return false;
-    if (usePooledBuffers != that.usePooledBuffers) return false;
-    if (crlPaths != null ? !crlPaths.equals(that.crlPaths) : that.crlPaths != null) return false;
-    if (crlValues != null ? !crlValues.equals(that.crlValues) : that.crlValues != null) return false;
-    if (enabledCipherSuites != null ? !enabledCipherSuites.equals(that.enabledCipherSuites) : that.enabledCipherSuites != null)
+    if (idleTimeout != that.idleTimeout) {
       return false;
-    if (keyCertOptions != null ? !keyCertOptions.equals(that.keyCertOptions) : that.keyCertOptions != null) return false;
-    if (trustOptions != null ? !trustOptions.equals(that.trustOptions) : that.trustOptions != null) return false;
-    if (useAlpn != that.useAlpn) return false;
-    if (sslEngineOptions != null ? !sslEngineOptions.equals(that.sslEngineOptions) : that.sslEngineOptions != null) return false;
-    if (!enabledSecureTransportProtocols.equals(that.enabledSecureTransportProtocols)) return false;
+    }
+    if (soLinger != that.soLinger) {
+      return false;
+    }
+    if (ssl != that.ssl) {
+      return false;
+    }
+    if (tcpKeepAlive != that.tcpKeepAlive) {
+      return false;
+    }
+    if (tcpNoDelay != that.tcpNoDelay) {
+      return false;
+    }
+    if (usePooledBuffers != that.usePooledBuffers) {
+      return false;
+    }
+    if (crlPaths != null ? !crlPaths.equals(that.crlPaths) : that.crlPaths != null) {
+      return false;
+    }
+    if (crlValues != null ? !crlValues.equals(that.crlValues) : that.crlValues != null) {
+      return false;
+    }
+    if (enabledCipherSuites != null ? !enabledCipherSuites.equals(that.enabledCipherSuites) : that.enabledCipherSuites != null) {
+      return false;
+    }
+    if (keyCertOptions != null ? !keyCertOptions.equals(that.keyCertOptions) : that.keyCertOptions != null) {
+      return false;
+    }
+    if (trustOptions != null ? !trustOptions.equals(that.trustOptions) : that.trustOptions != null) {
+      return false;
+    }
+    if (useAlpn != that.useAlpn) {
+      return false;
+    }
+    if (sslEngineOptions != null ? !sslEngineOptions.equals(that.sslEngineOptions) : that.sslEngineOptions != null) {
+      return false;
+    }
+    if (!enabledSecureTransportProtocols.equals(that.enabledSecureTransportProtocols)) {
+      return false;
+    }
 
     return true;
   }
@@ -528,7 +571,7 @@ public abstract class TCPSSLOptions extends NetworkOptions {
     result = 31 * result + (useAlpn ? 1 : 0);
     result = 31 * result + (sslEngineOptions != null ? sslEngineOptions.hashCode() : 0);
     result = 31 * result + (enabledSecureTransportProtocols != null ? enabledSecureTransportProtocols
-        .hashCode() : 0);
+            .hashCode() : 0);
     return result;
   }
 }

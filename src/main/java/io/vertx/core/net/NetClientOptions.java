@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -41,16 +40,16 @@ public class NetClientOptions extends ClientOptionsBase {
   public static final long DEFAULT_RECONNECT_INTERVAL = 1000;
 
   /**
-   * Default value to determine hostname verification algorithm hostname verification (for SSL/TLS) = ""
+   * Default value to determine hostname verification algorithm hostname
+   * verification (for SSL/TLS) = ""
    */
   public static final String DEFAULT_HOSTNAME_VERIFICATION_ALGORITHM = "";
-
 
   private int reconnectAttempts;
   private long reconnectInterval;
   private String hostnameVerificationAlgorithm;
 
-    /**
+  /**
    * The default constructor
    */
   public NetClientOptions() {
@@ -61,7 +60,7 @@ public class NetClientOptions extends ClientOptionsBase {
   /**
    * Copy constructor
    *
-   * @param other  the options to copy
+   * @param other the options to copy
    */
   public NetClientOptions(NetClientOptions other) {
     super(other);
@@ -73,7 +72,7 @@ public class NetClientOptions extends ClientOptionsBase {
   /**
    * Create options from JSON
    *
-   * @param json  the JSON
+   * @param json the JSON
    */
   public NetClientOptions(JsonObject json) {
     super(json);
@@ -233,7 +232,7 @@ public class NetClientOptions extends ClientOptionsBase {
   /**
    * Set the value of reconnect attempts
    *
-   * @param attempts  the maximum number of reconnect attempts
+   * @param attempts the maximum number of reconnect attempts
    * @return a reference to this, so the API can be used fluently
    */
   public NetClientOptions setReconnectAttempts(int attempts) {
@@ -245,7 +244,7 @@ public class NetClientOptions extends ClientOptionsBase {
   }
 
   /**
-   * @return  the value of reconnect attempts
+   * @return the value of reconnect attempts
    */
   public int getReconnectAttempts() {
     return reconnectAttempts;
@@ -254,7 +253,7 @@ public class NetClientOptions extends ClientOptionsBase {
   /**
    * Set the reconnect interval
    *
-   * @param interval  the reconnect interval in ms
+   * @param interval the reconnect interval in ms
    * @return a reference to this, so the API can be used fluently
    */
   public NetClientOptions setReconnectInterval(long interval) {
@@ -266,21 +265,20 @@ public class NetClientOptions extends ClientOptionsBase {
   }
 
   /**
-   * @return  the value of the hostname verification algorithm
+   * @return the value of the hostname verification algorithm
    */
-
   public String getHostnameVerificationAlgorithm() {
     return hostnameVerificationAlgorithm;
   }
 
   /**
-   * Set the hostname verification algorithm interval
-   * To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
+   * Set the hostname verification algorithm interval To disable hostname
+   * verification, set hostnameVerificationAlgorithm to an empty String
    *
-   * @param hostnameVerificationAlgorithm should be HTTPS, LDAPS or an empty String
+   * @param hostnameVerificationAlgorithm should be HTTPS, LDAPS or an empty
+   * String
    * @return a reference to this, so the API can be used fluently
    */
-
   public NetClientOptions setHostnameVerificationAlgorithm(String hostnameVerificationAlgorithm) {
     Objects.requireNonNull(hostnameVerificationAlgorithm, "hostnameVerificationAlgorithm can not be null!");
     this.hostnameVerificationAlgorithm = hostnameVerificationAlgorithm;
@@ -288,7 +286,7 @@ public class NetClientOptions extends ClientOptionsBase {
   }
 
   /**
-   * @return  the value of reconnect interval
+   * @return the value of reconnect interval
    */
   public long getReconnectInterval() {
     return reconnectInterval;
@@ -310,15 +308,27 @@ public class NetClientOptions extends ClientOptionsBase {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof NetClientOptions)) return false;
-    if (!super.equals(o)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof NetClientOptions)) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
 
     NetClientOptions that = (NetClientOptions) o;
 
-    if (reconnectAttempts != that.reconnectAttempts) return false;
-    if (reconnectInterval != that.reconnectInterval) return false;
-    if (!hostnameVerificationAlgorithm.equals(that.hostnameVerificationAlgorithm)) return false;
+    if (reconnectAttempts != that.reconnectAttempts) {
+      return false;
+    }
+    if (reconnectInterval != that.reconnectInterval) {
+      return false;
+    }
+    if (!hostnameVerificationAlgorithm.equals(that.hostnameVerificationAlgorithm)) {
+      return false;
+    }
 
     return true;
   }

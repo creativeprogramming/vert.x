@@ -15,7 +15,6 @@
  */
 package io.vertx.core.cli.impl;
 
-
 import io.vertx.core.cli.*;
 import io.vertx.core.cli.Option;
 import io.vertx.core.cli.annotations.Argument;
@@ -55,14 +54,15 @@ public class CLIConfiguratorTest {
     StringBuilder builder = new StringBuilder();
     command.usage(builder);
     assertThat(builder)
-        .containsIgnoringCase("Usage: hello -n <name>")
-        .containsIgnoringCase("A command saying hello.")
-        .containsIgnoringCase("A simple cli to wish you a good day. Pass your name with `--name`")
-        .containsIgnoringCase(" -n,--name <name>   your name");
+            .containsIgnoringCase("Usage: hello -n <name>")
+            .containsIgnoringCase("A command saying hello.")
+            .containsIgnoringCase("A simple cli to wish you a good day. Pass your name with `--name`")
+            .containsIgnoringCase(" -n,--name <name>   your name");
   }
 
   @Name("test")
   public static class CommandForDefaultValueTest {
+
     @io.vertx.core.cli.annotations.Option(longName = "option", shortName = "o")
     @DefaultValue("bar")
     public void setFoo(String foo) {
@@ -80,6 +80,7 @@ public class CLIConfiguratorTest {
 
   @Name("test")
   public static class CommandForDescriptionTest {
+
     @io.vertx.core.cli.annotations.Option(longName = "option", shortName = "o")
     @Description("This option is awesome")
     public void setFoo(String foo) {
@@ -92,11 +93,12 @@ public class CLIConfiguratorTest {
 
     assertThat(cli.getOptions()).hasSize(1);
     assertThat(find(cli.getOptions(), "option").getDescription())
-        .isEqualTo("This option is awesome");
+            .isEqualTo("This option is awesome");
   }
 
   @Name("test")
   public static class CommandForParsedAsList {
+
     @io.vertx.core.cli.annotations.Option(longName = "option", shortName = "o")
     @ParsedAsList(separator = ":")
     public void setFoo(List<String> foo) {
@@ -109,14 +111,15 @@ public class CLIConfiguratorTest {
     CLI command = CLIConfigurator.define(CommandForParsedAsList.class);
     assertThat(command.getOptions()).hasSize(1);
     assertThat(((TypedOption) find(command.getOptions(), "option"))
-        .getListSeparator()).isEqualTo(":");
+            .getListSeparator()).isEqualTo(":");
     assertThat(find(command.getOptions(), "option").isMultiValued()).isTrue();
     assertThat(((TypedOption) find(command.getOptions(), "option")).getType())
-        .isEqualTo(String.class);
+            .isEqualTo(String.class);
   }
 
   @Name("test")
   public static class CommandForTypeExtractTest {
+
     @io.vertx.core.cli.annotations.Option(longName = "list", shortName = "l")
     public void setFoo(List<String> list) {
     }
@@ -192,7 +195,7 @@ public class CLIConfiguratorTest {
     CLIWithSingleValue command = new CLIWithSingleValue();
     CLI cli = CLIConfigurator.define(command.getClass());
     CommandLine evaluatedCLI = parse(cli, "--boolean", "--short=1", "--byte=1", "--int=1", "--long=1",
-        "--double=1.1", "--float=1.1", "--char=c", "--string=hello");
+            "--double=1.1", "--float=1.1", "--char=c", "--string=hello");
     CLIConfigurator.inject(evaluatedCLI, command);
 
     assertThat(command.aBoolean).isTrue();
@@ -206,7 +209,7 @@ public class CLIConfiguratorTest {
     assertThat(command.aString).isEqualTo("hello");
 
     evaluatedCLI = parse(cli, "--boolean2", "--short2=1", "--byte2=1", "--int2=1", "--long2=1",
-        "--double2=1.1", "--float2=1.1", "--char2=c", "--string=hello");
+            "--double2=1.1", "--float2=1.1", "--char2=c", "--string=hello");
     CLIConfigurator.inject(evaluatedCLI, command);
 
     assertThat(command.anotherBoolean).isTrue();
@@ -265,7 +268,7 @@ public class CLIConfiguratorTest {
     evaluatedCLI = parse(cli, "--states=NEW", "--states", "BLOCKED", "RUNNABLE");
     CLIConfigurator.inject(evaluatedCLI, command);
     assertThat(command.states).hasSize(3).containsExactly(Thread.State.NEW, Thread.State.BLOCKED,
-        Thread.State.RUNNABLE);
+            Thread.State.RUNNABLE);
 
     evaluatedCLI = parse(cli, "--ints=1", "--ints", "2", "3");
     CLIConfigurator.inject(evaluatedCLI, command);
@@ -306,6 +309,7 @@ public class CLIConfiguratorTest {
 
   @Name("test")
   public class CommandForConvertedValueTest {
+
     AtomicReference<Person4> reference = new AtomicReference<>();
 
     @Argument(index = 0, required = false)
@@ -361,6 +365,7 @@ public class CLIConfiguratorTest {
 
   @Name("test")
   public static class CommandWithDefaultValueOnArgument {
+
     AtomicReference<String> x = new AtomicReference<>();
     AtomicReference<Integer> y = new AtomicReference<>();
 
@@ -389,10 +394,10 @@ public class CLIConfiguratorTest {
 
   private Option find(List<Option> options, String name) {
     final List<Option> match = options.stream().filter(c -> c.getLongName().equalsIgnoreCase(name))
-        .collect(Collectors.toList());
+            .collect(Collectors.toList());
     if (match.isEmpty()) {
       fail("Cannot find option '" + name + "' in " + options.stream().map(Option::getLongName)
-          .collect(Collectors.toList()));
+              .collect(Collectors.toList()));
     }
     return match.get(0);
   }
@@ -544,7 +549,6 @@ public class CLIConfiguratorTest {
     }
   }
 
-
   @Name("multi")
   private class CLIWithMultipleValues {
 
@@ -606,6 +610,5 @@ public class CLIConfiguratorTest {
       this.strings = strings;
     }
   }
-
 
 }

@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.Vertx;
@@ -33,7 +32,8 @@ public class SharedCounterTest extends VertxTestBase {
 
   @Test
   public void testIllegalArguments() throws Exception {
-    assertNullPointerException(() -> getVertx().sharedData().getCounter(null, ar -> {}));
+    assertNullPointerException(() -> getVertx().sharedData().getCounter(null, ar -> {
+    }));
     assertNullPointerException(() -> getVertx().sharedData().getCounter("foo", null));
     getVertx().sharedData().getCounter("foo", ar -> {
       Counter counter = ar.result();

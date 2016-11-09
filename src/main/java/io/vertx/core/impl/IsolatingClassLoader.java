@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 import java.io.IOException;
@@ -89,7 +88,6 @@ public class IsolatingClassLoader extends URLClassLoader {
     return false;
   }
 
-
   /**
    * {@inheritDoc}
    */
@@ -128,13 +126,12 @@ public class IsolatingClassLoader extends URLClassLoader {
   }
 
   private boolean isVertxOrSystemClass(String name) {
-    return
-        name.startsWith("java.") ||
-        name.startsWith("javax.") ||
-        name.startsWith("sun.*") ||
-        name.startsWith("com.sun.") ||
-        name.startsWith("io.vertx.core") ||
-        name.startsWith("io.netty.") ||
-        name.startsWith("com.fasterxml.jackson");
+    return name.startsWith("java.")
+            || name.startsWith("javax.")
+            || name.startsWith("sun.*")
+            || name.startsWith("com.sun.")
+            || name.startsWith("io.vertx.core")
+            || name.startsWith("io.netty.")
+            || name.startsWith("com.fasterxml.jackson");
   }
 }

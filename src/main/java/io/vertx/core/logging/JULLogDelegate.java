@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.logging;
 
 import io.vertx.core.spi.logging.LogDelegate;
@@ -22,11 +21,13 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 
 /**
- * A {@link io.vertx.core.spi.logging.LogDelegate} which delegates to java.util.logging
+ * A {@link io.vertx.core.spi.logging.LogDelegate} which delegates to
+ * java.util.logging
  *
  * @author <a href="kenny.macleod@kizoom.com">Kenny MacLeod</a>
  */
 public class JULLogDelegate implements LogDelegate {
+
   private final java.util.logging.Logger logger;
 
   JULLogDelegate(final String name) {

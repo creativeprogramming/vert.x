@@ -21,49 +21,56 @@ import io.vertx.core.VertxOptions;
 import io.vertx.core.json.JsonObject;
 
 /**
- * Interface that let sub-classes of launcher to be notified on different events.
+ * Interface that let sub-classes of launcher to be notified on different
+ * events.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
 public interface VertxLifecycleHooks {
 
   /**
-   * Hook for sub-classes of the starter class before the vertx instance is started. Options can still be updated.
+   * Hook for sub-classes of the starter class before the vertx instance is
+   * started. Options can still be updated.
    *
-   * @param config the json config file passed via -conf on the command line, an empty json object is not set.
+   * @param config the json config file passed via -conf on the command line, an
+   * empty json object is not set.
    */
   void afterConfigParsed(JsonObject config);
 
   /**
-   * Hook for sub-classes of the starter class before the vertx instance is started. Options can still be updated.
+   * Hook for sub-classes of the starter class before the vertx instance is
+   * started. Options can still be updated.
    *
    * @param options the vert.x options
    */
   void beforeStartingVertx(VertxOptions options);
 
   /**
-   * Hook for sub-classes of the starter class after the vertx instance is started.
+   * Hook for sub-classes of the starter class after the vertx instance is
+   * started.
    *
    * @param vertx the vert.x instance
    */
   void afterStartingVertx(Vertx vertx);
 
   /**
-   * Hook for sub classes of the starter class before the verticle is deployed. Deployment options can still be updated.
+   * Hook for sub classes of the starter class before the verticle is deployed.
+   * Deployment options can still be updated.
    *
    * @param deploymentOptions the deployment options
    */
   void beforeDeployingVerticle(DeploymentOptions deploymentOptions);
 
   /**
-   * A deployment failure has been encountered. You can override this method to customize the behavior.
+   * A deployment failure has been encountered. You can override this method to
+   * customize the behavior.
    *
-   * @param vertx             the vert.x instance
-   * @param mainVerticle      the main verticle name
+   * @param vertx the vert.x instance
+   * @param mainVerticle the main verticle name
    * @param deploymentOptions the deployment options
-   * @param cause             the cause
+   * @param cause the cause
    */
   void handleDeployFailed(Vertx vertx, String mainVerticle, DeploymentOptions deploymentOptions,
-                          Throwable cause);
+          Throwable cause);
 
 }

@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.fakemetrics;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -39,7 +38,7 @@ public class HandlerMetric {
 
   @Override
   public String toString() {
-    return "HandlerRegistration[address=" + address + ",repliedAddress=" + repliedAddress + ",beginCount=" + beginCount.get() +
-        ",endCount=" + endCount.get() + ",failureCount=" + failureCount + ",localCount=" + localBeginCount.get() + "]";
+    return "HandlerRegistration[address=" + address + ",repliedAddress=" + repliedAddress + ",beginCount=" + beginCount.get()
+            + ",endCount=" + endCount.get() + ",failureCount=" + failureCount + ",localCount=" + localBeginCount.get() + "]";
   }
 }

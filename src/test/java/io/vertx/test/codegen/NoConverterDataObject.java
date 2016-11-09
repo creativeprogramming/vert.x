@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.codegen;
 
 import io.vertx.codegen.annotations.DataObject;

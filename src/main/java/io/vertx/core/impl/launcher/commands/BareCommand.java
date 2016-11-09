@@ -39,8 +39,8 @@ import java.util.concurrent.atomic.AtomicReference;
  * @author Clement Escoffier <clement@apache.org>
  */
 @Summary("Creates a bare instance of vert.x.")
-@Description("This command launches a vert.x instance but do not deploy any verticles. It will " +
-    "receive a verticle if another node of the cluster dies.")
+@Description("This command launches a vert.x instance but do not deploy any verticles. It will "
+        + "receive a verticle if another node of the cluster dies.")
 @Name("bare")
 public class BareCommand extends ClasspathHandler {
 
@@ -64,8 +64,8 @@ public class BareCommand extends ClasspathHandler {
    * @param quorum the quorum, default to 1.
    */
   @Option(longName = "quorum", argName = "q")
-  @Description("Used in conjunction with -ha this specifies the minimum number of nodes in the cluster for any HA " +
-      "deploymentIDs to be active. Defaults to 1.")
+  @Description("Used in conjunction with -ha this specifies the minimum number of nodes in the cluster for any HA "
+          + "deploymentIDs to be active. Defaults to 1.")
   @DefaultValue("-1")
   public void setQuorum(int quorum) {
     this.quorum = quorum;
@@ -77,8 +77,8 @@ public class BareCommand extends ClasspathHandler {
    * @param group the name of the group, default to {@code __DEFAULT__}.
    */
   @Option(longName = "hagroup", argName = "group")
-  @Description("used in conjunction with -ha this specifies the HA group this node will join. There can be multiple " +
-      "HA groups in a cluster. Nodes will only failover to other nodes in the same group. Defaults to '__DEFAULT__'.")
+  @Description("used in conjunction with -ha this specifies the HA group this node will join. There can be multiple "
+          + "HA groups in a cluster. Nodes will only failover to other nodes in the same group. Defaults to '__DEFAULT__'.")
   @DefaultValue("__DEFAULT__")
   public void setHAGroup(String group) {
     this.haGroup = group;
@@ -102,23 +102,23 @@ public class BareCommand extends ClasspathHandler {
    * @param host the cluster host
    */
   @Option(longName = "cluster-host", argName = "host")
-  @Description("host to bind to for cluster communication. If this is not specified vert.x will attempt to choose one" +
-      " from the available interfaces.")
+  @Description("host to bind to for cluster communication. If this is not specified vert.x will attempt to choose one"
+          + " from the available interfaces.")
   public void setClusterHost(String host) {
     this.clusterHost = host;
   }
 
   /**
-   * @return whether or not the vert.x instance should be clustered. This implementation
-   * returns {@code true}.
+   * @return whether or not the vert.x instance should be clustered. This
+   * implementation returns {@code true}.
    */
   public boolean isClustered() {
     return true;
   }
 
   /**
-   * @return whether or not the vert.x instance should be launched in high-availability mode. This
-   * implementation returns {@code true}.
+   * @return whether or not the vert.x instance should be launched in
+   * high-availability mode. This implementation returns {@code true}.
    */
   public boolean getHA() {
     return true;
@@ -298,7 +298,8 @@ public class BareCommand extends ClasspathHandler {
   }
 
   /**
-   * Registers a shutdown hook closing the vert.x instance when the JVM is terminating.
+   * Registers a shutdown hook closing the vert.x instance when the JVM is
+   * terminating.
    */
   protected void addShutdownHook() {
     Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -340,14 +341,13 @@ public class BareCommand extends ClasspathHandler {
       while (addresses.hasMoreElements()) {
         InetAddress address = addresses.nextElement();
         if (!address.isAnyLocalAddress() && !address.isMulticastAddress()
-            && !(address instanceof Inet6Address)) {
+                && !(address instanceof Inet6Address)) {
           return address.getHostAddress();
         }
       }
     }
     return null;
   }
-
 
   /**
    * For testing purpose only.

@@ -60,15 +60,15 @@ public class SSLEngineTest extends HttpTestBase {
   }
 
   private void doTest(SSLEngineOptions engine,
-                      boolean useAlpn, HttpVersion version, String error, String expectedSslContext, boolean expectCause) {
+          boolean useAlpn, HttpVersion version, String error, String expectedSslContext, boolean expectCause) {
     server.close();
     HttpServerOptions options = new HttpServerOptions()
-        .setSslEngineOptions(engine)
-        .setPort(DEFAULT_HTTP_PORT)
-        .setHost(DEFAULT_HTTP_HOST)
-        .setKeyCertOptions(Cert.SERVER_PEM.get())
-        .setSsl(true)
-        .setUseAlpn(useAlpn);
+            .setSslEngineOptions(engine)
+            .setPort(DEFAULT_HTTP_PORT)
+            .setHost(DEFAULT_HTTP_HOST)
+            .setKeyCertOptions(Cert.SERVER_PEM.get())
+            .setSsl(true)
+            .setUseAlpn(useAlpn);
     try {
       server = vertx.createHttpServer(options);
     } catch (VertxException e) {
@@ -101,11 +101,11 @@ public class SSLEngineTest extends HttpTestBase {
           break;
       }
       client = vertx.createHttpClient(new HttpClientOptions()
-          .setSslEngineOptions(engine)
-          .setSsl(true)
-          .setUseAlpn(useAlpn)
-          .setTrustAll(true)
-          .setProtocolVersion(version));
+              .setSslEngineOptions(engine)
+              .setSsl(true)
+              .setUseAlpn(useAlpn)
+              .setTrustAll(true)
+              .setProtocolVersion(version));
       client.getNow(DEFAULT_HTTP_PORT, DEFAULT_HTTP_HOST, "/somepath", resp -> {
         assertEquals(200, resp.statusCode());
         testComplete();

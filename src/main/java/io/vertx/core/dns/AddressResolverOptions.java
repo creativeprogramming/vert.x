@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.dns;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -25,8 +24,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Configuration options for Vert.x hostname resolver. The resolver uses the local <i>hosts</i> file and performs
- * DNS <i>A</i> and <i>AAAA</i> queries.
+ * Configuration options for Vert.x hostname resolver. The resolver uses the
+ * local <i>hosts</i> file and performs DNS <i>A</i> and <i>AAAA</i> queries.
  *
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */
@@ -34,7 +33,8 @@ import java.util.Objects;
 public class AddressResolverOptions {
 
   /**
-   * The default list of DNS servers = null (uses system name server's list like resolve.conf otherwise Google Public DNS)
+   * The default list of DNS servers = null (uses system name server's list like
+   * resolve.conf otherwise Google Public DNS)
    */
   public static final List<String> DEFAULT_SERVERS = null;
 
@@ -52,7 +52,8 @@ public class AddressResolverOptions {
   public static final List<String> DEFAULT_SEACH_DOMAINS = null;
 
   /**
-   * The default ndots value = -1 (loads the value from the OS on Linux otherwise use the value 1)
+   * The default ndots value = -1 (loads the value from the OS on Linux
+   * otherwise use the value 1)
    */
   public static final int DEFAULT_NDOTS = -1;
 
@@ -110,7 +111,8 @@ public class AddressResolverOptions {
   }
 
   /**
-   * Set the path of an alternate hosts configuration file to use instead of the one provided by the os.
+   * Set the path of an alternate hosts configuration file to use instead of the
+   * one provided by the os.
    * <p/>
    * The default value is null, so the operating system hosts config is used.
    *
@@ -130,9 +132,11 @@ public class AddressResolverOptions {
   }
 
   /**
-   * Set an alternate hosts configuration file to use instead of the one provided by the os.
+   * Set an alternate hosts configuration file to use instead of the one
+   * provided by the os.
    * <p/>
-   * The value should contain the hosts content literaly, for instance <i>127.0.0.1 localhost</i>
+   * The value should contain the hosts content literaly, for instance
+   * <i>127.0.0.1 localhost</i>
    * <p/>
    * The default value is null, so the operating system hosts config is used.
    *
@@ -152,10 +156,12 @@ public class AddressResolverOptions {
   }
 
   /**
-   * Set the list of DNS server addresses, an address is the IP  of the dns server, followed by an optional
-   * colon and a port, e.g {@code 8.8.8.8} or {code 192.168.0.1:40000}. When the list is empty, the resolver
-   * will use the list of the system DNS server addresses from the environment, if that list cannot be retrieved
-   * it will use Google's public DNS servers {@code "8.8.8.8"} and {@code "8.8.4.4"}.
+   * Set the list of DNS server addresses, an address is the IP of the dns
+   * server, followed by an optional colon and a port, e.g {@code 8.8.8.8} or
+   * {code 192.168.0.1:40000}. When the list is empty, the resolver will use the
+   * list of the system DNS server addresses from the environment, if that list
+   * cannot be retrieved it will use Google's public DNS servers
+   * {@code "8.8.8.8"} and {@code "8.8.4.4"}.
    *
    * @param servers the list of DNS servers
    * @return a reference to this, so the API can be used fluently
@@ -187,8 +193,9 @@ public class AddressResolverOptions {
   }
 
   /**
-   * Set to true to enable the automatic inclusion in DNS queries of an optional record that hints
-   * the remote DNS server about how much data the resolver can read per response.
+   * Set to true to enable the automatic inclusion in DNS queries of an optional
+   * record that hints the remote DNS server about how much data the resolver
+   * can read per response.
    *
    * @param optResourceEnabled true to enable, false otherwise
    * @return a reference to this, so the API can be used fluently
@@ -206,8 +213,9 @@ public class AddressResolverOptions {
   }
 
   /**
-   * Set the cache minimum TTL value in seconds. After resolution successful IP addresses are cached with their DNS response TTL,
-   * use this to set a minimum value to all responses TTL.
+   * Set the cache minimum TTL value in seconds. After resolution successful IP
+   * addresses are cached with their DNS response TTL, use this to set a minimum
+   * value to all responses TTL.
    *
    * @param cacheMinTimeToLive the cache min TTL in seconds
    * @return a reference to this, so the API can be used fluently
@@ -228,8 +236,9 @@ public class AddressResolverOptions {
   }
 
   /**
-   * Set the cache maximum TTL value in seconds. After successful resolution IP addresses are cached with their DNS response TTL,
-   * use this to set a maximum value to all responses TTL.
+   * Set the cache maximum TTL value in seconds. After successful resolution IP
+   * addresses are cached with their DNS response TTL, use this to set a maximum
+   * value to all responses TTL.
    *
    * @param cacheMaxTimeToLive the cache max TTL in seconds
    * @return a reference to this, so the API can be used fluently
@@ -250,8 +259,9 @@ public class AddressResolverOptions {
   }
 
   /**
-   * Set the negative cache TTL value in seconds. After a failed hostname resolution, DNS queries won't be retried
-   * for a period of time equals to the negative TTL. This allows to reduce the response time of negative replies
+   * Set the negative cache TTL value in seconds. After a failed hostname
+   * resolution, DNS queries won't be retried for a period of time equals to the
+   * negative TTL. This allows to reduce the response time of negative replies
    * and reduce the amount of messages to DNS servers.
    *
    * @param cacheNegativeTimeToLive the cache negative TTL in seconds
@@ -273,7 +283,8 @@ public class AddressResolverOptions {
   }
 
   /**
-   * Set the query timeout in milliseconds, i.e the amount of time after a query is considered to be failed.
+   * Set the query timeout in milliseconds, i.e the amount of time after a query
+   * is considered to be failed.
    *
    * @param queryTimeout the query timeout in milliseconds
    * @return a reference to this, so the API can be used fluently
@@ -335,8 +346,8 @@ public class AddressResolverOptions {
   /**
    * Set the lists of DNS search domains.
    * <p/>
-   * When the search domain list is null, the effective search domain list will be populated using
-   * the system DNS search domains.
+   * When the search domain list is null, the effective search domain list will
+   * be populated using the system DNS search domains.
    *
    * @param searchDomains the search domains
    */
@@ -367,8 +378,9 @@ public class AddressResolverOptions {
   }
 
   /**
-   * Set the ndots value used when resolving using search domains, the default value is {@code -1} which
-   * determines the value from the OS on Linux or uses the value {@code 1}.
+   * Set the ndots value used when resolving using search domains, the default
+   * value is {@code -1} which determines the value from the OS on Linux or uses
+   * the value {@code 1}.
    *
    * @param ndots the new ndots value
    * @return a reference to this, so the API can be used fluently
@@ -383,18 +395,40 @@ public class AddressResolverOptions {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     AddressResolverOptions that = (AddressResolverOptions) o;
-    if (optResourceEnabled != that.optResourceEnabled) return false;
-    if (cacheMinTimeToLive != that.cacheMinTimeToLive) return false;
-    if (cacheMaxTimeToLive != that.cacheMaxTimeToLive) return false;
-    if (cacheNegativeTimeToLive != that.cacheNegativeTimeToLive) return false;
-    if (queryTimeout != that.queryTimeout) return false;
-    if (maxQueries != that.maxQueries) return false;
-    if (rdFlag != that.rdFlag) return false;
-    if (!Objects.equals(searchDomains, that.searchDomains)) return false;
-    if (ndots != that.ndots) return false;
+    if (optResourceEnabled != that.optResourceEnabled) {
+      return false;
+    }
+    if (cacheMinTimeToLive != that.cacheMinTimeToLive) {
+      return false;
+    }
+    if (cacheMaxTimeToLive != that.cacheMaxTimeToLive) {
+      return false;
+    }
+    if (cacheNegativeTimeToLive != that.cacheNegativeTimeToLive) {
+      return false;
+    }
+    if (queryTimeout != that.queryTimeout) {
+      return false;
+    }
+    if (maxQueries != that.maxQueries) {
+      return false;
+    }
+    if (rdFlag != that.rdFlag) {
+      return false;
+    }
+    if (!Objects.equals(searchDomains, that.searchDomains)) {
+      return false;
+    }
+    if (ndots != that.ndots) {
+      return false;
+    }
     return servers != null ? servers.equals(that.servers) : that.servers == null;
   }
 

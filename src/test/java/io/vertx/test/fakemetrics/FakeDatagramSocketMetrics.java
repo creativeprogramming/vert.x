@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.fakemetrics;
 
 import io.vertx.core.metrics.Measured;
@@ -66,7 +65,7 @@ public class FakeDatagramSocketMetrics extends FakeMetricsBase implements Datagr
   }
 
   @Override
-  public void bytesWritten(Void socketMetric, SocketAddress remoteAddress,long numberOfBytes) {
+  public void bytesWritten(Void socketMetric, SocketAddress remoteAddress, long numberOfBytes) {
     writes.add(new PacketMetric(remoteAddress, numberOfBytes));
   }
 

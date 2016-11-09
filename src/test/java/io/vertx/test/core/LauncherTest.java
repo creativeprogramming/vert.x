@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.*;
@@ -61,7 +60,7 @@ public class LauncherTest extends VertxTestBase {
       throw new IllegalStateException("Cannot find the vertx-version.txt");
     } else {
       BufferedReader in = new BufferedReader(
-          new InputStreamReader(resource.openStream()));
+              new InputStreamReader(resource.openStream()));
       expectedVersion = in.readLine();
       in.close();
     }
@@ -84,7 +83,6 @@ public class LauncherTest extends VertxTestBase {
       vertx.close();
     }
   }
-
 
   @Test
   public void testVersion() throws Exception {
@@ -295,7 +293,6 @@ public class LauncherTest extends VertxTestBase {
     cleanup(launcher);
   }
 
-
   @Test
   public void testRunVerticleWithExtendedMainVerticleNoArgs() throws Exception {
     MySecondLauncher launcher = new MySecondLauncher();
@@ -396,7 +393,6 @@ public class LauncherTest extends VertxTestBase {
   @Rule
   public TemporaryFolder testFolder = new TemporaryFolder();
 
-
   @Test
   public void testRunVerticleWithConfFile() throws Exception {
     Path tempDir = testFolder.newFolder().toPath();
@@ -431,9 +427,9 @@ public class LauncherTest extends VertxTestBase {
     MyLauncher launcher = new MyLauncher();
     String[] args;
     if (clustered) {
-      args = new String[] {"run", "java:" + TestVerticle.class.getCanonicalName(), "-cluster"};
+      args = new String[]{"run", "java:" + TestVerticle.class.getCanonicalName(), "-cluster"};
     } else {
-      args = new String[] {"run", "java:" + TestVerticle.class.getCanonicalName()};
+      args = new String[]{"run", "java:" + TestVerticle.class.getCanonicalName()};
     }
     launcher.dispatch(args);
     waitUntil(() -> TestVerticle.instanceCount.get() == 1);
@@ -485,7 +481,6 @@ public class LauncherTest extends VertxTestBase {
     System.setProperty(RunCommand.VERTX_OPTIONS_PROP_PREFIX + "nosuchproperty", "123");
 
     // Should be ignored
-
     MyLauncher launcher = new MyLauncher();
     String[] args = {"run", "java:" + TestVerticle.class.getCanonicalName()};
     launcher.dispatch(args);
@@ -507,7 +502,7 @@ public class LauncherTest extends VertxTestBase {
     // Should be ignored
 
     MyLauncher launcher = new MyLauncher();
-    String[] args =  {"run", "java:" + TestVerticle.class.getCanonicalName()};
+    String[] args = {"run", "java:" + TestVerticle.class.getCanonicalName()};
     launcher.dispatch(args);
     waitUntil(() -> TestVerticle.instanceCount.get() == 1);
 
@@ -523,26 +518,27 @@ public class LauncherTest extends VertxTestBase {
   public void testWhenPassingTheMainObject() throws Exception {
     MyLauncher launcher = new MyLauncher();
     int instances = 10;
-    launcher.dispatch(launcher, new String[] {"run", "java:" + TestVerticle.class.getCanonicalName(),
-        "-instances", "10"});
+    launcher.dispatch(launcher, new String[]{"run", "java:" + TestVerticle.class.getCanonicalName(),
+      "-instances", "10"});
     waitUntil(() -> TestVerticle.instanceCount.get() == instances);
   }
 
   @Test
   public void testBare() throws Exception {
     MyLauncher launcher = new MyLauncher();
-    launcher.dispatch(new String[] {"bare"});
+    launcher.dispatch(new String[]{"bare"});
     waitUntil(() -> launcher.afterStartingVertxInvoked);
   }
 
   @Test
   public void testBareAlias() throws Exception {
     MyLauncher launcher = new MyLauncher();
-    launcher.dispatch(new String[] {"-ha"});
+    launcher.dispatch(new String[]{"-ha"});
     waitUntil(() -> launcher.afterStartingVertxInvoked);
   }
 
   class MyLauncher extends Launcher {
+
     boolean afterConfigParsed = false;
     boolean beforeStartingVertxInvoked = false;
     boolean afterStartingVertxInvoked = false;
@@ -552,11 +548,11 @@ public class LauncherTest extends VertxTestBase {
     DeploymentOptions deploymentOptions;
     JsonObject config;
 
-
     PrintStream stream = new PrintStream(out);
 
     /**
-     * @return the printer used to write the messages. Defaults to {@link System#out}.
+     * @return the printer used to write the messages. Defaults to
+     * {@link System#out}.
      */
     @Override
     public PrintStream getPrintStream() {

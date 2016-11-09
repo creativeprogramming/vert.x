@@ -15,12 +15,13 @@ import io.vertx.core.streams.Pump;
 /**
  * SOCKS5 Proxy
  * <p>
- * A simple SOCKS5 proxy for testing SOCKS functionality. Currently we only support tcp connect and
- * username/password auth, which is enough to make the currently implemented client tests to pass.
+ * A simple SOCKS5 proxy for testing SOCKS functionality. Currently we only
+ * support tcp connect and username/password auth, which is enough to make the
+ * currently implemented client tests to pass.
  *
  * <p>
- * Usually the server will be started in @Before and stopped in @After for a unit test using HttpClient or NetClient
- * with the setProxyOptions method.
+ * Usually the server will be started in @Before and stopped in @After for a
+ * unit test using HttpClient or NetClient with the setProxyOptions method.
  *
  * @author <a href="http://oss.lehmann.cx/">Alexander Lehmann</a>
  */
@@ -28,16 +29,16 @@ public class SocksProxy extends TestProxyBase {
 
   private static final Logger log = LoggerFactory.getLogger(SocksProxy.class);
 
-  private static final Buffer clientInit = Buffer.buffer(new byte[] { 5, 1, 0 });
-  private static final Buffer serverReply = Buffer.buffer(new byte[] { 5, 0 });
-  private static final Buffer clientRequest = Buffer.buffer(new byte[] { 5, 1, 0, 3 });
-  private static final Buffer connectResponse = Buffer.buffer(new byte[] { 5, 0, 0, 1, 0x7f, 0, 0, 1, 0x27, 0x10 });
-  private static final Buffer errorResponse = Buffer.buffer(new byte[] { 5, 4, 0, 1, 0, 0, 0, 0, 0, 0 });
+  private static final Buffer clientInit = Buffer.buffer(new byte[]{5, 1, 0});
+  private static final Buffer serverReply = Buffer.buffer(new byte[]{5, 0});
+  private static final Buffer clientRequest = Buffer.buffer(new byte[]{5, 1, 0, 3});
+  private static final Buffer connectResponse = Buffer.buffer(new byte[]{5, 0, 0, 1, 0x7f, 0, 0, 1, 0x27, 0x10});
+  private static final Buffer errorResponse = Buffer.buffer(new byte[]{5, 4, 0, 1, 0, 0, 0, 0, 0, 0});
 
-  private static final Buffer clientInitAuth = Buffer.buffer(new byte[] { 5, 2, 0, 2 });
-  private static final Buffer serverReplyAuth = Buffer.buffer(new byte[] { 5, 2 });
-  private static final Buffer authSuccess = Buffer.buffer(new byte[] { 1, 0 });
-  private static final Buffer authFailed = Buffer.buffer(new byte[] { 1, 1 });
+  private static final Buffer clientInitAuth = Buffer.buffer(new byte[]{5, 2, 0, 2});
+  private static final Buffer serverReplyAuth = Buffer.buffer(new byte[]{5, 2});
+  private static final Buffer authSuccess = Buffer.buffer(new byte[]{1, 0});
+  private static final Buffer authFailed = Buffer.buffer(new byte[]{1, 1});
 
   private static final int PORT = 11080;
 
@@ -49,11 +50,9 @@ public class SocksProxy extends TestProxyBase {
 
   /**
    * Start the server.
-   * 
-   * @param vertx
-   *          Vertx instance to use for creating the server and client
-   * @param finishedHandler
-   *          will be called when the start has started
+   *
+   * @param vertx Vertx instance to use for creating the server and client
+   * @param finishedHandler will be called when the start has started
    */
   @Override
   public void start(Vertx vertx, Handler<Void> finishedHandler) {
@@ -115,7 +114,7 @@ public class SocksProxy extends TestProxyBase {
           socket.handler(buffer3 -> {
             log.debug("auth handler");
             log.debug("got request: " + toHex(buffer3));
-            Buffer authReply = Buffer.buffer(new byte[] { 1, (byte) username.length() });
+            Buffer authReply = Buffer.buffer(new byte[]{1, (byte) username.length()});
             authReply.appendString(username);
             authReply.appendByte((byte) username.length());
             authReply.appendString(username);
@@ -157,7 +156,8 @@ public class SocksProxy extends TestProxyBase {
   /**
    * Stop the server.
    *
-   * <p>Doesn't wait for the close operation to finish
+   * <p>
+   * Doesn't wait for the close operation to finish
    */
   @Override
   public void stop() {

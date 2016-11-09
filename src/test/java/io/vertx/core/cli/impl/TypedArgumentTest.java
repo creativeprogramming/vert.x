@@ -28,7 +28,6 @@ import java.util.Iterator;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 
-
 public class TypedArgumentTest {
 
   private CLI cli;
@@ -49,9 +48,9 @@ public class TypedArgumentTest {
   @Test
   public void testThatMissingArgumentsAreDetected() throws CLIException {
     cli.addArgument(new TypedArgument<String>().setIndex(0).setType(String.class)
-        .setRequired(true));
+            .setRequired(true));
     cli.addArgument(new TypedArgument<String>().setIndex(1).setType(String.class)
-        .setRequired(true));
+            .setRequired(true));
 
     try {
       evaluated = cli.parse(Collections.emptyList());
@@ -73,9 +72,9 @@ public class TypedArgumentTest {
   @Test
   public void testMixedOfRequiredAnOptionalArguments() throws CLIException {
     cli.addArgument(new TypedArgument<String>().setIndex(0).setType(String.class)
-        .setRequired(true));
+            .setRequired(true));
     cli.addArgument(new TypedArgument<String>().setIndex(1).setType(String.class)
-        .setRequired(false));
+            .setRequired(false));
 
     try {
       evaluated = cli.parse(Collections.emptyList());
@@ -114,7 +113,7 @@ public class TypedArgumentTest {
   @Test
   public void testThatDefaultValuesAreHandled() throws CLIException {
     cli.addArgument(new TypedArgument<String>().setIndex(0).setArgName("1").setType(String.class)
-        .setDefaultValue("hello").setRequired(false));
+            .setDefaultValue("hello").setRequired(false));
 
     evaluated = cli.parse(Collections.singletonList("a"));
     assertThat((String) evaluated.getArgumentValue(0)).isEqualTo("a");
@@ -125,7 +124,7 @@ public class TypedArgumentTest {
   @Test
   public void testThatInvalidValuesAreReported() throws CLIException {
     cli.addArgument(new TypedArgument<Integer>()
-        .setIndex(0).setArgName("1").setType(Integer.class));
+            .setIndex(0).setArgName("1").setType(Integer.class));
 
     try {
       evaluated = cli.parse(Collections.singletonList("a"));
@@ -145,7 +144,7 @@ public class TypedArgumentTest {
   public void testThatInvalidValuesAsDefaultValueAreReported() throws CLIException {
     try {
       cli.addArgument(new TypedArgument<Integer>()
-          .setIndex(0).setArgName("1").setType(Integer.class).setDefaultValue("a"));
+              .setIndex(0).setArgName("1").setType(Integer.class).setDefaultValue("a"));
     } catch (IllegalArgumentException e) {
       assertThat(e.getCause()).isInstanceOf(InvalidValueException.class);
       InvalidValueException cause = (InvalidValueException) e.getCause();
@@ -158,17 +157,16 @@ public class TypedArgumentTest {
   @Test
   public void testThatConvertersAreHandled() throws CLIException {
     final TypedArgument<Person4> arg = new TypedArgument<Person4>()
-        .setIndex(0).setArgName("person").setType(Person4.class)
-        .setConverter(ReflectionUtils.newInstance(Person4Converter.class))
-        .setDefaultValue("Bill,Ballantine")
-        .setRequired(false);
+            .setIndex(0).setArgName("person").setType(Person4.class)
+            .setConverter(ReflectionUtils.newInstance(Person4Converter.class))
+            .setDefaultValue("Bill,Ballantine")
+            .setRequired(false);
     cli.addArgument(arg);
 
     evaluated = cli.parse(Collections.singletonList("Bob,Morane"));
     Person4 person = evaluated.getArgumentValue("person");
     assertThat(person.first).isEqualTo("Bob");
     assertThat(person.last).isEqualTo("Morane");
-
 
     evaluated = cli.parse(Collections.emptyList());
     person = evaluated.getArgumentValue("person");

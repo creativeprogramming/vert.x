@@ -44,7 +44,7 @@ public class ExecUtilsTest {
 
   @After
   public void tearDown() throws IllegalAccessException {
-     set(originalOsName);
+    set(originalOsName);
   }
 
   private void set(String value) throws IllegalAccessException {
@@ -68,10 +68,10 @@ public class ExecUtilsTest {
     ExecUtils.addArgument(args, "\"wrapped_in_double_quotes\"");
 
     assertThat(args).contains("hello", "-foo", "--bar", "--baz=hello",
-        "\"with spaces\"",
-        "\"with'single'_quotes\"",  "'with\"double\"quotes'",
-        "'with \"double\" quotes and spaces'", "\"with 'single' quotes and spaces\"",
-        "wrapped_in_single_quotes", "wrapped_in_double_quotes");
+            "\"with spaces\"",
+            "\"with'single'_quotes\"", "'with\"double\"quotes'",
+            "'with \"double\" quotes and spaces'", "\"with 'single' quotes and spaces\"",
+            "wrapped_in_single_quotes", "wrapped_in_double_quotes");
   }
 
   @Test

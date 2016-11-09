@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.cli;
 
 import io.vertx.core.cli.converters.Converter;
@@ -23,8 +22,9 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * An implementation of {@link Option} for java specifying the type of
- * object received by the option. This allows converting the given <em>raw</em> value into the specified type.
+ * An implementation of {@link Option} for java specifying the type of object
+ * received by the option. This allows converting the given <em>raw</em> value
+ * into the specified type.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
@@ -36,12 +36,14 @@ public class TypedOption<T> extends Option {
   protected Class<T> type;
 
   /**
-   * whether or not the raw value should be parsed as a list. The list if computed by splitting the value.
+   * whether or not the raw value should be parsed as a list. The list if
+   * computed by splitting the value.
    */
   protected boolean parsedAsList;
 
   /**
-   * the split character used if the raw value needs to be parsed as a list. {@code ','} is used by default.
+   * the split character used if the raw value needs to be parsed as a list.
+   * {@code ','} is used by default.
    */
   protected String listSeparator = ",";
 
@@ -58,7 +60,8 @@ public class TypedOption<T> extends Option {
   }
 
   /**
-   * Creates an instance of {@link TypedOption} by copying the state of another {@link TypedOption}
+   * Creates an instance of {@link TypedOption} by copying the state of another
+   * {@link TypedOption}
    *
    * @param option the copied option
    */
@@ -136,7 +139,7 @@ public class TypedOption<T> extends Option {
 
   public TypedOption<T> setType(Class<T> type) {
     this.type = type;
-    if (type != null  && getChoices().isEmpty() && type.isEnum()) {
+    if (type != null && getChoices().isEmpty() && type.isEnum()) {
       setChoicesFromEnumType();
     }
     return this;
@@ -200,6 +203,5 @@ public class TypedOption<T> extends Option {
       addChoice(c.toString());
     }
   }
-
 
 }

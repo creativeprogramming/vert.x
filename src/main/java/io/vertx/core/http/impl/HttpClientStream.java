@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.buffer.ByteBuf;
@@ -32,29 +31,38 @@ interface HttpClientStream {
    * @return the stream id or -1 for HTTP/1.x
    */
   int id();
-  
+
   /**
    * @return the stream version or null if it's not yet determined
    */
   HttpVersion version();
 
   HttpClientConnection connection();
+
   Context getContext();
 
   void writeHead(HttpMethod method, String rawMethod, String uri, MultiMap headers, String hostHeader, boolean chunked);
+
   void writeHeadWithContent(HttpMethod method, String rawMethod, String uri, MultiMap headers, String hostHeader, boolean chunked, ByteBuf buf, boolean end);
+
   void writeBuffer(ByteBuf buf, boolean end);
+
   void writeFrame(int type, int flags, ByteBuf payload);
 
   void doSetWriteQueueMaxSize(int size);
+
   boolean isNotWritable();
+
   void checkDrained();
+
   void doPause();
+
   void doResume();
 
   void reset(long code);
 
   void beginRequest(HttpClientRequestImpl request);
+
   void endRequest();
 
   NetSocket createNetSocket();

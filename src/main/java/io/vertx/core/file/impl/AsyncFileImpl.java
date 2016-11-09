@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.file.impl;
 
 import io.netty.buffer.ByteBuf;
@@ -46,11 +45,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *
- * This class is optimised for performance when used on the same event loop that is was passed to the handler with.
- * However it can be used safely from other threads.
+ * This class is optimised for performance when used on the same event loop that
+ * is was passed to the handler with. However it can be used safely from other
+ * threads.
  *
- * The internal state is protected using the synchronized keyword. If always used on the same event loop, then
- * we benefit from biased locking which makes the overhead of synchronized near zero.
+ * The internal state is protected using the synchronized keyword. If always
+ * used on the same event loop, then we benefit from biased locking which makes
+ * the overhead of synchronized near zero.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
@@ -85,15 +86,33 @@ public class AsyncFileImpl implements AsyncFile {
     this.vertx = vertx;
     Path file = Paths.get(path);
     HashSet<OpenOption> opts = new HashSet<>();
-    if (options.isRead()) opts.add(StandardOpenOption.READ);
-    if (options.isWrite()) opts.add(StandardOpenOption.WRITE);
-    if (options.isCreate()) opts.add(StandardOpenOption.CREATE);
-    if (options.isCreateNew()) opts.add(StandardOpenOption.CREATE_NEW);
-    if (options.isSync()) opts.add(StandardOpenOption.SYNC);
-    if (options.isDsync()) opts.add(StandardOpenOption.DSYNC);
-    if (options.isDeleteOnClose()) opts.add(StandardOpenOption.DELETE_ON_CLOSE);
-    if (options.isSparse()) opts.add(StandardOpenOption.SPARSE);
-    if (options.isTruncateExisting()) opts.add(StandardOpenOption.TRUNCATE_EXISTING);
+    if (options.isRead()) {
+      opts.add(StandardOpenOption.READ);
+    }
+    if (options.isWrite()) {
+      opts.add(StandardOpenOption.WRITE);
+    }
+    if (options.isCreate()) {
+      opts.add(StandardOpenOption.CREATE);
+    }
+    if (options.isCreateNew()) {
+      opts.add(StandardOpenOption.CREATE_NEW);
+    }
+    if (options.isSync()) {
+      opts.add(StandardOpenOption.SYNC);
+    }
+    if (options.isDsync()) {
+      opts.add(StandardOpenOption.DSYNC);
+    }
+    if (options.isDeleteOnClose()) {
+      opts.add(StandardOpenOption.DELETE_ON_CLOSE);
+    }
+    if (options.isSparse()) {
+      opts.add(StandardOpenOption.SPARSE);
+    }
+    if (options.isTruncateExisting()) {
+      opts.add(StandardOpenOption.TRUNCATE_EXISTING);
+    }
     try {
       if (options.getPerms() != null) {
         FileAttribute<?> attrs = PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString(options.getPerms()));
@@ -168,7 +187,7 @@ public class AsyncFileImpl implements AsyncFile {
       doWrite(buf.nioBuffers(), position, wrapped);
     } else {
       ByteBuffer bb = buf.nioBuffer();
-      doWrite(bb, position, bb.limit(),  wrapped);
+      doWrite(bb, position, bb.limit(), wrapped);
     }
     return this;
   }
@@ -253,7 +272,6 @@ public class AsyncFileImpl implements AsyncFile {
     return this;
   }
 
-
   @Override
   public AsyncFile flush() {
     doFlush(null);
@@ -298,7 +316,7 @@ public class AsyncFileImpl implements AsyncFile {
   private synchronized void doWrite(ByteBuffer[] buffers, long position, Handler<AsyncResult<Void>> handler) {
     AtomicInteger cnt = new AtomicInteger();
     AtomicBoolean sentFailure = new AtomicBoolean();
-    for (ByteBuffer b: buffers) {
+    for (ByteBuffer b : buffers) {
       int limit = b.limit();
       doWrite(b, position, limit, ar -> {
         if (ar.succeeded()) {
@@ -454,7 +472,7 @@ public class AsyncFileImpl implements AsyncFile {
   private void checkContext() {
     if (!vertx.getContext().equals(context)) {
       throw new IllegalStateException("AsyncFile must only be used in the context that created it, expected: "
-          + context + " actual " + vertx.getContext());
+              + context + " actual " + vertx.getContext());
     }
   }
 

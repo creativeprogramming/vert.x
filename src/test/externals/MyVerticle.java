@@ -17,7 +17,6 @@ package io.vertx.core.externals;
 
 import io.vertx.core.AbstractVerticle;
 
-
 public class MyVerticle extends AbstractVerticle {
 
   @Override

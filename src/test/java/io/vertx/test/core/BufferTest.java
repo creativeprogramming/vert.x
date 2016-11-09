@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.netty.buffer.ByteBuf;
@@ -471,7 +470,6 @@ public class BufferTest {
     testGetSetUnsignedMedium(true);
   }
 
-
   private void testGetSetLong(boolean isLE) throws Exception {
     int numLongs = 100;
     Buffer b = Buffer.buffer(numLongs * 8);
@@ -840,7 +838,6 @@ public class BufferTest {
     }
   }
 
-
   @Test
   public void testSetBytesBuffer() throws Exception {
     testSetBytesBuffer(Buffer.buffer(150));
@@ -886,7 +883,6 @@ public class BufferTest {
     assertNullPointerException(() -> Buffer.buffer(150).setBytes(0, (byte[]) null));
     assertNullPointerException(() -> Buffer.buffer(150).setBytes(0, null, 1, len));
   }
-
 
   @Test
   public void testSetBufferWithOffsetAndLen() throws Exception {
@@ -971,7 +967,6 @@ public class BufferTest {
     assertEquals(str, buff.toString());
 
     // TODO create with string with encoding
-
     byte[] bytes = TestUtils.randomByteArray(100);
     buff = Buffer.buffer(bytes);
     assertEquals(buff.length(), bytes.length);

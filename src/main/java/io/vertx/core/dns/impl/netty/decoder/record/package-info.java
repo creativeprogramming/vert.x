@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-
 /**
  * Some DNS response packets contain numerous pieces of data that cannot be
  * decoded into a single object such as a {@link java.lang.String}.

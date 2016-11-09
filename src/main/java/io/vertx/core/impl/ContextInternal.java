@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 import io.netty.channel.EventLoop;
@@ -22,17 +21,17 @@ import io.vertx.core.Vertx;
 import io.vertx.core.WorkerExecutor;
 
 /**
- * This interface provides an api for vert.x core internal use only
- * It is not part of the public API and should not be used by
- * developers creating vert.x applications
+ * This interface provides an api for vert.x core internal use only It is not
+ * part of the public API and should not be used by developers creating vert.x
+ * applications
  *
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */
 public interface ContextInternal extends Context {
 
   /**
-   * Return the Netty EventLoop used by this Context. This can be used to integrate
-   * a Netty Server with a Vert.x runtime, specially the Context part.
+   * Return the Netty EventLoop used by this Context. This can be used to
+   * integrate a Netty Server with a Vert.x runtime, specially the Context part.
    *
    * @return the EventLoop
    */
@@ -41,7 +40,8 @@ public interface ContextInternal extends Context {
   /**
    * Create a worker executor using the underlying worker pool of the context.
    *
-   * The executor does not have to be closed, as the worker pool is managed by the context itself.
+   * The executor does not have to be closed, as the worker pool is managed by
+   * the context itself.
    *
    * It should be used when a separate executor per context is needed.
    *
@@ -50,12 +50,14 @@ public interface ContextInternal extends Context {
   WorkerExecutor createWorkerExecutor();
 
   /**
-   * Execute the context task and switch on this context if necessary, this also associates the
-   * current thread with the current context so {@link Vertx#currentContext()} returns this context.<p/>
+   * Execute the context task and switch on this context if necessary, this also
+   * associates the current thread with the current context so
+   * {@link Vertx#currentContext()} returns this context.<p/>
    *
    * The caller thread should be the the event loop thread of this context.<p/>
    *
-   * Any exception thrown from the {@literal stack} will be reported on this context.
+   * Any exception thrown from the {@literal stack} will be reported on this
+   * context.
    *
    * @param task the task to execute
    */

@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.Context;
@@ -58,7 +57,6 @@ public class Http2Test extends HttpTest {
   }
 
   // Extra test
-
   @Test
   public void testServerResponseWriteBufferFromOtherThread() throws Exception {
     server.requestHandler(req -> {
@@ -129,12 +127,12 @@ public class Http2Test extends HttpTest {
   @Test
   public void testServerOpenSSL() throws Exception {
     HttpServerOptions opts = new HttpServerOptions()
-        .setPort(DEFAULT_HTTPS_PORT)
-        .setHost(DEFAULT_HTTPS_HOST)
-        .setUseAlpn(true)
-        .setSsl(true)
-        .addEnabledCipherSuite("TLS_RSA_WITH_AES_128_CBC_SHA") // Non Diffie-helman -> debuggable in wireshark
-        .setPemKeyCertOptions(Cert.SERVER_PEM.get()).setSslEngineOptions(new OpenSSLEngineOptions());
+            .setPort(DEFAULT_HTTPS_PORT)
+            .setHost(DEFAULT_HTTPS_HOST)
+            .setUseAlpn(true)
+            .setSsl(true)
+            .addEnabledCipherSuite("TLS_RSA_WITH_AES_128_CBC_SHA") // Non Diffie-helman -> debuggable in wireshark
+            .setPemKeyCertOptions(Cert.SERVER_PEM.get()).setSslEngineOptions(new OpenSSLEngineOptions());
     server.close();
     client.close();
     client = vertx.createHttpClient(createBaseClientOptions());

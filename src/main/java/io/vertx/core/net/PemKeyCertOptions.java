@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -25,8 +24,8 @@ import io.vertx.core.json.JsonObject;
  * <i>Privacy-enhanced Electronic Email</i> (PEM) files.
  * <p>
  *
- * The key file must contain a <b>non encrypted</b> private key in <b>PKCS8</b> format wrapped in a PEM
- * block, for example:
+ * The key file must contain a <b>non encrypted</b> private key in <b>PKCS8</b>
+ * format wrapped in a PEM block, for example:
  * <p>
  *
  * <pre>
@@ -37,7 +36,8 @@ import io.vertx.core.json.JsonObject;
  * -----END PRIVATE KEY-----
  * </pre><p>
  *
- * The certificate file must contain an X.509 certificate wrapped in a PEM block, for example:
+ * The certificate file must contain an X.509 certificate wrapped in a PEM
+ * block, for example:
  * <p>
  *
  * <pre>
@@ -50,12 +50,15 @@ import io.vertx.core.json.JsonObject;
  *
  * The key and certificate can either be loaded by Vert.x from the filesystem:
  * <p>
- * <pre>
+ * <
+ * pre>
  * HttpServerOptions options = new HttpServerOptions();
- * options.setPemKeyCertOptions(new PemKeyCertOptions().setKeyPath("/mykey.pem").setCertPath("/mycert.pem"));
+ * options.setPemKeyCertOptions(new
+ * PemKeyCertOptions().setKeyPath("/mykey.pem").setCertPath("/mycert.pem"));
  * </pre>
  *
- * Or directly provided as a buffer:<p>
+ * Or directly provided as a buffer:
+ * <p>
  *
  * <pre>
  * Buffer key = vertx.fileSystem().readFileSync("/mykey.pem");
@@ -84,7 +87,7 @@ public class PemKeyCertOptions implements KeyCertOptions, Cloneable {
   /**
    * Copy constructor
    *
-   * @param other  the options to copy
+   * @param other the options to copy
    */
   public PemKeyCertOptions(PemKeyCertOptions other) {
     super();
@@ -97,7 +100,7 @@ public class PemKeyCertOptions implements KeyCertOptions, Cloneable {
   /**
    * Create options from JSON
    *
-   * @param json  the JSON
+   * @param json the JSON
    */
   public PemKeyCertOptions(JsonObject json) {
     super();
@@ -116,7 +119,7 @@ public class PemKeyCertOptions implements KeyCertOptions, Cloneable {
   /**
    * Set the path to the key file
    *
-   * @param keyPath  the path to the key file
+   * @param keyPath the path to the key file
    * @return a reference to this, so the API can be used fluently
    */
   public PemKeyCertOptions setKeyPath(String keyPath) {
@@ -127,7 +130,7 @@ public class PemKeyCertOptions implements KeyCertOptions, Cloneable {
   /**
    * Get the path to the certificate file
    *
-   * @return  the path to the certificate file
+   * @return the path to the certificate file
    */
   public String getCertPath() {
     return certPath;
@@ -136,7 +139,7 @@ public class PemKeyCertOptions implements KeyCertOptions, Cloneable {
   /**
    * Get the key as a buffer
    *
-   * @return  key as a buffer
+   * @return key as a buffer
    */
   public Buffer getKeyValue() {
     return keyValue;
@@ -145,7 +148,7 @@ public class PemKeyCertOptions implements KeyCertOptions, Cloneable {
   /**
    * Set the key a a buffer
    *
-   * @param keyValue  key as a buffer
+   * @param keyValue key as a buffer
    * @return a reference to this, so the API can be used fluently
    */
   public PemKeyCertOptions setKeyValue(Buffer keyValue) {
@@ -156,7 +159,7 @@ public class PemKeyCertOptions implements KeyCertOptions, Cloneable {
   /**
    * Set the path to the certificate
    *
-   * @param certPath  the path to the certificate
+   * @param certPath the path to the certificate
    * @return a reference to this, so the API can be used fluently
    */
   public PemKeyCertOptions setCertPath(String certPath) {
@@ -167,7 +170,7 @@ public class PemKeyCertOptions implements KeyCertOptions, Cloneable {
   /**
    * Get the certificate as a buffer
    *
-   * @return  the certificate as a buffer
+   * @return the certificate as a buffer
    */
   public Buffer getCertValue() {
     return certValue;
@@ -176,7 +179,7 @@ public class PemKeyCertOptions implements KeyCertOptions, Cloneable {
   /**
    * Set the certificate as a buffer
    *
-   * @param certValue  the certificate as a buffer
+   * @param certValue the certificate as a buffer
    * @return a reference to this, so the API can be used fluently
    */
   public PemKeyCertOptions setCertValue(Buffer certValue) {

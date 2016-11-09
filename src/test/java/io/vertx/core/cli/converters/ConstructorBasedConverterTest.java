@@ -19,9 +19,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 public class ConstructorBasedConverterTest {
-
 
   @Test
   public void testGetIfEligible() throws Exception {

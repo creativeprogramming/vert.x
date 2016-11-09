@@ -28,7 +28,6 @@ public class ProxyErrorTest extends VertxTestBase {
   private HttpProxy proxy = null;
 
   // we don't start http/https servers, due to the error, they will not be queried
-
   private void startProxy(int error, String username) throws InterruptedException {
     CountDownLatch latch = new CountDownLatch(1);
     proxy = new HttpProxy(username);
@@ -40,7 +39,7 @@ public class ProxyErrorTest extends VertxTestBase {
   @Override
   public void tearDown() throws Exception {
     super.tearDown();
-    if (proxy!=null) {
+    if (proxy != null) {
       proxy.stop();
     }
   }
@@ -96,22 +95,22 @@ public class ProxyErrorTest extends VertxTestBase {
     startProxy(error, username);
 
     final HttpClientOptions options = new HttpClientOptions()
-        .setSsl(url.startsWith("https"))
-        .setProxyOptions(new ProxyOptions()
-            .setType(ProxyType.HTTP)
-            .setHost("localhost")
-            .setPort(proxy.getPort()));
+            .setSsl(url.startsWith("https"))
+            .setProxyOptions(new ProxyOptions()
+                    .setType(ProxyType.HTTP)
+                    .setHost("localhost")
+                    .setPort(proxy.getPort()));
     HttpClient client = vertx.createHttpClient(options);
 
     client.getAbs(url, assertResponse)
-    .exceptionHandler(e -> {
-      if (completeOnException) {
-        testComplete(); 
-      } else {
-        fail(e);
-      }
-    })
-    .end();
+            .exceptionHandler(e -> {
+              if (completeOnException) {
+                testComplete();
+              } else {
+                fail(e);
+              }
+            })
+            .end();
 
     await();
   }

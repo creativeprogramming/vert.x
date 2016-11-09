@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.DeploymentOptions;
@@ -126,7 +125,6 @@ public class StarterTest extends VertxTestBase {
     cleanup(starter);
   }
 
-
   @Test
   public void testRunVerticleWithMainVerticleInManifestNoArgs() throws Exception {
     MyStarter starter = new MyStarter();
@@ -138,7 +136,7 @@ public class StarterTest extends VertxTestBase {
   }
 
   private void cleanup(MyStarter starter) {
-    if (starter != null  && starter.getVertx() != null) {
+    if (starter != null && starter.getVertx() != null) {
       starter.getVertx().close();
     }
   }
@@ -177,7 +175,6 @@ public class StarterTest extends VertxTestBase {
   @Rule
   public TemporaryFolder testFolder = new TemporaryFolder();
 
-
   @Test
   public void testRunVerticleWithConfFile() throws Exception {
     Path tempDir = testFolder.newFolder().toPath();
@@ -213,9 +210,9 @@ public class StarterTest extends VertxTestBase {
     MyStarter starter = new MyStarter();
     String[] args;
     if (clustered) {
-      args = new String[] {"run", "java:" + TestVerticle.class.getCanonicalName(), "-cluster"};
+      args = new String[]{"run", "java:" + TestVerticle.class.getCanonicalName(), "-cluster"};
     } else {
-      args = new String[] {"run", "java:" + TestVerticle.class.getCanonicalName()};
+      args = new String[]{"run", "java:" + TestVerticle.class.getCanonicalName()};
     }
     starter.run(args);
     waitUntil(() -> TestVerticle.instanceCount.get() == 1);
@@ -272,7 +269,6 @@ public class StarterTest extends VertxTestBase {
     System.setProperty(Starter.VERTX_OPTIONS_PROP_PREFIX + "nosuchproperty", "123");
 
     // Should be ignored
-
     MyStarter starter = new MyStarter();
     String[] args = {"run", "java:" + TestVerticle.class.getCanonicalName()};
     starter.run(args);
@@ -318,6 +314,7 @@ public class StarterTest extends VertxTestBase {
   }
 
   class MyStarter extends Starter {
+
     boolean beforeStartingVertxInvoked = false;
     boolean afterStartingVertxInvoked = false;
     boolean beforeDeployingVerticle = false;

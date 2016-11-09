@@ -39,7 +39,8 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
   protected static List<String> PROCESS_ARGS;
 
   /**
-   * @return the process argument. Verticles can use this method to retrieve the arguments.
+   * @return the process argument. Verticles can use this method to retrieve the
+   * arguments.
    */
   public static List<String> getProcessArguments() {
     return PROCESS_ARGS;
@@ -51,7 +52,8 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
   protected final List<CommandFactoryLookup> lookups;
 
   /**
-   * the list of commands. Sub-classes can decide to remove commands by removing entries from this map.
+   * the list of commands. Sub-classes can decide to remove commands by removing
+   * entries from this map.
    */
   protected final Map<String, CommandRegistration> commandByName;
 
@@ -64,6 +66,7 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
    * Handles a command registration.
    */
   public static class CommandRegistration {
+
     public final CommandFactory factory;
     public final CLI cli;
     private List<Command> commands = new ArrayList<>();
@@ -94,15 +97,17 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
   }
 
   /**
-   * Creates a new {@link VertxCommandLauncher} using the default {@link ServiceCommandFactoryLoader}. It uses the
-   * classloader having loaded {@link ServiceCommandFactoryLoader}.
+   * Creates a new {@link VertxCommandLauncher} using the default
+   * {@link ServiceCommandFactoryLoader}. It uses the classloader having loaded
+   * {@link ServiceCommandFactoryLoader}.
    */
   public VertxCommandLauncher() {
     this(Collections.singletonList(new ServiceCommandFactoryLoader()));
   }
 
   /**
-   * Creates a new {@link VertxCommandLauncher} using the given list of {@link CommandFactoryLookup}.
+   * Creates a new {@link VertxCommandLauncher} using the given list of
+   * {@link CommandFactoryLookup}.
    *
    * @param lookups the list of lookup
    */
@@ -113,8 +118,8 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
   }
 
   /**
-   * Loads the command. This method is {@link protected} to let sub-classes change the set of command or how
-   * they are loaded.
+   * Loads the command. This method is {@link protected} to let sub-classes
+   * change the set of command or how they are loaded.
    */
   protected void load() {
     for (CommandFactoryLookup lookup : lookups) {
@@ -150,9 +155,10 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
   }
 
   /**
-   * Creates a new {@link Command} instance. Sub-classes can change how {@link Command} instance are created.
+   * Creates a new {@link Command} instance. Sub-classes can change how
+   * {@link Command} instance are created.
    *
-   * @param name        the command name
+   * @param name the command name
    * @param commandLine the command line
    * @return the new instance, {@code null} if the command cannot be found.
    */
@@ -184,7 +190,7 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
    * Executes the given command.
    *
    * @param command the command name
-   * @param cla     the arguments
+   * @param cla the arguments
    */
   public void execute(String command, String... cla) {
     if (command != null && isAskingForVersion(command)) {
@@ -244,7 +250,6 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
     }
   }
 
-
   protected void printCommandUsage(CLI cli) {
     StringBuilder builder = new StringBuilder();
     cli.usage(builder, getCommandLinePrefix());
@@ -266,7 +271,7 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
   protected void printCommandNotFound(String command) {
     StringBuilder builder = new StringBuilder();
     buildWrapped(builder, 0, "The command '" + command + "' is not a valid command." + getNewLine()
-        + "See '" + getCommandLinePrefix() + " --help'");
+            + "See '" + getCommandLinePrefix() + " --help'");
     getPrintStream().println(builder.toString());
   }
 
@@ -309,10 +314,10 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
 
   protected static boolean isAskingForHelp(String command) {
     return command.equalsIgnoreCase("--help")
-        || command.equalsIgnoreCase("-help")
-        || command.equalsIgnoreCase("-h")
-        || command.equalsIgnoreCase("?")
-        || command.equalsIgnoreCase("/?");
+            || command.equalsIgnoreCase("-help")
+            || command.equalsIgnoreCase("-h")
+            || command.equalsIgnoreCase("?")
+            || command.equalsIgnoreCase("/?");
   }
 
   protected static boolean isAskingForVersion(String command) {
@@ -320,7 +325,8 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
   }
 
   /**
-   * Dispatches to the right command. This method is generally called from the {@code main} method.
+   * Dispatches to the right command. This method is generally called from the
+   * {@code main} method.
    *
    * @param args the command line arguments.
    */
@@ -329,10 +335,11 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
   }
 
   /**
-   * Dispatches to the right command. This method is generally called from the {@code main} method.
+   * Dispatches to the right command. This method is generally called from the
+   * {@code main} method.
    *
-   * @param main the main instance on which hooks and callbacks are going to be called. If not set, the current
-   *             object is used.
+   * @param main the main instance on which hooks and callbacks are going to be
+   * called. If not set, the current object is used.
    * @param args the command line arguments.
    */
   public void dispatch(Object main, String[] args) {
@@ -349,8 +356,6 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
     // Finally, we have two fallbacks
     // - if no args (and so no main verticle) - display usage
     // - if args has been set, display command usage.
-
-
     if (args.length >= 1 && isAskingForHelp(args[0])) {
       printGlobalUsage();
       return;
@@ -373,7 +378,6 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
 
     // We check whether or not we have a main verticle specified via the getMainVerticle method.
     // By default this method retrieve the value from the 'Main-Verticle' Manifest header. However it can be overridden.
-
     String verticle = getMainVerticle();
     String command = getCommandFromManifest();
     if (verticle != null) {
@@ -402,7 +406,8 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
   }
 
   /**
-   * @return the default command if specified in the {@code MANIFEST}, "run" if not found.
+   * @return the default command if specified in the {@code MANIFEST}, "run" if
+   * not found.
    */
   protected String getDefaultCommand() {
     String fromManifest = getCommandFromManifest();
@@ -436,7 +441,8 @@ public class VertxCommandLauncher extends UsageMessageFormatter {
   }
 
   /**
-   * @return the printer used to write the messages. Defaults to {@link System#out}.
+   * @return the printer used to write the messages. Defaults to
+   * {@link System#out}.
    */
   public PrintStream getPrintStream() {
     return System.out;

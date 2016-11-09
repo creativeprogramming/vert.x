@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core;
 
 import io.vertx.codegen.annotations.GenIgnore;
@@ -24,8 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The composite future wraps a list of {@link Future futures}, it is useful when several futures
- * needs to be coordinated.
+ * The composite future wraps a list of {@link Future futures}, it is useful
+ * when several futures needs to be coordinated.
  *
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */
@@ -33,7 +32,8 @@ import java.util.List;
 public interface CompositeFuture extends Future<CompositeFuture> {
 
   /**
-   * Return a composite future, succeeded when all futures are succeeded, failed when any future is failed.
+   * Return a composite future, succeeded when all futures are succeeded, failed
+   * when any future is failed.
    * <p/>
    * The returned future fails as soon as one of {@code f1} or {@code f2} fails.
    *
@@ -83,9 +83,11 @@ public interface CompositeFuture extends Future<CompositeFuture> {
   }
 
   /**
-   * Return a composite future, succeeded when any futures is succeeded, failed when all futures are failed.
+   * Return a composite future, succeeded when any futures is succeeded, failed
+   * when all futures are failed.
    * <p/>
-   * The returned future succeeds as soon as one of {@code f1} or {@code f2} succeeds.
+   * The returned future succeeds as soon as one of {@code f1} or {@code f2}
+   * succeeds.
    *
    * @param f1 future
    * @param f2 future
@@ -133,9 +135,11 @@ public interface CompositeFuture extends Future<CompositeFuture> {
   }
 
   /**
-   * Return a composite future, succeeded when all futures are succeeded, failed when any future is failed.
+   * Return a composite future, succeeded when all futures are succeeded, failed
+   * when any future is failed.
    * <p/>
-   * It always wait until all its futures are completed and will not fail as soon as one of {@code f1} or {@code f2} fails.
+   * It always wait until all its futures are completed and will not fail as
+   * soon as one of {@code f1} or {@code f2} fails.
    *
    * @param f1 future
    * @param f2 future
@@ -226,14 +230,14 @@ public interface CompositeFuture extends Future<CompositeFuture> {
   int size();
 
   /**
-   * @return a list of the current completed values. If one future is not yet resolved or is failed, {@code} null
-   *         will be used
+   * @return a list of the current completed values. If one future is not yet
+   * resolved or is failed, {@code} null will be used
    */
   @GenIgnore
   default <T> List<T> list() {
     int size = size();
     ArrayList<T> list = new ArrayList<>(size);
-    for (int index = 0;index < size;index++) {
+    for (int index = 0; index < size; index++) {
       list.add(resultAt(index));
     }
     return list;

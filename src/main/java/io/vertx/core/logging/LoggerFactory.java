@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.logging;
 
 import io.vertx.core.spi.logging.LogDelegate;
@@ -66,9 +65,9 @@ public class LoggerFactory {
   }
 
   public static Logger getLogger(final Class<?> clazz) {
-    String name = clazz.isAnonymousClass() ?
-      clazz.getEnclosingClass().getCanonicalName() :
-      clazz.getCanonicalName();
+    String name = clazz.isAnonymousClass()
+            ? clazz.getEnclosingClass().getCanonicalName()
+            : clazz.getCanonicalName();
     return getLogger(name);
   }
 

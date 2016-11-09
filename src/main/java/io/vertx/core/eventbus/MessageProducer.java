@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.eventbus;
 
 import io.vertx.codegen.annotations.Fluent;
@@ -36,8 +35,8 @@ public interface MessageProducer<T> extends WriteStream<T> {
   /**
    * Synonym for {@link #write(Object)}.
    *
-   * @param message  the message to send
-   * @return  reference to this for fluency
+   * @param message the message to send
+   * @return reference to this for fluency
    */
   MessageProducer<T> send(T message);
 
@@ -76,7 +75,8 @@ public interface MessageProducer<T> extends WriteStream<T> {
   void end();
 
   /**
-   * Closes the producer, this method should be called when the message producer is not used anymore.
+   * Closes the producer, this method should be called when the message producer
+   * is not used anymore.
    */
   void close();
 }

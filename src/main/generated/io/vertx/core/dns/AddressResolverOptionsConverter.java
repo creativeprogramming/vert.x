@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-
 package io.vertx.core.dns;
 
 import io.vertx.core.json.JsonObject;
@@ -22,51 +21,55 @@ import io.vertx.core.json.JsonArray;
 /**
  * Converter for {@link io.vertx.core.dns.AddressResolverOptions}.
  *
- * NOTE: This class has been automatically generated from the {@link io.vertx.core.dns.AddressResolverOptions} original class using Vert.x codegen.
+ * NOTE: This class has been automatically generated from the
+ * {@link io.vertx.core.dns.AddressResolverOptions} original class using Vert.x
+ * codegen.
  */
 public class AddressResolverOptionsConverter {
 
   public static void fromJson(JsonObject json, AddressResolverOptions obj) {
     if (json.getValue("cacheMaxTimeToLive") instanceof Number) {
-      obj.setCacheMaxTimeToLive(((Number)json.getValue("cacheMaxTimeToLive")).intValue());
+      obj.setCacheMaxTimeToLive(((Number) json.getValue("cacheMaxTimeToLive")).intValue());
     }
     if (json.getValue("cacheMinTimeToLive") instanceof Number) {
-      obj.setCacheMinTimeToLive(((Number)json.getValue("cacheMinTimeToLive")).intValue());
+      obj.setCacheMinTimeToLive(((Number) json.getValue("cacheMinTimeToLive")).intValue());
     }
     if (json.getValue("cacheNegativeTimeToLive") instanceof Number) {
-      obj.setCacheNegativeTimeToLive(((Number)json.getValue("cacheNegativeTimeToLive")).intValue());
+      obj.setCacheNegativeTimeToLive(((Number) json.getValue("cacheNegativeTimeToLive")).intValue());
     }
     if (json.getValue("hostsPath") instanceof String) {
-      obj.setHostsPath((String)json.getValue("hostsPath"));
+      obj.setHostsPath((String) json.getValue("hostsPath"));
     }
     if (json.getValue("hostsValue") instanceof String) {
-      obj.setHostsValue(io.vertx.core.buffer.Buffer.buffer(java.util.Base64.getDecoder().decode((String)json.getValue("hostsValue"))));
+      obj.setHostsValue(io.vertx.core.buffer.Buffer.buffer(java.util.Base64.getDecoder().decode((String) json.getValue("hostsValue"))));
     }
     if (json.getValue("maxQueries") instanceof Number) {
-      obj.setMaxQueries(((Number)json.getValue("maxQueries")).intValue());
+      obj.setMaxQueries(((Number) json.getValue("maxQueries")).intValue());
     }
     if (json.getValue("ndots") instanceof Number) {
-      obj.setNdots(((Number)json.getValue("ndots")).intValue());
+      obj.setNdots(((Number) json.getValue("ndots")).intValue());
     }
     if (json.getValue("optResourceEnabled") instanceof Boolean) {
-      obj.setOptResourceEnabled((Boolean)json.getValue("optResourceEnabled"));
+      obj.setOptResourceEnabled((Boolean) json.getValue("optResourceEnabled"));
     }
     if (json.getValue("queryTimeout") instanceof Number) {
-      obj.setQueryTimeout(((Number)json.getValue("queryTimeout")).longValue());
+      obj.setQueryTimeout(((Number) json.getValue("queryTimeout")).longValue());
     }
     if (json.getValue("rdFlag") instanceof Boolean) {
-      obj.setRdFlag((Boolean)json.getValue("rdFlag"));
+      obj.setRdFlag((Boolean) json.getValue("rdFlag"));
     }
     if (json.getValue("searchDomains") instanceof JsonArray) {
       json.getJsonArray("searchDomains").forEach(item -> {
-        if (item instanceof String)
-          obj.addSearchDomain((String)item);
+        if (item instanceof String) {
+          obj.addSearchDomain((String) item);
+        }
       });
     }
     if (json.getValue("servers") instanceof JsonArray) {
       json.getJsonArray("servers").forEach(item -> {
-        if (item instanceof String)
-          obj.addServer((String)item);
+        if (item instanceof String) {
+          obj.addServer((String) item);
+        }
       });
     }
   }
@@ -88,17 +91,17 @@ public class AddressResolverOptionsConverter {
     json.put("rdFlag", obj.getRdFlag());
     if (obj.getSearchDomains() != null) {
       json.put("searchDomains", new JsonArray(
-          obj.getSearchDomains().
-              stream().
-              map(item -> item).
-              collect(java.util.stream.Collectors.toList())));
+              obj.getSearchDomains().
+                      stream().
+                      map(item -> item).
+                      collect(java.util.stream.Collectors.toList())));
     }
     if (obj.getServers() != null) {
       json.put("servers", new JsonArray(
-          obj.getServers().
-              stream().
-              map(item -> item).
-              collect(java.util.stream.Collectors.toList())));
+              obj.getServers().
+                      stream().
+                      map(item -> item).
+                      collect(java.util.stream.Collectors.toList())));
     }
   }
 }

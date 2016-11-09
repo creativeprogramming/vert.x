@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.eventbus;
 
 import io.vertx.codegen.annotations.VertxGen;
@@ -22,14 +21,17 @@ import io.vertx.core.Handler;
 import io.vertx.core.streams.ReadStream;
 
 /**
- * An event bus consumer object representing a stream of message to an {@link EventBus} address that can
- * be read from.
+ * An event bus consumer object representing a stream of message to an
+ * {@link EventBus} address that can be read from.
  * <p>
- * The {@link EventBus#consumer(String)} or {@link EventBus#localConsumer(String)}
- * creates a new consumer, the returned consumer is not yet registered against the event bus. Registration
- * is effective after the {@link #handler(io.vertx.core.Handler)} method is invoked.<p>
+ * The {@link EventBus#consumer(String)} or
+ * {@link EventBus#localConsumer(String)} creates a new consumer, the returned
+ * consumer is not yet registered against the event bus. Registration is
+ * effective after the {@link #handler(io.vertx.core.Handler)} method is
+ * invoked.<p>
  *
- * The consumer is unregistered from the event bus using the {@link #unregister()} method or by calling the
+ * The consumer is unregistered from the event bus using the
+ * {@link #unregister()} method or by calling the
  * {@link #handler(io.vertx.core.Handler)} with a null value..
  *
  * @author <a href="mailto:nscavell@redhat.com">Nick Scavelli</a>
@@ -68,22 +70,25 @@ public interface MessageConsumer<T> extends ReadStream<Message<T>> {
   String address();
 
   /**
-   * Set the number of messages this registration will buffer when this stream is paused. The default
-   * value is <code>0</code>. When a new value is set, buffered messages may be discarded to reach
-   * the new value.
+   * Set the number of messages this registration will buffer when this stream
+   * is paused. The default value is <code>0</code>. When a new value is set,
+   * buffered messages may be discarded to reach the new value.
    *
-   * @param maxBufferedMessages the maximum number of messages that can be buffered
+   * @param maxBufferedMessages the maximum number of messages that can be
+   * buffered
    * @return this registration
    */
   MessageConsumer<T> setMaxBufferedMessages(int maxBufferedMessages);
 
   /**
-   * @return the maximum number of messages that can be buffered when this stream is paused
+   * @return the maximum number of messages that can be buffered when this
+   * stream is paused
    */
   int getMaxBufferedMessages();
 
   /**
-   * Optional method which can be called to indicate when the registration has been propagated across the cluster.
+   * Optional method which can be called to indicate when the registration has
+   * been propagated across the cluster.
    *
    * @param completionHandler the completion handler
    */
@@ -97,8 +102,9 @@ public interface MessageConsumer<T> extends ReadStream<Message<T>> {
   /**
    * Unregisters the handler which created this registration
    *
-   * @param completionHandler the handler called when the unregister is done. For example in a cluster when all nodes of the
-   * event bus have been unregistered.
+   * @param completionHandler the handler called when the unregister is done.
+   * For example in a cluster when all nodes of the event bus have been
+   * unregistered.
    */
   void unregister(Handler<AsyncResult<Void>> completionHandler);
 }

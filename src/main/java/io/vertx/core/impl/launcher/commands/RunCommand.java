@@ -54,7 +54,6 @@ public class RunCommand extends BareCommand {
   protected String mainVerticle;
   protected List<String> redeploy;
 
-
   protected String vertxApplicationBackgroundId;
   protected String onRedeployCommand;
   protected Watcher watcher;
@@ -68,8 +67,8 @@ public class RunCommand extends BareCommand {
    * @param ha whether or not to enable the HA.
    */
   @Option(longName = "ha", acceptValue = false, flag = true)
-  @Description("If specified the verticle will be deployed as a high availability (HA) deployment. This means it can " +
-      "fail over to any other nodes in the cluster started with the same HA group.")
+  @Description("If specified the verticle will be deployed as a high availability (HA) deployment. This means it can "
+          + "fail over to any other nodes in the cluster started with the same HA group.")
   public void setHighAvailability(boolean ha) {
     this.ha = ha;
   }
@@ -80,8 +79,8 @@ public class RunCommand extends BareCommand {
    * @param cluster whether or not to start vert.x in clustered mode.
    */
   @Option(longName = "cluster", acceptValue = false, flag = true)
-  @Description("If specified then the vert.x instance will form a cluster with any other vert.x instances on the " +
-      "network.")
+  @Description("If specified then the vert.x instance will form a cluster with any other vert.x instances on the "
+          + "network.")
   public void setCluster(boolean cluster) {
     this.cluster = cluster;
   }
@@ -89,7 +88,8 @@ public class RunCommand extends BareCommand {
   /**
    * Whether or not the verticle is deployed as a worker verticle.
    *
-   * @param worker {@code true} to deploy the verticle as worker, {@code false} otherwise
+   * @param worker {@code true} to deploy the verticle as worker, {@code false}
+   * otherwise
    */
   @Option(longName = "worker", acceptValue = false)
   @Description("If specified then the verticle is a worker verticle.")
@@ -115,14 +115,14 @@ public class RunCommand extends BareCommand {
    * @param configuration the configuration
    */
   @Option(longName = "conf", argName = "config")
-  @Description("Specifies configuration that should be provided to the verticle. <config> should reference either a " +
-      "text file containing a valid JSON object which represents the configuration OR be a JSON string.")
+  @Description("Specifies configuration that should be provided to the verticle. <config> should reference either a "
+          + "text file containing a valid JSON object which represents the configuration OR be a JSON string.")
   public void setConfig(String configuration) {
     if (configuration != null) {
       // For inlined configuration remove first and end single and double quotes if any
       this.config = configuration.trim()
-          .replaceAll("^\"|\"$", "")
-          .replaceAll("^'|'$", "");
+              .replaceAll("^\"|\"$", "")
+              .replaceAll("^'|'$", "");
     } else {
       this.config = null;
     }
@@ -140,8 +140,8 @@ public class RunCommand extends BareCommand {
   }
 
   @Option(longName = "redeploy", argName = "includes")
-  @Description("Enable automatic redeployment of the application. This option takes a set on includes as parameter " +
-      "indicating which files need to be watched. Patterns are separated by a comma.")
+  @Description("Enable automatic redeployment of the application. This option takes a set on includes as parameter "
+          + "indicating which files need to be watched. Patterns are separated by a comma.")
   @ParsedAsList
   public void setRedeploy(List<String> redeploy) {
     this.redeploy = redeploy;
@@ -154,13 +154,13 @@ public class RunCommand extends BareCommand {
    * @deprecated Use 'on-redeploy' instead. It will be removed in vert.x 3.3
    */
   @Option(longName = "onRedeploy", argName = "cmd")
-  @Description("Optional shell command executed when a redeployment is triggered (deprecated - will be removed in 3" +
-      ".3, use 'on-redeploy' instead")
+  @Description("Optional shell command executed when a redeployment is triggered (deprecated - will be removed in 3"
+          + ".3, use 'on-redeploy' instead")
   @Hidden
   @Deprecated
   public void setOnRedeployCommandOld(String command) {
-    out.println("[WARNING] the 'onRedeploy' option is deprecated, and will be removed in vert.x 3.3. Use " +
-        "'on-redeploy' instead.");
+    out.println("[WARNING] the 'onRedeploy' option is deprecated, and will be removed in vert.x 3.3. Use "
+            + "'on-redeploy' instead.");
     setOnRedeployCommand(command);
   }
 
@@ -171,25 +171,25 @@ public class RunCommand extends BareCommand {
   }
 
   @Option(longName = "redeploy-scan-period", argName = "period")
-  @Description("When redeploy is enabled, this option configures the file system scanning period to detect file " +
-      "changes. The time is given in milliseconds. 250 ms by default.")
+  @Description("When redeploy is enabled, this option configures the file system scanning period to detect file "
+          + "changes. The time is given in milliseconds. 250 ms by default.")
   @DefaultValue("250")
   public void setRedeployScanPeriod(long period) {
     this.redeployScanPeriod = period;
   }
 
   @Option(longName = "redeploy-grace-period", argName = "period")
-  @Description("When redeploy is enabled, this option configures the grace period between 2 redeployments. The time " +
-      "is given in milliseconds. 1000 ms by default.")
+  @Description("When redeploy is enabled, this option configures the grace period between 2 redeployments. The time "
+          + "is given in milliseconds. 1000 ms by default.")
   @DefaultValue("1000")
   public void setRedeployGracePeriod(long period) {
     this.redeployGracePeriod = period;
   }
 
   @Option(longName = "redeploy-termination-period", argName = "period")
-  @Description("When redeploy is enabled, this option configures the time waited to be sure that the previous " +
-      "version of the application has been stopped. It is useful on Windows, where the 'terminate' command may take time to be " +
-      "executed.The time is given in milliseconds. 0 ms by default.")
+  @Description("When redeploy is enabled, this option configures the time waited to be sure that the previous "
+          + "version of the application has been stopped. It is useful on Windows, where the 'terminate' command may take time to be "
+          + "executed.The time is given in milliseconds. 0 ms by default.")
   @DefaultValue("0")
   public void setRedeployStopWaitingTime(long period) {
     this.redeployTerminationPeriod = period;
@@ -209,8 +209,8 @@ public class RunCommand extends BareCommand {
     io.vertx.core.cli.Option clusterHostOption = executionContext.cli().getOption("cluster-host");
     io.vertx.core.cli.Option clusterPortOption = executionContext.cli().getOption("cluster-port");
     CommandLine commandLine = executionContext.commandLine();
-    if ((!isClustered()) &&
-        (commandLine.isOptionAssigned(clusterHostOption)
+    if ((!isClustered())
+            && (commandLine.isOptionAssigned(clusterHostOption)
             || commandLine.isOptionAssigned(clusterPortOption))) {
       throw new CLIException("The option -cluster-host and -cluster-port requires -cluster to be enabled");
     }
@@ -218,19 +218,20 @@ public class RunCommand extends BareCommand {
     // If quorum and / or ha-group, ha need to have been explicitly set
     io.vertx.core.cli.Option haGroupOption = executionContext.cli().getOption("hagroup");
     io.vertx.core.cli.Option quorumOption = executionContext.cli().getOption("quorum");
-    if (!ha &&
-        (commandLine.isOptionAssigned(haGroupOption) || commandLine.isOptionAssigned(quorumOption))) {
+    if (!ha
+            && (commandLine.isOptionAssigned(haGroupOption) || commandLine.isOptionAssigned(quorumOption))) {
       throw new CLIException("The option -hagroup and -quorum requires -ha to be enabled");
     }
   }
 
   /**
-   * @return whether the {@code cluster} option or the {@code ha} option are enabled. Also {@code true} when a custom
-   * launcher modifies the Vert.x options to set `clustered` to {@code true}
+   * @return whether the {@code cluster} option or the {@code ha} option are
+   * enabled. Also {@code true} when a custom launcher modifies the Vert.x
+   * options to set `clustered` to {@code true}
    */
   @Override
   public boolean isClustered() {
-    return cluster || ha || (options != null  && options.isClustered());
+    return cluster || ha || (options != null && options.isClustered());
   }
 
   @Override
@@ -267,9 +268,10 @@ public class RunCommand extends BareCommand {
   }
 
   /**
-   * Initializes the redeployment cycle. In "redeploy mode", the application is launched as background, and is
-   * restarted after every change. A {@link Watcher} instance is responsible for monitoring files and triggering the
-   * redeployment.
+   * Initializes the redeployment cycle. In "redeploy mode", the application is
+   * launched as background, and is restarted after every change. A
+   * {@link Watcher} instance is responsible for monitoring files and triggering
+   * the redeployment.
    */
   protected synchronized void initializeRedeployment() {
     if (watcher != null) {
@@ -278,11 +280,11 @@ public class RunCommand extends BareCommand {
     // Compute the application id. We append "-redeploy" to ease the identification in the process list.
     vertxApplicationBackgroundId = UUID.randomUUID().toString() + "-redeploy";
     watcher = new Watcher(getCwd(), redeploy,
-        this::startAsBackgroundApplication,  // On deploy
-        this::stopBackgroundApplication, // On undeploy
-        onRedeployCommand, // In between command
-        redeployGracePeriod, // The redeploy grace period
-        redeployScanPeriod); // The redeploy scan period
+            this::startAsBackgroundApplication, // On deploy
+            this::stopBackgroundApplication, // On undeploy
+            onRedeployCommand, // In between command
+            redeployGracePeriod, // The redeploy grace period
+            redeployScanPeriod); // The redeploy scan period
 
     // Close the watcher when the JVM is terminating.
     // Notice that the vert.x finalizer is not registered when we run in redeploy mode.
@@ -306,9 +308,11 @@ public class RunCommand extends BareCommand {
   }
 
   /**
-   * On-Undeploy action invoked while redeploying. It just stops the application launched in background.
+   * On-Undeploy action invoked while redeploying. It just stops the application
+   * launched in background.
    *
-   * @param onCompletion an optional on-completion handler. If set it must be invoked at the end of this method.
+   * @param onCompletion an optional on-completion handler. If set it must be
+   * invoked at the end of this method.
    */
   protected synchronized void stopBackgroundApplication(Handler<Void> onCompletion) {
     executionContext.execute("stop", vertxApplicationBackgroundId, "--redeploy");
@@ -327,10 +331,12 @@ public class RunCommand extends BareCommand {
   }
 
   /**
-   * On-Deploy action invoked while redeploying. It just starts the application in background, copying all input
-   * parameters. In addition, the vertx application id is set.
+   * On-Deploy action invoked while redeploying. It just starts the application
+   * in background, copying all input parameters. In addition, the vertx
+   * application id is set.
    *
-   * @param onCompletion an optional on-completion handler. If set it must be invoked at the end of this method.
+   * @param onCompletion an optional on-completion handler. If set it must be
+   * invoked at the end of this method.
    */
   protected void startAsBackgroundApplication(Handler<Void> onCompletion) {
     // We need to copy all options and arguments.

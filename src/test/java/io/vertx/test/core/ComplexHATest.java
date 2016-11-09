@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.DeploymentOptions;
@@ -90,7 +89,7 @@ public class ComplexHATest extends VertxTestBase {
       toDeploy += numToDeploy;
     }
     int index = 0;
-    for (int pos: aliveNodes) {
+    for (int pos : aliveNodes) {
       Vertx v = vertices[pos];
       int numToDeploy = numbersToDeploy.get(index);
       index++;
@@ -115,7 +114,7 @@ public class ComplexHATest extends VertxTestBase {
   protected void undeployRandomVerticles(Runnable runner) {
     int toUndeploy = 0;
     AtomicInteger undeployCount = new AtomicInteger();
-    for (int pos: aliveNodes) {
+    for (int pos : aliveNodes) {
       Vertx v = vertices[pos];
       int deployedNum = v.deploymentIDs().size();
       int numToUnDeploy = random.nextInt(deployedNum + 1);
@@ -158,7 +157,7 @@ public class ComplexHATest extends VertxTestBase {
 
   protected void takeDeploymentSnapshots() {
     for (int i = 0; i < vertices.length; i++) {
-      VertxInternal v = (VertxInternal)vertices[i];
+      VertxInternal v = (VertxInternal) vertices[i];
       if (!v.isKilled()) {
         deploymentSnapshots[i] = takeDeploymentSnapshot(i);
       }
@@ -167,8 +166,8 @@ public class ComplexHATest extends VertxTestBase {
 
   protected Set<Deployment> takeDeploymentSnapshot(int pos) {
     Set<Deployment> snapshot = new ConcurrentHashSet<>();
-    VertxInternal v = (VertxInternal)vertices[pos];
-    for (String depID: v.deploymentIDs()) {
+    VertxInternal v = (VertxInternal) vertices[pos];
+    for (String depID : v.deploymentIDs()) {
       snapshot.add(v.getDeployment(depID));
     }
     return snapshot;
@@ -177,7 +176,7 @@ public class ComplexHATest extends VertxTestBase {
   protected void kill(int pos) {
     // Save the deploymentIDs first
     takeDeploymentSnapshots();
-    VertxInternal v = (VertxInternal)vertices[pos];
+    VertxInternal v = (VertxInternal) vertices[pos];
     killedNode = pos;
     v.executeBlocking(fut -> {
       v.simulateKill();
@@ -194,7 +193,7 @@ public class ComplexHATest extends VertxTestBase {
     for (int i = 0; i < nodes; i++) {
       aliveNodes.add(i);
       int pos = i;
-      ((VertxInternal)vertices[i]).failoverCompleteHandler((nodeID, haInfo, succeeded) -> {
+      ((VertxInternal) vertices[i]).failoverCompleteHandler((nodeID, haInfo, succeeded) -> {
         failedOverOnto(pos);
       });
     }
@@ -218,7 +217,7 @@ public class ComplexHATest extends VertxTestBase {
   protected void checkDeployments() {
     int totalDeployed = 0;
     for (int i = 0; i < vertices.length; i++) {
-      VertxInternal v = (VertxInternal)vertices[i];
+      VertxInternal v = (VertxInternal) vertices[i];
       if (!v.isKilled()) {
         totalDeployed += checkHasDeployments(i, i);
       }
@@ -229,9 +228,9 @@ public class ComplexHATest extends VertxTestBase {
   protected int checkHasDeployments(int pos, int prevPos) {
     Set<Deployment> prevSet = deploymentSnapshots[prevPos];
     Set<Deployment> currSet = takeDeploymentSnapshot(pos);
-    for (Deployment prev: prevSet) {
+    for (Deployment prev : prevSet) {
       boolean contains = false;
-      for (Deployment curr: currSet) {
+      for (Deployment curr : currSet) {
         if (curr.verticleIdentifier().equals(prev.verticleIdentifier()) && curr.deploymentOptions().equals(prev.deploymentOptions())) {
           contains = true;
           break;

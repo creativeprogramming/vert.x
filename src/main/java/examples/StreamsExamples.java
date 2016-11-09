@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package examples;
 
 import io.vertx.core.Handler;
@@ -31,7 +30,7 @@ public class StreamsExamples {
 
   public void pump1(Vertx vertx) {
     NetServer server = vertx.createNetServer(
-        new NetServerOptions().setPort(1234).setHost("localhost")
+            new NetServerOptions().setPort(1234).setHost("localhost")
     );
     server.connectHandler(sock -> {
       sock.handler(buffer -> {
@@ -43,7 +42,7 @@ public class StreamsExamples {
 
   public void pump2(Vertx vertx) {
     NetServer server = vertx.createNetServer(
-        new NetServerOptions().setPort(1234).setHost("localhost")
+            new NetServerOptions().setPort(1234).setHost("localhost")
     );
     server.connectHandler(sock -> {
       sock.handler(buffer -> {
@@ -57,7 +56,7 @@ public class StreamsExamples {
 
   public void pump3(Vertx vertx) {
     NetServer server = vertx.createNetServer(
-        new NetServerOptions().setPort(1234).setHost("localhost")
+            new NetServerOptions().setPort(1234).setHost("localhost")
     );
     server.connectHandler(sock -> {
       sock.handler(buffer -> {
@@ -71,7 +70,7 @@ public class StreamsExamples {
 
   public void pump4(Vertx vertx) {
     NetServer server = vertx.createNetServer(
-        new NetServerOptions().setPort(1234).setHost("localhost")
+            new NetServerOptions().setPort(1234).setHost("localhost")
     );
     server.connectHandler(sock -> {
       sock.handler(buffer -> {
@@ -88,7 +87,7 @@ public class StreamsExamples {
 
   public void pump5(Vertx vertx) {
     NetServer server = vertx.createNetServer(
-        new NetServerOptions().setPort(1234).setHost("localhost")
+            new NetServerOptions().setPort(1234).setHost("localhost")
     );
     server.connectHandler(sock -> {
       Pump.pump(sock, sock).start();

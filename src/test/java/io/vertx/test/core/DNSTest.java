@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.netty.channel.socket.nio.NioDatagramChannel;
@@ -52,17 +51,28 @@ public class DNSTest extends VertxTestBase {
   public void testIllegalArguments() throws Exception {
     DnsClient dns = prepareDns(FakeDNSServer.testResolveAAAA("::1"));
 
-    assertNullPointerException(() -> dns.lookup(null, ar -> {}));
-    assertNullPointerException(() -> dns.lookup4(null, ar -> {}));
-    assertNullPointerException(() -> dns.lookup6(null, ar -> {}));
-    assertNullPointerException(() -> dns.resolveA(null, ar -> {}));
-    assertNullPointerException(() -> dns.resolveAAAA(null, ar -> {}));
-    assertNullPointerException(() -> dns.resolveCNAME(null, ar -> {}));
-    assertNullPointerException(() -> dns.resolveMX(null, ar -> {}));
-    assertNullPointerException(() -> dns.resolveTXT(null, ar -> {}));
-    assertNullPointerException(() -> dns.resolvePTR(null, ar -> {}));
-    assertNullPointerException(() -> dns.resolveNS(null, ar -> {}));
-    assertNullPointerException(() -> dns.resolveSRV(null, ar -> {}));
+    assertNullPointerException(() -> dns.lookup(null, ar -> {
+    }));
+    assertNullPointerException(() -> dns.lookup4(null, ar -> {
+    }));
+    assertNullPointerException(() -> dns.lookup6(null, ar -> {
+    }));
+    assertNullPointerException(() -> dns.resolveA(null, ar -> {
+    }));
+    assertNullPointerException(() -> dns.resolveAAAA(null, ar -> {
+    }));
+    assertNullPointerException(() -> dns.resolveCNAME(null, ar -> {
+    }));
+    assertNullPointerException(() -> dns.resolveMX(null, ar -> {
+    }));
+    assertNullPointerException(() -> dns.resolveTXT(null, ar -> {
+    }));
+    assertNullPointerException(() -> dns.resolvePTR(null, ar -> {
+    }));
+    assertNullPointerException(() -> dns.resolveNS(null, ar -> {
+    }));
+    assertNullPointerException(() -> dns.resolveSRV(null, ar -> {
+    }));
 
     dnsServer.stop();
   }
@@ -264,7 +274,7 @@ public class DNSTest extends VertxTestBase {
   public void testLookupNonExisting() throws Exception {
     DnsClient dns = prepareDns(FakeDNSServer.testLookupNonExisting());
     dns.lookup("gfegjegjf.sg1", ar -> {
-      DnsException cause = (DnsException)ar.cause();
+      DnsException cause = (DnsException) ar.cause();
       assertEquals(DnsResponseCode.NXDOMAIN, cause.code());
       testComplete();
     });
@@ -307,6 +317,7 @@ public class DNSTest extends VertxTestBase {
   @Test
   public void testUseInMultithreadedWorker() throws Exception {
     class MyVerticle extends AbstractVerticle {
+
       @Override
       public void start() {
         assertIllegalStateException(() -> vertx.createDnsClient(1234, "localhost"));

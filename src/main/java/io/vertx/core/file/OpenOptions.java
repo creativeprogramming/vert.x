@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.file;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -21,7 +20,7 @@ import io.vertx.core.json.JsonObject;
 
 /**
  * Describes how an {@link io.vertx.core.file.AsyncFile} should be opened.
- * 
+ *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
 @DataObject(generateConverter = true)
@@ -59,7 +58,7 @@ public class OpenOptions {
   /**
    * Copy constructor
    *
-   * @param other  the options to copy
+   * @param other the options to copy
    */
   public OpenOptions(OpenOptions other) {
     this.perms = other.perms;
@@ -77,7 +76,7 @@ public class OpenOptions {
   /**
    * Constructor to create options from JSON
    *
-   * @param json  the JSON
+   * @param json the JSON
    */
   public OpenOptions(JsonObject json) {
     this();
@@ -87,7 +86,7 @@ public class OpenOptions {
   /**
    * Get the permissions string to be used if creating a file
    *
-   * @return  the permissions string
+   * @return the permissions string
    */
   public String getPerms() {
     return perms;
@@ -96,7 +95,7 @@ public class OpenOptions {
   /**
    * Set the permissions string
    *
-   * @param perms  the permissions string
+   * @param perms the permissions string
    * @return a reference to this, so the API can be used fluently
    */
   public OpenOptions setPerms(String perms) {
@@ -116,7 +115,7 @@ public class OpenOptions {
   /**
    * Set whether the file is to be opened for reading
    *
-   * @param read  true if the file is to be opened for reading
+   * @param read true if the file is to be opened for reading
    * @return a reference to this, so the API can be used fluently
    */
   public OpenOptions setRead(boolean read) {
@@ -136,7 +135,7 @@ public class OpenOptions {
   /**
    * Set whether the file is to be opened for writing
    *
-   * @param write  true if the file is to be opened for writing
+   * @param write true if the file is to be opened for writing
    * @return a reference to this, so the API can be used fluently
    */
   public OpenOptions setWrite(boolean write) {
@@ -156,7 +155,8 @@ public class OpenOptions {
   /**
    * Set whether the file should be created if it does not already exist.
    *
-   * @param create  true if the file should be created if it does not already exist
+   * @param create true if the file should be created if it does not already
+   * exist
    * @return a reference to this, so the API can be used fluently
    */
   public OpenOptions setCreate(boolean create) {
@@ -167,7 +167,8 @@ public class OpenOptions {
   /**
    * Should the file be created if and the open fail if it already exists?
    *
-   * @return true if the file should be created if and the open fail if it already exists.
+   * @return true if the file should be created if and the open fail if it
+   * already exists.
    */
   public boolean isCreateNew() {
     return createNew;
@@ -176,7 +177,8 @@ public class OpenOptions {
   /**
    * Set whether the file should be created and fail if it does exist already.
    *
-   * @param createNew  true if the file should be created or fail if it exists already
+   * @param createNew true if the file should be created or fail if it exists
+   * already
    * @return a reference to this, so the API can be used fluently
    */
   public OpenOptions setCreateNew(boolean createNew) {
@@ -187,17 +189,20 @@ public class OpenOptions {
   /**
    * Should the file be deleted when it's closed, or the JVM is shutdown.
    *
-   * @return  true if the file should be deleted when it's closed or the JVM shutdown
+   * @return true if the file should be deleted when it's closed or the JVM
+   * shutdown
    */
   public boolean isDeleteOnClose() {
     return deleteOnClose;
   }
 
   /**
-   * Set whether the file should be deleted when it's closed, or the JVM is shutdown.
+   * Set whether the file should be deleted when it's closed, or the JVM is
+   * shutdown.
    *
-   * @param deleteOnClose whether the file should be deleted when it's closed, or the JVM is shutdown.
-   * @return  a reference to this, so the API can be used fluently
+   * @param deleteOnClose whether the file should be deleted when it's closed,
+   * or the JVM is shutdown.
+   * @return a reference to this, so the API can be used fluently
    */
   public OpenOptions setDeleteOnClose(boolean deleteOnClose) {
     this.deleteOnClose = deleteOnClose;
@@ -205,18 +210,22 @@ public class OpenOptions {
   }
 
   /**
-   * If the file exists and is opened for writing should the file be truncated to zero length on open?
+   * If the file exists and is opened for writing should the file be truncated
+   * to zero length on open?
    *
-   * @return true  if the file exists and is opened for writing and the file be truncated to zero length on open
+   * @return true if the file exists and is opened for writing and the file be
+   * truncated to zero length on open
    */
   public boolean isTruncateExisting() {
     return truncateExisting;
   }
 
   /**
-   * Set whether the file should be truncated to zero length on opening if it exists and is opened for write
+   * Set whether the file should be truncated to zero length on opening if it
+   * exists and is opened for write
    *
-   * @param truncateExisting  true if the file should be truncated to zero length on opening if it exists and is opened for write
+   * @param truncateExisting true if the file should be truncated to zero length
+   * on opening if it exists and is opened for write
    * @return a reference to this, so the API can be used fluently
    */
   public OpenOptions setTruncateExisting(boolean truncateExisting) {
@@ -227,7 +236,8 @@ public class OpenOptions {
   /**
    * Set whether a hint should be provided that the file to created is sparse
    *
-   * @return true if a hint should be provided that the file to created is sparse
+   * @return true if a hint should be provided that the file to created is
+   * sparse
    */
   public boolean isSparse() {
     return sparse;
@@ -235,7 +245,9 @@ public class OpenOptions {
 
   /**
    * Set whether a hint should be provided that the file to created is sparse
-   * @param sparse true if a hint should be provided that the file to created is sparse
+   *
+   * @param sparse true if a hint should be provided that the file to created is
+   * sparse
    * @return a reference to this, so the API can be used fluently
    */
   public OpenOptions setSparse(boolean sparse) {
@@ -244,7 +256,8 @@ public class OpenOptions {
   }
 
   /**
-   * If true then every write to the file's content and metadata will be written synchronously to the underlying hardware.
+   * If true then every write to the file's content and metadata will be written
+   * synchronously to the underlying hardware.
    *
    * @return true if sync
    */
@@ -253,8 +266,10 @@ public class OpenOptions {
   }
 
   /**
-   * Set whether every write to the file's content and meta-data will be written synchronously to the underlying hardware.
-   * @param sync  true if sync
+   * Set whether every write to the file's content and meta-data will be written
+   * synchronously to the underlying hardware.
+   *
+   * @param sync true if sync
    * @return a reference to this, so the API can be used fluently
    */
   public OpenOptions setSync(boolean sync) {
@@ -263,7 +278,8 @@ public class OpenOptions {
   }
 
   /**
-   * If true then every write to the file's content will be written synchronously to the underlying hardware.
+   * If true then every write to the file's content will be written
+   * synchronously to the underlying hardware.
    *
    * @return true if sync
    */
@@ -272,8 +288,10 @@ public class OpenOptions {
   }
 
   /**
-   * Set whether every write to the file's content  ill be written synchronously to the underlying hardware.
-   * @param dsync  true if sync
+   * Set whether every write to the file's content ill be written synchronously
+   * to the underlying hardware.
+   *
+   * @param dsync true if sync
    * @return a reference to this, so the API can be used fluently
    */
   public OpenOptions setDsync(boolean dsync) {

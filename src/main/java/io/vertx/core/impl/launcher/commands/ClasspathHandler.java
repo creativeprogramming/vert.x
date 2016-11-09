@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.launcher.commands;
 
 import io.vertx.core.AsyncResult;
@@ -38,8 +37,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Command using the classpath option should extends this class as it manages the interaction with the
- * custom classloader.
+ * Command using the classpath option should extends this class as it manages
+ * the interaction with the custom classloader.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
@@ -95,8 +94,8 @@ public abstract class ClasspathHandler extends DefaultCommand {
    */
   protected synchronized Object newInstance() {
     try {
-      classloader = (classpath == null || classpath.isEmpty()) ?
-          ClasspathHandler.class.getClassLoader() : createClassloader();
+      classloader = (classpath == null || classpath.isEmpty())
+              ? ClasspathHandler.class.getClassLoader() : createClassloader();
       Class<?> clazz = classloader.loadClass("io.vertx.core.impl.launcher.commands.VertxIsolatedDeployer");
       return clazz.newInstance();
     } catch (Exception e) {
@@ -127,7 +126,7 @@ public abstract class ClasspathHandler extends DefaultCommand {
   /**
    * Creates a new clustered vert.x instance.
    *
-   * @param options       the options
+   * @param options the options
    * @param resultHandler the result handler
    */
   protected synchronized void create(VertxOptions options, Handler<AsyncResult<Vertx>> resultHandler) {
@@ -145,13 +144,13 @@ public abstract class ClasspathHandler extends DefaultCommand {
   /**
    * Deploys the given verticle using the given deployment options.
    *
-   * @param verticle          the verticle
-   * @param vertx             the vert.x instance
-   * @param options           the deployment options
+   * @param verticle the verticle
+   * @param vertx the vert.x instance
+   * @param options the deployment options
    * @param completionHandler the completion handler
    */
   public synchronized void deploy(String verticle, Vertx vertx, DeploymentOptions options,
-                                  Handler<AsyncResult<String>> completionHandler) {
+          Handler<AsyncResult<String>> completionHandler) {
     if (manager == null) {
       manager = newInstance();
     }
@@ -160,7 +159,7 @@ public abstract class ClasspathHandler extends DefaultCommand {
     try {
       Thread.currentThread().setContextClassLoader(classloader);
       Method method = manager.getClass().getMethod("deploy", String.class, Vertx.class, DeploymentOptions.class,
-          Handler.class);
+              Handler.class);
       method.invoke(manager, verticle, vertx, options, completionHandler);
     } catch (InvocationTargetException e) {
       log.error("Failed to deploy verticle " + verticle, e.getCause());

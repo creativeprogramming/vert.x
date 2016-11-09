@@ -19,11 +19,13 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 /**
- * Exception thrown when an option was expected and was not found on the command line.
+ * Exception thrown when an option was expected and was not found on the command
+ * line.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
 public class MissingOptionException extends CLIException {
+
   private final Collection<Option> expected;
 
   /**
@@ -33,10 +35,10 @@ public class MissingOptionException extends CLIException {
    */
   public MissingOptionException(Collection<Option> expected) {
     super("The option"
-        + (expected.size() > 1 ? "s " : " ")
-        + expected.stream().map(Option::getName).collect(Collectors.toList())
-        + (expected.size() > 1 ? " are" : " is")
-        + " required");
+            + (expected.size() > 1 ? "s " : " ")
+            + expected.stream().map(Option::getName).collect(Collectors.toList())
+            + (expected.size() > 1 ? " are" : " is")
+            + " required");
     this.expected = expected;
   }
 

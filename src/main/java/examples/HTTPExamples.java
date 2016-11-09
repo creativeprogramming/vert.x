@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package examples;
 
 import io.vertx.core.MultiMap;
@@ -97,7 +96,6 @@ public class HTTPExamples {
     }).listen(8080);
 
   }
-
 
   public void example8(HttpServerRequest request) {
 
@@ -371,13 +369,11 @@ public class HTTPExamples {
     request.end();
 
     // Or fluently:
-
     client.post("some-uri", response -> {
       System.out.println("Received response with status code " + response.statusCode());
     }).putHeader("content-length", "1000").putHeader("content-type", "text/plain").write(body).end();
 
     // Or event more simply:
-
     client.post("some-uri", response -> {
       System.out.println("Received response with status code " + response.statusCode());
     }).putHeader("content-type", "text/plain").end(body);
@@ -413,7 +409,6 @@ public class HTTPExamples {
   public void example37(HttpClientRequest request) {
 
     // Write some headers using the headers() multimap
-
     MultiMap headers = request.headers();
     headers.set("content-type", "application/json").set("other-header", "foo");
 
@@ -422,7 +417,6 @@ public class HTTPExamples {
   public void example38(HttpClientRequest request) {
 
     // Write some headers using the putHeader method
-
     request.putHeader("content-type", "application/json").putHeader("other-header", "foo");
 
   }
@@ -463,7 +457,7 @@ public class HTTPExamples {
     });
   }
 
-  public void  statusCodeHandling(HttpClient client) {
+  public void statusCodeHandling(HttpClient client) {
     HttpClientRequest request = client.post("some-uri", response -> {
       if (response.statusCode() == 200) {
         System.out.println("Everything fine");
@@ -602,16 +596,16 @@ public class HTTPExamples {
           // Reject with a failure code and close the connection
           // this is probably best with persistent connection
           request.response()
-              .setStatusCode(405)
-              .putHeader("Connection", "close")
-              .end();
+                  .setStatusCode(405)
+                  .putHeader("Connection", "close")
+                  .end();
         } else {
 
           // Reject with a failure code and ignore the body
           // this may be appropriate if the body is small
           request.response()
-              .setStatusCode(405)
-              .end();
+                  .setStatusCode(405)
+                  .end();
         }
       }
     });
@@ -680,11 +674,9 @@ public class HTTPExamples {
   public void example56_1(WebSocket websocket) {
 
     // Send a websocket messages consisting of a single final text frame:
-
     websocket.writeFinalTextFrame("Geronimo!");
 
     // Send a websocket messages consisting of a single final binary frame:
-
     Buffer buff = Buffer.buffer().appendInt(12).appendString("foo");
 
     websocket.writeFinalBinaryFrame(buff);
@@ -702,9 +694,9 @@ public class HTTPExamples {
   public void example58(Vertx vertx) {
 
     HttpClientOptions options = new HttpClientOptions()
-        .setProxyOptions(new ProxyOptions().setType(ProxyType.HTTP)
-            .setHost("localhost").setPort(3128)
-            .setUsername("username").setPassword("secret"));
+            .setProxyOptions(new ProxyOptions().setType(ProxyType.HTTP)
+                    .setHost("localhost").setPort(3128)
+                    .setUsername("username").setPassword("secret"));
     HttpClient client = vertx.createHttpClient(options);
 
   }
@@ -712,9 +704,9 @@ public class HTTPExamples {
   public void example59(Vertx vertx) {
 
     HttpClientOptions options = new HttpClientOptions()
-        .setProxyOptions(new ProxyOptions().setType(ProxyType.SOCKS5)
-            .setHost("localhost").setPort(1080)
-            .setUsername("username").setPassword("secret"));
+            .setProxyOptions(new ProxyOptions().setType(ProxyType.SOCKS5)
+                    .setHost("localhost").setPort(1080)
+                    .setUsername("username").setPassword("secret"));
     HttpClient client = vertx.createHttpClient(options);
 
   }

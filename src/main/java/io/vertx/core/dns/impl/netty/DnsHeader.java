@@ -73,8 +73,7 @@ public class DnsHeader {
   }
 
   /**
-   * Returns the number of authority resource records in the
-   * {@link DnsMessage}.
+   * Returns the number of authority resource records in the {@link DnsMessage}.
    */
   public int authorityResourceCount() {
     return parent.getAuthorityResources().size();

@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.it;
 
 import io.vertx.core.logging.Logger;
@@ -34,14 +33,14 @@ import java.util.concurrent.Callable;
 import static org.junit.Assert.*;
 
 /**
- * Theses test checks the SLF4J log delegate. It assumes the binding used by SLF4J is slf4j-simple with the default
- * configuration. It injects a print stream to read the logged message. This is definitely a hack, but it's the only
- * way to test the output.
+ * Theses test checks the SLF4J log delegate. It assumes the binding used by
+ * SLF4J is slf4j-simple with the default configuration. It injects a print
+ * stream to read the logged message. This is definitely a hack, but it's the
+ * only way to test the output.
  *
  * @author <a href="http://escoffier.me">Clement Escoffier</a>
  */
 public class SLF4JLogDelegateTest {
-
 
   @BeforeClass
   public static void initialize() throws IOException {

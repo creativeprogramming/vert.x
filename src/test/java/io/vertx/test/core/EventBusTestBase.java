@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.netty.util.CharsetUtil;
@@ -525,8 +524,8 @@ public abstract class EventBusTestBase extends VertxTestBase {
     }
   }
 
-
   public static class MyPOJO {
+
     private String str;
 
     public MyPOJO(String str) {
@@ -539,10 +538,16 @@ public abstract class EventBusTestBase extends VertxTestBase {
 
     @Override
     public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
+      if (this == o) {
+        return true;
+      }
+      if (o == null || getClass() != o.getClass()) {
+        return false;
+      }
       MyPOJO myPOJO = (MyPOJO) o;
-      if (str != null ? !str.equals(myPOJO.str) : myPOJO.str != null) return false;
+      if (str != null ? !str.equals(myPOJO.str) : myPOJO.str != null) {
+        return false;
+      }
       return true;
     }
 
@@ -560,15 +565,15 @@ public abstract class EventBusTestBase extends VertxTestBase {
   }
 
   public static class MyReplyExceptionMessageCodec implements
-      MessageCodec<MyReplyException, MyReplyException> {
+          MessageCodec<MyReplyException, MyReplyException> {
 
     @Override
     public void encodeToWire(Buffer buffer, MyReplyException body) {
       buffer.appendInt(body.failureCode());
       if (body.getMessage() == null) {
-        buffer.appendByte((byte)0);
+        buffer.appendByte((byte) 0);
       } else {
-        buffer.appendByte((byte)1);
+        buffer.appendByte((byte) 1);
         byte[] encoded = body.getMessage().getBytes(CharsetUtil.UTF_8);
         buffer.appendInt(encoded.length);
         buffer.appendBytes(encoded);
@@ -579,7 +584,7 @@ public abstract class EventBusTestBase extends VertxTestBase {
     public MyReplyException decodeFromWire(int pos, Buffer buffer) {
       int failureCode = buffer.getInt(pos);
       pos += 4;
-      boolean isNull = buffer.getByte(pos) == (byte)0;
+      boolean isNull = buffer.getByte(pos) == (byte) 0;
       String message;
       if (!isNull) {
         pos++;

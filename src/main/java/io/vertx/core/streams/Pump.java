@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.streams;
 
 import io.vertx.codegen.annotations.Fluent;
@@ -22,23 +21,30 @@ import io.vertx.core.ServiceHelper;
 import io.vertx.core.spi.PumpFactory;
 
 /**
- * Pumps data from a {@link ReadStream} to a {@link WriteStream} and performs flow control where necessary to
- * prevent the write stream buffer from getting overfull.
+ * Pumps data from a {@link ReadStream} to a {@link WriteStream} and performs
+ * flow control where necessary to prevent the write stream buffer from getting
+ * overfull.
  * <p>
- * Instances of this class read items from a {@link ReadStream} and write them to a {@link WriteStream}. If data
- * can be read faster than it can be written this could result in the write queue of the {@link WriteStream} growing
+ * Instances of this class read items from a {@link ReadStream} and write them
+ * to a {@link WriteStream}. If data can be read faster than it can be written
+ * this could result in the write queue of the {@link WriteStream} growing
  * without bound, eventually causing it to exhaust all available RAM.
  * <p>
- * To prevent this, after each write, instances of this class check whether the write queue of the {@link
- * WriteStream} is full, and if so, the {@link ReadStream} is paused, and a {@code drainHandler} is set on the
- * {@link WriteStream}.
+ * To prevent this, after each write, instances of this class check whether the
+ * write queue of the {@link
+ * WriteStream} is full, and if so, the {@link ReadStream} is paused, and a
+ * {@code drainHandler} is set on the {@link WriteStream}.
  * <p>
- * When the {@link WriteStream} has processed half of its backlog, the {@code drainHandler} will be
- * called, which results in the pump resuming the {@link ReadStream}.
+ * When the {@link WriteStream} has processed half of its backlog, the
+ * {@code drainHandler} will be called, which results in the pump resuming the
+ * {@link ReadStream}.
  * <p>
- * This class can be used to pump from any {@link ReadStream} to any {@link WriteStream},
- * e.g. from an {@link io.vertx.core.http.HttpServerRequest} to an {@link io.vertx.core.file.AsyncFile},
- * or from {@link io.vertx.core.net.NetSocket} to a {@link io.vertx.core.http.WebSocket}.
+ * This class can be used to pump from any {@link ReadStream} to any
+ * {@link WriteStream}, e.g. from an
+ * {@link io.vertx.core.http.HttpServerRequest} to an
+ * {@link io.vertx.core.file.AsyncFile}, or from
+ * {@link io.vertx.core.net.NetSocket} to a
+ * {@link io.vertx.core.http.WebSocket}.
  * <p>
  * Please see the documentation for more information.
  *
@@ -48,10 +54,11 @@ import io.vertx.core.spi.PumpFactory;
 public interface Pump {
 
   /**
-   * Create a new {@code Pump} with the given {@code ReadStream} and {@code WriteStream}
+   * Create a new {@code Pump} with the given {@code ReadStream} and
+   * {@code WriteStream}
    *
-   * @param rs  the read stream
-   * @param ws  the write stream
+   * @param rs the read stream
+   * @param ws the write stream
    * @return the pump
    */
   static <T> Pump pump(ReadStream<T> rs, WriteStream<T> ws) {
@@ -59,12 +66,12 @@ public interface Pump {
   }
 
   /**
-   * Create a new {@code Pump} with the given {@code ReadStream} and {@code WriteStream} and
-   * {@code writeQueueMaxSize}
+   * Create a new {@code Pump} with the given {@code ReadStream} and
+   * {@code WriteStream} and {@code writeQueueMaxSize}
    *
-   * @param rs  the read stream
-   * @param ws  the write stream
-   * @param writeQueueMaxSize  the max size of the write queue
+   * @param rs the read stream
+   * @param ws the write stream
+   * @param writeQueueMaxSize the max size of the write queue
    * @return the pump
    */
   static <T> Pump pump(ReadStream<T> rs, WriteStream<T> ws, int writeQueueMaxSize) {
@@ -74,7 +81,7 @@ public interface Pump {
   /**
    * Set the write queue max size to {@code maxSize}
    *
-   * @param maxSize  the max size
+   * @param maxSize the max size
    * @return a reference to this, so the API can be used fluently
    */
   @Fluent
@@ -102,6 +109,5 @@ public interface Pump {
   int numberPumped();
 
   PumpFactory factory = ServiceHelper.loadFactory(PumpFactory.class);
-
 
 }

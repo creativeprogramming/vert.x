@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.buffer.ByteBuf;
@@ -39,11 +38,13 @@ import java.util.Objects;
 import static io.vertx.core.http.HttpHeaders.*;
 
 /**
- * This class is optimised for performance when used on the same event loop that is was passed to the handler with.
- * However it can be used safely from other threads.
+ * This class is optimised for performance when used on the same event loop that
+ * is was passed to the handler with. However it can be used safely from other
+ * threads.
  *
- * The internal state is protected using the synchronized keyword. If always used on the same event loop, then
- * we benefit from biased locking which makes the overhead of synchronized near zero.
+ * The internal state is protected using the synchronized keyword. If always
+ * used on the same event loop, then we benefit from biased locking which makes
+ * the overhead of synchronized near zero.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
@@ -73,7 +74,7 @@ public class HttpClientRequestImpl extends HttpClientRequestBase implements Http
   private CaseInsensitiveHeaders headers;
 
   HttpClientRequestImpl(HttpClientImpl client, io.vertx.core.http.HttpMethod method, String host, int port,
-                        boolean ssl, String relativeURI, VertxInternal vertx) {
+          boolean ssl, String relativeURI, VertxInternal vertx) {
     super(client, method, host, relativeURI);
     this.chunked = false;
     this.vertx = vertx;
@@ -89,7 +90,7 @@ public class HttpClientRequestImpl extends HttpClientRequestBase implements Http
   }
 
   @Override
-  public  HttpClientRequest handler(Handler<HttpClientResponse> handler) {
+  public HttpClientRequest handler(Handler<HttpClientResponse> handler) {
     synchronized (getLock()) {
       if (handler != null) {
         checkComplete();
@@ -632,7 +633,6 @@ public class HttpClientRequestImpl extends HttpClientRequestBase implements Http
 
       // If anything was written or the request ended before we got the connection, then
       // we need to write it now
-
       if (pendingMaxSize != -1) {
         this.stream.doSetWriteQueueMaxSize(pendingMaxSize);
       }

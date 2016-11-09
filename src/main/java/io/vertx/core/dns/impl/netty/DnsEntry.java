@@ -35,8 +35,8 @@ public class DnsEntry {
   public static final int TYPE_NS = 0x0002;
 
   /**
-   * Canonical name record RFC 1035 Alias of one name to another: the DNS
-   * lookup will continue by retrying the lookup with the new name.
+   * Canonical name record RFC 1035 Alias of one name to another: the DNS lookup
+   * will continue by retrying the lookup with the new name.
    */
   public static final int TYPE_CNAME = 0x0005;
 
@@ -50,9 +50,9 @@ public class DnsEntry {
 
   /**
    * Pointer record RFC 1035 Pointer to a canonical name. Unlike a CNAME, DNS
-   * processing does NOT proceed, just the name is returned. The most common
-   * use is for implementing reverse DNS lookups, but other uses include such
-   * things as DNS-SD.
+   * processing does NOT proceed, just the name is returned. The most common use
+   * is for implementing reverse DNS lookups, but other uses include such things
+   * as DNS-SD.
    */
   public static final int TYPE_PTR = 0x000c;
 
@@ -63,18 +63,17 @@ public class DnsEntry {
   public static final int TYPE_MX = 0x000f;
 
   /**
-   * Text record RFC 1035 Originally for arbitrary human-readable text in a
-   * DNS record. Since the early 1990s, however, this record more often
-   * carries machine-readable data, such as specified by RFC 1464,
-   * opportunistic encryption, Sender Policy Framework, DKIM, DMARC DNS-SD,
-   * etc.
+   * Text record RFC 1035 Originally for arbitrary human-readable text in a DNS
+   * record. Since the early 1990s, however, this record more often carries
+   * machine-readable data, such as specified by RFC 1464, opportunistic
+   * encryption, Sender Policy Framework, DKIM, DMARC DNS-SD, etc.
    */
   public static final int TYPE_TXT = 0x0010;
 
   /**
    * Responsible person record RFC 1183 Information about the responsible
-   * person(s) for the domain. Usually an email address with the @ replaced by
-   * a .
+   * person(s) for the domain. Usually an email address with the @ replaced by a
+   * .
    */
   public static final int TYPE_RP = 0x0011;
 
@@ -95,22 +94,21 @@ public class DnsEntry {
 
   /**
    * key record RFC 2535 and RFC 2930 Used only for SIG(0) (RFC 2931) and TKEY
-   * (RFC 2930). RFC 3445 eliminated their use for application keys and
-   * limited their use to DNSSEC. RFC 3755 designates DNSKEY as the
-   * replacement within DNSSEC. RFC 4025 designates IPSECKEY as the
-   * replacement for use with IPsec.
+   * (RFC 2930). RFC 3445 eliminated their use for application keys and limited
+   * their use to DNSSEC. RFC 3755 designates DNSKEY as the replacement within
+   * DNSSEC. RFC 4025 designates IPSECKEY as the replacement for use with IPsec.
    */
   public static final int TYPE_KEY = 0x0019;
 
   /**
-   * IPv6 address record RFC 3596 Returns a 128-bit IPv6 address, most
-   * commonly used to map hostnames to an IP address of the host.
+   * IPv6 address record RFC 3596 Returns a 128-bit IPv6 address, most commonly
+   * used to map hostnames to an IP address of the host.
    */
   public static final int TYPE_AAAA = 0x001c;
 
   /**
-   * Location record RFC 1876 Specifies a geographical location associated
-   * with a domain name.
+   * Location record RFC 1876 Specifies a geographical location associated with
+   * a domain name.
    */
   public static final int TYPE_LOC = 0x001d;
 
@@ -131,8 +129,8 @@ public class DnsEntry {
    * Key eXchanger record RFC 2230 Used with some cryptographic systems (not
    * including DNSSEC) to identify a key management agent for the associated
    * domain-name. Note that this has nothing to do with DNS Security. It is
-   * Informational status, rather than being on the IETF standards-track. It
-   * has always had limited deployment, but is still in use.
+   * Informational status, rather than being on the IETF standards-track. It has
+   * always had limited deployment, but is still in use.
    */
   public static final int TYPE_KX = 0x0024;
 
@@ -143,9 +141,9 @@ public class DnsEntry {
 
   /**
    * Delegation name record RFC 2672 DNAME creates an alias for a name and all
-   * its subnames, unlike CNAME, which aliases only the exact name in its
-   * label. Like the CNAME record, the DNS lookup will continue by retrying
-   * the lookup with the new name.
+   * its subnames, unlike CNAME, which aliases only the exact name in its label.
+   * Like the CNAME record, the DNS lookup will continue by retrying the lookup
+   * with the new name.
    */
   public static final int TYPE_DNAME = 0x0027;
 
@@ -181,8 +179,8 @@ public class DnsEntry {
   public static final int TYPE_IPSECKEY = 0x002d;
 
   /**
-   * DNSSEC signature record RFC 4034 Signature for a DNSSEC-secured record
-   * set. Uses the same format as the SIG record.
+   * DNSSEC signature record RFC 4034 Signature for a DNSSEC-secured record set.
+   * Uses the same format as the SIG record.
    */
   public static final int TYPE_RRSIG = 0x002e;
 
@@ -193,20 +191,20 @@ public class DnsEntry {
   public static final int TYPE_NSEC = 0x002f;
 
   /**
-   * DNS Key record RFC 4034 The key record used in DNSSEC. Uses the same
-   * format as the KEY record.
+   * DNS Key record RFC 4034 The key record used in DNSSEC. Uses the same format
+   * as the KEY record.
    */
   public static final int TYPE_DNSKEY = 0x0030;
 
   /**
-   * DHCP identifier record RFC 4701 Used in conjunction with the FQDN option
-   * to DHCP.
+   * DHCP identifier record RFC 4701 Used in conjunction with the FQDN option to
+   * DHCP.
    */
   public static final int TYPE_DHCID = 0x0031;
 
   /**
-   * NSEC record version 3 RFC 5155 An extension to DNSSEC that allows proof
-   * of nonexistence for a name without permitting zonewalking.
+   * NSEC record version 3 RFC 5155 An extension to DNSSEC that allows proof of
+   * nonexistence for a name without permitting zonewalking.
    */
   public static final int TYPE_NSEC3 = 0x0032;
 
@@ -218,8 +216,8 @@ public class DnsEntry {
   /**
    * TLSA certificate association record RFC 6698 A record for DNS-based
    * Authentication of Named Entities (DANE). RFC 6698 defines The TLSA DNS
-   * resource record is used to associate a TLS server certificate or public
-   * key with the domain name where the record is found, thus forming a 'TLSA
+   * resource record is used to associate a TLS server certificate or public key
+   * with the domain name where the record is found, thus forming a 'TLSA
    * certificate association'.
    */
   public static final int TYPE_TLSA = 0x0034;
@@ -232,48 +230,48 @@ public class DnsEntry {
 
   /**
    * Sender Policy Framework record RFC 4408 Specified as part of the SPF
-   * protocol as an alternative to of storing SPF data in TXT records. Uses
-   * the same format as the earlier TXT record.
+   * protocol as an alternative to of storing SPF data in TXT records. Uses the
+   * same format as the earlier TXT record.
    */
   public static final int TYPE_SPF = 0x0063;
 
   /**
-   * Secret key record RFC 2930 A method of providing keying material to be
-   * used with TSIG that is encrypted under the public key in an accompanying
-   * KEY RR..
+   * Secret key record RFC 2930 A method of providing keying material to be used
+   * with TSIG that is encrypted under the public key in an accompanying KEY
+   * RR..
    */
   public static final int TYPE_TKEY = 0x00f9;
 
   /**
    * Transaction Signature record RFC 2845 Can be used to authenticate dynamic
-   * updates as coming from an approved client, or to authenticate responses
-   * as coming from an approved recursive name server similar to DNSSEC.
+   * updates as coming from an approved client, or to authenticate responses as
+   * coming from an approved recursive name server similar to DNSSEC.
    */
   public static final int TYPE_TSIG = 0x00fa;
 
   /**
    * Incremental Zone Transfer record RFC 1996 Requests a zone transfer of the
-   * given zone but only differences from a previous serial number. This
-   * request may be ignored and a full (AXFR) sent in response if the
-   * authoritative server is unable to fulfill the request due to
-   * configuration or lack of required deltas.
+   * given zone but only differences from a previous serial number. This request
+   * may be ignored and a full (AXFR) sent in response if the authoritative
+   * server is unable to fulfill the request due to configuration or lack of
+   * required deltas.
    */
   public static final int TYPE_IXFR = 0x00fb;
 
   /**
-   * Authoritative Zone Transfer record RFC 1035 Transfer entire zone file
-   * from the master name server to secondary name servers.
+   * Authoritative Zone Transfer record RFC 1035 Transfer entire zone file from
+   * the master name server to secondary name servers.
    */
   public static final int TYPE_AXFR = 0x00fc;
 
   /**
    * All cached records RFC 1035 Returns all records of all types known to the
-   * name server. If the name server does not have any information on the
-   * name, the request will be forwarded on. The records returned may not be
-   * complete. For example, if there is both an A and an MX for a name, but
-   * the name server has only the A record cached, only the A record will be
-   * returned. Sometimes referred to as ANY, for example in Windows nslookup
-   * and Wireshark.
+   * name server. If the name server does not have any information on the name,
+   * the request will be forwarded on. The records returned may not be complete.
+   * For example, if there is both an A and an MX for a name, but the name
+   * server has only the A record cached, only the A record will be returned.
+   * Sometimes referred to as ANY, for example in Windows nslookup and
+   * Wireshark.
    */
   public static final int TYPE_ANY = 0x00ff;
 
@@ -285,15 +283,15 @@ public class DnsEntry {
 
   /**
    * DNSSEC Trust Authorities record N/A Part of a deployment proposal for
-   * DNSSEC without a signed DNS root. See the IANA database and Weiler Spec
-   * for details. Uses the same format as the DS record.
+   * DNSSEC without a signed DNS root. See the IANA database and Weiler Spec for
+   * details. Uses the same format as the DS record.
    */
   public static final int TYPE_TA = 0x8000;
 
   /**
    * DNSSEC Lookaside Validation record RFC 4431 For publishing DNSSEC trust
-   * anchors outside of the DNS delegation chain. Uses the same format as the
-   * DS record. RFC 5074 describes a way of using these records.
+   * anchors outside of the DNS delegation chain. Uses the same format as the DS
+   * record. RFC 5074 describes a way of using these records.
    */
   public static final int TYPE_DLV = 0x8001;
 
@@ -361,7 +359,7 @@ public class DnsEntry {
   @Override
   public String toString() {
     return new StringBuilder().append(getClass().getSimpleName()).append("(domain name: ").append(name)
-      .append(", type: ").append(type).append(", class: ").append(dnsClass).append(')').toString();
+            .append(", type: ").append(type).append(", class: ").append(dnsClass).append(')').toString();
   }
 
   @Override

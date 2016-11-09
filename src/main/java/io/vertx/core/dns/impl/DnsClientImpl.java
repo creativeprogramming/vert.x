@@ -118,7 +118,7 @@ public final class DnsClientImpl implements DnsClient {
   }
 
   @Override
-  public DnsClient resolveCNAME(String name, Handler<AsyncResult<List<String> >> handler) {
+  public DnsClient resolveCNAME(String name, Handler<AsyncResult<List<String>>> handler) {
     lookup(name, handler, DnsEntry.TYPE_CNAME);
     return this;
   }
@@ -145,7 +145,7 @@ public final class DnsClientImpl implements DnsClient {
         } else {
           List<String> txts = new ArrayList<>();
           List<List<String>> records = (List<List<String>>) event.result();
-          for (List<String> txt: records) {
+          for (List<String> txt : records) {
             txts.addAll(txt);
           }
           handler.handle(Future.succeededFuture(txts));
@@ -197,9 +197,9 @@ public final class DnsClientImpl implements DnsClient {
       if (inetAddress instanceof Inet4Address) {
         // reverse ipv4 address
         reverseName.append(addr[3] & 0xff).append(".")
-                .append(addr[2]& 0xff).append(".")
-                .append(addr[1]& 0xff).append(".")
-                .append(addr[0]& 0xff);
+                .append(addr[2] & 0xff).append(".")
+                .append(addr[1] & 0xff).append(".")
+                .append(addr[0] & 0xff);
       } else {
         // It is an ipv 6 address time to reverse it
         for (int i = 0; i < 16; i++) {
@@ -214,13 +214,13 @@ public final class DnsClientImpl implements DnsClient {
       reverseName.append(".in-addr.arpa");
 
       return resolvePTR(reverseName.toString(), ar -> {
-          if (ar.failed()) {
-            handler.handle(Future.failedFuture(ar.cause()));
-          } else {
-            String result = ar.result();
-            handler.handle(Future.succeededFuture(result));
-          }
-        });
+        if (ar.failed()) {
+          handler.handle(Future.failedFuture(ar.cause()));
+        } else {
+          String result = ar.result();
+          handler.handle(Future.succeededFuture(result));
+        }
+      });
     } catch (UnknownHostException e) {
       // Should never happen as we work with ip addresses as input
       // anyway just in case notify the handler
@@ -243,7 +243,7 @@ public final class DnsClientImpl implements DnsClient {
       @Override
       public void onSuccess(ChannelFuture future) throws Exception {
         DnsQuery query = new DnsQuery(ThreadLocalRandom.current().nextInt());
-        for (int type: types) {
+        for (int type : types) {
           query.addQuestion(new DnsQuestion(name, type));
         }
         future.channel().writeAndFlush(query).addListener(new RetryChannelFutureListener(result) {
@@ -260,7 +260,7 @@ public final class DnsClientImpl implements DnsClient {
                   for (DnsResource resource : msg.getAnswers()) {
                     Object record = RecordDecoderFactory.getFactory().decode(resource.type(), msg, resource);
                     if (record instanceof InetAddress) {
-                      record = ((InetAddress)record).getHostAddress();
+                      record = ((InetAddress) record).getHostAddress();
                     }
                     records.add(record);
                   }
@@ -299,6 +299,7 @@ public final class DnsClientImpl implements DnsClient {
   }
 
   private static class HandlerAdapter<T> implements Handler<AsyncResult<List<T>>> {
+
     private final Handler handler;
 
     HandlerAdapter(Handler handler) {
@@ -322,6 +323,7 @@ public final class DnsClientImpl implements DnsClient {
   }
 
   protected abstract class ConvertingHandler<F, T> implements Handler<AsyncResult<List<F>>> {
+
     private final Handler handler;
     private final Comparator comparator;
 
@@ -351,6 +353,7 @@ public final class DnsClientImpl implements DnsClient {
   }
 
   private abstract class RetryChannelFutureListener implements ChannelFutureListener {
+
     private final Future result;
 
     RetryChannelFutureListener(final Future result) {

@@ -13,19 +13,19 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * We do our own mapping since support for mime mapping in Java is platform dependent
- * and doesn't seem to work very well
+ * We do our own mapping since support for mime mapping in Java is platform
+ * dependent and doesn't seem to work very well
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
 public class MimeMapping {
+
   private static final Map<String, String> m = new HashMap<>();
 
   static {
@@ -1016,6 +1016,7 @@ public class MimeMapping {
   public static String getMimeTypeForExtension(String ext) {
     return m.get(ext);
   }
+
   public static String getMimeTypeForFilename(String filename) {
     int li = filename.lastIndexOf('.');
     if (li != -1 && li != filename.length() - 1) {

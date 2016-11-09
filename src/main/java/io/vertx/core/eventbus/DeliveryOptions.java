@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.eventbus;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -29,8 +28,8 @@ import java.util.Objects;
 /**
  * Delivery options are used to configure message delivery.
  * <p>
- * Delivery options allow to configure delivery timeout and message codec name, and to provide any headers
- * that you wish to send with the message.
+ * Delivery options allow to configure delivery timeout and message codec name,
+ * and to provide any headers that you wish to send with the message.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
@@ -55,7 +54,7 @@ public class DeliveryOptions {
   /**
    * Copy constructor
    *
-   * @param other  the options to copy
+   * @param other the options to copy
    */
   public DeliveryOptions(DeliveryOptions other) {
     this.timeout = other.getSendTimeout();
@@ -66,7 +65,7 @@ public class DeliveryOptions {
   /**
    * Create a delivery options from JSON
    *
-   * @param json  the JSON
+   * @param json the JSON
    */
   public DeliveryOptions(JsonObject json) {
     this.timeout = json.getLong("timeout", DEFAULT_TIMEOUT);
@@ -74,11 +73,11 @@ public class DeliveryOptions {
     JsonObject hdrs = json.getJsonObject("headers", null);
     if (hdrs != null) {
       headers = new CaseInsensitiveHeaders();
-      for (Map.Entry<String, Object> entry: hdrs) {
+      for (Map.Entry<String, Object> entry : hdrs) {
         if (!(entry.getValue() instanceof String)) {
           throw new IllegalStateException("Invalid type for message header value " + entry.getValue().getClass());
         }
-        headers.set(entry.getKey(), (String)entry.getValue());
+        headers.set(entry.getKey(), (String) entry.getValue());
       }
     }
   }
@@ -86,10 +85,11 @@ public class DeliveryOptions {
   /**
    * Get the send timeout.
    * <p>
-   * When sending a message with a response handler a send timeout can be provided. If no response is received
-   * within the timeout the handler will be called with a failure.
+   * When sending a message with a response handler a send timeout can be
+   * provided. If no response is received within the timeout the handler will be
+   * called with a failure.
    *
-   * @return  the value of send timeout
+   * @return the value of send timeout
    */
   public long getSendTimeout() {
     return timeout;
@@ -98,8 +98,8 @@ public class DeliveryOptions {
   /**
    * Set the send timeout.
    *
-   * @param timeout  the timeout value, in ms.
-   * @return  a reference to this, so the API can be used fluently
+   * @param timeout the timeout value, in ms.
+   * @return a reference to this, so the API can be used fluently
    */
   public DeliveryOptions setSendTimeout(long timeout) {
     Arguments.require(timeout >= 1, "sendTimeout must be >= 1");
@@ -110,10 +110,11 @@ public class DeliveryOptions {
   /**
    * Get the codec name.
    * <p>
-   * When sending or publishing a message a codec name can be provided. This must correspond with a previously registered
-   * message codec. This allows you to send arbitrary objects on the event bus (e.g. POJOs).
+   * When sending or publishing a message a codec name can be provided. This
+   * must correspond with a previously registered message codec. This allows you
+   * to send arbitrary objects on the event bus (e.g. POJOs).
    *
-   * @return  the codec name
+   * @return the codec name
    */
   public String getCodecName() {
     return codecName;
@@ -122,8 +123,8 @@ public class DeliveryOptions {
   /**
    * Set the codec name.
    *
-   * @param codecName  the codec name
-   * @return  a reference to this, so the API can be used fluently
+   * @param codecName the codec name
+   * @return a reference to this, so the API can be used fluently
    */
   public DeliveryOptions setCodecName(String codecName) {
     this.codecName = codecName;
@@ -133,12 +134,12 @@ public class DeliveryOptions {
   /**
    * Add a message header.
    * <p>
-   * Message headers can be sent with any message and will be accessible with {@link io.vertx.core.eventbus.Message#headers}
-   * at the recipient.
+   * Message headers can be sent with any message and will be accessible with
+   * {@link io.vertx.core.eventbus.Message#headers} at the recipient.
    *
-   * @param key  the header key
-   * @param value  the header value
-   * @return  a reference to this, so the API can be used fluently
+   * @param key the header key
+   * @param value the header value
+   * @return a reference to this, so the API can be used fluently
    */
   public DeliveryOptions addHeader(String key, String value) {
     checkHeaders();
@@ -151,8 +152,8 @@ public class DeliveryOptions {
   /**
    * Set message headers from a multi-map.
    *
-   * @param headers  the headers
-   * @return  a reference to this, so the API can be used fluently
+   * @param headers the headers
+   * @return a reference to this, so the API can be used fluently
    */
   @GenIgnore
   public DeliveryOptions setHeaders(MultiMap headers) {
@@ -163,7 +164,7 @@ public class DeliveryOptions {
   /**
    * Get the message headers
    *
-   * @return  the headers
+   * @return the headers
    */
   @GenIgnore
   public MultiMap getHeaders() {

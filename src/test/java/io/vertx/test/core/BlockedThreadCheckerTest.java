@@ -9,8 +9,9 @@ import io.vertx.core.VertxOptions;
 import org.junit.Test;
 
 /**
- * please note that this test class does not assert anything about the log output (this would require a kind of log
- * mock), it just runs the different methods to get coverage
+ * please note that this test class does not assert anything about the log
+ * output (this would require a kind of log mock), it just runs the different
+ * methods to get coverage
  *
  * @author <a href="http://oss.lehmann.cx/">Alexander Lehmann</a>
  */
@@ -79,7 +80,8 @@ public class BlockedThreadCheckerTest extends VertxTestBase {
             fail();
           }
           testComplete();
-        }, ar -> {});
+        }, ar -> {
+        });
       }
     };
     // set warning threshold to 1s and the exception threshold as well

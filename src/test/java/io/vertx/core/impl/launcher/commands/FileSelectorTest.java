@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.launcher.commands;
 
 import org.junit.Test;
@@ -59,7 +58,7 @@ public class FileSelectorTest {
 
     // Pattern and target start with file separator
     assertTrue(FileSelector.matchPath(separator + "*" + separator + "a.txt", separator + "b" + separator
-        + "a.txt"));
+            + "a.txt"));
     // Pattern starts with file separator, target doesn't
     assertFalse(FileSelector.matchPath(separator + "*" + separator + "a.txt", "b" + separator + "a.txt"));
     // Pattern doesn't start with file separator, target does
@@ -74,13 +73,13 @@ public class FileSelectorTest {
 
     // Pattern and target start with file separator
     assertTrue(FileSelector.matchPath(separator + "*" + separator + "a.txt", separator + "b" + separator
-        + "a.txt", separator, false));
+            + "a.txt", separator, false));
     // Pattern starts with file separator, target doesn't
     assertFalse(FileSelector.matchPath(separator + "*" + separator + "a.txt", "b" + separator + "a.txt",
-        separator, false));
+            separator, false));
     // Pattern doesn't start with file separator, target does
     assertFalse(FileSelector.matchPath("*" + separator + "a.txt", separator + "b" + separator + "a.txt",
-        separator, false));
+            separator, false));
     // Pattern and target don't start with file separator
     assertTrue(FileSelector.matchPath("*" + separator + "a.txt", "b" + separator + "a.txt", separator, false));
   }
@@ -91,16 +90,15 @@ public class FileSelectorTest {
 
     // Pattern and target start with file separator
     assertTrue(FileSelector.matchPath(separator + "*" + separator + "a.txt", separator + "b" + separator
-        + "a.txt", separator, false));
+            + "a.txt", separator, false));
     // Pattern starts with file separator, target doesn't
     assertFalse(FileSelector.matchPath(separator + "*" + separator + "a.txt", "b" + separator + "a.txt",
-        separator, false));
+            separator, false));
     // Pattern doesn't start with file separator, target does
     assertFalse(FileSelector.matchPath("*" + separator + "a.txt", separator + "b" + separator + "a.txt",
-        separator, false));
+            separator, false));
     // Pattern and target don't start with file separator
     assertTrue(FileSelector.matchPath("*" + separator + "a.txt", "b" + separator + "a.txt", separator, false));
   }
-
 
 }

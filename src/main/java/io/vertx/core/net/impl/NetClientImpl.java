@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net.impl;
 
 import java.util.Map;
@@ -152,7 +151,7 @@ public class NetClientImpl implements NetClient, MetricsProvider {
   }
 
   private void connect(int port, String host, Handler<AsyncResult<NetSocket>> connectHandler,
-      int remainingAttempts) {
+          int remainingAttempts) {
     Objects.requireNonNull(host, "No null host accepted");
     Objects.requireNonNull(connectHandler, "No null connectHandler accepted");
     ContextImpl context = vertx.getOrCreateContext();
@@ -217,8 +216,8 @@ public class NetClientImpl implements NetClient, MetricsProvider {
           context.executeFromIO(() -> {
             log.debug("Failed to create connection. Will retry in " + options.getReconnectInterval() + " milliseconds");
             //Set a timer to retry connection
-            vertx.setTimer(options.getReconnectInterval(), tid ->
-                connect(port, host, connectHandler, remainingAttempts == -1 ? remainingAttempts : remainingAttempts - 1)
+            vertx.setTimer(options.getReconnectInterval(), tid
+                    -> connect(port, host, connectHandler, remainingAttempts == -1 ? remainingAttempts : remainingAttempts - 1)
             );
           });
         } else {
@@ -263,4 +262,3 @@ public class NetClientImpl implements NetClient, MetricsProvider {
     super.finalize();
   }
 }
-

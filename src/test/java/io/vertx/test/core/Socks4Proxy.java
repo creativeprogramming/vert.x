@@ -15,12 +15,13 @@ import io.vertx.core.streams.Pump;
 /**
  * SOCKS4 Proxy
  * <p>
- * A simple SOCKS4/4a proxy for testing SOCKS functionality. Currently we only support tcp connect and
- * username auth, which is enough to make the currently implemented client tests to pass.
+ * A simple SOCKS4/4a proxy for testing SOCKS functionality. Currently we only
+ * support tcp connect and username auth, which is enough to make the currently
+ * implemented client tests to pass.
  *
  * <p>
- * Usually the server will be started in @Before and stopped in @After for a unit test using HttpClient or NetClient
- * with the setProxyOptions method.
+ * Usually the server will be started in @Before and stopped in @After for a
+ * unit test using HttpClient or NetClient with the setProxyOptions method.
  *
  * @author <a href="http://oss.lehmann.cx/">Alexander Lehmann</a>
  */
@@ -28,9 +29,9 @@ public class Socks4Proxy extends TestProxyBase {
 
   private static final Logger log = LoggerFactory.getLogger(Socks4Proxy.class);
 
-  private static final Buffer clientRequest = Buffer.buffer(new byte[] { 4, 1 });
-  private static final Buffer connectResponse = Buffer.buffer(new byte[] { 0, 90, 0, 0, 0, 0, 0, 0 });
-  private static final Buffer errorResponse = Buffer.buffer(new byte[] { 0, 91, 0, 0, 0, 0, 0, 0 });
+  private static final Buffer clientRequest = Buffer.buffer(new byte[]{4, 1});
+  private static final Buffer connectResponse = Buffer.buffer(new byte[]{0, 90, 0, 0, 0, 0, 0, 0});
+  private static final Buffer errorResponse = Buffer.buffer(new byte[]{0, 91, 0, 0, 0, 0, 0, 0});
 
   private static final int PORT = 11080;
 
@@ -42,11 +43,9 @@ public class Socks4Proxy extends TestProxyBase {
 
   /**
    * Start the server.
-   * 
-   * @param vertx
-   *          Vertx instance to use for creating the server and client
-   * @param finishedHandler
-   *          will be called when the start has started
+   *
+   * @param vertx Vertx instance to use for creating the server and client
+   * @param finishedHandler will be called when the start has started
    */
   @Override
   public void start(Vertx vertx, Handler<Void> finishedHandler) {
@@ -135,7 +134,8 @@ public class Socks4Proxy extends TestProxyBase {
   /**
    * Stop the server.
    *
-   * <p>Doesn't wait for the close operation to finish
+   * <p>
+   * Doesn't wait for the close operation to finish
    */
   @Override
   public void stop() {

@@ -15,7 +15,6 @@
  */
 package io.vertx.core.impl.launcher;
 
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,7 +47,7 @@ public class VertxCommandLineInterfaceTest {
 
     itf.execute("--help");
     assertThat(baos.toString()).contains("hello").contains("bye")
-        .doesNotContain("hidden").contains("A command saying hello");
+            .doesNotContain("hidden").contains("A command saying hello");
   }
 
   @Test
@@ -57,7 +56,8 @@ public class VertxCommandLineInterfaceTest {
     PrintStream stream = new PrintStream(baos);
     itf = new VertxCommandLauncher() {
       /**
-       * @return the printer used to write the messages. Defaults to {@link System#out}.
+       * @return the printer used to write the messages. Defaults to
+       * {@link System#out}.
        */
       @Override
       public PrintStream getPrintStream() {
@@ -68,7 +68,7 @@ public class VertxCommandLineInterfaceTest {
     itf.execute("--help");
 
     assertThat(baos.toString()).contains("hello").contains("bye")
-        .doesNotContain("hidden").contains("A command saying hello");
+            .doesNotContain("hidden").contains("A command saying hello");
   }
 
   @Test
@@ -80,11 +80,11 @@ public class VertxCommandLineInterfaceTest {
     itf.execute("hello", "--help");
 
     assertThat(baos.toString())
-        .contains("Usage: ")
-        .contains("A command saying hello.") // Summary
-        .contains("A simple command to wish you a good day.") // Description
-        .contains("-n,--name <name>") // Option
-        .contains("your name"); // Option description
+            .contains("Usage: ")
+            .contains("A command saying hello.") // Summary
+            .contains("A simple command to wish you a good day.") // Description
+            .contains("-n,--name <name>") // Option
+            .contains("your name"); // Option description
   }
 
   @Test
@@ -96,8 +96,8 @@ public class VertxCommandLineInterfaceTest {
     itf.execute("bye", "--help");
 
     assertThat(baos.toString())
-        .contains("A command saying goodbye.") // Summary
-        .contains("-n <value>"); // Option
+            .contains("A command saying goodbye.") // Summary
+            .contains("-n <value>"); // Option
   }
 
   @Test
@@ -122,7 +122,7 @@ public class VertxCommandLineInterfaceTest {
     itf.execute("hello", "-n");
 
     assertThat(baos.toString())
-        .contains("The option 'name' requires a value");
+            .contains("The option 'name' requires a value");
   }
 
   @Test
@@ -134,7 +134,7 @@ public class VertxCommandLineInterfaceTest {
     itf.execute("hello");
 
     assertThat(baos.toString())
-        .contains("The option", "name", "is required");
+            .contains("The option", "name", "is required");
   }
 
   @Test
@@ -146,7 +146,7 @@ public class VertxCommandLineInterfaceTest {
     itf.execute("hidden", "-n", "vert.x", "-c", "hello");
 
     assertThat(baos.toString())
-        .contains("The value 'hello' is not accepted by 'count'");
+            .contains("The value 'hello' is not accepted by 'count'");
   }
 
   @Test
@@ -158,12 +158,12 @@ public class VertxCommandLineInterfaceTest {
     itf.execute("complex", "-h");
 
     assertThat(baos.toString())
-        .contains("-o1 <opt>", " [-o2] ")
-        .contains("arg1", "[arg2]")
-        .contains("A command with options and arguments.") // Summary
-        .contains("This is a complex command.") // Description
-        .contains("-o1,--option1 <opt>") // Option
-        .contains("-o2,--option2"); // Option
+            .contains("-o1 <opt>", " [-o2] ")
+            .contains("arg1", "[arg2]")
+            .contains("A command with options and arguments.") // Summary
+            .contains("This is a complex command.") // Description
+            .contains("-o1,--option1 <opt>") // Option
+            .contains("-o2,--option2"); // Option
   }
 
   @Test
@@ -175,9 +175,9 @@ public class VertxCommandLineInterfaceTest {
     itf.execute("hidden", "-h");
 
     assertThat(baos.toString())
-        .contains("-n <value>")
-        .doesNotContain("-c ")
-        .doesNotContain("count");
+            .contains("-n <value>")
+            .doesNotContain("-c ")
+            .doesNotContain("count");
   }
 
   @Test
@@ -189,47 +189,47 @@ public class VertxCommandLineInterfaceTest {
     itf.execute("complex", "-option1=vertx", "-o2", "this is arg 1", "25");
 
     assertThat(baos.toString())
-        .contains("Option 1 : vertx")
-        .contains("Option 2 : true")
-        .contains("Arg 1 : this is arg 1")
-        .contains("Arg 2 : 25");
+            .contains("Option 1 : vertx")
+            .contains("Option 2 : true")
+            .contains("Arg 1 : this is arg 1")
+            .contains("Arg 2 : 25");
 
     baos.reset();
     itf = new VertxCommandLauncher();
 
     itf.execute("complex", "-option1=vertx", "this is arg 1");
     assertThat(baos.toString())
-        .contains("Option 1 : vertx")
-        .contains("Option 2 : false")
-        .contains("Arg 1 : this is arg 1")
-        .contains("Arg 2 : 0");
+            .contains("Option 1 : vertx")
+            .contains("Option 2 : false")
+            .contains("Arg 1 : this is arg 1")
+            .contains("Arg 2 : 0");
 
     baos.reset();
     itf = new VertxCommandLauncher();
     itf.execute("complex", "-option1=vertx", "this is arg 1", "24", "xxx", "yyy");
     assertThat(baos.toString())
-        .contains("Option 1 : vertx")
-        .contains("Option 2 : false")
-        .contains("Arg 1 : this is arg 1")
-        .contains("Arg 2 : 24")
-        .contains("xxx", "yyy");
+            .contains("Option 1 : vertx")
+            .contains("Option 2 : false")
+            .contains("Arg 1 : this is arg 1")
+            .contains("Arg 2 : 24")
+            .contains("xxx", "yyy");
 
     baos.reset();
     itf = new VertxCommandLauncher();
     itf.execute("complex", "this is arg 1", "24");
     assertThat(baos.toString())
-        .doesNotContain("Option 1 : vertx")
-        .doesNotContain("Arg 1 : this is arg 1")
-        .contains("Usage")
-        .contains("The option", "is required");
+            .doesNotContain("Option 1 : vertx")
+            .doesNotContain("Arg 1 : this is arg 1")
+            .contains("Usage")
+            .contains("The option", "is required");
 
     baos.reset();
     itf = new VertxCommandLauncher();
     itf.execute("complex", "-option1=vertx");
     assertThat(baos.toString())
-        .doesNotContain("Option 1 : vertx")
-        .contains("Usage")
-        .contains("The argument 'arg1' is required");
+            .doesNotContain("Option 1 : vertx")
+            .contains("Usage")
+            .contains("The argument 'arg1' is required");
   }
 
   @Test
@@ -246,10 +246,10 @@ public class VertxCommandLineInterfaceTest {
     itf.execute("complex", "-option1=vertx", "-o2", "this is arg 1", "25");
 
     assertThat(baos.toString())
-        .contains("Option 1 : vertx")
-        .contains("Option 2 : true")
-        .contains("Arg 1 : this is arg 1")
-        .contains("Arg 2 : 25");
+            .contains("Option 1 : vertx")
+            .contains("Option 2 : true")
+            .contains("Arg 1 : this is arg 1")
+            .contains("Arg 2 : 25");
 
     baos.reset();
     itf = new VertxCommandLauncher() {
@@ -261,10 +261,10 @@ public class VertxCommandLineInterfaceTest {
 
     itf.execute("complex", "-option1=vertx", "this is arg 1");
     assertThat(baos.toString())
-        .contains("Option 1 : vertx")
-        .contains("Option 2 : false")
-        .contains("Arg 1 : this is arg 1")
-        .contains("Arg 2 : 0");
+            .contains("Option 1 : vertx")
+            .contains("Option 2 : false")
+            .contains("Arg 1 : this is arg 1")
+            .contains("Arg 2 : 0");
 
     baos.reset();
     itf = new VertxCommandLauncher() {
@@ -275,11 +275,11 @@ public class VertxCommandLineInterfaceTest {
     };
     itf.execute("complex", "-option1=vertx", "this is arg 1", "24", "xxx", "yyy");
     assertThat(baos.toString())
-        .contains("Option 1 : vertx")
-        .contains("Option 2 : false")
-        .contains("Arg 1 : this is arg 1")
-        .contains("Arg 2 : 24")
-        .contains("xxx", "yyy");
+            .contains("Option 1 : vertx")
+            .contains("Option 2 : false")
+            .contains("Arg 1 : this is arg 1")
+            .contains("Arg 2 : 24")
+            .contains("xxx", "yyy");
 
     baos.reset();
     itf = new VertxCommandLauncher() {
@@ -290,10 +290,10 @@ public class VertxCommandLineInterfaceTest {
     };
     itf.execute("complex", "this is arg 1", "24");
     assertThat(baos.toString())
-        .doesNotContain("Option 1 : vertx")
-        .doesNotContain("Arg 1 : this is arg 1")
-        .contains("Usage")
-        .contains("The option", "is required");
+            .doesNotContain("Option 1 : vertx")
+            .doesNotContain("Arg 1 : this is arg 1")
+            .contains("Usage")
+            .contains("The option", "is required");
 
     baos.reset();
     itf = new VertxCommandLauncher() {
@@ -304,9 +304,9 @@ public class VertxCommandLineInterfaceTest {
     };
     itf.execute("complex", "-option1=vertx");
     assertThat(baos.toString())
-        .doesNotContain("Option 1 : vertx")
-        .contains("Usage")
-        .contains("The argument 'arg1' is required");
+            .doesNotContain("Option 1 : vertx")
+            .contains("Usage")
+            .contains("The argument 'arg1' is required");
   }
 
 }

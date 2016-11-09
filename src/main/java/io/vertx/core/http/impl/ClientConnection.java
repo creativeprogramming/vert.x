@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.buffer.ByteBuf;
@@ -59,10 +58,12 @@ import static io.vertx.core.http.HttpHeaders.TRANSFER_ENCODING;
 
 /**
  *
- * This class is optimised for performance when used on the same event loop. However it can be used safely from other threads.
+ * This class is optimised for performance when used on the same event loop.
+ * However it can be used safely from other threads.
  *
- * The internal state is protected using the synchronized keyword. If always used on the same event loop, then
- * we benefit from biased locking which makes the overhead of synchronized near zero.
+ * The internal state is protected using the synchronized keyword. If always
+ * used on the same event loop, then we benefit from biased locking which makes
+ * the overhead of synchronized near zero.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
@@ -93,7 +94,7 @@ class ClientConnection extends ConnectionBase implements HttpClientConnection, H
   private Buffer pausedChunk;
 
   ClientConnection(HttpVersion version, HttpClientImpl client, Object endpointMetric, Channel channel, boolean ssl, String host,
-                   int port, ContextImpl context, Http1xPool pool, HttpClientMetrics metrics) {
+          int port, ContextImpl context, Http1xPool pool, HttpClientMetrics metrics) {
     super(client.getVertx(), channel, context, metrics);
     this.client = client;
     this.ssl = ssl;
@@ -120,7 +121,7 @@ class ClientConnection extends ConnectionBase implements HttpClientConnection, H
   }
 
   synchronized void toWebSocket(String requestURI, MultiMap headers, WebsocketVersion vers, String subProtocols,
-                   int maxWebSocketFrameSize, Handler<WebSocket> wsConnect) {
+          int maxWebSocketFrameSize, Handler<WebSocket> wsConnect) {
     if (ws != null) {
       throw new IllegalStateException("Already websocket");
     }
@@ -131,20 +132,20 @@ class ClientConnection extends ConnectionBase implements HttpClientConnection, H
         // Netty requires an absolute url
         wsuri = new URI((ssl ? "https:" : "http:") + "//" + host + ":" + port + requestURI);
       }
-      WebSocketVersion version =
-         WebSocketVersion.valueOf((vers == null ?
-           WebSocketVersion.V13 : vers).toString());
+      WebSocketVersion version
+              = WebSocketVersion.valueOf((vers == null
+                      ? WebSocketVersion.V13 : vers).toString());
       HttpHeaders nettyHeaders;
       if (headers != null) {
         nettyHeaders = new DefaultHttpHeaders();
-        for (Map.Entry<String, String> entry: headers) {
+        for (Map.Entry<String, String> entry : headers) {
           nettyHeaders.add(entry.getKey(), entry.getValue());
         }
       } else {
         nettyHeaders = null;
       }
       handshaker = WebSocketClientHandshakerFactory.newHandshaker(wsuri, version, subProtocols, false,
-                                                                  nettyHeaders, maxWebSocketFrameSize);
+              nettyHeaders, maxWebSocketFrameSize);
       ChannelPipeline p = channel.pipeline();
       p.addBefore("handler", "handshakeCompleter", new HandshakeInboundHandler(wsConnect, version != WebSocketVersion.V00));
       handshaker.handshake(channel).addListener(future -> {
@@ -204,7 +205,7 @@ class ClientConnection extends ConnectionBase implements HttpClientConnection, H
               try {
                 handshakeComplete(ctx, response);
                 channel.pipeline().remove(HandshakeInboundHandler.this);
-                for (; ; ) {
+                for (;;) {
                   Object m = buffered.poll();
                   if (m == null) {
                     break;
@@ -246,7 +247,7 @@ class ClientConnection extends ConnectionBase implements HttpClientConnection, H
       // Need to set context before constructor is called as writehandler registration needs this
       ContextImpl.setContext(context);
       WebSocketImpl webSocket = new WebSocketImpl(vertx, ClientConnection.this, supportsContinuation,
-                                                  client.getOptions().getMaxWebsocketFrameSize());
+              client.getOptions().getMaxWebsocketFrameSize());
       ws = webSocket;
       handshaker.finishHandshake(channel, response);
       context.executeFromIO(() -> {
@@ -410,7 +411,7 @@ class ClientConnection extends ConnectionBase implements HttpClientConnection, H
 
     // Signal requests failed
     if (metrics.isEnabled()) {
-      for (HttpClientRequestImpl req: requests) {
+      for (HttpClientRequestImpl req : requests) {
         metrics.requestReset(req.metric());
       }
       if (currentResponse != null) {
@@ -419,7 +420,7 @@ class ClientConnection extends ConnectionBase implements HttpClientConnection, H
     }
 
     // Connection was closed - call exception handlers for any requests in the pipeline or one being currently written
-    for (HttpClientRequestImpl req: requests) {
+    for (HttpClientRequestImpl req : requests) {
       req.handleException(e);
     }
     if (currentRequest != null) {
@@ -587,7 +588,7 @@ class ClientConnection extends ConnectionBase implements HttpClientConnection, H
       pipeline.remove(inflater);
     }
     pipeline.remove("codec");
-    pipeline.replace("handler", "handler",  new VertxNetHandler(channel, socket, connectionMap) {
+    pipeline.replace("handler", "handler", new VertxNetHandler(channel, socket, connectionMap) {
       @Override
       public void exceptionCaught(ChannelHandlerContext chctx, Throwable t) throws Exception {
         // remove from the real mapping
@@ -635,7 +636,6 @@ class ClientConnection extends ConnectionBase implements HttpClientConnection, H
   }
 
   //
-
   @Override
   public HttpConnection goAway(long errorCode, int lastStreamId, Buffer debugData) {
     throw new UnsupportedOperationException("HTTP/1.x connections don't support GOAWAY");

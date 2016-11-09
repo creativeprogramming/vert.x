@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 import io.vertx.core.AsyncResult;
@@ -63,7 +62,7 @@ public class CompositeFutureImpl implements CompositeFuture, Handler<AsyncResult
   public static CompositeFuture any(Future<?>... results) {
     CompositeFutureImpl composite = new CompositeFutureImpl(results);
     int len = results.length;
-    for (int i = 0;i < len;i++) {
+    for (int i = 0; i < len; i++) {
       results[i].setHandler(ar -> {
         Handler<AsyncResult<CompositeFuture>> handler = null;
         if (ar.succeeded()) {
@@ -93,7 +92,7 @@ public class CompositeFutureImpl implements CompositeFuture, Handler<AsyncResult
 
   private static final Function<CompositeFuture, Throwable> ALL = cf -> {
     int size = cf.size();
-    for (int i = 0;i < size;i++) {
+    for (int i = 0; i < size; i++) {
       if (!cf.succeeded(i)) {
         return cf.cause(i);
       }
@@ -105,7 +104,7 @@ public class CompositeFutureImpl implements CompositeFuture, Handler<AsyncResult
     return join(ALL, results);
   }
 
-  private  static CompositeFuture join(Function<CompositeFuture, Throwable> pred, Future<?>... results) {
+  private static CompositeFuture join(Function<CompositeFuture, Throwable> pred, Future<?>... results) {
     CompositeFutureImpl composite = new CompositeFutureImpl(results);
     int len = results.length;
     for (int i = 0; i < len; i++) {

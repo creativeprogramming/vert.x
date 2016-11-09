@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.netty.handler.codec.http2.DefaultHttp2Headers;
@@ -70,18 +69,18 @@ public class Http2HeadersTest {
   public void testSetConvertUpperCase() {
     map.set("Foo", "foo_value");
     map.set((CharSequence) "Bar", "bar_value");
-    map.set("Juu", (Iterable<String>)Collections.singletonList("juu_value"));
-    map.set("Daa", Collections.singletonList((CharSequence)"daa_value"));
-    assertHeaderNames("foo","bar", "juu", "daa");
+    map.set("Juu", (Iterable<String>) Collections.singletonList("juu_value"));
+    map.set("Daa", Collections.singletonList((CharSequence) "daa_value"));
+    assertHeaderNames("foo", "bar", "juu", "daa");
   }
 
   @Test
   public void testAddConvertUpperCase() {
     map.add("Foo", "foo_value");
     map.add((CharSequence) "Bar", "bar_value");
-    map.add("Juu", (Iterable<String>)Collections.singletonList("juu_value"));
-    map.add("Daa", Collections.singletonList((CharSequence)"daa_value"));
-    assertHeaderNames("foo","bar", "juu", "daa");
+    map.add("Juu", (Iterable<String>) Collections.singletonList("juu_value"));
+    map.add("Daa", Collections.singletonList((CharSequence) "daa_value"));
+    assertHeaderNames("foo", "bar", "juu", "daa");
   }
 
   @Test

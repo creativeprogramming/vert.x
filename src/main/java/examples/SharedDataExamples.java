@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package examples;
 
 import io.vertx.core.DeploymentOptions;
@@ -40,7 +39,6 @@ public class SharedDataExamples {
     map2.put("eek", Buffer.buffer().appendInt(123)); // This buffer will be copied before adding to map
 
     // Then... in another part of your application:
-
     map1 = sd.getLocalMap("mymap1");
 
     String val = map1.get("foo");
@@ -96,7 +94,6 @@ public class SharedDataExamples {
         Lock lock = res.result();
 
         // 5 seconds later we release the lock so someone else can get it
-
         vertx.setTimer(5000, tid -> lock.release());
 
       } else {
@@ -126,7 +123,5 @@ public class SharedDataExamples {
       }
     });
   }
-
-
 
 }

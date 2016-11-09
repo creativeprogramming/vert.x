@@ -1,4 +1,5 @@
 package io.vertx.test.core;
+
 import static org.junit.Assert.assertEquals;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.net.NetClientOptions;
@@ -6,12 +7,11 @@ import io.vertx.core.net.NetClientOptions;
 import org.junit.Test;
 
 /**
- * test that the default object of NetClientOptions equals to when creating
- * a NetClientOptions object from an empty Json object. Previously the json constructor
- * used null for the enabledCipherSuite property which breaks the addEnabledCipherSuite
- * operation.
+ * test that the default object of NetClientOptions equals to when creating a
+ * NetClientOptions object from an empty Json object. Previously the json
+ * constructor used null for the enabledCipherSuite property which breaks the
+ * addEnabledCipherSuite operation.
  */
-
 /**
  * @author <a href="http://oss.lehmann.cx/">Alexander Lehmann</a>
  *

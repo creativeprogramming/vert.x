@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.vertx.core.Handler;
@@ -23,10 +22,12 @@ import io.vertx.core.http.WebSocketFrame;
 import io.vertx.core.impl.VertxInternal;
 
 /**
- * This class is optimised for performance when used on the same event loop. However it can be used safely from other threads.
+ * This class is optimised for performance when used on the same event loop.
+ * However it can be used safely from other threads.
  *
- * The internal state is protected using the synchronized keyword. If always used on the same event loop, then
- * we benefit from biased locking which makes the overhead of synchronized near zero.
+ * The internal state is protected using the synchronized keyword. If always
+ * used on the same event loop, then we benefit from biased locking which makes
+ * the overhead of synchronized near zero.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  *
@@ -36,8 +37,8 @@ public class WebSocketImpl extends WebSocketImplBase implements WebSocket {
   private Object metric;
 
   public WebSocketImpl(VertxInternal vertx,
-                       ClientConnection conn, boolean supportsContinuation,
-                       int maxWebSocketFrameSize) {
+          ClientConnection conn, boolean supportsContinuation,
+          int maxWebSocketFrameSize) {
     super(vertx, conn, supportsContinuation, maxWebSocketFrameSize);
   }
 

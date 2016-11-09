@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.Context;
@@ -111,7 +110,7 @@ public class HttpMetricsTest extends HttpTestBase {
           latch.countDown();
         });
       });
-      for (int i = 0;i < numBuffers;i++) {
+      for (int i = 0; i < numBuffers; i++) {
         req.write(TestUtils.randomBuffer(1000));
       }
       req.end();
@@ -165,7 +164,9 @@ public class HttpMetricsTest extends HttpTestBase {
       });
     });
     CountDownLatch listenLatch = new CountDownLatch(1);
-    server.listen(8080, "localhost", onSuccess(s -> { listenLatch.countDown(); }));
+    server.listen(8080, "localhost", onSuccess(s -> {
+      listenLatch.countDown();
+    }));
     awaitLatch(listenLatch);
     HttpClient client = vertx.createHttpClient(new HttpClientOptions().setProtocolVersion(protocol));
     FakeHttpClientMetrics clientMetrics = FakeMetricsBase.getMetrics(client);

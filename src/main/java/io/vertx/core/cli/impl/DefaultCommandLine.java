@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.cli.impl;
 
 import io.vertx.core.cli.*;
@@ -23,8 +22,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Default implementation of the {@link CommandLine}.
- * This implementation is <strong>not</strong> thread-safe.
+ * Default implementation of the {@link CommandLine}. This implementation is
+ * <strong>not</strong> thread-safe.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
@@ -50,8 +49,9 @@ public class DefaultCommandLine implements CommandLine {
   }
 
   /**
-   * @return the ordered list of not recognized arguments. Unrecognized arguments are command line arguments matching
-   * neither known options or defined arguments.
+   * @return the ordered list of not recognized arguments. Unrecognized
+   * arguments are command line arguments matching neither known options or
+   * defined arguments.
    */
   @Override
   public List<String> allArguments() {
@@ -109,7 +109,7 @@ public class DefaultCommandLine implements CommandLine {
         return createFromList(getRawValueForOption(option), typed);
       } else {
         return getRawValuesForOption(option).stream().map(s -> create(s, typed))
-            .collect(Collectors.toList());
+                .collect(Collectors.toList());
       }
     } else {
       return (List<T>) getRawValuesForOption(option);
@@ -134,7 +134,7 @@ public class DefaultCommandLine implements CommandLine {
     if (argument instanceof TypedArgument) {
       TypedArgument<T> typed = (TypedArgument<T>) argument;
       return getRawValuesForArgument(typed).stream().map(s -> create(s, typed))
-          .collect(Collectors.toList());
+              .collect(Collectors.toList());
     } else {
       return (List<T>) getRawValuesForArgument(argument);
     }
@@ -188,10 +188,10 @@ public class DefaultCommandLine implements CommandLine {
 
   public DefaultCommandLine addRawValue(Option option, String value) {
     if (!acceptMoreValues(option) && !option.isFlag()) {
-      throw new CLIException("The option " + option.getName() + " does not accept value or has " +
-          "already been set");
+      throw new CLIException("The option " + option.getName() + " does not accept value or has "
+              + "already been set");
     }
-    if (! option.getChoices().isEmpty()  && ! option.getChoices().contains(value)) {
+    if (!option.getChoices().isEmpty() && !option.getChoices().contains(value)) {
       throw new InvalidValueException(option, value);
     }
     List<String> list = optionValues.get(option);
@@ -255,7 +255,6 @@ public class DefaultCommandLine implements CommandLine {
   public boolean isSeenInCommandLine(Option option) {
     return optionsSeenInCommandLine.contains(option);
   }
-
 
   private <T> T getValue(TypedOption<T> option) {
     if (isOptionAssigned(option)) {
@@ -338,7 +337,6 @@ public class DefaultCommandLine implements CommandLine {
     }
   }
 
-
   public static <T> List<T> createFromList(String raw, TypedOption<T> option) {
     if (raw == null) {
       return Collections.emptyList();
@@ -348,10 +346,12 @@ public class DefaultCommandLine implements CommandLine {
   }
 
   /**
-   * Checks whether or not the command line is valid, i.e. all constraints from arguments and options have been
-   * satisfied. This method is used when the parser validation is disabled.
+   * Checks whether or not the command line is valid, i.e. all constraints from
+   * arguments and options have been satisfied. This method is used when the
+   * parser validation is disabled.
    *
-   * @return {@code true} if the current {@link CommandLine} object is valid. {@link false} otherwise.
+   * @return {@code true} if the current {@link CommandLine} object is valid.
+   * {@link false} otherwise.
    */
   @Override
   public boolean isValid() {
@@ -368,9 +368,11 @@ public class DefaultCommandLine implements CommandLine {
   }
 
   /**
-   * Checks whether or not the user has passed a "help" option and is asking for help.
+   * Checks whether or not the user has passed a "help" option and is asking for
+   * help.
    *
-   * @return {@code true} if the user command line has enabled a "Help" option, {@link false} otherwise.
+   * @return {@code true} if the user command line has enabled a "Help" option,
+   * {@link false} otherwise.
    */
   @Override
   public boolean isAskingForHelp() {

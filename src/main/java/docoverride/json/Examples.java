@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package docoverride.json;
 
 import io.vertx.core.json.JsonArray;
@@ -56,8 +55,5 @@ public class Examples {
     Integer intVal = array.getInteger(1);
     Boolean boolVal = array.getBoolean(2);
   }
-
-
-
 
 }

@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.launcher.commands;
 
 import org.junit.After;
@@ -38,7 +37,6 @@ public class WatcherTest extends CommandTestBase {
 
   // Note about sleep time - the watcher is configured with a short scan period to avoid that this tests take too
   // much time.
-
   protected Watcher watcher;
   protected AtomicInteger deploy;
   protected AtomicInteger undeploy;
@@ -54,7 +52,7 @@ public class WatcherTest extends CommandTestBase {
     undeploy = new AtomicInteger();
 
     watcher = new Watcher(root, Collections.unmodifiableList(
-        Arrays.asList("**" + File.separator + "*.txt", "windows\\*.win", "unix/*.nix", "FOO.bar")), next -> {
+            Arrays.asList("**" + File.separator + "*.txt", "windows\\*.win", "unix/*.nix", "FOO.bar")), next -> {
       deploy.incrementAndGet();
       if (next != null) {
         next.handle(null);
@@ -300,7 +298,6 @@ public class WatcherTest extends CommandTestBase {
     List<File> results = Watcher.extractRoots(root, patterns);
     assertThat(results).hasSize(1);
     assertThat(results.get(0).getAbsolutePath()).contains(root.getAbsolutePath());
-
 
     patterns.clear();
     patterns.add(root.getParentFile().getAbsolutePath());

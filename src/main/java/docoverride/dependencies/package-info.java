@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 /**
  * If you are using Maven or Gradle, add the following dependency to the _dependencies_ section of your
  * project descriptor to access the Vert.x Core API:
@@ -23,18 +22,16 @@
  * [source,xml,subs="+attributes"]
  * ----
  * <dependency>
- *   <groupId>${maven.groupId}</groupId>
- *   <artifactId>${maven.artifactId}</artifactId>
- *   <version>${maven.version}</version>
+ * <groupId>${maven.groupId}</groupId>
+ * <artifactId>${maven.artifactId}</artifactId>
+ * <version>${maven.version}</version>
  * </dependency>
  * ----
  *
  * * Gradle (in your `build.gradle` file):
  *
- * [source,groovy,subs="+attributes"]
- * ----
- * compile ${maven.groupId}:${maven.artifactId}:${maven.version}
- * ----
+ * [source,groovy,subs="+attributes"] ---- compile
+ * ${maven.groupId}:${maven.artifactId}:${maven.version} ----
  */
 @Document(fileName = "override/dependencies.adoc")
 package docoverride.dependencies;

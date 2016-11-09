@@ -13,12 +13,11 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.fakemetrics;
 
 /**
-* @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
-*/
+ * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+ */
 public class SentMessage {
 
   public final String address;

@@ -31,7 +31,6 @@ public class HelloCommand extends DefaultCommand {
 
   public String name;
 
-
   @Option(longName = "name", shortName = "n", required = true, argName = "name")
   @Description("your name")
   public void setTheName(String name) {

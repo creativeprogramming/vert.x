@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -82,6 +81,7 @@ public class EventLoopGroupTest extends VertxTestBase {
                 assertSame(context, Vertx.currentContext());
               });
             }
+
             @Override
             public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
               ByteBuf buf = (ByteBuf) msg;
@@ -92,6 +92,7 @@ public class EventLoopGroupTest extends VertxTestBase {
                 assertSame(context, Vertx.currentContext());
               });
             }
+
             @Override
             public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
               assertSame(contextThread.get(), Thread.currentThread());
@@ -101,6 +102,7 @@ public class EventLoopGroupTest extends VertxTestBase {
                 ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
               });
             }
+
             @Override
             public void channelInactive(ChannelHandlerContext ctx) throws Exception {
               assertSame(contextThread.get(), Thread.currentThread());
@@ -110,6 +112,7 @@ public class EventLoopGroupTest extends VertxTestBase {
                 testComplete();
               });
             }
+
             @Override
             public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
               fail(cause.getMessage());

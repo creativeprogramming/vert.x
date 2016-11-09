@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http;
 
 import io.vertx.codegen.annotations.VertxGen;
@@ -21,8 +20,9 @@ import io.vertx.core.Handler;
 import io.vertx.core.streams.ReadStream;
 
 /**
- * A {@link io.vertx.core.streams.ReadStream} of {@link io.vertx.core.http.ServerWebSocket}, used for
- * notifying web socket connections to a {@link io.vertx.core.http.HttpServer}.
+ * A {@link io.vertx.core.streams.ReadStream} of
+ * {@link io.vertx.core.http.ServerWebSocket}, used for notifying web socket
+ * connections to a {@link io.vertx.core.http.HttpServer}.
  *
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */

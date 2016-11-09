@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.Vertx;
@@ -38,6 +37,7 @@ public class ClusteredSharedCounterTest extends SharedCounterTest {
   }
 
   int pos;
+
   @Override
   protected Vertx getVertx() {
     Vertx vertx = vertices[pos];
@@ -46,6 +46,5 @@ public class ClusteredSharedCounterTest extends SharedCounterTest {
     }
     return vertx;
   }
-
 
 }

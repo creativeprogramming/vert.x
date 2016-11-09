@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import java.io.File;
@@ -30,8 +29,8 @@ public class JarFileResolverWithSpacesTest extends FileResolverTestBase {
   @Override
   public void setUp() throws Exception {
     original = Thread.currentThread().getContextClassLoader();
-    URLClassLoader someClassloader = new URLClassLoader(new URL[] { new File("src/test/resources/dir with " +
-        "spaces/webroot3.jar").toURI().toURL()}, JarFileResolverWithSpacesTest.class.getClassLoader());
+    URLClassLoader someClassloader = new URLClassLoader(new URL[]{new File("src/test/resources/dir with "
+      + "spaces/webroot3.jar").toURI().toURL()}, JarFileResolverWithSpacesTest.class.getClassLoader());
     Thread.currentThread().setContextClassLoader(someClassloader);
     super.setUp();
     // This is inside the jar webroot2.jar

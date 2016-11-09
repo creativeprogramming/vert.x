@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.logging;
 
 import io.vertx.core.spi.logging.LogDelegate;
@@ -22,11 +21,10 @@ import io.vertx.core.spi.logging.LogDelegateFactory;
 /*
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
-public class SLF4JLogDelegateFactory implements LogDelegateFactory
-{
-   public LogDelegate createDelegate(final String clazz)
-   {
-      return new SLF4JLogDelegate(clazz);
-   }
+public class SLF4JLogDelegateFactory implements LogDelegateFactory {
+
+  public LogDelegate createDelegate(final String clazz) {
+    return new SLF4JLogDelegate(clazz);
+  }
 
 }

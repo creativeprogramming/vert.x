@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.netty.handler.ssl.OpenSsl;
@@ -55,8 +54,8 @@ public class SSLHelperTest extends VertxTestBase {
     SSLEngine engine = context.createSSLEngine();
     String[] expected = engine.getEnabledCipherSuites();
     SSLHelper helper = new SSLHelper(new HttpClientOptions(),
-        Cert.CLIENT_JKS.get(),
-        Trust.SERVER_JKS.get());
+            Cert.CLIENT_JKS.get(),
+            Trust.SERVER_JKS.get());
     SslContext ctx = helper.getContext((VertxInternal) vertx);
     assertEquals(new HashSet<>(Arrays.asList(expected)), new HashSet<>(ctx.cipherSuites()));
   }
@@ -65,9 +64,9 @@ public class SSLHelperTest extends VertxTestBase {
   public void testUseOpenSSLCiphersWhenNotSpecified() throws Exception {
     Set<String> expected = OpenSsl.availableCipherSuites();
     SSLHelper helper = new SSLHelper(
-        new HttpClientOptions().setOpenSslEngineOptions(new OpenSSLEngineOptions()),
-        Cert.CLIENT_PEM.get(),
-        Trust.SERVER_PEM.get());
+            new HttpClientOptions().setOpenSslEngineOptions(new OpenSSLEngineOptions()),
+            Cert.CLIENT_PEM.get(),
+            Trust.SERVER_PEM.get());
     SslContext ctx = helper.getContext((VertxInternal) vertx);
     assertEquals(expected, new HashSet<>(ctx.cipherSuites()));
   }
@@ -82,10 +81,10 @@ public class SSLHelperTest extends VertxTestBase {
     testOpenSslServerSessionContext(false);
   }
 
-  private void testOpenSslServerSessionContext(boolean testDefault){
+  private void testOpenSslServerSessionContext(boolean testDefault) {
     HttpServerOptions httpServerOptions = new HttpServerOptions().setOpenSslEngineOptions(new OpenSSLEngineOptions());
 
-    if(!testDefault) {
+    if (!testDefault) {
       httpServerOptions.setOpenSslEngineOptions(new OpenSSLEngineOptions().setSessionCacheEnabled(false));
     }
 

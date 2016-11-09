@@ -15,7 +15,6 @@
  */
 package io.vertx.core.cli.impl;
 
-
 import io.vertx.core.cli.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,11 +39,11 @@ public class IntensiveDefaultParserTest {
     cli.setName("test").setHidden(false).setDescription("A test command");
 
     cli.addOption(new TypedOption<Boolean>().setType(Boolean.class).setShortName("a").setLongName("enable-a")
-        .setFlag(true).setDescription("turn [a] on or off"));
+            .setFlag(true).setDescription("turn [a] on or off"));
     cli.addOption(new TypedOption<String>().setType(String.class).setShortName("b").setLongName("bfile").setSingleValued(true)
-        .setDescription("set the value of [b]"));
+            .setDescription("set the value of [b]"));
     cli.addOption(new TypedOption<Boolean>().setType(Boolean.class).setShortName("c").setLongName("copt").setSingleValued(false)
-        .setDescription("turn [c] on or off"));
+            .setDescription("turn [c] on or off"));
   }
 
   private boolean getBooleanOption(CommandLine evaluatedCLI, String name) {
@@ -58,9 +57,9 @@ public class IntensiveDefaultParserTest {
   @Test
   public void testSimpleShort() throws Exception {
     String[] args = new String[]{
-        "-a",
-        "-b", "toast",
-        "foo", "bar"};
+      "-a",
+      "-b", "toast",
+      "foo", "bar"};
     CommandLine evaluated = cli.parse(Arrays.asList(args));
 
     assertThat(getBooleanOption(evaluated, "a")).isTrue();
@@ -72,8 +71,8 @@ public class IntensiveDefaultParserTest {
   @Test
   public void testSimpleLong() throws Exception {
     String[] args = new String[]{"--enable-a",
-        "--bfile", "toast",
-        "foo", "bar"};
+      "--bfile", "toast",
+      "foo", "bar"};
 
     CommandLine evaluated = cli.parse(Arrays.asList(args));
 
@@ -87,8 +86,8 @@ public class IntensiveDefaultParserTest {
   @Test
   public void testArgumentsInTheMiddle() throws Exception {
     String[] args = new String[]{"-c",
-        "foobar",
-        "-b", "toast"};
+      "foobar",
+      "-b", "toast"};
 
     CommandLine evaluated = cli.parse(Arrays.asList(args));
     assertThat(getBooleanOption(evaluated, "c")).isTrue();
@@ -118,9 +117,9 @@ public class IntensiveDefaultParserTest {
   @Test
   public void testDoubleDash1() throws Exception {
     String[] args = new String[]{
-        "--copt",
-        "--",
-        "-b", "toast"};
+      "--copt",
+      "--",
+      "-b", "toast"};
 
     CommandLine evaluated = cli.parse(Arrays.asList(args));
 
@@ -146,9 +145,9 @@ public class IntensiveDefaultParserTest {
   @Test
   public void testSingleDash() throws Exception {
     String[] args = new String[]{"--copt",
-        "-b", "-",
-        "-a",
-        "-"};
+      "-b", "-",
+      "-a",
+      "-"};
 
     CommandLine evaluated = cli.parse(Arrays.asList(args));
 
@@ -192,7 +191,7 @@ public class IntensiveDefaultParserTest {
   public void testShortWithEqual() throws Exception {
     String[] args = new String[]{"-f=bar"};
     cli.addOption(new TypedOption<String>().setType(String.class).setSingleValued(true)
-        .setLongName("foo").setShortName("f"));
+            .setLongName("foo").setShortName("f"));
 
     CommandLine evaluated = cli.parse(Arrays.asList(args));
     assertThat(getStringOption(evaluated, "foo")).isEqualTo("bar");
@@ -202,7 +201,7 @@ public class IntensiveDefaultParserTest {
   public void testShortWithoutEqual() throws Exception {
     String[] args = new String[]{"-fbar"};
     cli.addOption(new TypedOption<String>().setType(String.class).setSingleValued(true)
-        .setLongName("foo").setShortName("f"));
+            .setLongName("foo").setShortName("f"));
     CommandLine evaluated = cli.parse(Arrays.asList(args));
     assertThat(getStringOption(evaluated, "foo")).isEqualTo("bar");
   }
@@ -211,7 +210,7 @@ public class IntensiveDefaultParserTest {
   public void testLongWithEqualDoubleDash() throws Exception {
     String[] args = new String[]{"--foo=bar"};
     cli.addOption(new TypedOption<String>().setType(String.class).setSingleValued(true)
-        .setLongName("foo").setShortName("f"));
+            .setLongName("foo").setShortName("f"));
     CommandLine evaluated = cli.parse(Arrays.asList(args));
     assertThat(getStringOption(evaluated, "foo")).isEqualTo("bar");
   }
@@ -220,7 +219,7 @@ public class IntensiveDefaultParserTest {
   public void testLongWithEqualSingleDash() throws Exception {
     String[] args = new String[]{"-foo=bar"};
     cli.addOption(new TypedOption<String>().setType(String.class).setSingleValued(true)
-        .setLongName("foo").setShortName("f"));
+            .setLongName("foo").setShortName("f"));
     CommandLine evaluated = cli.parse(Arrays.asList(args));
     assertThat(getStringOption(evaluated, "foo")).isEqualTo("bar");
   }
@@ -229,7 +228,7 @@ public class IntensiveDefaultParserTest {
   public void testLongWithoutEqualSingleDash() throws Exception {
     String[] args = new String[]{"-foobar"};
     cli.addOption(new TypedOption<String>().setType(String.class).setSingleValued(true)
-        .setLongName("foo").setShortName("f"));
+            .setLongName("foo").setShortName("f"));
     CommandLine evaluated = cli.parse(Arrays.asList(args));
     assertThat(getStringOption(evaluated, "foo")).isEqualTo("bar");
   }
@@ -238,11 +237,11 @@ public class IntensiveDefaultParserTest {
   public void testAmbiguousLongWithoutEqualSingleDash() throws Exception {
     String[] args = new String[]{"-b", "-foobar"};
 
-    TypedOption<String> f =
-        new TypedOption<String>().setType(String.class).setLongName("foo").setShortName("f").setSingleValued(true);
-    TypedOption<Boolean> b =
-        new TypedOption<Boolean>().setType(Boolean.class).setLongName("bar").setShortName("b")
-            .setFlag(true);
+    TypedOption<String> f
+            = new TypedOption<String>().setType(String.class).setLongName("foo").setShortName("f").setSingleValued(true);
+    TypedOption<Boolean> b
+            = new TypedOption<Boolean>().setType(Boolean.class).setLongName("bar").setShortName("b")
+                    .setFlag(true);
 
     cli.removeOption("b").addOption(f).addOption(b);
 
@@ -256,7 +255,7 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"--foobar"};
 
     TypedOption<String> f = new TypedOption<String>()
-        .setType(String.class).setLongName("foo").setShortName("f").setSingleValued(true);
+            .setType(String.class).setLongName("foo").setShortName("f").setSingleValued(true);
     cli.addOption(f);
 
     CommandLine evaluated = cli.parse(Arrays.asList(args));
@@ -270,9 +269,9 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"--foo=bar"};
 
     TypedOption<Boolean> f = new TypedOption<Boolean>().setLongName("foo").setShortName("f")
-        .setType(Boolean.class)
-        .setSingleValued(false) // No value accepted here.
-        .setFlag(true);
+            .setType(Boolean.class)
+            .setSingleValued(false) // No value accepted here.
+            .setFlag(true);
     cli.addOption(f);
 
     try {
@@ -289,8 +288,8 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"-foobar"};
 
     TypedOption<Boolean> f = new TypedOption<Boolean>().setLongName("foo").setShortName("f").setType(Boolean.class)
-        .setSingleValued(false) // No value accepted here.
-        ;
+            .setSingleValued(false) // No value accepted here.
+            ;
     cli.addOption(f);
     try {
       CommandLine evaluated = cli.parse(Arrays.asList(args));
@@ -306,8 +305,8 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"-f=bar"};
 
     TypedOption<Boolean> f = new TypedOption<Boolean>().setLongName("foo").setShortName("f").setType(Boolean.class)
-        .setSingleValued(false) // No value accepted here.
-        ;
+            .setSingleValued(false) // No value accepted here.
+            ;
 
     cli.addOption(f);
     try {
@@ -324,8 +323,8 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"-Jsource=1.5", "-J", "target", "1.5", "foo"};
 
     TypedOption<String> f = new TypedOption<String>().setShortName("J")
-        .setType(String.class)
-        .setMultiValued(true);
+            .setType(String.class)
+            .setMultiValued(true);
     cli.addOption(f);
 
     CommandLine evaluated = cli.parse(Arrays.asList(args));
@@ -339,9 +338,9 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"--ver"};
 
     TypedOption<Boolean> v = new TypedOption<Boolean>().setLongName("version").setType(Boolean.class)
-        .setSingleValued(false);
+            .setSingleValued(false);
     TypedOption<Boolean> h = new TypedOption<Boolean>().setLongName("help").setType(Boolean.class)
-        .setSingleValued(false);
+            .setSingleValued(false);
     cli.addOption(v).addOption(h);
 
     CommandLine evaluated = cli.parse(Arrays.asList(args));
@@ -353,9 +352,9 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"-ver"};
 
     TypedOption<Boolean> v = new TypedOption<Boolean>().setLongName("version").setType(Boolean.class)
-        .setSingleValued(false);
+            .setSingleValued(false);
     TypedOption<Boolean> h = new TypedOption<Boolean>().setLongName("help").setType(Boolean.class)
-        .setSingleValued(false);
+            .setSingleValued(false);
     cli.addOption(v).addOption(h);
 
     CommandLine evaluated = cli.parse(Arrays.asList(args));
@@ -367,10 +366,10 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"--ver=1"};
 
     TypedOption<Integer> v = new TypedOption<Integer>().setLongName("verbose")
-        .setSingleValued(true)
-        .setType(Integer.class);
+            .setSingleValued(true)
+            .setType(Integer.class);
     TypedOption<Boolean> h = new TypedOption<Boolean>().setLongName("help").setType(Boolean.class)
-        .setSingleValued(false);
+            .setSingleValued(false);
 
     cli.addOption(v).addOption(h);
     CommandLine evaluated = cli.parse(Arrays.asList(args));
@@ -382,11 +381,11 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"-ver=1"};
 
     TypedOption<Integer> v = new TypedOption<Integer>().setLongName("verbose")
-        .setSingleValued(true)
-        .setType(Integer.class);
+            .setSingleValued(true)
+            .setType(Integer.class);
     TypedOption<Boolean> h = new TypedOption<Boolean>().setLongName("help")
-        .setType(Boolean.class)
-        .setSingleValued(false);
+            .setType(Boolean.class)
+            .setSingleValued(false);
 
     cli.addOption(v).addOption(h);
     CommandLine evaluated = cli.parse(Arrays.asList(args));
@@ -398,11 +397,11 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"--ver"};
 
     TypedOption<Integer> v1 = new TypedOption<Integer>().setLongName("verbose")
-        .setSingleValued(true)
-        .setType(Integer.class);
+            .setSingleValued(true)
+            .setType(Integer.class);
     TypedOption<Boolean> v2 = new TypedOption<Boolean>().setLongName("version")
-        .setType(Boolean.class)
-        .setSingleValued(false);
+            .setType(Boolean.class)
+            .setSingleValued(false);
 
     cli.addOption(v1).addOption(v2);
     try {
@@ -419,10 +418,10 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"-ver"};
 
     TypedOption<Integer> v1 = new TypedOption<Integer>().setLongName("verbose")
-        .setSingleValued(true)
-        .setType(Integer.class);
+            .setSingleValued(true)
+            .setType(Integer.class);
     TypedOption<Boolean> v2 = new TypedOption<Boolean>().setLongName("version").setType(Boolean.class)
-        .setSingleValued(false);
+            .setSingleValued(false);
 
     cli.addOption(v1).addOption(v2);
     try {
@@ -439,10 +438,10 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"--ver=1"};
 
     TypedOption<Integer> v1 = new TypedOption<Integer>().setLongName("verbose")
-        .setSingleValued(true)
-        .setType(Integer.class);
+            .setSingleValued(true)
+            .setType(Integer.class);
     TypedOption<Boolean> v2 = new TypedOption<Boolean>().setLongName("version").setType(Boolean.class)
-        .setSingleValued(false);
+            .setSingleValued(false);
 
     cli.addOption(v1).addOption(v2);
     try {
@@ -459,10 +458,10 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"-ver=1"};
 
     TypedOption<Integer> v1 = new TypedOption<Integer>().setLongName("verbose")
-        .setSingleValued(true)
-        .setType(Integer.class);
+            .setSingleValued(true)
+            .setType(Integer.class);
     TypedOption<Boolean> v2 = new TypedOption<Boolean>().setLongName("version").setType(Boolean.class)
-        .setSingleValued(false);
+            .setSingleValued(false);
 
     cli.addOption(v1).addOption(v2);
     try {
@@ -479,10 +478,10 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"-ver"};
 
     TypedOption<Boolean> v2 = new TypedOption<Boolean>().setLongName("version").setType(Boolean.class)
-        .setSingleValued(false);
+            .setSingleValued(false);
     TypedOption<Integer> v1 = new TypedOption<Integer>().setSingleValued(true)
-        .setShortName("v")
-        .setType(Integer.class);
+            .setShortName("v")
+            .setType(Integer.class);
 
     cli.addOption(v1).addOption(v2);
     CommandLine evaluated = cli.parse(Arrays.asList(args));
@@ -494,9 +493,8 @@ public class IntensiveDefaultParserTest {
   public void testWithRequiredOption() throws Exception {
     String[] args = new String[]{"-b", "file"};
 
-
     TypedOption<String> b = new TypedOption<String>().setShortName("b").setLongName("bfile").setSingleValued(true)
-        .setDescription("set the value of [b]").setType(String.class).setRequired(true);
+            .setDescription("set the value of [b]").setType(String.class).setRequired(true);
     cli.removeOption("b").addOption(b);
 
     CommandLine evaluated = cli.parse(Arrays.asList(args));
@@ -511,7 +509,7 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"-a", "-b", "file"};
 
     TypedOption<String> b = new TypedOption<String>().setShortName("b").setLongName("bfile").setSingleValued(true)
-        .setDescription("set the value of [b]").setType(String.class).setRequired(true);
+            .setDescription("set the value of [b]").setType(String.class).setRequired(true);
     cli.removeOption("b").addOption(b);
 
     CommandLine evaluated = cli.parse(Arrays.asList(args));
@@ -526,10 +524,9 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"-a"};
 
     TypedOption<String> b = new TypedOption<String>().setShortName("b").setLongName("bfile")
-        .setSingleValued(true)
-        .setDescription("set the value of [b]").setType(String.class).setRequired(true);
+            .setSingleValued(true)
+            .setDescription("set the value of [b]").setType(String.class).setRequired(true);
     cli.removeOption("b").addOption(b);
-
 
     try {
       cli.parse(Arrays.asList(args));
@@ -544,9 +541,9 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"-a"};
 
     TypedOption<String> b = new TypedOption<String>().setShortName("b").setLongName("bfile").setSingleValued(true)
-        .setDescription("set the value of [b]").setType(String.class).setRequired(true);
+            .setDescription("set the value of [b]").setType(String.class).setRequired(true);
     TypedOption<Boolean> c = new TypedOption<Boolean>().setShortName("c").setLongName("copt").setSingleValued(false)
-        .setDescription("turn [c] on or off").setType(Boolean.class).setRequired(true);
+            .setDescription("turn [c] on or off").setType(Boolean.class).setRequired(true);
     cli.removeOption("b").addOption(b).removeOption("c").addOption(c);
 
     try {
@@ -594,9 +591,9 @@ public class IntensiveDefaultParserTest {
     String[] args = new String[]{"-e", "one", "two", "-f", "1"};
 
     TypedOption<String> e = new TypedOption<String>().setShortName("e")
-        .setMultiValued(true).setType(String.class);
+            .setMultiValued(true).setType(String.class);
     TypedOption<Integer> f = new TypedOption<Integer>().setShortName("f")
-        .setMultiValued(true).setType(Integer.class);
+            .setMultiValued(true).setType(Integer.class);
 
     cli.addOption(e).addOption(f);
     CommandLine evaluated = cli.parse(Arrays.asList(args));

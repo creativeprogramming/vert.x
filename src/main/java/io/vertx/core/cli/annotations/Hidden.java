@@ -21,7 +21,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotates a {@link io.vertx.core.cli.CLI} and/or its {@link Option @Option} setters to hide it from the help message.
+ * Annotates a {@link io.vertx.core.cli.CLI} and/or its {@link Option @Option}
+ * setters to hide it from the help message.
  *
  * @author Clement Escoffier <clement@apache.org>
  * @see Summary

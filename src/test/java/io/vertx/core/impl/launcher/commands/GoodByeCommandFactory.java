@@ -13,13 +13,13 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.launcher.commands;
 
 import io.vertx.core.cli.CLI;
 import io.vertx.core.spi.launcher.DefaultCommandFactory;
 
 public class GoodByeCommandFactory extends DefaultCommandFactory<GoodByeCommand> {
+
   public GoodByeCommandFactory() {
     super(GoodByeCommand.class);
   }

@@ -13,14 +13,14 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.cli;
 
 import io.vertx.core.cli.converters.Converter;
 
 /**
- * An implementation of {@link Argument} for java specifying the type of object received by the argument. This
- * allows converting the given <em>raw</em> value into the specified type.
+ * An implementation of {@link Argument} for java specifying the type of object
+ * received by the argument. This allows converting the given <em>raw</em> value
+ * into the specified type.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
@@ -37,7 +37,8 @@ public class TypedArgument<T> extends Argument {
   protected Converter<T> converter;
 
   /**
-   * Creates a new instance of {@link TypedArgument} by copying the state of another {@link TypedArgument}.
+   * Creates a new instance of {@link TypedArgument} by copying the state of
+   * another {@link TypedArgument}.
    *
    * @param arg the copied argument
    */
@@ -91,9 +92,10 @@ public class TypedArgument<T> extends Argument {
   }
 
   /**
-   * Checks whether or not the argument configuration is valid. In addition of the check made by the parent class it
-   * ensures that the type is set.
-   * If the configuration is not valid, this method throws a {@link IllegalArgumentException}.
+   * Checks whether or not the argument configuration is valid. In addition of
+   * the check made by the parent class it ensures that the type is set. If the
+   * configuration is not valid, this method throws a
+   * {@link IllegalArgumentException}.
    */
   @Override
   public void ensureValidity() {

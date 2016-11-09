@@ -11,8 +11,8 @@ import io.vertx.core.impl.VertxInternal;
 import io.vertx.core.net.ProxyOptions;
 
 /**
- * The logic for connecting to an host, this implementations performs a connection
- * to the host after resolving its internet address.
+ * The logic for connecting to an host, this implementations performs a
+ * connection to the host after resolving its internet address.
  *
  * See if we can replace that by a Netty handler sometimes.
  *
@@ -26,7 +26,7 @@ public class ChannelProvider {
   }
 
   public void connect(VertxInternal vertx, Bootstrap bootstrap, ProxyOptions options, String host, int port,
-      Handler<Channel> channelInitializer, Handler<AsyncResult<Channel>> channelHandler) {
+          Handler<Channel> channelInitializer, Handler<AsyncResult<Channel>> channelHandler) {
     bootstrap.resolver(vertx.nettyAddressResolverGroup());
     bootstrap.handler(new ChannelInitializer<Channel>() {
       @Override

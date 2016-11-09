@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.fail;
 
-
 public class ServiceCommandLookupTest {
 
   ServiceCommandFactoryLoader loader = new ServiceCommandFactoryLoader();

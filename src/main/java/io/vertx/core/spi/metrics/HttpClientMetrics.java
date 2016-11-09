@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.spi.metrics;
 
 import io.vertx.core.http.HttpClientRequest;
@@ -22,21 +21,24 @@ import io.vertx.core.http.WebSocket;
 import io.vertx.core.net.SocketAddress;
 
 /**
- * The http client metrics SPI that Vert.x will use to call when http client events occur.<p/>
+ * The http client metrics SPI that Vert.x will use to call when http client
+ * events occur.<p/>
  *
- * The thread model for the http server metrics depends on the actual context thats started the server.<p/>
+ * The thread model for the http server metrics depends on the actual context
+ * thats started the server.<p/>
  *
  * <h3>Event loop context</h3>
  *
- * Unless specified otherwise, all the methods on this object including the methods inherited from the super interfaces are invoked
- * with the thread of the http client and therefore are the same than the
- * {@link io.vertx.core.spi.metrics.VertxMetrics} {@code createMetrics} method that created and returned
- * this metrics object.
+ * Unless specified otherwise, all the methods on this object including the
+ * methods inherited from the super interfaces are invoked with the thread of
+ * the http client and therefore are the same than the
+ * {@link io.vertx.core.spi.metrics.VertxMetrics} {@code createMetrics} method
+ * that created and returned this metrics object.
  *
  * <h3>Worker context</h3>
  *
- * Unless specified otherwise, all the methods on this object including the methods inherited from the super interfaces are invoked
- * with a worker thread.
+ * Unless specified otherwise, all the methods on this object including the
+ * methods inherited from the super interfaces are invoked with a worker thread.
  *
  * @author <a href="mailto:nscavell@redhat.com">Nick Scavelli</a>
  */
@@ -64,14 +66,16 @@ public interface HttpClientMetrics<R, W, S, E, T> extends TCPMetrics<S> {
   /**
    * Called when a connection is requested.
    *
-   * @param endpointMetric the endpoint metric returned by {@link #createEndpoint}
+   * @param endpointMetric the endpoint metric returned by
+   * {@link #createEndpoint}
    */
   T enqueueRequest(E endpointMetric);
 
   /**
    * Called when a request for connection is satisfied.
    *
-   * @param endpointMetric the endpoint metric returned by {@link #createEndpoint}
+   * @param endpointMetric the endpoint metric returned by
+   * {@link #createEndpoint}
    */
   void dequeueRequest(E endpointMetric, T taskMetric);
 
@@ -92,8 +96,9 @@ public interface HttpClientMetrics<R, W, S, E, T> extends TCPMetrics<S> {
   void endpointDisconnected(E endpointMetric, S socketMetric);
 
   /**
-   * Called when an http client request begins. Vert.x will invoke {@link #requestEnd} when the request
-   * has ended or {@link #requestReset} if the request/response has failed before.
+   * Called when an http client request begins. Vert.x will invoke
+   * {@link #requestEnd} when the request has ended or {@link #requestReset} if
+   * the request/response has failed before.
    *
    *
    *
@@ -115,8 +120,9 @@ public interface HttpClientMetrics<R, W, S, E, T> extends TCPMetrics<S> {
   void requestEnd(R requestMetric);
 
   /**
-   * Called when an http client response begins. Vert.x will invoke {@link #responseEnd} when the response has ended
-   *  or {@link #requestReset} if the request/response has failed before.
+   * Called when an http client response begins. Vert.x will invoke
+   * {@link #responseEnd} when the response has ended or {@link #requestReset}
+   * if the request/response has failed before.
    *
    * @param requestMetric the request metric
    * @param response the {@link io.vertx.core.http.HttpClientResponse}
@@ -136,8 +142,8 @@ public interface HttpClientMetrics<R, W, S, E, T> extends TCPMetrics<S> {
   R responsePushed(E endpointMetric, S socketMetric, SocketAddress localAddress, SocketAddress remoteAddress, HttpClientRequest request);
 
   /**
-   * Called when the http client request couldn't complete successfully, for instance the connection
-   * was closed before the response was received.
+   * Called when the http client request couldn't complete successfully, for
+   * instance the connection was closed before the response was received.
    *
    * @param requestMetric the request metric
    */

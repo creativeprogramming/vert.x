@@ -18,8 +18,8 @@ package io.vertx.core.dns;
 import java.util.Objects;
 
 /**
- * Exception which is used to notify the {@link io.vertx.core.AsyncResult}
- * if the DNS query returns a {@link DnsResponseCode} which indicates and error.
+ * Exception which is used to notify the {@link io.vertx.core.AsyncResult} if
+ * the DNS query returns a {@link DnsResponseCode} which indicates and error.
  *
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>
  */
@@ -33,7 +33,8 @@ public final class DnsException extends Exception {
   }
 
   /**
-   * The {@link DnsResponseCode} which caused this {@link io.vertx.core.dns.DnsException} to be created.
+   * The {@link DnsResponseCode} which caused this
+   * {@link io.vertx.core.dns.DnsException} to be created.
    */
   public DnsResponseCode code() {
     return code;

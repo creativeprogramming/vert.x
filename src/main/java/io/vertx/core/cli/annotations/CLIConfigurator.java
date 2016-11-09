@@ -15,7 +15,6 @@
  */
 package io.vertx.core.cli.annotations;
 
-
 import io.vertx.core.cli.*;
 import io.vertx.core.cli.impl.DefaultCLI;
 import io.vertx.core.cli.impl.ReflectionUtils;
@@ -28,15 +27,16 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Class responsible for defining CLI using annotations and injecting values extracted by the parser.
+ * Class responsible for defining CLI using annotations and injecting values
+ * extracted by the parser.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
 public class CLIConfigurator {
 
-
   /**
-   * Creates an instance of the given class, and extracts the metadata from the given class.
+   * Creates an instance of the given class, and extracts the metadata from the
+   * given class.
    *
    * @param clazz the CLI class
    * @return the defined CLI.
@@ -92,13 +92,13 @@ public class CLIConfigurator {
     // Option
     Option option = method.getAnnotation(Option.class);
     opt.setLongName(option.longName())
-        .setShortName(option.shortName())
-        .setMultiValued(option.acceptMultipleValues())
-        .setSingleValued(option.acceptValue())
-        .setArgName(option.argName())
-        .setFlag(option.flag())
-        .setHelp(option.help())
-        .setRequired(option.required());
+            .setShortName(option.shortName())
+            .setMultiValued(option.acceptMultipleValues())
+            .setSingleValued(option.acceptValue())
+            .setArgName(option.argName())
+            .setFlag(option.flag())
+            .setHelp(option.help())
+            .setRequired(option.required());
 
     // Description
     Description description = method.getAnnotation(Description.class);
@@ -113,8 +113,8 @@ public class CLIConfigurator {
 
     if (ReflectionUtils.isMultiple(method)) {
       opt
-          .setType(ReflectionUtils.getComponentType(method.getParameters()[0]))
-          .setMultiValued(true);
+              .setType(ReflectionUtils.getComponentType(method.getParameters()[0]))
+              .setMultiValued(true);
     } else {
       final Class<?> type = method.getParameters()[0].getType();
       opt.setType(type);
@@ -162,8 +162,8 @@ public class CLIConfigurator {
 
     if (ReflectionUtils.isMultiple(method)) {
       arg
-          .setType(ReflectionUtils.getComponentType(method.getParameters()[0]))
-          .setMultiValued(true);
+              .setType(ReflectionUtils.getComponentType(method.getParameters()[0]))
+              .setMultiValued(true);
     } else {
       final Class<?> type = method.getParameters()[0].getType();
       arg.setType(type);
@@ -214,9 +214,10 @@ public class CLIConfigurator {
   }
 
   /**
-   * Injects the value in the annotated setter methods ({@link Option} and {@link Argument}.
+   * Injects the value in the annotated setter methods ({@link Option} and
+   * {@link Argument}.
    *
-   * @param cli    the cli
+   * @param cli the cli
    * @param object the object to be injected
    * @throws CLIException if an injection issue occurred.
    */

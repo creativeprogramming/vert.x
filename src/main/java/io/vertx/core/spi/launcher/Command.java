@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.spi.launcher;
 
 import io.vertx.core.cli.CLIException;
@@ -23,18 +22,20 @@ import io.vertx.core.cli.annotations.Option;
 import io.vertx.core.cli.annotations.Summary;
 
 /**
- * A plug-in to the Vert.x command or {@link io.vertx.core.Launcher} class. Each command instance is created
- * by a {@link CommandFactory}.
+ * A plug-in to the Vert.x command or {@link io.vertx.core.Launcher} class. Each
+ * command instance is created by a {@link CommandFactory}.
  * <p/>
- * {@link Command} implementation can retrieve argument and option using the {@link Argument} and {@link
- * Option} annotations. Documentation / help is provided using the {@link Summary} (single sentence) and
- * {@link Description} annotations.
+ * {@link Command} implementation can retrieve argument and option using the
+ * {@link Argument} and {@link
+ * Option} annotations. Documentation / help is provided using the
+ * {@link Summary} (single sentence) and {@link Description} annotations.
  * <p>
- * Commands follow a strict lifecycle. The {@link #setUp(ExecutionContext)} method is called with an
- * execution context. It lets you validate the inputs and prepare the environment is needed. The
- * {@link #run()} method is called immediately after {@link #setUp(ExecutionContext)}, and executes the
- * command. Finally, once the command has completed, the {@link #tearDown()} method is called. In this method
- * you have the opportunity to cleanup.
+ * Commands follow a strict lifecycle. The {@link #setUp(ExecutionContext)}
+ * method is called with an execution context. It lets you validate the inputs
+ * and prepare the environment is needed. The {@link #run()} method is called
+ * immediately after {@link #setUp(ExecutionContext)}, and executes the command.
+ * Finally, once the command has completed, the {@link #tearDown()} method is
+ * called. In this method you have the opportunity to cleanup.
  * </p>
  *
  * @author Clement Escoffier <clement@apache.org>
@@ -42,9 +43,9 @@ import io.vertx.core.cli.annotations.Summary;
 public interface Command {
 
   /**
-   * Set up the command execution environment.
-   * The command line model has been retrieved and is frozen. Values has been set / injected. You can use
-   * this callback to validate the inputs.
+   * Set up the command execution environment. The command line model has been
+   * retrieved and is frozen. Values has been set / injected. You can use this
+   * callback to validate the inputs.
    *
    * @param context the context
    * @throws CLIException if the validation failed

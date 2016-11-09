@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.streams.impl;
 
 import java.util.Objects;
@@ -27,6 +26,7 @@ import io.vertx.core.streams.WriteStream;
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
 public class PumpFactoryImpl implements PumpFactory {
+
   @Override
   public <T> Pump pump(ReadStream<T> rs, WriteStream<T> ws) {
     Objects.requireNonNull(rs);

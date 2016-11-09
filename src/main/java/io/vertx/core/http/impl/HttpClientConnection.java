@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.vertx.core.http.HttpConnection;
@@ -31,8 +30,8 @@ interface HttpClientConnection extends HttpConnection {
   void reportBytesRead(long s);
 
   /**
-   * Check if the connection is valid for creating streams. The connection might be closed or a {@literal GOAWAY}
-   * frame could have been sent or received.
+   * Check if the connection is valid for creating streams. The connection might
+   * be closed or a {@literal GOAWAY} frame could have been sent or received.
    */
   boolean isValid();
 

@@ -15,7 +15,6 @@
  */
 package io.vertx.core.net.impl;
 
-
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.CompositeByteBuf;
@@ -35,12 +34,14 @@ import io.netty.util.concurrent.EventExecutor;
 import java.net.SocketAddress;
 
 /**
- * A {@link io.netty.buffer.ByteBufAllocator} which is partial pooled. Which means only direct {@link io.netty.buffer.ByteBuf}s are pooled. The rest
- * is unpooled.
+ * A {@link io.netty.buffer.ByteBufAllocator} which is partial pooled. Which
+ * means only direct {@link io.netty.buffer.ByteBuf}s are pooled. The rest is
+ * unpooled.
  *
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>
  */
 public final class PartialPooledByteBufAllocator implements ByteBufAllocator {
+
   // Make sure we use the same number of areas as EventLoop's to reduce condition.
   // We can remove this once the following netty issue is fixed:
   // See https://github.com/netty/netty/issues/2264
@@ -49,7 +50,8 @@ public final class PartialPooledByteBufAllocator implements ByteBufAllocator {
 
   public static final PartialPooledByteBufAllocator INSTANCE = new PartialPooledByteBufAllocator();
 
-  private PartialPooledByteBufAllocator() { }
+  private PartialPooledByteBufAllocator() {
+  }
 
   @Override
   public ByteBuf buffer() {
@@ -152,14 +154,17 @@ public final class PartialPooledByteBufAllocator implements ByteBufAllocator {
   }
 
   /**
-   * Create a new {@link io.netty.channel.ChannelHandlerContext} which wraps the given one anf force the usage of direct buffers.
+   * Create a new {@link io.netty.channel.ChannelHandlerContext} which wraps the
+   * given one anf force the usage of direct buffers.
    */
   public static ChannelHandlerContext forceDirectAllocator(ChannelHandlerContext ctx) {
     return new PooledChannelHandlerContext(ctx);
   }
 
   private static final class PooledChannelHandlerContext implements ChannelHandlerContext {
+
     private final ChannelHandlerContext ctx;
+
     PooledChannelHandlerContext(ChannelHandlerContext ctx) {
       this.ctx = ctx;
     }
@@ -385,6 +390,7 @@ public final class PartialPooledByteBufAllocator implements ByteBufAllocator {
   }
 
   private static final class ForceDirectPoooledByteBufAllocator implements ByteBufAllocator {
+
     static ByteBufAllocator INSTANCE = new ForceDirectPoooledByteBufAllocator();
 
     @Override
@@ -481,7 +487,6 @@ public final class PartialPooledByteBufAllocator implements ByteBufAllocator {
     public boolean isDirectBufferPooled() {
       return PartialPooledByteBufAllocator.INSTANCE.isDirectBufferPooled();
     }
-
 
     @Override
     public int calculateNewCapacity(int minNewCapacity, int maxCapacity) {

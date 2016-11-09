@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.buffer.Buffer;
@@ -303,7 +302,7 @@ public class JsonArrayTest {
 
   @Test
   public void testGetJsonObject() {
-    JsonObject obj = new JsonObject().put("foo", "bar");    
+    JsonObject obj = new JsonObject().put("foo", "bar");
     jsonArray.add(obj);
     assertEquals(obj, jsonArray.getJsonObject(0));
     try {
@@ -405,7 +404,7 @@ public class JsonArrayTest {
     innerMap.put("blah", "wibble");
     list.add(innerMap);
     jsonArray = new JsonArray(list);
-    obj = (JsonObject)jsonArray.getValue(0);
+    obj = (JsonObject) jsonArray.getValue(0);
     assertEquals("wibble", obj.getString("blah"));
     // JsonObject with inner List
     list = new ArrayList<>();
@@ -413,7 +412,7 @@ public class JsonArrayTest {
     innerList.add("blah");
     list.add(innerList);
     jsonArray = new JsonArray(list);
-    arr = (JsonArray)jsonArray.getValue(0);
+    arr = (JsonArray) jsonArray.getValue(0);
     assertEquals("blah", arr.getString(0));
   }
 
@@ -426,7 +425,7 @@ public class JsonArrayTest {
     assertSame(jsonArray, jsonArray.add(JsonObjectTest.SomeEnum.FOO));
     assertEquals(JsonObjectTest.SomeEnum.FOO.toString(), jsonArray.getString(0));
     try {
-      jsonArray.add((JsonObjectTest.SomeEnum)null);
+      jsonArray.add((JsonObjectTest.SomeEnum) null);
       fail();
     } catch (NullPointerException e) {
       // OK
@@ -438,7 +437,7 @@ public class JsonArrayTest {
     assertSame(jsonArray, jsonArray.add("foo"));
     assertEquals("foo", jsonArray.getString(0));
     try {
-      jsonArray.add((String)null);
+      jsonArray.add((String) null);
       fail();
     } catch (NullPointerException e) {
       // OK
@@ -462,7 +461,7 @@ public class JsonArrayTest {
     assertSame(jsonArray, jsonArray.add(123));
     assertEquals(Integer.valueOf(123), jsonArray.getInteger(0));
     try {
-      jsonArray.add((Integer)null);
+      jsonArray.add((Integer) null);
       fail();
     } catch (NullPointerException e) {
       // OK
@@ -474,7 +473,7 @@ public class JsonArrayTest {
     assertSame(jsonArray, jsonArray.add(123l));
     assertEquals(Long.valueOf(123l), jsonArray.getLong(0));
     try {
-      jsonArray.add((Long)null);
+      jsonArray.add((Long) null);
       fail();
     } catch (NullPointerException e) {
       // OK
@@ -486,7 +485,7 @@ public class JsonArrayTest {
     assertSame(jsonArray, jsonArray.add(123f));
     assertEquals(Float.valueOf(123f), jsonArray.getFloat(0));
     try {
-      jsonArray.add((Float)null);
+      jsonArray.add((Float) null);
       fail();
     } catch (NullPointerException e) {
       // OK
@@ -498,7 +497,7 @@ public class JsonArrayTest {
     assertSame(jsonArray, jsonArray.add(123d));
     assertEquals(Double.valueOf(123d), jsonArray.getDouble(0));
     try {
-      jsonArray.add((Double)null);
+      jsonArray.add((Double) null);
       fail();
     } catch (NullPointerException e) {
       // OK
@@ -512,7 +511,7 @@ public class JsonArrayTest {
     jsonArray.add(false);
     assertEquals(false, jsonArray.getBoolean(1));
     try {
-      jsonArray.add((Boolean)null);
+      jsonArray.add((Boolean) null);
       fail();
     } catch (NullPointerException e) {
       // OK
@@ -525,7 +524,7 @@ public class JsonArrayTest {
     assertSame(jsonArray, jsonArray.add(obj));
     assertEquals(obj, jsonArray.getJsonObject(0));
     try {
-      jsonArray.add((JsonObject)null);
+      jsonArray.add((JsonObject) null);
       fail();
     } catch (NullPointerException e) {
       // OK
@@ -538,7 +537,7 @@ public class JsonArrayTest {
     assertSame(jsonArray, jsonArray.add(arr));
     assertEquals(arr, jsonArray.getJsonArray(0));
     try {
-      jsonArray.add((JsonArray)null);
+      jsonArray.add((JsonArray) null);
       fail();
     } catch (NullPointerException e) {
       // OK
@@ -551,7 +550,7 @@ public class JsonArrayTest {
     assertSame(jsonArray, jsonArray.add(bytes));
     assertTrue(TestUtils.byteArraysEqual(bytes, jsonArray.getBinary(0)));
     try {
-      jsonArray.add((byte[])null);
+      jsonArray.add((byte[]) null);
       fail();
     } catch (NullPointerException e) {
       // OK
@@ -564,7 +563,7 @@ public class JsonArrayTest {
     assertSame(jsonArray, jsonArray.add(now));
     assertEquals(now, jsonArray.getInstant(0));
     try {
-      jsonArray.add((Instant)null);
+      jsonArray.add((Instant) null);
       fail();
     } catch (NullPointerException e) {
       // OK
@@ -573,20 +572,20 @@ public class JsonArrayTest {
 
   @Test
   public void testAddObject() {
-    jsonArray.add((Object)"bar");
-    jsonArray.add((Object)(Integer.valueOf(123)));
-    jsonArray.add((Object)(Long.valueOf(123l)));
-    jsonArray.add((Object)(Float.valueOf(1.23f)));
-    jsonArray.add((Object)(Double.valueOf(1.23d)));
+    jsonArray.add((Object) "bar");
+    jsonArray.add((Object) (Integer.valueOf(123)));
+    jsonArray.add((Object) (Long.valueOf(123l)));
+    jsonArray.add((Object) (Float.valueOf(1.23f)));
+    jsonArray.add((Object) (Double.valueOf(1.23d)));
     jsonArray.add((Object) true);
     byte[] bytes = TestUtils.randomByteArray(10);
-    jsonArray.add((Object)(bytes));
+    jsonArray.add((Object) (bytes));
     Instant now = Instant.now();
     jsonArray.add(now);
     JsonObject obj = new JsonObject().put("foo", "blah");
     JsonArray arr = new JsonArray().add("quux");
-    jsonArray.add((Object)obj);
-    jsonArray.add((Object)arr);
+    jsonArray.add((Object) obj);
+    jsonArray.add((Object) arr);
     assertEquals("bar", jsonArray.getString(0));
     assertEquals(Integer.valueOf(123), jsonArray.getInteger(1));
     assertEquals(Long.valueOf(123l), jsonArray.getLong(2));
@@ -626,7 +625,7 @@ public class JsonArrayTest {
     assertEquals(arr.getString(0), jsonArray.getString(1));
     assertEquals(arr.getInteger(1), jsonArray.getInteger(2));
     try {
-      jsonArray.add((JsonArray)null);
+      jsonArray.add((JsonArray) null);
       fail();
     } catch (NullPointerException e) {
       // OK
@@ -884,9 +883,9 @@ public class JsonArrayTest {
     jsonArray.add(new JsonObject().put("foo", "bar"));
     jsonArray.add(new JsonArray().add("foo").add(123));
     String strBytes = Base64.getEncoder().encodeToString(bytes);
-    String expected = "[ \"foo\", 123, 1234, 1.23, 2.34, true, \"" + strBytes + "\", null, {" + Utils.LINE_SEPARATOR +
-      "  \"foo\" : \"bar\"" + Utils.LINE_SEPARATOR +
-      "}, [ \"foo\", 123 ] ]";
+    String expected = "[ \"foo\", 123, 1234, 1.23, 2.34, true, \"" + strBytes + "\", null, {" + Utils.LINE_SEPARATOR
+            + "  \"foo\" : \"bar\"" + Utils.LINE_SEPARATOR
+            + "}, [ \"foo\", 123 ] ]";
     String json = jsonArray.encodePrettily();
     assertEquals(expected, json);
   }
@@ -900,20 +899,20 @@ public class JsonArrayTest {
   // Strict JSON doesn't allow comments but we do so users can add comments to config files etc
   @Test
   public void testCommentsInJson() {
-    String jsonWithComments =
-      "// single line comment\n" +
-        "/*\n" +
-        "  This is a multi \n" +
-        "  line comment\n" +
-        "*/\n" +
-        "[\n" +
-        "// another single line comment this time inside the JSON array itself\n" +
-        "  \"foo\", \"bar\" // and a single line comment at end of line \n" +
-        "/*\n" +
-        "  This is a another multi \n" +
-        "  line comment this time inside the JSON array itself\n" +
-        "*/\n" +
-        "]";
+    String jsonWithComments
+            = "// single line comment\n"
+            + "/*\n"
+            + "  This is a multi \n"
+            + "  line comment\n"
+            + "*/\n"
+            + "[\n"
+            + "// another single line comment this time inside the JSON array itself\n"
+            + "  \"foo\", \"bar\" // and a single line comment at end of line \n"
+            + "/*\n"
+            + "  This is a another multi \n"
+            + "  line comment this time inside the JSON array itself\n"
+            + "*/\n"
+            + "]";
     JsonArray json = new JsonArray(jsonWithComments);
     assertEquals("[\"foo\",\"bar\"]", json.encode());
   }
@@ -1067,8 +1066,8 @@ public class JsonArrayTest {
   public void testRemoveMethodReturnedObject() {
     JsonArray obj = new JsonArray();
     obj.add("bar")
-        .add(new JsonObject().put("name", "vert.x").put("count", 2))
-        .add(new JsonArray().add(1.0).add(2.0));
+            .add(new JsonObject().put("name", "vert.x").put("count", 2))
+            .add(new JsonArray().add(1.0).add(2.0));
 
     Object removed = obj.remove(0);
     assertTrue(removed instanceof String);

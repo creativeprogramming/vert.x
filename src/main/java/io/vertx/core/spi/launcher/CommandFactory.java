@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.spi.launcher;
 
 import io.vertx.core.Launcher;
@@ -21,7 +20,8 @@ import io.vertx.core.cli.CLI;
 import io.vertx.core.cli.CommandLine;
 
 /**
- * SPI Interface to provide a new {@link Launcher} command. Implementors needs to provide two methods:
+ * SPI Interface to provide a new {@link Launcher} command. Implementors needs
+ * to provide two methods:
  * <ol>
  * <li>{@link #define()} - creates a {@link CLI} instance (so the model)</li>
  * <li>{@link #create(CommandLine)}} - creates a new command instance</li>
@@ -42,6 +42,5 @@ public interface CommandFactory<C extends Command> {
    * @return the CLI.
    */
   CLI define();
-
 
 }

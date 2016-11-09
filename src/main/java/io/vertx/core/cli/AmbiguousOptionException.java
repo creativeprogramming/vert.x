@@ -15,12 +15,12 @@
  */
 package io.vertx.core.cli;
 
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Exception thrown when the command line is ambiguous meaning it cannot determine exactly which option has to be set.
+ * Exception thrown when the command line is ambiguous meaning it cannot
+ * determine exactly which option has to be set.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
@@ -29,16 +29,15 @@ public class AmbiguousOptionException extends CLIException {
   private final List<Option> options;
   private final String token;
 
-
   /**
    * Creates a new instance of {@link AmbiguousOptionException}.
    *
-   * @param token        the ambiguous token
+   * @param token the ambiguous token
    * @param matchingOpts the list of potential matches
    */
   public AmbiguousOptionException(String token, List<Option> matchingOpts) {
     super("Ambiguous argument in command line: '" + token + "' matches "
-        + matchingOpts.stream().map(Option::getName).collect(Collectors.toList()));
+            + matchingOpts.stream().map(Option::getName).collect(Collectors.toList()));
     this.token = token;
     this.options = matchingOpts;
   }

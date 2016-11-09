@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package examples;
 
 import io.vertx.core.AsyncResult;
@@ -79,7 +78,7 @@ public class DatagramExamples {
 
         // join the multicast group
         socket.listenMulticastGroup("230.0.0.1", asyncResult2 -> {
-            System.out.println("Listen succeeded? " + asyncResult2.succeeded());
+          System.out.println("Listen succeeded? " + asyncResult2.succeeded());
         });
       } else {
         System.out.println("Listen failed" + asyncResult.cause());
@@ -90,28 +89,27 @@ public class DatagramExamples {
   public void example6(Vertx vertx) {
     DatagramSocket socket = vertx.createDatagramSocket(new DatagramSocketOptions());
     socket.listen(1234, "0.0.0.0", asyncResult -> {
-        if (asyncResult.succeeded()) {
-          socket.handler(packet -> {
-            // Do something with the packet
-          });
+      if (asyncResult.succeeded()) {
+        socket.handler(packet -> {
+          // Do something with the packet
+        });
 
-          // join the multicast group
-          socket.listenMulticastGroup("230.0.0.1", asyncResult2 -> {
-              if (asyncResult2.succeeded()) {
-                // will now receive packets for group
+        // join the multicast group
+        socket.listenMulticastGroup("230.0.0.1", asyncResult2 -> {
+          if (asyncResult2.succeeded()) {
+            // will now receive packets for group
 
-                // do some work
-
-                socket.unlistenMulticastGroup("230.0.0.1", asyncResult3 -> {
-                  System.out.println("Unlisten succeeded? " + asyncResult3.succeeded());
-                });
-              } else {
-                System.out.println("Listen failed" + asyncResult2.cause());
-              }
-          });
-        } else {
-          System.out.println("Listen failed" + asyncResult.cause());
-        }
+            // do some work
+            socket.unlistenMulticastGroup("230.0.0.1", asyncResult3 -> {
+              System.out.println("Unlisten succeeded? " + asyncResult3.succeeded());
+            });
+          } else {
+            System.out.println("Listen failed" + asyncResult2.cause());
+          }
+        });
+      } else {
+        System.out.println("Listen failed" + asyncResult.cause());
+      }
     });
   }
 
@@ -119,7 +117,6 @@ public class DatagramExamples {
     DatagramSocket socket = vertx.createDatagramSocket(new DatagramSocketOptions());
 
     // Some code
-
     // This would block packets which are send from 10.0.0.2
     socket.blockMulticastGroup("230.0.0.1", "10.0.0.2", asyncResult -> {
       System.out.println("block succeeded? " + asyncResult.succeeded());

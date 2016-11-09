@@ -15,7 +15,6 @@
  */
 package io.vertx.core.cli.converters;
 
-
 public class Person {
 
   public final String name;

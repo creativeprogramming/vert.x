@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.it;
 
 import java.io.ByteArrayOutputStream;
@@ -27,6 +26,7 @@ import java.util.logging.LogManager;
  * @author <a href="http://escoffier.me">Clement Escoffier</a>
  */
 public class StreamRecording {
+
   private static final PrintStream ORIGINAL_ERR = System.err;
 
   private ByteArrayOutputStream error = new ByteArrayOutputStream();

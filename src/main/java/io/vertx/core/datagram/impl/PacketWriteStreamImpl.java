@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.datagram.impl;
 
 import io.vertx.core.AsyncResult;
@@ -26,8 +25,8 @@ import io.vertx.core.streams.WriteStream;
 /**
  * A write stream for packets.
  *
-* @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
-*/
+ * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+ */
 class PacketWriteStreamImpl implements PacketWritestream, Handler<AsyncResult<DatagramSocket>> {
 
   private DatagramSocketImpl datagramSocket;

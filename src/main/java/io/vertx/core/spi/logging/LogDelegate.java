@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.spi.logging;
 
 /**
@@ -74,7 +73,8 @@ public interface LogDelegate {
   void trace(Object message, Throwable t, Object... params);
 
   /**
-   * @return the underlying framework logger object, null in the default implementation
+   * @return the underlying framework logger object, null in the default
+   * implementation
    */
   default Object unwrap() {
     return null;

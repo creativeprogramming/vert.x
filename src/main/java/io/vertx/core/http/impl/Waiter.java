@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.vertx.core.impl.ContextImpl;
@@ -57,5 +56,5 @@ abstract class Waiter {
    * @return true if the waiter has been cancelled
    */
   abstract boolean isCancelled();
-  
+
 }

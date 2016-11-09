@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.shareddata.impl;
 
 import io.vertx.core.AsyncResult;
@@ -100,8 +99,10 @@ public class SharedDataImpl implements SharedData {
   }
 
   /**
-   * Return a {@code Map} with the specific {@code name}. All invocations of this method with the same value of {@code name}
-   * are guaranteed to return the same {@code Map} instance. <p>
+   * Return a {@code Map} with the specific {@code name}. All invocations of
+   * this method with the same value of {@code name} are guaranteed to return
+   * the same {@code Map} instance.
+   * <p>
    */
   @SuppressWarnings("unchecked")
   public <K, V> LocalMap<K, V> getLocalMap(String name) {
@@ -115,7 +116,6 @@ public class SharedDataImpl implements SharedData {
     }
     return map;
   }
-
 
   private void getLocalLock(String name, long timeout, Handler<AsyncResult<Lock>> resultHandler) {
     AsynchronousLock lock = new AsynchronousLock(vertx);
@@ -142,14 +142,14 @@ public class SharedDataImpl implements SharedData {
       throw new IllegalArgumentException("Cannot put null in key or value of cluster wide map");
     }
     Class<?> clazz = obj.getClass();
-    if (clazz == Integer.class || clazz == int.class ||
-      clazz == Long.class || clazz == long.class ||
-      clazz == Short.class || clazz == short.class ||
-      clazz == Float.class || clazz == float.class ||
-      clazz == Double.class || clazz == double.class ||
-      clazz == Boolean.class || clazz == boolean.class ||
-      clazz == Byte.class || clazz == byte.class ||
-      clazz == String.class || clazz == byte[].class) {
+    if (clazz == Integer.class || clazz == int.class
+            || clazz == Long.class || clazz == long.class
+            || clazz == Short.class || clazz == short.class
+            || clazz == Float.class || clazz == float.class
+            || clazz == Double.class || clazz == double.class
+            || clazz == Boolean.class || clazz == boolean.class
+            || clazz == Byte.class || clazz == byte.class
+            || clazz == String.class || clazz == byte[].class) {
       // Basic types - can go in as is
       return;
     } else if (obj instanceof ClusterSerializable) {
@@ -234,6 +234,5 @@ public class SharedDataImpl implements SharedData {
       delegate.size(resultHandler);
     }
   }
-
 
 }

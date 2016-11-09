@@ -23,14 +23,16 @@ import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.LastHttpContent;
 
 /**
- * Helper wrapper class which allows to assemble a ByteBuf and a HttpHeaders into one "packet" and so more
- * efficient write it through the pipeline.
+ * Helper wrapper class which allows to assemble a ByteBuf and a HttpHeaders
+ * into one "packet" and so more efficient write it through the pipeline.
  *
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>
  */
 class AssembledLastHttpContent extends DefaultByteBufHolder implements LastHttpContent {
+
   private final HttpHeaders trailingHeaders;
   private DecoderResult result;
+
   public AssembledLastHttpContent(ByteBuf buf, HttpHeaders trailingHeaders, DecoderResult result) {
     super(buf);
     this.trailingHeaders = trailingHeaders;

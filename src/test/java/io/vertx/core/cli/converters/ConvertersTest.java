@@ -24,7 +24,6 @@ import java.util.NoSuchElementException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 
-
 public class ConvertersTest {
 
   @Test
@@ -105,7 +104,7 @@ public class ConvertersTest {
   public void testWithFile() {
     final File file = Converters.create(File.class, "foo/hello.txt");
     assertThat(file).hasName("hello.txt")
-        .doesNotExist();
+            .doesNotExist();
   }
 
   private enum HttpMethod {

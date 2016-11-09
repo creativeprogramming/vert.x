@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-
 package io.vertx.core.net;
 
 import io.vertx.core.json.JsonObject;
@@ -22,25 +21,26 @@ import io.vertx.core.json.JsonArray;
 /**
  * Converter for {@link io.vertx.core.net.NetworkOptions}.
  *
- * NOTE: This class has been automatically generated from the {@link io.vertx.core.net.NetworkOptions} original class using Vert.x codegen.
+ * NOTE: This class has been automatically generated from the
+ * {@link io.vertx.core.net.NetworkOptions} original class using Vert.x codegen.
  */
 public class NetworkOptionsConverter {
 
   public static void fromJson(JsonObject json, NetworkOptions obj) {
     if (json.getValue("logActivity") instanceof Boolean) {
-      obj.setLogActivity((Boolean)json.getValue("logActivity"));
+      obj.setLogActivity((Boolean) json.getValue("logActivity"));
     }
     if (json.getValue("receiveBufferSize") instanceof Number) {
-      obj.setReceiveBufferSize(((Number)json.getValue("receiveBufferSize")).intValue());
+      obj.setReceiveBufferSize(((Number) json.getValue("receiveBufferSize")).intValue());
     }
     if (json.getValue("reuseAddress") instanceof Boolean) {
-      obj.setReuseAddress((Boolean)json.getValue("reuseAddress"));
+      obj.setReuseAddress((Boolean) json.getValue("reuseAddress"));
     }
     if (json.getValue("sendBufferSize") instanceof Number) {
-      obj.setSendBufferSize(((Number)json.getValue("sendBufferSize")).intValue());
+      obj.setSendBufferSize(((Number) json.getValue("sendBufferSize")).intValue());
     }
     if (json.getValue("trafficClass") instanceof Number) {
-      obj.setTrafficClass(((Number)json.getValue("trafficClass")).intValue());
+      obj.setTrafficClass(((Number) json.getValue("trafficClass")).intValue());
     }
   }
 

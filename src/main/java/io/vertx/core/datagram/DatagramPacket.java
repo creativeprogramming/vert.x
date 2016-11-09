@@ -20,7 +20,8 @@ import io.vertx.codegen.annotations.VertxGen;
 import io.vertx.core.net.SocketAddress;
 
 /**
- * A received datagram packet (UDP) which contains the data and information about the sender of the data itself.
+ * A received datagram packet (UDP) which contains the data and information
+ * about the sender of the data itself.
  *
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>
  */

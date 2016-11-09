@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 import io.vertx.core.Future;
@@ -32,7 +31,7 @@ public class FutureFactoryImpl implements FutureFactory {
   // TODO - for completed futures with null values we could maybe reuse a static instance to save allocation
   @Override
   public <T> Future<T> succeededFuture() {
-    return new FutureImpl<>((T)null);
+    return new FutureImpl<>((T) null);
   }
 
   @Override

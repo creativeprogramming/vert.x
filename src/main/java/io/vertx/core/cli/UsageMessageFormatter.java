@@ -21,7 +21,6 @@ import java.io.StringReader;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
 /**
  * Usage message formatter.
  *
@@ -84,8 +83,8 @@ public class UsageMessageFormatter {
    * <p/>
    * Defaults to case-insensitive alphabetical sorting by option key.
    */
-  protected Comparator<Option> optionComparator =
-      (opt1, opt2) -> opt1.getName().compareToIgnoreCase(opt2.getName());
+  protected Comparator<Option> optionComparator
+          = (opt1, opt2) -> opt1.getName().compareToIgnoreCase(opt2.getName());
 
   public void setWidth(int width) {
     this.width = width;
@@ -144,9 +143,9 @@ public class UsageMessageFormatter {
   }
 
   /**
-   * Set the separator displayed between a long option and its value.
-   * Ensure that the separator specified is supported by the parser used,
-   * typically ' ' or '='.
+   * Set the separator displayed between a long option and its value. Ensure
+   * that the separator specified is supported by the parser used, typically ' '
+   * or '='.
    *
    * @param longOptSeparator the separator, typically ' ' or '='.
    */
@@ -172,8 +171,8 @@ public class UsageMessageFormatter {
   }
 
   /**
-   * Comparator used to sort the options when they output in help text.
-   * Defaults to case-insensitive alphabetical sorting by option key.
+   * Comparator used to sort the options when they output in help text. Defaults
+   * to case-insensitive alphabetical sorting by option key.
    *
    * @return the {@link Comparator} currently in use to sort the options
    */
@@ -183,7 +182,8 @@ public class UsageMessageFormatter {
 
   /**
    * Set the comparator used to sort the options when they output in help text.
-   * Passing in a null comparator will keep the options in the order they were declared.
+   * Passing in a null comparator will keep the options in the order they were
+   * declared.
    *
    * @param comparator the {@link Comparator} to use for sorting the options
    */
@@ -194,7 +194,7 @@ public class UsageMessageFormatter {
   /**
    * Appends the usage clause for an Option to a StringBuilder.
    *
-   * @param buff   the StringBuilder to append to
+   * @param buff the StringBuilder to append to
    * @param option the Option to append
    */
   protected void appendOption(StringBuilder buff, Option option) {
@@ -232,7 +232,7 @@ public class UsageMessageFormatter {
   /**
    * Appends the usage clause for an Argument to a StringBuilder.
    *
-   * @param buff     the StringBuilder to append to
+   * @param buff the StringBuilder to append to
    * @param argument the argument to add
    * @param required whether the Option is required or not
    */
@@ -261,7 +261,7 @@ public class UsageMessageFormatter {
    * Computes the usage of the given {@link CLI}.
    *
    * @param builder where the usage is going to be written
-   * @param cli     the cli
+   * @param cli the cli
    */
   public void usage(StringBuilder builder, CLI cli) {
     usage(builder, null, cli);
@@ -271,8 +271,9 @@ public class UsageMessageFormatter {
    * Computes the usage of the given {@link CLI}.
    *
    * @param builder where the usage is going to be written
-   * @param prefix  a prefix to prepend to the usage line. It will be added between 'Usage: ' and the CLI name.
-   * @param cli     the cli
+   * @param prefix a prefix to prepend to the usage line. It will be added
+   * between 'Usage: ' and the CLI name.
+   * @param cli the cli
    */
   public void usage(StringBuilder builder, String prefix, CLI cli) {
     computeUsageLine(builder, prefix, cli);
@@ -285,7 +286,7 @@ public class UsageMessageFormatter {
     }
     builder.append("\n");
 
-    if (cli.getOptions().isEmpty()  && cli.getArguments().isEmpty()) {
+    if (cli.getOptions().isEmpty() && cli.getArguments().isEmpty()) {
       // When we have neither options and arguments, just leave.
       return;
     }
@@ -293,7 +294,6 @@ public class UsageMessageFormatter {
     builder.append("Options and Arguments:\n");
     computeOptionsAndArguments(builder, cli.getOptions(), cli.getArguments());
   }
-
 
   public void computeUsage(StringBuilder buffer, String cmdLineSyntax) {
     int argPos = cmdLineSyntax.indexOf(' ') + 1;
@@ -333,12 +333,11 @@ public class UsageMessageFormatter {
     buildWrapped(buffer, buff.toString().indexOf(' ') + 1, buff.toString());
   }
 
-
   /**
    * Computes the help for the specified Options to the specified writer.
    *
-   * @param buffer    The buffer to write the help to
-   * @param options   The command line Options
+   * @param buffer The buffer to write the help to
+   * @param options The command line Options
    * @param arguments the command line Arguments
    */
   public void computeOptionsAndArguments(StringBuilder buffer, List<Option> options, List<Argument> arguments) {
@@ -350,7 +349,7 @@ public class UsageMessageFormatter {
    * Builds the specified text to the specified buffer.
    *
    * @param buffer The buffer to write the help to
-   * @param text   The text to be written to the buffer
+   * @param text The text to be written to the buffer
    */
   public void buildWrapped(StringBuilder buffer, String text) {
     buildWrapped(buffer, 0, text);
@@ -359,9 +358,9 @@ public class UsageMessageFormatter {
   /**
    * Builds the specified text to the specified buffer.
    *
-   * @param buffer          The buffer to write the help to
+   * @param buffer The buffer to write the help to
    * @param nextLineTabStop The position on the next line for the first tab.
-   * @param text            The text to be written to the buffer
+   * @param text The text to be written to the buffer
    */
   public void buildWrapped(StringBuilder buffer, int nextLineTabStop, String text) {
     renderWrappedTextBlock(buffer, width, nextLineTabStop, text);
@@ -388,7 +387,7 @@ public class UsageMessageFormatter {
     int x = 0;
 
     // Use an iterator to detect the last item.
-    for (Iterator<CLI> it = commands.iterator(); it.hasNext(); ) {
+    for (Iterator<CLI> it = commands.iterator(); it.hasNext();) {
       CLI command = it.next();
       if (command.isHidden()) {
         continue;
@@ -423,8 +422,9 @@ public class UsageMessageFormatter {
    * Renders the specified Options and Arguments and return the rendered output
    * in a StringBuilder.
    *
-   * @param sb        The StringBuilder to place the rendered Options and Arguments into.
-   * @param options   The command line Options
+   * @param sb The StringBuilder to place the rendered Options and Arguments
+   * into.
+   * @param options The command line Options
    * @param arguments The command line Arguments
    * @return the StringBuilder with the rendered content.
    */
@@ -490,7 +490,7 @@ public class UsageMessageFormatter {
     int x = 0;
 
     // Append options - Use an iterator to detect the last item.
-    for (Iterator<Option> it = options.iterator(); it.hasNext(); ) {
+    for (Iterator<Option> it = options.iterator(); it.hasNext();) {
       Option option = it.next();
       if (option.isHidden()) {
         continue;
@@ -520,7 +520,7 @@ public class UsageMessageFormatter {
     if (!options.isEmpty() && !arguments.isEmpty()) {
       sb.append(getNewLine());
     }
-    for (Iterator<Argument> it = arguments.iterator(); it.hasNext(); ) {
+    for (Iterator<Argument> it = arguments.iterator(); it.hasNext();) {
       Argument argument = it.next();
       if (argument.isHidden()) {
         continue;
@@ -550,17 +550,17 @@ public class UsageMessageFormatter {
   }
 
   /**
-   * Render the specified text and return the rendered Options
-   * in a StringBuilder.
+   * Render the specified text and return the rendered Options in a
+   * StringBuilder.
    *
-   * @param sb              The StringBuilder to place the rendered text into.
-   * @param width           The number of characters to display per line
+   * @param sb The StringBuilder to place the rendered text into.
+   * @param width The number of characters to display per line
    * @param nextLineTabStop The position on the next line for the first tab.
-   * @param text            The text to be rendered.
+   * @param text The text to be rendered.
    * @return the StringBuilder with the rendered Options contents.
    */
   protected StringBuilder renderWrappedText(StringBuilder sb, int width,
-                                            int nextLineTabStop, String text) {
+          int nextLineTabStop, String text) {
     int pos = findWrapPos(text, width, 0);
 
     if (pos == -1) {
@@ -597,13 +597,13 @@ public class UsageMessageFormatter {
   }
 
   /**
-   * Renders the specified text width a maximum width. This method differs
-   * from renderWrappedText by not removing leading spaces after a new line.
+   * Renders the specified text width a maximum width. This method differs from
+   * renderWrappedText by not removing leading spaces after a new line.
    *
-   * @param sb              The StringBuilder to place the rendered text into.
-   * @param width           The number of characters to display per line
+   * @param sb The StringBuilder to place the rendered text into.
+   * @param width The number of characters to display per line
    * @param nextLineTabStop The position on the next line for the first tab.
-   * @param text            The text to be rendered.
+   * @param text The text to be rendered.
    */
   public Appendable renderWrappedTextBlock(StringBuilder sb, int width, int nextLineTabStop, String text) {
     try {
@@ -627,16 +627,16 @@ public class UsageMessageFormatter {
   }
 
   /**
-   * Finds the next text wrap position after <code>startPos</code> for the
-   * text in <code>text</code> with the column width <code>width</code>.
-   * The wrap point is the last position before startPos+width having a
-   * whitespace character (space, \n, \r). If there is no whitespace character
-   * before startPos+width, it will return startPos+width.
+   * Finds the next text wrap position after <code>startPos</code> for the text
+   * in <code>text</code> with the column width <code>width</code>. The wrap
+   * point is the last position before startPos+width having a whitespace
+   * character (space, \n, \r). If there is no whitespace character before
+   * startPos+width, it will return startPos+width.
    *
-   * @param text     The text being searched for the wrap position
-   * @param width    width of the wrapped text
+   * @param text The text being searched for the wrap position
+   * @param width width of the wrapped text
    * @param startPos position from which to start the lookup whitespace
-   *                 character
+   * character
    * @return position on which the text must be wrapped or -1 if the wrap
    * position is at the end of the text
    */

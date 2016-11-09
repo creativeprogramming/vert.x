@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.fakecluster;
 
 import io.vertx.core.AsyncResult;
@@ -60,7 +59,7 @@ public class FakeClusterManager implements ClusterManager {
   private volatile VertxInternal vertx;
 
   public void setVertx(Vertx vertx) {
-    this.vertx = (VertxInternal)vertx;
+    this.vertx = (VertxInternal) vertx;
   }
 
   private static void doJoin(String nodeID, FakeClusterManager node) {
@@ -68,7 +67,7 @@ public class FakeClusterManager implements ClusterManager {
       throw new IllegalStateException("Node has already joined!");
     }
     nodes.put(nodeID, node);
-    for (NodeListener listener: new ArrayList<>(nodeListeners)) {
+    for (NodeListener listener : new ArrayList<>(nodeListeners)) {
       if (listener != null) {
         listener.nodeAdded(nodeID);
       }
@@ -77,7 +76,7 @@ public class FakeClusterManager implements ClusterManager {
 
   private static void doLeave(String nodeID) {
     nodes.remove(nodeID);
-    for (NodeListener listener: new ArrayList<>(nodeListeners)) {
+    for (NodeListener listener : new ArrayList<>(nodeListeners)) {
       if (listener != null) {
         listener.nodeLeft(nodeID);
       }
@@ -125,10 +124,10 @@ public class FakeClusterManager implements ClusterManager {
 
   @Override
   public <K, V> Map<K, V> getSyncMap(String name) {
-    Map<K, V> map = (Map<K, V>)syncMaps.get(name);
+    Map<K, V> map = (Map<K, V>) syncMaps.get(name);
     if (map == null) {
       map = new ConcurrentHashMap<>();
-      Map<K, V> prevMap = (Map<K, V>)syncMaps.putIfAbsent(name, map);
+      Map<K, V> prevMap = (Map<K, V>) syncMaps.putIfAbsent(name, map);
       if (prevMap != null) {
         map = prevMap;
       }
@@ -270,7 +269,9 @@ public class FakeClusterManager implements ClusterManager {
       Future<V> future = Future.future();
       putIfAbsent(k, v, future.completer());
       future.map(vv -> {
-        if (vv == null) vertx.setTimer(timeout, tid -> map.remove(k));
+        if (vv == null) {
+          vertx.setTimer(timeout, tid -> map.remove(k));
+        }
         return vv;
       }).setHandler(completionHandler);
     }
@@ -312,7 +313,6 @@ public class FakeClusterManager implements ClusterManager {
 
   private class FakeAsyncMultiMap<K, V> implements AsyncMultiMap<K, V> {
 
-
     private final ConcurrentMap<K, ChoosableSet<V>> map;
 
     public FakeAsyncMultiMap(ConcurrentMap<K, ChoosableSet<V>> map) {
@@ -349,19 +349,19 @@ public class FakeClusterManager implements ClusterManager {
     @Override
     public void remove(final K k, final V v, Handler<AsyncResult<Boolean>> completionHandler) {
       vertx.executeBlocking(fut -> {
-          ChoosableSet<V> vals = map.get(k);
-          boolean found = false;
-          if (vals != null) {
-            boolean removed = vals.remove(v);
-            if (removed) {
-              if (vals.isEmpty()) {
-                map.remove(k);
-              }
-              found = true;
+        ChoosableSet<V> vals = map.get(k);
+        boolean found = false;
+        if (vals != null) {
+          boolean removed = vals.remove(v);
+          if (removed) {
+            if (vals.isEmpty()) {
+              map.remove(k);
             }
+            found = true;
           }
-          fut.complete(found);
-        }, completionHandler);
+        }
+        fut.complete(found);
+      }, completionHandler);
     }
 
     @Override

@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.handler.codec.http.DefaultHttpContent;
@@ -49,13 +48,16 @@ import javax.security.cert.X509Certificate;
 import java.net.URISyntaxException;
 
 /**
- * This class is optimised for performance when used on the same event loop that is was passed to the handler with.
- * However it can be used safely from other threads.
+ * This class is optimised for performance when used on the same event loop that
+ * is was passed to the handler with. However it can be used safely from other
+ * threads.
  *
- * The internal state is protected by using the connection as a lock. If always used on the same event loop, then
- * we benefit from biased locking which makes the overhead of synchronized near zero.
+ * The internal state is protected by using the connection as a lock. If always
+ * used on the same event loop, then we benefit from biased locking which makes
+ * the overhead of synchronized near zero.
  *
- * It's important we don't have different locks for connection and request/response to avoid deadlock conditions
+ * It's important we don't have different locks for connection and
+ * request/response to avoid deadlock conditions
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
@@ -89,10 +91,9 @@ public class HttpServerRequestImpl implements HttpServerRequest {
   private HttpPostRequestDecoder decoder;
   private boolean ended;
 
-
   HttpServerRequestImpl(ServerConnection conn,
-                        HttpRequest request,
-                        HttpServerResponse response) {
+          HttpRequest request,
+          HttpServerResponse response) {
     this.conn = conn;
     this.request = request;
     this.response = response;
@@ -160,7 +161,8 @@ public class HttpServerRequestImpl implements HttpServerRequest {
   }
 
   @Override
-  public @Nullable String host() {
+  public @Nullable
+  String host() {
     return getHeader(HttpHeaderNames.HOST);
   }
 
@@ -251,7 +253,7 @@ public class HttpServerRequestImpl implements HttpServerRequest {
   public boolean isSSL() {
     return conn.isSSL();
   }
-  
+
   @Override
   public SocketAddress remoteAddress() {
     return conn.remoteAddress();
@@ -317,9 +319,9 @@ public class HttpServerRequestImpl implements HttpServerRequest {
             HttpMethod method = request.getMethod();
             String lowerCaseContentType = contentType.toLowerCase();
             boolean isURLEncoded = lowerCaseContentType.startsWith(HttpHeaders.Values.APPLICATION_X_WWW_FORM_URLENCODED);
-            if ((lowerCaseContentType.startsWith(HttpHeaders.Values.MULTIPART_FORM_DATA) || isURLEncoded) &&
-              (method.equals(HttpMethod.POST) || method.equals(HttpMethod.PUT) || method.equals(HttpMethod.PATCH)
-                || method.equals(HttpMethod.DELETE))) {
+            if ((lowerCaseContentType.startsWith(HttpHeaders.Values.MULTIPART_FORM_DATA) || isURLEncoded)
+                    && (method.equals(HttpMethod.POST) || method.equals(HttpMethod.PUT) || method.equals(HttpMethod.PATCH)
+                    || method.equals(HttpMethod.DELETE))) {
               decoder = new HttpPostRequestDecoder(new NettyFileUploadDataFactory(conn.vertx(), this, () -> uploadHandler), request);
             }
           }
@@ -427,7 +429,6 @@ public class HttpServerRequestImpl implements HttpServerRequest {
     }
   }
 
-
   private MultiMap attributes() {
     // Create it lazily
     if (attributes == null) {
@@ -435,7 +436,6 @@ public class HttpServerRequestImpl implements HttpServerRequest {
     }
     return attributes;
   }
-
 
   private static String urlDecode(String str) {
     return QueryStringDecoder.decodeComponent(str, CharsetUtil.UTF_8);

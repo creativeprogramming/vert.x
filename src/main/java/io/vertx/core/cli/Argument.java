@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.cli;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -22,8 +21,9 @@ import io.vertx.core.json.JsonObject;
 import java.util.Objects;
 
 /**
- * Defines a command line argument. Unlike options, argument don't have names and are identified using an index. The
- * first index is 0 (because we are in the computer world).
+ * Defines a command line argument. Unlike options, argument don't have names
+ * and are identified using an index. The first index is 0 (because we are in
+ * the computer world).
  *
  * @author Clement Escoffier <clement@apache.org>
  * @see Option
@@ -37,8 +37,8 @@ public class Argument {
   public static final String DEFAULT_ARG_NAME = "value";
 
   /**
-   * The argument index. Must be positive or null.
-   * It is set fo -1 by default to check that the index was set.
+   * The argument index. Must be positive or null. It is set fo -1 by default to
+   * check that the index was set.
    */
   protected int index = -1;
 
@@ -52,13 +52,15 @@ public class Argument {
    */
   protected String description;
   /**
-   * Whether or not this argument is hidden. Hidden argument are not shown in the usage.
+   * Whether or not this argument is hidden. Hidden argument are not shown in
+   * the usage.
    */
   protected boolean hidden;
 
   /**
-   * Whether or not this argument is mandatory. Mandatory arguments throw a {@link MissingValueException} if the
-   * user command line does not provide a value.
+   * Whether or not this argument is mandatory. Mandatory arguments throw a
+   * {@link MissingValueException} if the user command line does not provide a
+   * value.
    */
   protected boolean required = true;
 
@@ -68,7 +70,8 @@ public class Argument {
   protected String defaultValue;
 
   /**
-   * Whether or not this argument can receive multiple value. Only the last argument can receive multiple values.
+   * Whether or not this argument can receive multiple value. Only the last
+   * argument can receive multiple values.
    */
   protected boolean multiValued = false;
 
@@ -205,7 +208,8 @@ public class Argument {
   /**
    * Sets whether or not the current {@link Argument} is required.
    *
-   * @param required {@code true} to make this argument mandatory, {@link false} otherwise
+   * @param required {@code true} to make this argument mandatory, {@link false}
+   * otherwise
    * @return the current {@link Argument} instance
    */
   public Argument setRequired(boolean required) {
@@ -239,7 +243,8 @@ public class Argument {
   }
 
   /**
-   * Sets whether or not the argument can receive several values. Only the last argument can receive several values.
+   * Sets whether or not the argument can receive several values. Only the last
+   * argument can receive several values.
    *
    * @param multiValued {@code true} to mark this argument as multi-valued.
    * @return the current {@link Argument} instance
@@ -250,11 +255,12 @@ public class Argument {
   }
 
   /**
-   * Checks that the argument configuration is valid. This method is mainly made for children classes adding
-   * constraint to the configuration. The parser verifies that arguments are valid before starting
-   * the parsing.
+   * Checks that the argument configuration is valid. This method is mainly made
+   * for children classes adding constraint to the configuration. The parser
+   * verifies that arguments are valid before starting the parsing.
    * <p/>
-   * If the configuration is not valid, this method throws a {@link IllegalArgumentException}.
+   * If the configuration is not valid, this method throws a
+   * {@link IllegalArgumentException}.
    */
   public void ensureValidity() {
     if (index < 0) {

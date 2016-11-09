@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.Context;
@@ -32,19 +31,21 @@ public class Http2TestBase extends HttpTestBase {
 
   static HttpServerOptions createHttp2ServerOptions(int port, String host) {
     return new HttpServerOptions()
-        .setPort(port)
-        .setHost(host)
-        .setUseAlpn(true)
-        .setSsl(true)
-        .addEnabledCipherSuite("TLS_RSA_WITH_AES_128_CBC_SHA") // Non Diffie-helman -> debuggable in wireshark
-        .setKeyStoreOptions(Cert.SERVER_JKS.get());
-  };
+            .setPort(port)
+            .setHost(host)
+            .setUseAlpn(true)
+            .setSsl(true)
+            .addEnabledCipherSuite("TLS_RSA_WITH_AES_128_CBC_SHA") // Non Diffie-helman -> debuggable in wireshark
+            .setKeyStoreOptions(Cert.SERVER_JKS.get());
+  }
+
+  ;
 
   static HttpClientOptions createHttp2ClientOptions() {
     return new HttpClientOptions().
-        setUseAlpn(true).
-        setTrustStoreOptions(Trust.SERVER_JKS.get()).
-        setProtocolVersion(HttpVersion.HTTP_2);
+            setUseAlpn(true).
+            setTrustStoreOptions(Trust.SERVER_JKS.get()).
+            setProtocolVersion(HttpVersion.HTTP_2);
   }
 
   protected HttpServerOptions serverOptions;
@@ -53,7 +54,7 @@ public class Http2TestBase extends HttpTestBase {
   @Override
   public void setUp() throws Exception {
     super.setUp();
-    serverOptions =  createHttp2ServerOptions(DEFAULT_HTTPS_PORT, DEFAULT_HTTPS_HOST);
+    serverOptions = createHttp2ServerOptions(DEFAULT_HTTPS_PORT, DEFAULT_HTTPS_HOST);
     clientOptions = createHttp2ClientOptions();
     server = vertx.createHttpServer(serverOptions);
   }

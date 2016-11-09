@@ -1,4 +1,5 @@
 package io.vertx.test.core;
+
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.net.ProxyOptions;
@@ -90,10 +91,10 @@ public class ProxyOptionsTest extends VertxTestBase {
   public void testOptionsJson() {
     JsonObject json = new JsonObject();
     json.put("type", randType.toString())
-        .put("host", randHost)
-        .put("port", randPort)
-        .put("username", randUsername)
-        .put("password", randPassword);
+            .put("host", randHost)
+            .put("port", randPort)
+            .put("username", randUsername)
+            .put("password", randPassword);
     ProxyOptions options = new ProxyOptions(json);
     assertEquals(randType, options.getType());
     assertEquals(randPort, options.getPort());
@@ -102,4 +103,3 @@ public class ProxyOptionsTest extends VertxTestBase {
     assertEquals(randPassword, options.getPassword());
   }
 }
-

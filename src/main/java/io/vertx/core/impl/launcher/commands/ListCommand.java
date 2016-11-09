@@ -13,9 +13,7 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.launcher.commands;
-
 
 import io.vertx.core.cli.annotations.Description;
 import io.vertx.core.cli.annotations.Name;
@@ -31,8 +29,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * A command listing launched vert.x instances. Instances are found using the `vertx.id` indicator in the
- * process list.
+ * A command listing launched vert.x instances. Instances are found using the
+ * `vertx.id` indicator in the process list.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
@@ -48,7 +46,6 @@ public class ListCommand extends DefaultCommand {
   private final static Pattern VERTICLE_EXTRACTION = Pattern.compile("run (\\S*)");
 
   // Note about stack traces - the stack trace are printed on the stream passed to the command.
-
   /**
    * Executes the {@code list} command.
    */
@@ -90,14 +87,13 @@ public class ListCommand extends DefaultCommand {
       }
     }
 
-
   }
 
   private void dumpFoundVertxApplications(List<String> cmd) throws IOException, InterruptedException {
     boolean none = true;
     final Process process = new ProcessBuilder(cmd).start();
-    BufferedReader reader =
-        new BufferedReader(new InputStreamReader(process.getInputStream()));
+    BufferedReader reader
+            = new BufferedReader(new InputStreamReader(process.getInputStream()));
     String line;
     while ((line = reader.readLine()) != null) {
       final Matcher matcher = PS.matcher(line);
@@ -116,8 +112,9 @@ public class ListCommand extends DefaultCommand {
   }
 
   /**
-   * Tries to extract the fat jar name of the verticle name. It's a best-effort approach looking at the name of the
-   * jar or to the verticle name from the command line. If not found, no details are returned (empty string).
+   * Tries to extract the fat jar name of the verticle name. It's a best-effort
+   * approach looking at the name of the jar or to the verticle name from the
+   * command line. If not found, no details are returned (empty string).
    *
    * @return the details, empty if it cannot be extracted.
    */

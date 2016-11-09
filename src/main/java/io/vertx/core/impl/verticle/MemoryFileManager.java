@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.verticle;
 
 import javax.tools.FileObject;
@@ -38,6 +37,7 @@ import java.util.Set;
  * @author Janne Hietam&auml;ki
  */
 public class MemoryFileManager extends ForwardingJavaFileManager<JavaFileManager> {
+
   private final Map<String, ByteArrayOutputStream> compiledClasses = new HashMap<>();
   private final PackageHelper helper;
 
@@ -48,7 +48,7 @@ public class MemoryFileManager extends ForwardingJavaFileManager<JavaFileManager
 
   @Override
   public JavaFileObject getJavaFileForOutput(Location location, final String className,
-                                             JavaFileObject.Kind kind, FileObject sibling) throws IOException {
+          JavaFileObject.Kind kind, FileObject sibling) throws IOException {
     try {
       return new SimpleJavaFileObject(new URI(""), kind) {
         public OutputStream openOutputStream() throws IOException {
@@ -81,7 +81,7 @@ public class MemoryFileManager extends ForwardingJavaFileManager<JavaFileManager
 
   @Override
   public Iterable<JavaFileObject> list(Location location, String packageName, Set<JavaFileObject.Kind> kinds,
-                                       boolean recurse) throws IOException {
+          boolean recurse) throws IOException {
     if (location == StandardLocation.CLASS_PATH && kinds.contains(JavaFileObject.Kind.CLASS)) {
       return helper.find(packageName);
     }

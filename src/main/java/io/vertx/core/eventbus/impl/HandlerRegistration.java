@@ -50,8 +50,8 @@ public class HandlerRegistration<T> implements MessageConsumer<T>, Handler<Messa
   private Object metric;
 
   public HandlerRegistration(Vertx vertx, EventBusMetrics metrics, EventBusImpl eventBus, String address,
-                             String repliedAddress, boolean localOnly,
-                             Handler<AsyncResult<Message<T>>> asyncResultHandler, long timeout) {
+          String repliedAddress, boolean localOnly,
+          Handler<AsyncResult<Message<T>>> asyncResultHandler, long timeout) {
     this.vertx = vertx;
     this.metrics = metrics;
     this.eventBus = eventBus;
@@ -198,7 +198,7 @@ public class HandlerRegistration<T> implements MessageConsumer<T>, Handler<Messa
     boolean local = true;
     if (message instanceof ClusteredMessage) {
       // A bit hacky
-      ClusteredMessage cmsg = (ClusteredMessage)message;
+      ClusteredMessage cmsg = (ClusteredMessage) message;
       if (cmsg.isFromWire()) {
         local = false;
       }

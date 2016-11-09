@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.cli.impl;
 
 import io.vertx.core.cli.*;
@@ -31,12 +30,11 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class DefaultCLITest {
 
-
   @Test
   public void testFlag() {
     final CLI cli = CLI.create("test")
-        .addOption(new Option().setShortName("f").setFlag(true))
-        .addOption(new Option().setShortName("x"));
+            .addOption(new Option().setShortName("f").setFlag(true))
+            .addOption(new Option().setShortName("x"));
     final CommandLine evaluated = cli.parse(Arrays.asList("-f", "-x", "foo"));
     assertThat(evaluated.isFlagEnabled("f")).isTrue();
     assertThat((String) evaluated.getOptionValue("x")).isEqualToIgnoringCase("foo");
@@ -45,8 +43,8 @@ public class DefaultCLITest {
   @Test
   public void testMissingFlag() {
     final CLI cli = CLI.create("test")
-        .addOption(new Option().setShortName("f").setFlag(true))
-        .addOption(new Option().setShortName("x"));
+            .addOption(new Option().setShortName("f").setFlag(true))
+            .addOption(new Option().setShortName("x"));
     final CommandLine evaluated = cli.parse(Arrays.asList("-x", "foo"));
     assertThat(evaluated.isFlagEnabled("f")).isFalse();
     assertThat((String) evaluated.getOptionValue("x")).isEqualToIgnoringCase("foo");
@@ -55,14 +53,14 @@ public class DefaultCLITest {
   @Test
   public void testUsageComputationWhenUsingOnlyFlagShortOption() {
     final CLI cli = CLI.create("test")
-        .addOption(new Option().setShortName("f").setDescription("turn on/off").setFlag(true));
+            .addOption(new Option().setShortName("f").setDescription("turn on/off").setFlag(true));
 
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
     assertThat(builder)
-        .contains("test [-f]")
-        .contains("Options and Arguments")
-        .contains(" -f   turn on/off");
+            .contains("test [-f]")
+            .contains("Options and Arguments")
+            .contains(" -f   turn on/off");
   }
 
   @Test
@@ -72,144 +70,144 @@ public class DefaultCLITest {
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
     assertThat(builder)
-        .contains("test")
-        .doesNotContain("Options").doesNotContain("Arguments");
+            .contains("test")
+            .doesNotContain("Options").doesNotContain("Arguments");
   }
 
   @Test
   public void testUsageComputationWhenUsingOnlyFlagLongOption() {
     final CLI cli = CLI.create("test")
-        .addOption(new Option().setLongName("flag").setDescription("turn on/off").setFlag(true));
+            .addOption(new Option().setLongName("flag").setDescription("turn on/off").setFlag(true));
 
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
 
     assertThat(builder)
-        .contains("test [--flag]")
-        .contains(" --flag   turn on/off");
+            .contains("test [--flag]")
+            .contains(" --flag   turn on/off");
   }
 
   @Test
   public void testUsageComputationWhenUsingShortAndLongFlagOption() {
     final CLI cli = CLI.create("test")
-        .addOption(new Option().setLongName("flag").setShortName("f").setDescription("turn on/off").setFlag(true));
+            .addOption(new Option().setLongName("flag").setShortName("f").setDescription("turn on/off").setFlag(true));
 
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
 
     assertThat(builder)
-        .contains("test [-f]")
-        .contains(" -f,--flag   turn on/off");
+            .contains("test [-f]")
+            .contains(" -f,--flag   turn on/off");
   }
 
   @Test
   public void testUsageComputationWhenUsingShortAndLongOption() {
     final CLI cli = CLI.create("test")
-        .addOption(new Option().setLongName("file").setShortName("f").setDescription("a file"));
+            .addOption(new Option().setLongName("file").setShortName("f").setDescription("a file"));
 
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
 
     assertThat(builder)
-        .contains("test [-f <value>]")
-        .contains(" -f,--file <value>   a file");
+            .contains("test [-f <value>]")
+            .contains(" -f,--file <value>   a file");
   }
 
   @Test
   public void testUsageComputationWhenUsingOnlyShortOption() {
     final CLI cli = CLI.create("test")
-        .addOption(new Option().setShortName("f").setDescription("a file"));
+            .addOption(new Option().setShortName("f").setDescription("a file"));
 
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
 
     assertThat(builder)
-        .contains("test [-f <value>]")
-        .contains(" -f <value>   a file");
+            .contains("test [-f <value>]")
+            .contains(" -f <value>   a file");
   }
 
   @Test
   public void testUsageComputationWhenUsingOnlyLongOption() {
     final CLI cli = CLI.create("test")
-        .addOption(new Option().setLongName("file").setDescription("a file"));
+            .addOption(new Option().setLongName("file").setDescription("a file"));
 
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
 
     assertThat(builder)
-        .contains("test [--file <value>]")
-        .contains(" --file <value>   a file");
+            .contains("test [--file <value>]")
+            .contains(" --file <value>   a file");
   }
 
   @Test
   public void testUsageComputationWhenUsingRequiredOptionAndArgument() {
     final CLI cli = CLI.create("test")
-        .addOption(new Option().setLongName("file").setShortName("f").setDescription("a file").setRequired(true))
-        .addArgument(new Argument().setArgName("foo").setDescription("foo").setRequired(true));
+            .addOption(new Option().setLongName("file").setShortName("f").setDescription("a file").setRequired(true))
+            .addArgument(new Argument().setArgName("foo").setDescription("foo").setRequired(true));
 
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
 
     assertThat(builder)
-        .contains("test -f <value> foo")
-        .contains(" -f,--file <value>   a file")
-    .contains("<foo>               foo");
+            .contains("test -f <value> foo")
+            .contains(" -f,--file <value>   a file")
+            .contains("<foo>               foo");
   }
 
   @Test
   public void testUsageComputationWithSeveralArguments() {
     final CLI cli = CLI.create("test")
-        .addOption(new Option().setLongName("file").setShortName("f").setDescription("a file").setRequired(true))
-        .addArgument(new Argument().setIndex(0).setArgName("foo").setDescription("foo"))
-        .addArgument(new Argument().setIndex(1))
-        .addArgument(new Argument().setIndex(2).setArgName("bar").setDescription("bar"));
+            .addOption(new Option().setLongName("file").setShortName("f").setDescription("a file").setRequired(true))
+            .addArgument(new Argument().setIndex(0).setArgName("foo").setDescription("foo"))
+            .addArgument(new Argument().setIndex(1))
+            .addArgument(new Argument().setIndex(2).setArgName("bar").setDescription("bar"));
 
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
 
     assertThat(builder)
-        .contains("test -f <value> foo value bar")
-        .contains(" -f,--file <value>   a file")
-        .contains("<foo>               foo")
-        .contains("<value>")
-        .contains("<bar>               bar");
+            .contains("test -f <value> foo value bar")
+            .contains(" -f,--file <value>   a file")
+            .contains("<foo>               foo")
+            .contains("<value>")
+            .contains("<bar>               bar");
   }
 
   @Test
   public void testUsageComputationWithHiddenArguments() {
     final CLI cli = CLI.create("test")
-        .addOption(new Option().setLongName("file").setShortName("f").setDescription("a file").setRequired(true))
-        .addArgument(new Argument().setIndex(0).setArgName("foo").setDescription("foo"))
-        .addArgument(new Argument().setIndex(1))
-        .addArgument(new Argument().setIndex(2).setArgName("bar").setDescription("bar").setHidden(true));
+            .addOption(new Option().setLongName("file").setShortName("f").setDescription("a file").setRequired(true))
+            .addArgument(new Argument().setIndex(0).setArgName("foo").setDescription("foo"))
+            .addArgument(new Argument().setIndex(1))
+            .addArgument(new Argument().setIndex(2).setArgName("bar").setDescription("bar").setHidden(true));
 
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
 
     assertThat(builder)
-        .contains("test -f <value> foo value")
-        .contains(" -f,--file <value>   a file")
-        .contains("<foo>               foo")
-        .contains("<value>")
-        .doesNotContain("bar");
+            .contains("test -f <value> foo value")
+            .contains(" -f,--file <value>   a file")
+            .contains("<foo>               foo")
+            .contains("<value>")
+            .doesNotContain("bar");
   }
 
   @Test
   public void testUsageComputationWhenUsingNotRequiredArgument() {
     final CLI cli = CLI.create("test")
-        .addArgument(new Argument().setArgName("foo").setRequired(false));
+            .addArgument(new Argument().setArgName("foo").setRequired(false));
 
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
 
     assertThat(builder)
-        .contains("test [foo]");
+            .contains("test [foo]");
   }
 
   @Test
   public void testCommandLineValidationWhenValid() {
     final CLI cli = CLI.create("test")
-        .addArgument(new Argument().setArgName("foo").setRequired(true));
+            .addArgument(new Argument().setArgName("foo").setRequired(true));
 
     CommandLine commandLine = cli.parse(Collections.singletonList("foo"));
     assertThat(commandLine.isValid()).isTrue();
@@ -218,7 +216,7 @@ public class DefaultCLITest {
   @Test(expected = MissingValueException.class)
   public void testCommandLineValidationWhenInvalid() {
     final CLI cli = CLI.create("test")
-        .addArgument(new Argument().setArgName("foo").setRequired(true));
+            .addArgument(new Argument().setArgName("foo").setRequired(true));
 
     cli.parse(Collections.<String>emptyList());
   }
@@ -226,7 +224,7 @@ public class DefaultCLITest {
   @Test
   public void testCommandLineValidationWhenInvalidWithValidationDisabled() {
     final CLI cli = CLI.create("test")
-        .addArgument(new Argument().setArgName("foo").setRequired(true));
+            .addArgument(new Argument().setArgName("foo").setRequired(true));
 
     CommandLine commandLine = cli.parse(Collections.<String>emptyList(), false);
     assertThat(commandLine.isValid()).isEqualTo(false);

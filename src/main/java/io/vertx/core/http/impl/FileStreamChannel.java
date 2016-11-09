@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.buffer.ByteBuf;
@@ -61,10 +60,10 @@ class FileStreamChannel extends AbstractChannel {
   private final VertxHttp2Stream stream;
 
   FileStreamChannel(
-      Handler<AsyncResult<Long>> resultHandler,
-      VertxHttp2Stream stream,
-      long offset,
-      long length) {
+          Handler<AsyncResult<Long>> resultHandler,
+          VertxHttp2Stream stream,
+          long offset,
+          long length) {
     super(null, Id.INSTANCE);
 
     pipeline().addLast(new ChannelInitializer<Channel>() {
@@ -76,7 +75,7 @@ class FileStreamChannel extends AbstractChannel {
           @Override
           public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
             if (evt instanceof RandomAccessFile) {
-              ChannelFuture fut = ctx.writeAndFlush(new ChunkedFile((RandomAccessFile) evt, offset, length, 8192 /* default chunk size */ ));
+              ChannelFuture fut = ctx.writeAndFlush(new ChunkedFile((RandomAccessFile) evt, offset, length, 8192 /* default chunk size */));
               fut.addListener(f -> {
                 if (resultHandler != null) {
                   if (f.isSuccess()) {
@@ -176,6 +175,7 @@ class FileStreamChannel extends AbstractChannel {
   }
 
   private static class StreamSocketAddress extends SocketAddress {
+
     @Override
     public String toString() {
       return "stream";
@@ -183,6 +183,7 @@ class FileStreamChannel extends AbstractChannel {
   }
 
   private class DefaultUnsafe extends AbstractUnsafe {
+
     @Override
     public void connect(SocketAddress remoteAddress, SocketAddress localAddress, ChannelPromise promise) {
       safeSetSuccess(promise);
@@ -193,7 +194,8 @@ class FileStreamChannel extends AbstractChannel {
 
     static final ChannelId INSTANCE = new Id();
 
-    private Id() { }
+    private Id() {
+    }
 
     @Override
     public String asShortText() {

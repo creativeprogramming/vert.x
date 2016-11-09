@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.buffer.ByteBuf;
@@ -60,10 +59,12 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 /**
  *
- * This class is optimised for performance when used on the same event loop. However it can be used safely from other threads.
+ * This class is optimised for performance when used on the same event loop.
+ * However it can be used safely from other threads.
  *
- * The internal state is protected using the synchronized keyword. If always used on the same event loop, then
- * we benefit from biased locking which makes the overhead of synchronized near zero.
+ * The internal state is protected using the synchronized keyword. If always
+ * used on the same event loop, then we benefit from biased locking which makes
+ * the overhead of synchronized near zero.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
@@ -94,7 +95,7 @@ class ServerConnection extends ConnectionBase implements HttpConnection {
   private Object metric;
 
   ServerConnection(VertxInternal vertx, HttpServerImpl server, Channel channel, ContextImpl context, String serverOrigin,
-                   WebSocketServerHandshaker handshaker, HttpServerMetrics metrics) {
+          WebSocketServerHandshaker handshaker, HttpServerMetrics metrics) {
     super(vertx, channel, context, metrics);
     this.serverOrigin = serverOrigin;
     this.server = server;
@@ -191,10 +192,10 @@ class ServerConnection extends ConnectionBase implements HttpConnection {
     if (handshaker == null) {
       throw new IllegalStateException("Can't upgrade this request");
     }
-    
+
     ws = new ServerWebSocketImpl(vertx, request.uri(), request.path(),
-      request.query(), request.headers(), this, handshaker.version() != WebSocketVersion.V00,
-      null, server.options().getMaxWebsocketFrameSize());
+            request.query(), request.headers(), this, handshaker.version() != WebSocketVersion.V00,
+            null, server.options().getMaxWebsocketFrameSize());
     ws.setMetric(metrics.upgrade(requestMetric, ws));
     try {
       handshaker.handshake(channel, nettyReq);
@@ -321,7 +322,6 @@ class ServerConnection extends ConnectionBase implements HttpConnection {
     }
   }
 
-
   synchronized void handleWebsocketConnect(ServerWebSocketImpl ws) {
     if (wsHandler != null) {
       wsHandler.handle(ws);
@@ -411,7 +411,7 @@ class ServerConnection extends ConnectionBase implements HttpConnection {
       handleRequest(req, resp);
     }
     if (msg instanceof HttpContent) {
-        HttpContent chunk = (HttpContent) msg;
+      HttpContent chunk = (HttpContent) msg;
       if (chunk.content().isReadable()) {
         Buffer buff = Buffer.buffer(chunk.content());
         handleChunk(buff);
@@ -456,7 +456,9 @@ class ServerConnection extends ConnectionBase implements HttpConnection {
   }
 
   private long getBytes(Object obj) {
-    if (obj == null) return 0;
+    if (obj == null) {
+      return 0;
+    }
 
     if (obj instanceof Buffer) {
       return ((Buffer) obj).length();
@@ -477,8 +479,6 @@ class ServerConnection extends ConnectionBase implements HttpConnection {
   }
 
   //
-
-
   @Override
   public synchronized ServerConnection closeHandler(Handler<Void> handler) {
     return (ServerConnection) super.closeHandler(handler);

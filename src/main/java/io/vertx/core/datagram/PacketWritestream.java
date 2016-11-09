@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.datagram;
 
 import io.vertx.codegen.annotations.VertxGen;
@@ -22,8 +21,9 @@ import io.vertx.core.buffer.Buffer;
 import io.vertx.core.streams.WriteStream;
 
 /**
- * A {@link io.vertx.core.streams.WriteStream} for sending packets to a {@link io.vertx.core.net.SocketAddress}.
- * The stream {@link WriteStream#exceptionHandler} is called when the write fails.
+ * A {@link io.vertx.core.streams.WriteStream} for sending packets to a
+ * {@link io.vertx.core.net.SocketAddress}. The stream
+ * {@link WriteStream#exceptionHandler} is called when the write fails.
  *
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */

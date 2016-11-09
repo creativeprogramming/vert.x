@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http;
 
 import io.vertx.codegen.annotations.Fluent;
@@ -26,11 +25,12 @@ import io.vertx.core.buffer.Buffer;
 /**
  * Represents an HTTP connection.
  * <p/>
- * HTTP/1.x connection provides an limited implementation, the following methods are implemented:
+ * HTTP/1.x connection provides an limited implementation, the following methods
+ * are implemented:
  * <ul>
- *   <li>{@link #close}</li>
- *   <li>{@link #closeHandler}</li>
- *   <li>{@link #exceptionHandler}</li>
+ * <li>{@link #close}</li>
+ * <li>{@link #closeHandler}</li>
+ * <li>{@link #exceptionHandler}</li>
  * </ul>
  *
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
@@ -48,7 +48,8 @@ public interface HttpConnection {
   /**
    * Update the current connection wide window size to a new size.
    * <p/>
-   * Increasing this value, gives better performance when several data streams are multiplexed
+   * Increasing this value, gives better performance when several data streams
+   * are multiplexed
    * <p/>
    * This is not implemented for HTTP/1.x.
    *
@@ -80,9 +81,13 @@ public interface HttpConnection {
    * Send a go away frame to the remote endpoint of the connection.
    * <p/>
    * <ul>
-   *   <li>a {@literal GOAWAY} frame is sent to the to the remote endpoint with the {@code errorCode} and {@code debugData}</li>
-   *   <li>any stream created after the stream identified by {@code lastStreamId} will be closed</li>
-   *   <li>for an {@literal errorCode} is different than {@code 0} when all the remaining streams are closed this connection will be closed automatically</li>
+   * <li>a {@literal GOAWAY} frame is sent to the to the remote endpoint with
+   * the {@code errorCode} and {@code debugData}</li>
+   * <li>any stream created after the stream identified by {@code lastStreamId}
+   * will be closed</li>
+   * <li>for an {@literal errorCode} is different than {@code 0} when all the
+   * remaining streams are closed this connection will be closed
+   * automatically</li>
    * </ul>
    * <p/>
    * This is not implemented for HTTP/1.x.
@@ -107,7 +112,8 @@ public interface HttpConnection {
   HttpConnection goAwayHandler(@Nullable Handler<GoAway> handler);
 
   /**
-   * Set an handler called when a {@literal GOAWAY} frame has been sent or received and all connections are closed.
+   * Set an handler called when a {@literal GOAWAY} frame has been sent or
+   * received and all connections are closed.
    * <p/>
    * This is not implemented for HTTP/1.x.
    *
@@ -115,11 +121,12 @@ public interface HttpConnection {
    * @return a reference to this, so the API can be used fluently
    */
   @Fluent
-  HttpConnection shutdownHandler(@Nullable  Handler<Void> handler);
+  HttpConnection shutdownHandler(@Nullable Handler<Void> handler);
 
   /**
-   * Initiate a connection shutdown, a go away frame is sent and the connection is closed when all current active streams
-   * are closed or after a time out of 30 seconds.
+   * Initiate a connection shutdown, a go away frame is sent and the connection
+   * is closed when all current active streams are closed or after a time out of
+   * 30 seconds.
    * <p/>
    * This is not implemented for HTTP/1.x.
    *
@@ -129,8 +136,9 @@ public interface HttpConnection {
   HttpConnection shutdown();
 
   /**
-   * Initiate a connection shutdown, a go away frame is sent and the connection is closed when all current streams
-   * will be closed or the {@code timeout} is fired.
+   * Initiate a connection shutdown, a go away frame is sent and the connection
+   * is closed when all current streams will be closed or the {@code timeout} is
+   * fired.
    * <p/>
    * This is not implemented for HTTP/1.x.
    *
@@ -141,7 +149,8 @@ public interface HttpConnection {
   HttpConnection shutdown(long timeoutMs);
 
   /**
-   * Set a close handler. The handler will get notified when the connection is closed.
+   * Set a close handler. The handler will get notified when the connection is
+   * closed.
    *
    * @param handler the handler to be notified
    * @return a reference to this, so the API can be used fluently
@@ -157,7 +166,8 @@ public interface HttpConnection {
   void close();
 
   /**
-   * @return the latest server settings acknowledged by the remote endpoint - this is not implemented for HTTP/1.x
+   * @return the latest server settings acknowledged by the remote endpoint -
+   * this is not implemented for HTTP/1.x
    */
   Http2Settings settings();
 
@@ -175,24 +185,28 @@ public interface HttpConnection {
   /**
    * Send to the remote endpoint an update of this endpoint settings
    * <p/>
-   * The {@code completionHandler} will be notified when the remote endpoint has acknowledged the settings.
+   * The {@code completionHandler} will be notified when the remote endpoint has
+   * acknowledged the settings.
    * <p/>
    * This is not implemented for HTTP/1.x.
    *
    * @param settings the new settings
-   * @param completionHandler the handler notified when the settings have been acknowledged by the remote endpoint
+   * @param completionHandler the handler notified when the settings have been
+   * acknowledged by the remote endpoint
    * @return a reference to this, so the API can be used fluently
    */
   @Fluent
   HttpConnection updateSettings(Http2Settings settings, Handler<AsyncResult<Void>> completionHandler);
 
   /**
-   * @return the current remote endpoint settings for this connection - this is not implemented for HTTP/1.x
+   * @return the current remote endpoint settings for this connection - this is
+   * not implemented for HTTP/1.x
    */
   Http2Settings remoteSettings();
 
   /**
-   * Set an handler that is called when remote endpoint {@link Http2Settings} are updated.
+   * Set an handler that is called when remote endpoint {@link Http2Settings}
+   * are updated.
    * <p/>
    * This is not implemented for HTTP/1.x.
    *
@@ -208,14 +222,16 @@ public interface HttpConnection {
    * This is not implemented for HTTP/1.x.
    *
    * @param data the 8 bytes data of the frame
-   * @param pongHandler an async result handler notified with pong reply or the failure
+   * @param pongHandler an async result handler notified with pong reply or the
+   * failure
    * @return a reference to this, so the API can be used fluently
    */
   @Fluent
   HttpConnection ping(Buffer data, Handler<AsyncResult<Buffer>> pongHandler);
 
   /**
-   * Set an handler notified when a {@literal PING} frame is received from the remote endpoint.
+   * Set an handler notified when a {@literal PING} frame is received from the
+   * remote endpoint.
    * <p/>
    * This is not implemented for HTTP/1.x.
    *

@@ -21,8 +21,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotates a {@link io.vertx.core.cli.CLI} with summary. The summary is the main short explanation of the command. Long
- * description should be written in the {@link Description}.
+ * Annotates a {@link io.vertx.core.cli.CLI} with summary. The summary is the
+ * main short explanation of the command. Long description should be written in
+ * the {@link Description}.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
@@ -31,7 +32,8 @@ import java.lang.annotation.Target;
 public @interface Summary {
 
   /**
-   * The summary. This should be a <strong>single</strong> sentence describing what the command does.
+   * The summary. This should be a <strong>single</strong> sentence describing
+   * what the command does.
    */
   String value();
 

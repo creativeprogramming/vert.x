@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.netty.bootstrap.Bootstrap;
@@ -86,7 +85,7 @@ public class HostnameResolutionTest extends VertxTestBase {
 
   @Test
   public void testAsyncResolve() throws Exception {
-    ((VertxImpl)vertx).resolveAddress("vertx.io", onSuccess(resolved -> {
+    ((VertxImpl) vertx).resolveAddress("vertx.io", onSuccess(resolved -> {
       assertEquals("127.0.0.1", resolved.getHostAddress());
       testComplete();
     }));
@@ -95,7 +94,7 @@ public class HostnameResolutionTest extends VertxTestBase {
 
   @Test
   public void testAsyncResolveFail() throws Exception {
-    ((VertxImpl)vertx).resolveAddress("vertx.com", onFailure(failure -> {
+    ((VertxImpl) vertx).resolveAddress("vertx.com", onFailure(failure -> {
       assertEquals(UnknownHostException.class, failure.getClass());
       testComplete();
     }));
@@ -188,7 +187,7 @@ public class HostnameResolutionTest extends VertxTestBase {
     boolean rdFlag = TestUtils.randomBoolean();
     int ndots = TestUtils.randomPositiveInt() - 2;
     List<String> searchDomains = new ArrayList<>();
-    for (int i = 0;i < 2;i++) {
+    for (int i = 0; i < 2; i++) {
       searchDomains.add(TestUtils.randomAlphaString(15));
     }
 
@@ -309,7 +308,8 @@ public class HostnameResolutionTest extends VertxTestBase {
   @Test
   public void testAsyncResolveConnectIsNotifiedOnChannelEventLoop() throws Exception {
     CountDownLatch listenLatch = new CountDownLatch(1);
-    NetServer s = vertx.createNetServer().connectHandler(so -> {});
+    NetServer s = vertx.createNetServer().connectHandler(so -> {
+    });
     s.listen(1234, "localhost", onSuccess(v -> listenLatch.countDown()));
     awaitLatch(listenLatch);
     AtomicReference<Thread> channelThread = new AtomicReference<>();
@@ -317,7 +317,7 @@ public class HostnameResolutionTest extends VertxTestBase {
     Bootstrap bootstrap = new Bootstrap();
     bootstrap.channel(NioSocketChannel.class);
     bootstrap.group(vertx.nettyEventLoopGroup());
-    bootstrap.resolver(((VertxInternal)vertx).nettyAddressResolverGroup());
+    bootstrap.resolver(((VertxInternal) vertx).nettyAddressResolverGroup());
     bootstrap.handler(new ChannelInitializer<Channel>() {
       @Override
       protected void initChannel(Channel ch) throws Exception {
@@ -403,9 +403,9 @@ public class HostnameResolutionTest extends VertxTestBase {
 
     // Test using the resolver API
     VertxInternal vertx = (VertxInternal) vertx(new VertxOptions().setAddressResolverOptions(
-        new AddressResolverOptions().
-            addServer(dnsServerAddress.getAddress().getHostAddress() + ":" + dnsServerAddress.getPort()).
-            setOptResourceEnabled(false)
+            new AddressResolverOptions().
+                    addServer(dnsServerAddress.getAddress().getHostAddress() + ":" + dnsServerAddress.getPort()).
+                    setOptResourceEnabled(false)
     ));
     CompletableFuture<Void> test1 = new CompletableFuture<>();
     vertx.resolveAddress("localhost", ar -> {
@@ -479,10 +479,10 @@ public class HostnameResolutionTest extends VertxTestBase {
     dnsServer = FakeDNSServer.testResolveA(records);
     dnsServer.start();
     VertxInternal vertx = (VertxInternal) vertx(new VertxOptions().setAddressResolverOptions(
-        new AddressResolverOptions().
-            addServer(dnsServerAddress.getAddress().getHostAddress() + ":" + dnsServerAddress.getPort()).
-            setOptResourceEnabled(false).
-            addSearchDomain("foo.com")
+            new AddressResolverOptions().
+                    addServer(dnsServerAddress.getAddress().getHostAddress() + ":" + dnsServerAddress.getPort()).
+                    setOptResourceEnabled(false).
+                    addSearchDomain("foo.com")
     ));
 
     // host1 resolves host1.foo.com with foo.com search domain
@@ -555,11 +555,11 @@ public class HostnameResolutionTest extends VertxTestBase {
     dnsServer = FakeDNSServer.testResolveA(records);
     dnsServer.start();
     VertxInternal vertx = (VertxInternal) vertx(new VertxOptions().setAddressResolverOptions(
-        new AddressResolverOptions().
-            addServer(dnsServerAddress.getAddress().getHostAddress() + ":" + dnsServerAddress.getPort()).
-            setOptResourceEnabled(false).
-            addSearchDomain("foo.com").
-            addSearchDomain("bar.com")
+            new AddressResolverOptions().
+                    addServer(dnsServerAddress.getAddress().getHostAddress() + ":" + dnsServerAddress.getPort()).
+                    setOptResourceEnabled(false).
+                    addSearchDomain("foo.com").
+                    addSearchDomain("bar.com")
     ));
 
     // "host1" resolves via the "foo.com" search path
@@ -607,11 +607,11 @@ public class HostnameResolutionTest extends VertxTestBase {
     dnsServer = FakeDNSServer.testResolveA(records);
     dnsServer.start();
     VertxInternal vertx = (VertxInternal) vertx(new VertxOptions().setAddressResolverOptions(
-        new AddressResolverOptions().
-            addServer(dnsServerAddress.getAddress().getHostAddress() + ":" + dnsServerAddress.getPort()).
-            setOptResourceEnabled(false).
-            addSearchDomain("foo.com").
-            setNdots(2)
+            new AddressResolverOptions().
+                    addServer(dnsServerAddress.getAddress().getHostAddress() + ":" + dnsServerAddress.getPort()).
+                    setOptResourceEnabled(false).
+                    addSearchDomain("foo.com").
+                    setNdots(2)
     ));
 
     CountDownLatch latch1 = new CountDownLatch(1);
@@ -641,11 +641,11 @@ public class HostnameResolutionTest extends VertxTestBase {
     dnsServer = FakeDNSServer.testResolveA(records);
     dnsServer.start();
     VertxInternal vertx = (VertxInternal) vertx(new VertxOptions().setAddressResolverOptions(
-        new AddressResolverOptions().
-            addServer(dnsServerAddress.getAddress().getHostAddress() + ":" + dnsServerAddress.getPort()).
-            setOptResourceEnabled(false).
-            addSearchDomain("foo.com").
-            setNdots(0)
+            new AddressResolverOptions().
+                    addServer(dnsServerAddress.getAddress().getHostAddress() + ":" + dnsServerAddress.getPort()).
+                    setOptResourceEnabled(false).
+                    addSearchDomain("foo.com").
+                    setNdots(0)
     ));
 
     // "host1" resolves directly as ndots = 0
@@ -674,10 +674,10 @@ public class HostnameResolutionTest extends VertxTestBase {
     dnsServer.start();
     vertx.close();
     vertx = vertx(new VertxOptions().setAddressResolverOptions(
-        new AddressResolverOptions().
-            addServer(dnsServerAddress.getAddress().getHostAddress() + ":" + dnsServerAddress.getPort()).
-            setOptResourceEnabled(false).
-            addSearchDomain("foo.com")
+            new AddressResolverOptions().
+                    addServer(dnsServerAddress.getAddress().getHostAddress() + ":" + dnsServerAddress.getPort()).
+                    setOptResourceEnabled(false).
+                    addSearchDomain("foo.com")
     ));
     testNet("host1");
   }

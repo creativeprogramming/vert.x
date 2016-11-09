@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.shareddata.impl;
 
 import io.vertx.core.*;
@@ -78,6 +77,7 @@ public class AsynchronousLock implements Lock {
   }
 
   private static class LockWaiter {
+
     final AsynchronousLock lock;
     final Context context;
     final Handler<AsyncResult<Lock>> resultHandler;

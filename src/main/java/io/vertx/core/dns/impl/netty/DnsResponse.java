@@ -94,8 +94,9 @@ public class DnsResponse extends DnsMessage<DnsResponseHeader> implements ByteBu
   }
 
   /**
-   * Returns the original index at which the DNS response packet starts for the {@link io.netty.buffer.ByteBuf}
-   * stored in this {@link io.netty.buffer.ByteBufHolder}.
+   * Returns the original index at which the DNS response packet starts for the
+   * {@link io.netty.buffer.ByteBuf} stored in this
+   * {@link io.netty.buffer.ByteBufHolder}.
    */
   public int originalIndex() {
     return originalIndex;

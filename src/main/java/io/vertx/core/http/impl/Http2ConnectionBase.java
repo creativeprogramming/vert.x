@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.buffer.ByteBuf;
@@ -59,9 +58,9 @@ abstract class Http2ConnectionBase extends ConnectionBase implements Http2FrameL
   /**
    * Return a buffer from HTTP/2 codec that Vert.x can use:
    *
-   * - if it's a direct buffer (coming likely from OpenSSL) : we get a heap buffer version
-   * - if it's a composite buffer we do the same
-   * - otherwise we increase the ref count
+   * - if it's a direct buffer (coming likely from OpenSSL) : we get a heap
+   * buffer version - if it's a composite buffer we do the same - otherwise we
+   * increase the ref count
    */
   static ByteBuf safeBuffer(ByteBuf buf, ByteBufAllocator allocator) {
     if (buf == Unpooled.EMPTY_BUFFER) {
@@ -69,7 +68,7 @@ abstract class Http2ConnectionBase extends ConnectionBase implements Http2FrameL
     }
     if (buf.isDirect() || buf instanceof CompositeByteBuf) {
       if (buf.isReadable()) {
-        ByteBuf buffer =  allocator.heapBuffer(buf.readableBytes());
+        ByteBuf buffer = allocator.heapBuffer(buf.readableBytes());
         buffer.writeBytes(buf);
         return buffer;
       } else {
@@ -191,10 +190,9 @@ abstract class Http2ConnectionBase extends ConnectionBase implements Http2FrameL
   }
 
   // Http2FrameListener
-
   @Override
   public void onPriorityRead(ChannelHandlerContext ctx, int streamId, int streamDependency,
-                             short weight, boolean exclusive) {
+          short weight, boolean exclusive) {
   }
 
   @Override
@@ -245,7 +243,7 @@ abstract class Http2ConnectionBase extends ConnectionBase implements Http2FrameL
 
   @Override
   public void onPushPromiseRead(ChannelHandlerContext ctx, int streamId, int promisedStreamId,
-                                Http2Headers headers, int padding) throws Http2Exception {
+          Http2Headers headers, int padding) throws Http2Exception {
   }
 
   @Override
@@ -258,7 +256,7 @@ abstract class Http2ConnectionBase extends ConnectionBase implements Http2FrameL
 
   @Override
   public synchronized void onUnknownFrame(ChannelHandlerContext ctx, byte frameType, int streamId,
-                             Http2Flags flags, ByteBuf payload) {
+          Http2Flags flags, ByteBuf payload) {
     VertxHttp2Stream req = streams.get(streamId);
     if (req != null) {
       Buffer buff = Buffer.buffer(safeBuffer(payload, ctx.alloc()));
@@ -280,7 +278,7 @@ abstract class Http2ConnectionBase extends ConnectionBase implements Http2FrameL
 
   @Override
   public synchronized int onDataRead(ChannelHandlerContext ctx, int streamId, ByteBuf data, int padding, boolean endOfStream) {
-    int[] consumed = { padding };
+    int[] consumed = {padding};
     VertxHttp2Stream req = streams.get(streamId);
     if (req != null) {
       data = safeBuffer(data, ctx.alloc());
@@ -459,12 +457,11 @@ abstract class Http2ConnectionBase extends ConnectionBase implements Http2FrameL
   }
 
   // Private
-
   private void checkShutdownHandler() {
     if (!shutdown) {
       Http2Connection conn = handler.connection();
       if ((conn.goAwayReceived() || conn.goAwaySent()) && conn.numActiveStreams() == 0) {
-        shutdown  = true;
+        shutdown = true;
         Handler<Void> handler = shutdownHandler;
         if (handler != null) {
           context.executeFromIO(() -> {

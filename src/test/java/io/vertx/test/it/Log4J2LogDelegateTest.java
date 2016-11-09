@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.it;
 
 import io.vertx.core.logging.Log4j2LogDelegateFactory;
@@ -215,5 +214,5 @@ public class Log4J2LogDelegateTest {
     });
     assertTrue(result.contains(".run:"));
   }
-  
+
 }

@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl.cgbystrom;
 
 import io.netty.buffer.ByteBuf;
@@ -24,17 +23,17 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
 
 /**
- * A Flash policy file handler
- * Will detect connection attempts made by Adobe Flash clients and return a policy file response
+ * A Flash policy file handler Will detect connection attempts made by Adobe
+ * Flash clients and return a policy file response
  *
- * After the policy has been sent, it will instantly close the connection.
- * If the first bytes sent are not a policy file request the handler will simply remove itself
- * from the pipeline.
+ * After the policy has been sent, it will instantly close the connection. If
+ * the first bytes sent are not a policy file request the handler will simply
+ * remove itself from the pipeline.
  *
- * Read more at http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html
+ * Read more at
+ * http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html
  *
- * Example usage:
- * <code>
+ * Example usage:  <code>
  * ChannelPipeline pipeline = Channels.pipeline();
  * pipeline.addLast("flashPolicy", new FlashPolicyHandler());
  * pipeline.addLast("decoder", new MyProtocolDecoder());
@@ -45,6 +44,7 @@ import io.netty.util.CharsetUtil;
  * For license see LICENSE file in this directory
  */
 public class FlashPolicyHandler extends ChannelInboundHandlerAdapter {
+
   private static final String XML = "<cross-domain-policy><allow-access-from domain=\"*\" to-ports=\"*\" /></cross-domain-policy>";
 
   enum ParseState {
@@ -70,7 +70,7 @@ public class FlashPolicyHandler extends ChannelInboundHandlerAdapter {
           ctx.pipeline().remove(this);
           return;
         }
-        // fall through
+      // fall through
       case MAGIC2:
         if (!buffer.isReadable()) {
           return;

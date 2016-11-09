@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net.impl;
 
 import io.netty.buffer.ByteBuf;
@@ -47,11 +46,13 @@ import java.util.UUID;
 
 /**
  *
- * This class is optimised for performance when used on the same event loop that is was passed to the handler with.
- * However it can be used safely from other threads.
+ * This class is optimised for performance when used on the same event loop that
+ * is was passed to the handler with. However it can be used safely from other
+ * threads.
  *
- * The internal state is protected using the synchronized keyword. If always used on the same event loop, then
- * we benefit from biased locking which makes the overhead of synchronized near zero.
+ * The internal state is protected using the synchronized keyword. If always
+ * used on the same event loop, then we benefit from biased locking which makes
+ * the overhead of synchronized near zero.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
@@ -73,12 +74,12 @@ public class NetSocketImpl extends ConnectionBase implements NetSocket {
   private ChannelFuture writeFuture;
 
   public NetSocketImpl(VertxInternal vertx, Channel channel, ContextImpl context,
-                       SSLHelper helper, TCPMetrics metrics, Object metric) {
+          SSLHelper helper, TCPMetrics metrics, Object metric) {
     this(vertx, channel, null, 0, context, helper, metrics, metric);
   }
 
   public NetSocketImpl(VertxInternal vertx, Channel channel, String host, int port, ContextImpl context,
-                       SSLHelper helper, TCPMetrics metrics, Object metric) {
+          SSLHelper helper, TCPMetrics metrics, Object metric) {
     super(vertx, channel, context, metrics);
     this.helper = helper;
     this.writeHandlerID = UUID.randomUUID().toString();
@@ -276,7 +277,6 @@ public class NetSocketImpl extends ConnectionBase implements NetSocket {
     return channel.pipeline().get(SslHandler.class) != null;
   }
 
-
   @Override
   public X509Certificate[] peerCertificateChain() throws SSLPeerUnverifiedException {
     return getPeerCertificateChain();
@@ -339,4 +339,3 @@ public class NetSocketImpl extends ConnectionBase implements NetSocket {
   }
 
 }
-

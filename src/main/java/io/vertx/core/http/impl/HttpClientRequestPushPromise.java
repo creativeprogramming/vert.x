@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.handler.codec.http2.Http2Exception;
@@ -44,14 +43,14 @@ class HttpClientRequestPushPromise extends HttpClientRequestBase {
   private Handler<HttpClientResponse> respHandler;
 
   public HttpClientRequestPushPromise(
-      Http2ClientConnection conn,
-      Http2Stream stream,
-      HttpClientImpl client,
-      HttpMethod method,
-      String rawMethod,
-      String uri,
-      String host,
-      MultiMap headers) throws Http2Exception {
+          Http2ClientConnection conn,
+          Http2Stream stream,
+          HttpClientImpl client,
+          HttpMethod method,
+          String rawMethod,
+          String uri,
+          String host,
+          MultiMap headers) throws Http2Exception {
     super(client, method, host, uri);
     this.conn = conn;
     this.stream = new Http2ClientConnection.Http2ClientStream(conn, this, stream, false);

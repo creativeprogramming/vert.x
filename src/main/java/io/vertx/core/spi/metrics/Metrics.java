@@ -13,12 +13,11 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.spi.metrics;
 
 /**
- * The metrics interface is implemented by metrics providers that wants to provide monitoring of
- * Vert.x core.
+ * The metrics interface is implemented by metrics providers that wants to
+ * provide monitoring of Vert.x core.
  *
  * @author <a href="mailto:nscavell@redhat.com">Nick Scavelli</a>
  */
@@ -32,7 +31,8 @@ public interface Metrics {
   boolean isEnabled();
 
   /**
-   * Used to close out the metrics, for example when an http server/client has been closed.<p/>
+   * Used to close out the metrics, for example when an http server/client has
+   * been closed.<p/>
    *
    * No specific thread and context can be expected when this method is called.
    */

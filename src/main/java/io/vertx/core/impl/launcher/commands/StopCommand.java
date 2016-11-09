@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.launcher.commands;
 
 import io.vertx.core.cli.annotations.*;
@@ -28,29 +27,30 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * A command stopping a vert.x application launched using the `start` command.  The application is
- * identified by its id.
+ * A command stopping a vert.x application launched using the `start` command.
+ * The application is identified by its id.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
 @Name("stop")
 @Summary("Stop a vert.x application")
-@Description("This command stops a vert.x application started with the `start` command. The command requires the " +
-    "application id as argument. Use the `list` command to get the list of applications")
+@Description("This command stops a vert.x application started with the `start` command. The command requires the "
+        + "application id as argument. Use the `list` command to get the list of applications")
 public class StopCommand extends DefaultCommand {
 
   private String id;
 
   /**
-   * Whether or not we are in redeploy mode. In redeploy mode, do not exit the VM.
+   * Whether or not we are in redeploy mode. In redeploy mode, do not exit the
+   * VM.
    */
   private boolean redeploy;
-
 
   private static final Pattern PS = Pattern.compile("([0-9]+)\\s.*-Dvertx.id=.*");
 
   /**
-   * As the {@code stop} command takes only a single argument, it's the application id.
+   * As the {@code stop} command takes only a single argument, it's the
+   * application id.
    *
    * @param id the id.
    */
@@ -117,12 +117,12 @@ public class StopCommand extends DefaultCommand {
   private void terminateWindowsApplication() {
     // Use wmic.
     List<String> cmd = Arrays.asList(
-        "WMIC",
-        "PROCESS",
-        "WHERE",
-        "CommandLine like '%vertx.id=" + id + "%'",
-        "CALL",
-        "TERMINATE"
+            "WMIC",
+            "PROCESS",
+            "WHERE",
+            "CommandLine like '%vertx.id=" + id + "%'",
+            "CALL",
+            "TERMINATE"
     );
 
     try {
@@ -145,8 +145,8 @@ public class StopCommand extends DefaultCommand {
   private String pid() {
     try {
       final Process process = new ProcessBuilder(Arrays.asList("sh", "-c", "ps ax | grep \"" + id + "\"")).start();
-      BufferedReader reader =
-          new BufferedReader(new InputStreamReader(process.getInputStream()));
+      BufferedReader reader
+              = new BufferedReader(new InputStreamReader(process.getInputStream()));
       String line;
       while ((line = reader.readLine()) != null) {
         final Matcher matcher = PS.matcher(line);

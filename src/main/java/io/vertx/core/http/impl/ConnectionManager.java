@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.bootstrap.Bootstrap;
@@ -101,10 +100,10 @@ public class ConnectionManager {
   }
 
   /**
-   * The queue manager manages the connection queues for a given usage, the idea is to split
-   * queues for HTTP requests and websockets. A websocket uses a pool of connections
-   * usually ugpraded from HTTP/1.1, HTTP requests may ask for HTTP/2 connections but obtain
-   * only HTTP/1.1 connections.
+   * The queue manager manages the connection queues for a given usage, the idea
+   * is to split queues for HTTP requests and websockets. A websocket uses a
+   * pool of connections usually ugpraded from HTTP/1.1, HTTP requests may ask
+   * for HTTP/2 connections but obtain only HTTP/1.1 connections.
    */
   private class QueueManager {
 
@@ -116,7 +115,7 @@ public class ConnectionManager {
     }
 
     public void close() {
-      for (ConnQueue queue: queueMap.values()) {
+      for (ConnQueue queue : queueMap.values()) {
         queue.closeAllConnections();
       }
       queueMap.clear();
@@ -149,14 +148,14 @@ public class ConnectionManager {
   }
 
   /**
-   * The connection queue delegates to the connection pool, the pooling strategy.
+   * The connection queue delegates to the connection pool, the pooling
+   * strategy.
    *
-   * - HTTP/1.x pools several connections
-   * - HTTP/2 uses a single connection
+   * - HTTP/1.x pools several connections - HTTP/2 uses a single connection
    *
-   * After a queue is initialized with an HTTP/2 pool, this pool changed to an HTTP/1/1
-   * pool if the server does not support HTTP/2 or after negotiation. In this situation
-   * all waiters on this queue will use HTTP/1.1 connections.
+   * After a queue is initialized with an HTTP/2 pool, this pool changed to an
+   * HTTP/1/1 pool if the server does not support HTTP/2 or after negotiation.
+   * In this situation all waiters on this queue will use HTTP/1.1 connections.
    */
   public class ConnQueue {
 
@@ -173,10 +172,10 @@ public class ConnectionManager {
       this.mgr = mgr;
       if (version == HttpVersion.HTTP_2) {
         maxSize = options.getHttp2MaxPoolSize();
-        pool =  (Pool)new Http2Pool(this, client, ConnectionManager.this.metrics, mgr.connectionMap, http2MaxConcurrency, logEnabled, options.getHttp2MaxPoolSize(), options.getHttp2ConnectionWindowSize());
+        pool = (Pool) new Http2Pool(this, client, ConnectionManager.this.metrics, mgr.connectionMap, http2MaxConcurrency, logEnabled, options.getHttp2MaxPoolSize(), options.getHttp2ConnectionWindowSize());
       } else {
         maxSize = options.getMaxPoolSize();
-        pool = (Pool)new Http1xPool(client, ConnectionManager.this.metrics, options, this, mgr.connectionMap, version, options.getMaxPoolSize());
+        pool = (Pool) new Http1xPool(client, ConnectionManager.this.metrics, options, this, mgr.connectionMap, version, options.getMaxPoolSize());
       }
       this.metric = ConnectionManager.this.metrics.createEndpoint(address.host(), address.port(), maxSize);
     }
@@ -210,7 +209,8 @@ public class ConnectionManager {
     }
 
     /**
-     * Handle the connection if the waiter is not cancelled, otherwise recycle the connection.
+     * Handle the connection if the waiter is not cancelled, otherwise recycle
+     * the connection.
      *
      * @param conn the connection
      */
@@ -298,21 +298,21 @@ public class ConnectionManager {
     private void fallbackToHttp1x(Channel ch, ContextImpl context, HttpVersion fallbackVersion, int port, String host, Waiter waiter) {
       // change the pool to Http1xPool
       synchronized (this) {
-        pool = (Pool)new Http1xPool(client, ConnectionManager.this.metrics, options, this, mgr.connectionMap, fallbackVersion, options.getMaxPoolSize());
+        pool = (Pool) new Http1xPool(client, ConnectionManager.this.metrics, options, this, mgr.connectionMap, fallbackVersion, options.getMaxPoolSize());
       }
       http1xConnected(fallbackVersion, context, port, host, ch, waiter);
     }
 
     private void http1xConnected(HttpVersion version, ContextImpl context, int port, String host, Channel ch, Waiter waiter) {
-      context.executeFromIO(() ->
-          ((Http1xPool)(Pool)pool).createConn(version, context, port, host, ch, waiter)
+      context.executeFromIO(()
+              -> ((Http1xPool) (Pool) pool).createConn(version, context, port, host, ch, waiter)
       );
     }
 
     private void http2Connected(ContextImpl context, Channel ch, Waiter waiter, boolean upgrade) {
       context.executeFromIO(() -> {
         try {
-          ((Http2Pool)(Pool)pool).createConn(context, ch, waiter, upgrade);
+          ((Http2Pool) (Pool) pool).createConn(context, ch, waiter, upgrade);
         } catch (Http2Exception e) {
           connectionFailed(context, ch, waiter::handleFailure, e);
         }
@@ -320,11 +320,11 @@ public class ConnectionManager {
     }
 
     private void connectionFailed(ContextImpl context, Channel ch, Handler<Throwable> connectionExceptionHandler,
-        Throwable t) {
+            Throwable t) {
       // If no specific exception handler is provided, fall back to the HttpClient's exception handler.
       // If that doesn't exist just log it
-      Handler<Throwable> exHandler =
-          connectionExceptionHandler == null ? log::error : connectionExceptionHandler;
+      Handler<Throwable> exHandler
+              = connectionExceptionHandler == null ? log::error : connectionExceptionHandler;
 
       context.executeFromIO(() -> {
         connectionClosed();
@@ -338,7 +338,8 @@ public class ConnectionManager {
   }
 
   /**
-   * The logic for the connection pool because HTTP/1 and HTTP/2 have different pooling logics.
+   * The logic for the connection pool because HTTP/1 and HTTP/2 have different
+   * pooling logics.
    */
   interface Pool<C extends HttpClientConnection> {
 
@@ -349,7 +350,8 @@ public class ConnectionManager {
     /**
      * Determine when a new connection should be created
      *
-     * @param connCount the actual connection count including the one being created
+     * @param connCount the actual connection count including the one being
+     * created
      * @return true whether or not a new connection can be created
      */
     boolean canCreateConnection(int connCount);
@@ -363,27 +365,27 @@ public class ConnectionManager {
   }
 
   /**
-   * The ChannelConnector performs the channel configuration and connection according to the
-   * client options and the protocol version.
-   * When the channel connects or fails to connect, it calls back the ConnQueue that initiated the
-   * connection.
+   * The ChannelConnector performs the channel configuration and connection
+   * according to the client options and the protocol version. When the channel
+   * connects or fails to connect, it calls back the ConnQueue that initiated
+   * the connection.
    */
   private class ChannelConnector {
 
     protected void connect(
-        ConnQueue queue,
-        Bootstrap bootstrap,
-        ContextImpl context,
-        HttpVersion version,
-        String host,
-        int port,
-        Waiter waiter) {
+            ConnQueue queue,
+            Bootstrap bootstrap,
+            ContextImpl context,
+            HttpVersion version,
+            String host,
+            int port,
+            Waiter waiter) {
 
       applyConnectionOptions(options, bootstrap);
 
       ChannelProvider channelProvider;
       // http proxy requests are handled in HttpClientImpl, everything else can use netty proxy handler
-      if (options.getProxyOptions() == null || !options.isSsl() && options.getProxyOptions().getType()==ProxyType.HTTP ) {
+      if (options.getProxyOptions() == null || !options.isSsl() && options.getProxyOptions().getType() == ProxyType.HTTP) {
         channelProvider = ChannelProvider.INSTANCE;
       } else {
         channelProvider = ProxyChannelProvider.INSTANCE;
@@ -405,8 +407,8 @@ public class ConnectionManager {
                 queue.http2Connected(context, ch, waiter, false);
               } else {
                 applyHttp1xConnectionOptions(queue, ch.pipeline(), context);
-                HttpVersion fallbackProtocol = ApplicationProtocolNames.HTTP_1_1.equals(protocol) ?
-                    HttpVersion.HTTP_1_1 : HttpVersion.HTTP_1_0;
+                HttpVersion fallbackProtocol = ApplicationProtocolNames.HTTP_1_1.equals(protocol)
+                        ? HttpVersion.HTTP_1_1 : HttpVersion.HTTP_1_0;
                 queue.fallbackToHttp1x(ch, context, fallbackProtocol, port, host, waiter);
               }
             }
@@ -419,13 +421,15 @@ public class ConnectionManager {
             if (options.isHttp2ClearTextUpgrade()) {
               HttpClientCodec httpCodec = new HttpClientCodec();
               class UpgradeRequestHandler extends ChannelInboundHandlerAdapter {
+
                 @Override
                 public void channelActive(ChannelHandlerContext ctx) throws Exception {
-                  DefaultFullHttpRequest upgradeRequest =
-                      new DefaultFullHttpRequest(io.netty.handler.codec.http.HttpVersion.HTTP_1_1, HttpMethod.GET, "/");
+                  DefaultFullHttpRequest upgradeRequest
+                          = new DefaultFullHttpRequest(io.netty.handler.codec.http.HttpVersion.HTTP_1_1, HttpMethod.GET, "/");
                   ctx.writeAndFlush(upgradeRequest);
                   ctx.fireChannelActive();
                 }
+
                 @Override
                 public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
                   super.userEventTriggered(ctx, evt);
@@ -539,7 +543,7 @@ public class ConnectionManager {
       if (options.getIdleTimeout() > 0) {
         pipeline.addLast("idle", new IdleStateHandler(0, 0, options.getIdleTimeout()));
       }
-      pipeline.addLast("handler", new ClientHandler(pipeline.channel(), context, (Map)queue.mgr.connectionMap));
+      pipeline.addLast("handler", new ClientHandler(pipeline.channel(), context, (Map) queue.mgr.connectionMap));
     }
   }
 }

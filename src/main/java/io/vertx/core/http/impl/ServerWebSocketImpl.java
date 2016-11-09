@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.vertx.core.Handler;
@@ -28,10 +27,12 @@ import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.security.cert.X509Certificate;
 
 /**
- * This class is optimised for performance when used on the same event loop. However it can be used safely from other threads.
+ * This class is optimised for performance when used on the same event loop.
+ * However it can be used safely from other threads.
  *
- * The internal state is protected using the synchronized keyword. If always used on the same event loop, then
- * we benefit from biased locking which makes the overhead of synchronized near zero.
+ * The internal state is protected using the synchronized keyword. If always
+ * used on the same event loop, then we benefit from biased locking which makes
+ * the overhead of synchronized near zero.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  *
@@ -49,8 +50,8 @@ public class ServerWebSocketImpl extends WebSocketImplBase implements ServerWebS
   private boolean rejected;
 
   public ServerWebSocketImpl(VertxInternal vertx, String uri, String path, String query, MultiMap headers,
-                             ConnectionBase conn, boolean supportsContinuation, Runnable connectRunnable,
-                             int maxWebSocketFrameSize) {
+          ConnectionBase conn, boolean supportsContinuation, Runnable connectRunnable,
+          int maxWebSocketFrameSize) {
     super(vertx, conn, supportsContinuation, maxWebSocketFrameSize);
     this.uri = uri;
     this.path = path;

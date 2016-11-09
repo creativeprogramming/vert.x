@@ -9,7 +9,6 @@ import org.junit.Test;
  */
 public class SSLEngineTest extends VertxTestBase {
 
-
   @Test
   public void testOpenSslOptions() {
     OpenSSLEngineOptions options = new OpenSSLEngineOptions();

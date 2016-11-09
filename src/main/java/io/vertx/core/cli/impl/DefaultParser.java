@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.cli.impl;
 
 import io.vertx.core.cli.*;
@@ -25,8 +24,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * The default implementation of the command line parser.
- * Absolutely not thread safe!
+ * The default implementation of the command line parser. Absolutely not thread
+ * safe!
  *
  * @author Clement Escoffier <clement@apache.org>
  */
@@ -41,8 +40,8 @@ public class DefaultParser {
   private CLI cli;
 
   /**
-   * Remove the hyphens from the beginning of <code>str</code> and
-   * return the new String.
+   * Remove the hyphens from the beginning of <code>str</code> and return the
+   * new String.
    *
    * @param str The string from which the hyphens should be removed.
    * @return the new String.
@@ -61,11 +60,11 @@ public class DefaultParser {
   }
 
   /**
-   * Remove the leading and trailing quotes from <code>str</code>.
-   * E.g. if str is '"one two"', then 'one two' is returned.
+   * Remove the leading and trailing quotes from <code>str</code>. E.g. if str
+   * is '"one two"', then 'one two' is returned.
    *
-   * @param str The string from which the leading and trailing quotes
-   *            should be removed.
+   * @param str The string from which the leading and trailing quotes should be
+   * removed.
    * @return The string without the leading and trailing quotes.
    */
   static String stripLeadingAndTrailingQuotes(String str) {
@@ -78,12 +77,12 @@ public class DefaultParser {
   }
 
   public CommandLine parse(CLI cli, List<String> cla)
-      throws CLIException {
+          throws CLIException {
     return parse(cli, cla, true);
   }
 
   public CommandLine parse(CLI cli, List<String> cla, boolean validate)
-      throws CLIException {
+          throws CLIException {
     commandLine = (DefaultCommandLine) CommandLine.create(cli);
     current = null;
     skipParsing = false;
@@ -131,8 +130,8 @@ public class DefaultParser {
       validate();
       commandLine.setValidity(true);
     } catch (CLIException e) {
-      if (validate  && ! commandLine.isAskingForHelp()) {
-        throw  e;
+      if (validate && !commandLine.isAskingForHelp()) {
+        throw e;
       } else {
         commandLine.setValidity(false);
       }
@@ -142,7 +141,6 @@ public class DefaultParser {
   }
 
   protected void validate() throws CLIException {
-
 
     // Check that only the last argument is multi-values and that index are unique
     boolean multiValue = false;
@@ -303,10 +301,7 @@ public class DefaultParser {
   /**
    * Handles the following tokens:
    * <p/>
-   * --L
-   * --L=V
-   * --L V
-   * --l
+   * --L --L=V --L V --l
    *
    * @param token the command line token to handle
    */
@@ -321,10 +316,7 @@ public class DefaultParser {
   /**
    * Handles the following tokens:
    * <p/>
-   * --L
-   * -L
-   * --l
-   * -l
+   * --L -L --l -l
    *
    * @param token the command line token to handle
    */
@@ -343,10 +335,7 @@ public class DefaultParser {
   /**
    * Handles the following tokens:
    * <p/>
-   * --L=V
-   * -L=V
-   * --l=V
-   * -l=V
+   * --L=V -L=V --l=V -l=V
    *
    * @param token the command line token to handle
    */
@@ -377,16 +366,9 @@ public class DefaultParser {
   /**
    * Handles the following tokens:
    * <p/>
-   * -S
-   * -SV
-   * -S V
-   * -S=V
+   * -S -SV -S V -S=V
    * <p/>
-   * -L
-   * -LV
-   * -L V
-   * -L=V
-   * -l
+   * -L -LV -L V -L=V -l
    *
    * @param token the command line token to handle
    */
@@ -525,8 +507,8 @@ public class DefaultParser {
   }
 
   /**
-   * Retrieve the {@link Option} matching the long or short name specified.
-   * The leading hyphens in the name are ignored (up to 2).
+   * Retrieve the {@link Option} matching the long or short name specified. The
+   * leading hyphens in the name are ignored (up to 2).
    *
    * @param opt short or long name of the {@link Option}
    * @return the option represented by opt
@@ -551,13 +533,13 @@ public class DefaultParser {
    * Returns the options with a long name starting with the name specified.
    *
    * @param opt the partial name of the option
-   * @return the options matching the partial name specified, or an empty list if none matches
+   * @return the options matching the partial name specified, or an empty list
+   * if none matches
    */
   public List<Option> getMatchingOptions(String opt) {
     opt = stripLeadingHyphens(opt);
 
     List<Option> matching = new ArrayList<>();
-
 
     final List<Option> options = cli.getOptions();
 

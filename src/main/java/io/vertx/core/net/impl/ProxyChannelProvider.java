@@ -37,7 +37,7 @@ public class ProxyChannelProvider extends ChannelProvider {
 
   @Override
   public void connect(VertxInternal vertx, Bootstrap bootstrap, ProxyOptions options, String host, int port,
-                           Handler<Channel> channelInitializer, Handler<AsyncResult<Channel>> channelHandler) {
+          Handler<Channel> channelInitializer, Handler<AsyncResult<Channel>> channelHandler) {
 
     final String proxyHost = options.getHost();
     final int proxyPort = options.getPort();
@@ -55,16 +55,16 @@ public class ProxyChannelProvider extends ChannelProvider {
           default:
           case HTTP:
             proxy = proxyUsername != null && proxyPassword != null
-                ? new HttpProxyHandler(proxyAddr, proxyUsername, proxyPassword) : new HttpProxyHandler(proxyAddr);
+                    ? new HttpProxyHandler(proxyAddr, proxyUsername, proxyPassword) : new HttpProxyHandler(proxyAddr);
             break;
           case SOCKS5:
             proxy = proxyUsername != null && proxyPassword != null
-                ? new Socks5ProxyHandler(proxyAddr, proxyUsername, proxyPassword) : new Socks5ProxyHandler(proxyAddr);
+                    ? new Socks5ProxyHandler(proxyAddr, proxyUsername, proxyPassword) : new Socks5ProxyHandler(proxyAddr);
             break;
           case SOCKS4:
             // SOCKS4 only supports a username and could authenticate the user via Ident
             proxy = proxyUsername != null ? new Socks4ProxyHandler(proxyAddr, proxyUsername)
-                : new Socks4ProxyHandler(proxyAddr);
+                    : new Socks4ProxyHandler(proxyAddr);
             break;
         }
 

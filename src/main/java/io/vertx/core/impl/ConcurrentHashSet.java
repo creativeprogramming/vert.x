@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 import java.util.Collection;
@@ -87,7 +86,7 @@ public class ConcurrentHashSet<E> implements Set<E> {
   @Override
   public boolean addAll(Collection<? extends E> c) {
     boolean changed = false;
-    for (E e: c) {
+    for (E e : c) {
       if (map.put(e, OBJ) == null) {
         changed = true;
       }

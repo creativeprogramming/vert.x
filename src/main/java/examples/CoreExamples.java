@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package examples;
 
 import io.vertx.core.*;
@@ -110,6 +109,7 @@ public class CoreExamples {
   BlockingAPI someAPI = new BlockingAPI();
 
   class BlockingAPI {
+
     String blockingMethod(String str) {
       return str;
     }
@@ -177,9 +177,9 @@ public class CoreExamples {
       fs.writeFile("/foo", Buffer.buffer(), fut2.completer());
       return fut2;
     }).compose(v -> {
-              // When the file is written (fut2), execute this:
-              fs.move("/foo", "/bar", startFuture.completer());
-            },
+      // When the file is written (fut2), execute this:
+      fs.move("/foo", "/bar", startFuture.completer());
+    },
             // mark startFuture it as failed if any step fails.
             startFuture);
   }
@@ -241,7 +241,6 @@ public class CoreExamples {
     vertx.deployVerticle("com.mycompany.MyOrderProcessorVerticle", options);
   }
 
-
   public void example13(Vertx vertx) {
     JsonObject config = new JsonObject().put("name", "tim").put("directory", "/blah");
     DeploymentOptions options = new DeploymentOptions().setConfig(config);
@@ -251,7 +250,7 @@ public class CoreExamples {
   public void example14(Vertx vertx) {
     DeploymentOptions options = new DeploymentOptions().setIsolationGroup("mygroup");
     options.setIsolatedClasses(Arrays.asList("com.mycompany.myverticle.*",
-                       "com.mycompany.somepkg.SomeClass", "org.somelibrary.*"));
+            "com.mycompany.somepkg.SomeClass", "org.somelibrary.*"));
     vertx.deployVerticle("com.mycompany.myverticle.VerticleClass", options);
   }
 
@@ -278,9 +277,7 @@ public class CoreExamples {
   public void example18(String className, Exception exception) {
 
     // Note -these classes are Java only
-
     // You would normally maintain one static instance of Logger per Java class:
-
     Logger logger = LoggerFactory.getLogger(className);
 
     logger.info("something happened");
@@ -299,13 +296,13 @@ public class CoreExamples {
       System.out.println("Context attached to Worker Thread");
     } else if (context.isMultiThreadedWorkerContext()) {
       System.out.println("Context attached to Worker Thread - multi threaded worker");
-    } else if (! Context.isOnVertxThread()) {
+    } else if (!Context.isOnVertxThread()) {
       System.out.println("Context not attached to a thread managed by vert.x");
     }
   }
 
   public void runInContext(Vertx vertx) {
-    vertx.getOrCreateContext().runOnContext( (v) -> {
+    vertx.getOrCreateContext().runOnContext((v) -> {
       System.out.println("This will be executed asynchronously in the same context");
     });
   }
@@ -325,25 +322,25 @@ public class CoreExamples {
 
   public void configureDNSServers() {
     Vertx vertx = Vertx.vertx(new VertxOptions().
-        setAddressResolverOptions(
-            new AddressResolverOptions().
-                addServer("192.168.0.1").
-                addServer("192.168.0.2:40000"))
+            setAddressResolverOptions(
+                    new AddressResolverOptions().
+                            addServer("192.168.0.1").
+                            addServer("192.168.0.2:40000"))
     );
   }
 
   public void configureHosts() {
     Vertx vertx = Vertx.vertx(new VertxOptions().
-        setAddressResolverOptions(
-            new AddressResolverOptions().
-                setHostsPath("/path/to/hosts"))
+            setAddressResolverOptions(
+                    new AddressResolverOptions().
+                            setHostsPath("/path/to/hosts"))
     );
   }
 
   public void configureSearchDomains() {
     Vertx vertx = Vertx.vertx(new VertxOptions().
-        setAddressResolverOptions(
-            new AddressResolverOptions().addSearchDomain("foo.com").addSearchDomain("bar.com"))
+            setAddressResolverOptions(
+                    new AddressResolverOptions().addSearchDomain("foo.com").addSearchDomain("bar.com"))
     );
   }
 

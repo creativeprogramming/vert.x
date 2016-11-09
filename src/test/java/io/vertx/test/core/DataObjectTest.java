@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.buffer.Buffer;
@@ -259,7 +258,7 @@ public class DataObjectTest extends VertxTestBase {
     assertEquals(0l, obj.getLongValue());
     assertEquals(0f, obj.getFloatValue(), 0);
     assertEquals(0d, obj.getDoubleValue(), 0);
-    assertEquals((char)0, obj.getCharValue());
+    assertEquals((char) 0, obj.getCharValue());
     assertEquals(null, obj.isBoxedBooleanValue());
     assertEquals(null, obj.getBoxedByteValue());
     assertEquals(null, obj.getBoxedShortValue());
@@ -407,23 +406,22 @@ public class DataObjectTest extends VertxTestBase {
     obj.setHttpMethodMap(Collections.singletonMap(key, httpMethod));
     obj.setObjectMap(map);
 
-
     JsonObject json = new JsonObject();
     TestDataObjectConverter.toJson(obj, json);
     json = new JsonObject(json.encode());
 
     assertEquals(stringValue, json.getString("stringValue"));
     assertEquals(booleanValue, json.getBoolean("booleanValue"));
-    assertEquals((int)byteValue, (int)json.getInteger("byteValue"));
-    assertEquals((int)shortValue, (int)json.getInteger("shortValue"));
-    assertEquals(intValue, (int)json.getInteger("intValue"));
-    assertEquals(longValue, (long)json.getLong("longValue"));
+    assertEquals((int) byteValue, (int) json.getInteger("byteValue"));
+    assertEquals((int) shortValue, (int) json.getInteger("shortValue"));
+    assertEquals(intValue, (int) json.getInteger("intValue"));
+    assertEquals(longValue, (long) json.getLong("longValue"));
     assertEquals(floatValue, json.getFloat("floatValue"), 0.001);
-    assertEquals(doubleValue, (double)json.getFloat("doubleValue"), 0.001);
+    assertEquals(doubleValue, (double) json.getFloat("doubleValue"), 0.001);
     assertEquals(Character.toString(charValue), json.getString("charValue"));
     assertEquals(boxedBooleanValue, json.getBoolean("boxedBooleanValue"));
-    assertEquals((int)boxedByteValue, (int)json.getInteger("boxedByteValue"));
-    assertEquals((int)boxedShortValue, (int)json.getInteger("boxedShortValue"));
+    assertEquals((int) boxedByteValue, (int) json.getInteger("boxedByteValue"));
+    assertEquals((int) boxedShortValue, (int) json.getInteger("boxedShortValue"));
     assertEquals(boxedIntValue, json.getInteger("boxedIntValue"));
     assertEquals(boxedLongValue, json.getLong("boxedLongValue"));
     assertEquals(boxedFloatValue, json.getFloat("boxedFloatValue"), 0.001);
@@ -481,13 +479,13 @@ public class DataObjectTest extends VertxTestBase {
 
     assertEquals(null, json.getString("stringValue"));
     assertEquals(false, json.getBoolean("booleanValue"));
-    assertEquals(0, (int)json.getInteger("byteValue"));
-    assertEquals(0, (int)json.getInteger("shortValue"));
-    assertEquals(0, (int)json.getInteger("intValue"));
+    assertEquals(0, (int) json.getInteger("byteValue"));
+    assertEquals(0, (int) json.getInteger("shortValue"));
+    assertEquals(0, (int) json.getInteger("intValue"));
     assertEquals(0L, (long) json.getLong("longValue"));
     assertEquals(0f, (float) json.getFloat("floatValue"), 0);
     assertEquals(0d, (double) json.getFloat("doubleValue"), 0);
-    assertEquals(Character.toString((char)0), json.getString("charValue"));
+    assertEquals(Character.toString((char) 0), json.getString("charValue"));
     assertEquals(null, json.getBoolean("boxedBooleanValue"));
     assertEquals(null, json.getInteger("boxedByteValue"));
     assertEquals(null, json.getInteger("boxedShortValue"));

@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net.impl;
 
 import io.vertx.core.impl.ContextImpl;
@@ -22,6 +21,7 @@ import io.vertx.core.impl.ContextImpl;
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
 public class HandlerHolder<T> {
+
   public final ContextImpl context;
   public final T handler;
 
@@ -32,13 +32,21 @@ public class HandlerHolder<T> {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
 
     HandlerHolder that = (HandlerHolder) o;
 
-    if (context != that.context) return false;
-    if (handler != null ? !handler.equals(that.handler) : that.handler != null) return false;
+    if (context != that.context) {
+      return false;
+    }
+    if (handler != null ? !handler.equals(that.handler) : that.handler != null) {
+      return false;
+    }
 
     return true;
   }

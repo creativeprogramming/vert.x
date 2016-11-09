@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.shareddata;
 
 import io.vertx.codegen.annotations.VertxGen;
@@ -21,7 +20,8 @@ import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
 
 /**
- * An asynchronous counter that can be used to across the cluster to maintain a consistent count.
+ * An asynchronous counter that can be used to across the cluster to maintain a
+ * consistent count.
  * <p>
  *
  *
@@ -61,7 +61,7 @@ public interface Counter {
   /**
    * Add the value to the counter atomically and return the new count
    *
-   * @param value  the value to add
+   * @param value the value to add
    * @param resultHandler handler which will be passed the value
    */
   void addAndGet(long value, Handler<AsyncResult<Long>> resultHandler);
@@ -69,18 +69,18 @@ public interface Counter {
   /**
    * Add the value to the counter atomically and return the value before the add
    *
-   * @param value  the value to add
+   * @param value the value to add
    * @param resultHandler handler which will be passed the value
    */
   void getAndAdd(long value, Handler<AsyncResult<Long>> resultHandler);
 
   /**
-   * Set the counter to the specified value only if the current value is the expectec value. This happens
-   * atomically.
+   * Set the counter to the specified value only if the current value is the
+   * expectec value. This happens atomically.
    *
-   * @param expected  the expected value
-   * @param value  the new value
-   * @param resultHandler  the handler will be passed true on success
+   * @param expected the expected value
+   * @param value the new value
+   * @param resultHandler the handler will be passed true on success
    */
   void compareAndSet(long expected, long value, Handler<AsyncResult<Boolean>> resultHandler);
 }

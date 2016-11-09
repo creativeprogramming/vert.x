@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.buffer.ByteBuf;
@@ -51,11 +50,11 @@ class VertxHttp2ConnectionHandler<C extends Http2ConnectionBase> extends Http2Co
   private ChannelHandlerContext ctx;
 
   public VertxHttp2ConnectionHandler(
-      Map<Channel, ? super C> connectionMap,
-      Http2ConnectionDecoder decoder,
-      Http2ConnectionEncoder encoder,
-      Http2Settings initialSettings,
-      Function<VertxHttp2ConnectionHandler<C>, C> connectionFactory) {
+          Map<Channel, ? super C> connectionMap,
+          Http2ConnectionDecoder decoder,
+          Http2ConnectionEncoder encoder,
+          Http2Settings initialSettings,
+          Function<VertxHttp2ConnectionHandler<C>, C> connectionFactory) {
     super(decoder, encoder, initialSettings);
     this.connectionMap = connectionMap;
     this.connection = connectionFactory.apply(this);
@@ -119,7 +118,6 @@ class VertxHttp2ConnectionHandler<C extends Http2ConnectionBase> extends Http2Co
   }
 
   //
-
   @Override
   public void onStreamClosed(Http2Stream stream) {
     connection.onStreamClosed(stream);
@@ -164,7 +162,6 @@ class VertxHttp2ConnectionHandler<C extends Http2ConnectionBase> extends Http2Co
   }
 
   //
-
   void writeHeaders(Http2Stream stream, Http2Headers headers, boolean end) {
     EventExecutor executor = ctx.executor();
     if (executor.inEventLoop()) {
@@ -223,7 +220,8 @@ class VertxHttp2ConnectionHandler<C extends Http2ConnectionBase> extends Http2Co
   }
 
   /**
-   * Consume {@code numBytes} for {@code stream}  in the flow controller, this must be called from event loop.
+   * Consume {@code numBytes} for {@code stream} in the flow controller, this
+   * must be called from event loop.
    */
   void consume(Http2Stream stream, int numBytes) {
     try {

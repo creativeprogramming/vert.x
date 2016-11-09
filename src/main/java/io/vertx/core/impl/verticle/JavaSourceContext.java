@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.verticle;
 
 import javax.tools.JavaFileObject.Kind;
@@ -38,7 +37,7 @@ public class JavaSourceContext {
     File rootDirectory = file.getParentFile();
     if (packageName != null) {
       String[] pathTokens = packageName.split("\\.");
-      for(int i = pathTokens.length - 1; i >= 0; i--) {
+      for (int i = pathTokens.length - 1; i >= 0; i--) {
         String token = pathTokens[i];
         if (!token.equals(rootDirectory.getName())) {
           throw new RuntimeException("Package structure does not match directory structure: " + token + " != " + rootDirectory.getName());
@@ -57,11 +56,11 @@ public class JavaSourceContext {
   }
 
   public File getSourceRoot() {
-	  return sourceRoot;
+    return sourceRoot;
   }
 
   public String getClassName() {
-	  return className;
+    return className;
   }
 
   /*
@@ -74,7 +73,7 @@ public class JavaSourceContext {
     try {
       String source = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
       // http://stackoverflow.com/questions/1657066/java-regular-expression-finding-comments-in-code
-      source = source.replaceAll( "//.*|(\"(?:\\\\[^\"]|\\\\\"|.)*?\")|(?s)/\\*.*?\\*/", "$1 " );
+      source = source.replaceAll("//.*|(\"(?:\\\\[^\"]|\\\\\"|.)*?\")|(?s)/\\*.*?\\*/", "$1 ");
       for (String line : source.split("\\r?\\n")) {
         line = line.trim();
         if (!line.isEmpty()) {
@@ -85,7 +84,7 @@ public class JavaSourceContext {
           return null; // Package definition must be on the first non-comment line
         }
       }
-	    return null;
+      return null;
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

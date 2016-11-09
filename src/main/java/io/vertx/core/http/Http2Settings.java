@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http;
 
 import io.netty.handler.codec.http2.Http2CodecUtil;
@@ -26,10 +25,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * HTTP2 settings, the settings is initialized with the default HTTP/2 values.<p>
+ * HTTP2 settings, the settings is initialized with the default HTTP/2
+ * values.<p>
  *
- * The settings expose the parameters defined by the HTTP/2 specification, as well as extra settings for
- * protocol extensions.
+ * The settings expose the parameters defined by the HTTP/2 specification, as
+ * well as extra settings for protocol extensions.
  *
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */
@@ -47,7 +47,8 @@ public class Http2Settings {
   public static final boolean DEFAULT_ENABLE_PUSH = true;
 
   /**
-   * Default HTTP/2 spec value for {@link #getMaxConcurrentStreams} : {@code 0xFFFFFFFFL}
+   * Default HTTP/2 spec value for
+   * {@link #getMaxConcurrentStreams} : {@code 0xFFFFFFFFL}
    */
   public static final long DEFAULT_MAX_CONCURRENT_STREAMS = 0xFFFFFFFFL;
 
@@ -62,7 +63,8 @@ public class Http2Settings {
   public static final int DEFAULT_MAX_FRAME_SIZE = 16384;
 
   /**
-   * Default HTTP/2 spec value for {@link #getMaxHeaderListSize} : {@code Integer.MAX_VALUE}
+   * Default HTTP/2 spec value for
+   * {@link #getMaxHeaderListSize} : {@code Integer.MAX_VALUE}
    */
   public static final int DEFAULT_MAX_HEADER_LIST_SIZE = Integer.MAX_VALUE;
 
@@ -132,9 +134,9 @@ public class Http2Settings {
    */
   public Http2Settings setHeaderTableSize(long headerTableSize) {
     Arguments.require(headerTableSize >= Http2CodecUtil.MIN_HEADER_TABLE_SIZE,
-        "headerTableSize must be >= " + Http2CodecUtil.MIN_HEADER_TABLE_SIZE);
+            "headerTableSize must be >= " + Http2CodecUtil.MIN_HEADER_TABLE_SIZE);
     Arguments.require(headerTableSize <= Http2CodecUtil.MAX_HEADER_TABLE_SIZE,
-        "headerTableSize must be <= " + Http2CodecUtil.MAX_HEADER_TABLE_SIZE);
+            "headerTableSize must be <= " + Http2CodecUtil.MAX_HEADER_TABLE_SIZE);
     this.headerTableSize = headerTableSize;
     return this;
   }
@@ -172,9 +174,9 @@ public class Http2Settings {
    */
   public Http2Settings setMaxConcurrentStreams(long maxConcurrentStreams) {
     Arguments.require(maxConcurrentStreams >= Http2CodecUtil.MIN_CONCURRENT_STREAMS,
-        "maxConcurrentStreams must be >= " + Http2CodecUtil.MIN_CONCURRENT_STREAMS);
+            "maxConcurrentStreams must be >= " + Http2CodecUtil.MIN_CONCURRENT_STREAMS);
     Arguments.require(maxConcurrentStreams <= Http2CodecUtil.MAX_CONCURRENT_STREAMS,
-        "maxConcurrentStreams must be < " + Http2CodecUtil.MAX_CONCURRENT_STREAMS);
+            "maxConcurrentStreams must be < " + Http2CodecUtil.MAX_CONCURRENT_STREAMS);
     this.maxConcurrentStreams = maxConcurrentStreams;
     return this;
   }
@@ -194,7 +196,7 @@ public class Http2Settings {
    */
   public Http2Settings setInitialWindowSize(int initialWindowSize) {
     Arguments.require(initialWindowSize >= Http2CodecUtil.MIN_INITIAL_WINDOW_SIZE,
-        "initialWindowSize must be >= " + Http2CodecUtil.MIN_INITIAL_WINDOW_SIZE);
+            "initialWindowSize must be >= " + Http2CodecUtil.MIN_INITIAL_WINDOW_SIZE);
     this.initialWindowSize = initialWindowSize;
     return this;
   }
@@ -214,9 +216,9 @@ public class Http2Settings {
    */
   public Http2Settings setMaxFrameSize(int maxFrameSize) {
     Arguments.require(maxFrameSize >= Http2CodecUtil.MAX_FRAME_SIZE_LOWER_BOUND,
-        "maxFrameSize must be >= " + Http2CodecUtil.MAX_FRAME_SIZE_LOWER_BOUND);
+            "maxFrameSize must be >= " + Http2CodecUtil.MAX_FRAME_SIZE_LOWER_BOUND);
     Arguments.require(maxFrameSize <= Http2CodecUtil.MAX_FRAME_SIZE_UPPER_BOUND,
-        "maxFrameSize must be <= " + Http2CodecUtil.MAX_FRAME_SIZE_UPPER_BOUND);
+            "maxFrameSize must be <= " + Http2CodecUtil.MAX_FRAME_SIZE_UPPER_BOUND);
     this.maxFrameSize = maxFrameSize;
     return this;
   }
@@ -236,7 +238,7 @@ public class Http2Settings {
    */
   public Http2Settings setMaxHeaderListSize(int maxHeaderListSize) {
     Arguments.require(maxHeaderListSize >= Http2CodecUtil.MIN_HEADER_LIST_SIZE,
-        "maxHeaderListSize must be >= " + Http2CodecUtil.MIN_HEADER_LIST_SIZE);
+            "maxHeaderListSize must be >= " + Http2CodecUtil.MIN_HEADER_LIST_SIZE);
     this.maxHeaderListSize = maxHeaderListSize;
     return this;
   }
@@ -276,11 +278,11 @@ public class Http2Settings {
       case 3:
         return maxConcurrentStreams;
       case 4:
-        return (long)initialWindowSize;
+        return (long) initialWindowSize;
       case 5:
-        return (long)maxFrameSize;
+        return (long) maxFrameSize;
       case 6:
-        return (long)maxHeaderListSize;
+        return (long) maxHeaderListSize;
       default:
         return extraSettings != null ? extraSettings.get(id) : null;
     }
@@ -328,17 +330,33 @@ public class Http2Settings {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
 
     Http2Settings that = (Http2Settings) o;
 
-    if (headerTableSize != that.headerTableSize) return false;
-    if (pushEnabled != that.pushEnabled) return false;
-    if (maxConcurrentStreams != that.maxConcurrentStreams) return false;
-    if (initialWindowSize != that.initialWindowSize) return false;
-    if (maxFrameSize != that.maxFrameSize) return false;
-    if (maxHeaderListSize != that.maxHeaderListSize) return false;
+    if (headerTableSize != that.headerTableSize) {
+      return false;
+    }
+    if (pushEnabled != that.pushEnabled) {
+      return false;
+    }
+    if (maxConcurrentStreams != that.maxConcurrentStreams) {
+      return false;
+    }
+    if (initialWindowSize != that.initialWindowSize) {
+      return false;
+    }
+    if (maxFrameSize != that.maxFrameSize) {
+      return false;
+    }
+    if (maxHeaderListSize != that.maxHeaderListSize) {
+      return false;
+    }
     return true;
   }
 

@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package examples.cli;
 
 import io.vertx.core.cli.CLI;
@@ -35,23 +34,23 @@ public class TypedCLIExamples {
 
   public void example1() {
     CLI cli = CLI.create("copy")
-        .setSummary("A command line interface to copy files.")
-        .addOption(new TypedOption<Boolean>()
-            .setType(Boolean.class)
-            .setLongName("directory")
-            .setShortName("R")
-            .setDescription("enables directory support")
-            .setFlag(true))
-        .addArgument(new TypedArgument<File>()
-            .setType(File.class)
-            .setIndex(0)
-            .setDescription("The source")
-            .setArgName("source"))
-        .addArgument(new TypedArgument<File>()
-            .setType(File.class)
-            .setIndex(0)
-            .setDescription("The destination")
-            .setArgName("target"));
+            .setSummary("A command line interface to copy files.")
+            .addOption(new TypedOption<Boolean>()
+                    .setType(Boolean.class)
+                    .setLongName("directory")
+                    .setShortName("R")
+                    .setDescription("enables directory support")
+                    .setFlag(true))
+            .addArgument(new TypedArgument<File>()
+                    .setType(File.class)
+                    .setIndex(0)
+                    .setDescription("The source")
+                    .setArgName("source"))
+            .addArgument(new TypedArgument<File>()
+                    .setType(File.class)
+                    .setIndex(0)
+                    .setDescription("The destination")
+                    .setArgName("target"));
   }
 
   public void example2(CLI cli, List<String> userCommandLineArguments) {
@@ -63,10 +62,10 @@ public class TypedCLIExamples {
 
   public void example3() {
     CLI cli = CLI.create("some-name")
-        .addOption(new TypedOption<Person>()
-            .setType(Person.class)
-            .setConverter(new PersonConverter())
-            .setLongName("person"));
+            .addOption(new TypedOption<Person>()
+                    .setType(Person.class)
+                    .setConverter(new PersonConverter())
+                    .setLongName("person"));
   }
 
   public void example4(List<String> userCommandLineArguments) {
@@ -87,6 +86,5 @@ public class TypedCLIExamples {
       return null;
     }
   }
-
 
 }

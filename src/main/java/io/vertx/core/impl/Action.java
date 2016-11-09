@@ -13,12 +13,12 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 /**
- *  @author <a href="http://tfox.org">Tim Fox</a>
+ * @author <a href="http://tfox.org">Tim Fox</a>
  */
 public interface Action<T> {
+
   T perform();
 }

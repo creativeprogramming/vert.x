@@ -15,7 +15,6 @@
  */
 package io.vertx.core.http.impl;
 
-
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.vertx.core.net.impl.PartialPooledByteBufAllocator;
@@ -23,11 +22,13 @@ import io.vertx.core.net.impl.PartialPooledByteBufAllocator;
 import java.util.List;
 
 /**
- * {@link io.netty.handler.codec.http.HttpResponseEncoder} which forces the usage of direct buffers for max performance.
+ * {@link io.netty.handler.codec.http.HttpResponseEncoder} which forces the
+ * usage of direct buffers for max performance.
  *
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>
  */
 final class VertxHttpResponseEncoder extends HttpResponseEncoder {
+
   private ChannelHandlerContext context;
 
   @Override

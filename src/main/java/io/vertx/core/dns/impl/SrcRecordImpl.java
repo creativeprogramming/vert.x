@@ -18,11 +18,11 @@ package io.vertx.core.dns.impl;
 import io.vertx.core.dns.SrvRecord;
 import io.vertx.core.dns.impl.netty.decoder.record.ServiceRecord;
 
-
 /**
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>
  */
-final class SrcRecordImpl implements SrvRecord, Comparable<SrvRecord>{
+final class SrcRecordImpl implements SrvRecord, Comparable<SrvRecord> {
+
   private final ServiceRecord record;
 
   SrcRecordImpl(ServiceRecord record) {

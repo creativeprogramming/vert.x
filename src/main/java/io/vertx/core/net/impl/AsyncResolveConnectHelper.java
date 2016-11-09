@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net.impl;
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -51,7 +50,7 @@ public class AsyncResolveConnectHelper {
 
   private synchronized void handle(ChannelFuture cf, AsyncResult<Channel> res) {
     if (result == null) {
-      for (Handler<AsyncResult<Channel>> handler: handlers) {
+      for (Handler<AsyncResult<Channel>> handler : handlers) {
         handler.handle(res);
       }
       future = cf;
@@ -68,7 +67,7 @@ public class AsyncResolveConnectHelper {
   }
 
   public static AsyncResolveConnectHelper doBind(VertxInternal vertx, int port, String host,
-                                                 ServerBootstrap bootstrap) {
+          ServerBootstrap bootstrap) {
     checkPort(port);
     AsyncResolveConnectHelper asyncResolveConnectHelper = new AsyncResolveConnectHelper();
     vertx.resolveAddress(host, res -> {

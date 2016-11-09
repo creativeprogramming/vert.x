@@ -31,13 +31,13 @@ public class DnsResource extends DnsEntry implements ByteBufHolder {
   /**
    * Constructs a resource record.
    *
-   * @param name         the domain name
-   * @param type         the type of record being returned
-   * @param aClass       the class for this resource record
-   * @param ttl          the time to live after reading
-   * @param contentIndex the {@code writerIndex} at which the content appears in the
-   *                     original packet
-   * @param content      the data contained in this record
+   * @param name the domain name
+   * @param type the type of record being returned
+   * @param aClass the class for this resource record
+   * @param ttl the time to live after reading
+   * @param contentIndex the {@code writerIndex} at which the content appears in
+   * the original packet
+   * @param content the data contained in this record
    */
   public DnsResource(String name, int type, int aClass, long ttl, int contentIndex, ByteBuf content) {
     super(name, type, aClass);
@@ -54,8 +54,8 @@ public class DnsResource extends DnsEntry implements ByteBufHolder {
   }
 
   /**
-   * Returns the index at which the content of this resource record
-   * appears in the original packet.
+   * Returns the index at which the content of this resource record appears in
+   * the original packet.
    */
   public int contentIndex() {
     return contentIndex;

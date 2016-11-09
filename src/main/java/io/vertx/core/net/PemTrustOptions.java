@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -29,10 +28,12 @@ import java.util.Objects;
 
 /**
  * Certificate Authority options configuring certificates based on
- * <i>Privacy-enhanced Electronic Email</i> (PEM) files. The options is configured with a list of
- * validating certificates.
+ * <i>Privacy-enhanced Electronic Email</i> (PEM) files. The options is
+ * configured with a list of validating certificates.
  * <p>
- * Validating certificates must contain X.509 certificates wrapped in a PEM block:<p>
+ * Validating certificates must contain X.509 certificates wrapped in a PEM
+ * block:
+ * <p>
  *
  * <pre>
  * -----BEGIN CERTIFICATE-----
@@ -44,7 +45,8 @@ import java.util.Objects;
  *
  * The certificates can either be loaded by Vert.x from the filesystem:
  * <p>
- * <pre>
+ * <
+ * pre>
  * HttpServerOptions options = new HttpServerOptions();
  * options.setPemTrustOptions(new PemTrustOptions().addCertPath("/cert.pem"));
  * </pre>
@@ -79,7 +81,7 @@ public class PemTrustOptions implements TrustOptions, Cloneable {
   /**
    * Copy constructor
    *
-   * @param other  the options to copy
+   * @param other the options to copy
    */
   public PemTrustOptions(PemTrustOptions other) {
     super();
@@ -90,7 +92,7 @@ public class PemTrustOptions implements TrustOptions, Cloneable {
   /**
    * Create options from JSON
    *
-   * @param json  the JSON
+   * @param json the JSON
    */
   public PemTrustOptions(JsonObject json) {
     this();
@@ -98,7 +100,7 @@ public class PemTrustOptions implements TrustOptions, Cloneable {
   }
 
   /**
-   * @return  the certificate paths used to locate certificates
+   * @return the certificate paths used to locate certificates
    */
   public List<String> getCertPaths() {
     return certPaths;
@@ -107,7 +109,7 @@ public class PemTrustOptions implements TrustOptions, Cloneable {
   /**
    * Add a certificate path
    *
-   * @param certPath  the path to add
+   * @param certPath the path to add
    * @return a reference to this, so the API can be used fluently
    * @throws NullPointerException
    */
@@ -129,7 +131,7 @@ public class PemTrustOptions implements TrustOptions, Cloneable {
   /**
    * Add a certificate value
    *
-   * @param certValue  the value to add
+   * @param certValue the value to add
    * @return a reference to this, so the API can be used fluently
    * @throws NullPointerException
    */

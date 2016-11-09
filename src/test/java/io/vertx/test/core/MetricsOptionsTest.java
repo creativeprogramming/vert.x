@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.Vertx;
@@ -68,8 +67,8 @@ public class MetricsOptionsTest extends VertxTestBase {
     boolean metricsEnabled = rand.nextBoolean();
     String customValue = TestUtils.randomAlphaString(10);
     options = new MetricsOptions(new JsonObject().
-        put("enabled", metricsEnabled).
-        put("custom", customValue)
+            put("enabled", metricsEnabled).
+            put("custom", customValue)
     );
     assertEquals(metricsEnabled, options.isEnabled());
     assertEquals(metricsEnabled, options.toJson().getBoolean("enabled"));

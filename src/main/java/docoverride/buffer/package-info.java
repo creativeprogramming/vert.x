@@ -13,17 +13,14 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 /**
  * Create a buffer from a byte[]
  *
  * [source,java]
  * ----
- * {@link docoverride.buffer.Examples#example4}
- * ----
+ * {@link docoverride.buffer.Examples#example4} ----
  */
 @Document(fileName = "override/buffer_from_bytes.adoc")
 package docoverride.buffer;
 
 import io.vertx.docgen.Document;
-

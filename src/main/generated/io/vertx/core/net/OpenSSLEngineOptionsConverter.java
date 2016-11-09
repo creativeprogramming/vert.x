@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-
 package io.vertx.core.net;
 
 import io.vertx.core.json.JsonObject;
@@ -22,13 +21,15 @@ import io.vertx.core.json.JsonArray;
 /**
  * Converter for {@link io.vertx.core.net.OpenSSLEngineOptions}.
  *
- * NOTE: This class has been automatically generated from the {@link io.vertx.core.net.OpenSSLEngineOptions} original class using Vert.x codegen.
+ * NOTE: This class has been automatically generated from the
+ * {@link io.vertx.core.net.OpenSSLEngineOptions} original class using Vert.x
+ * codegen.
  */
 public class OpenSSLEngineOptionsConverter {
 
   public static void fromJson(JsonObject json, OpenSSLEngineOptions obj) {
     if (json.getValue("sessionCacheEnabled") instanceof Boolean) {
-      obj.setSessionCacheEnabled((Boolean)json.getValue("sessionCacheEnabled"));
+      obj.setSessionCacheEnabled((Boolean) json.getValue("sessionCacheEnabled"));
     }
   }
 

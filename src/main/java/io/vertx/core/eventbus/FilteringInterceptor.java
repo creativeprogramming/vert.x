@@ -14,7 +14,6 @@ public abstract class FilteringInterceptor implements Handler<SendContext> {
   }
 
   // TODO regex
-
   @Override
   public void handle(SendContext sendContext) {
     if (sendContext.message().address().startsWith(startsWith)) {

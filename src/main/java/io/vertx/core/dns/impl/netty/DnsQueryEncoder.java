@@ -24,18 +24,19 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 /**
- * DnsQueryEncoder accepts {@link DnsQuery} and encodes to {@link io.netty.buffer.ByteBuf}. This
- * class also contains methods for encoding parts of DnsQuery's such as the
- * header and questions.
+ * DnsQueryEncoder accepts {@link DnsQuery} and encodes to
+ * {@link io.netty.buffer.ByteBuf}. This class also contains methods for
+ * encoding parts of DnsQuery's such as the header and questions.
  */
 public class DnsQueryEncoder extends MessageToByteEncoder<DnsQuery> {
 
   /**
    * Encodes the information in a {@link DnsQueryHeader} and writes it to the
-   * specified {@link io.netty.buffer.ByteBuf}. The header is always 12 bytes long.
+   * specified {@link io.netty.buffer.ByteBuf}. The header is always 12 bytes
+   * long.
    *
    * @param header the query header being encoded
-   * @param buf    the buffer the encoded data should be written to
+   * @param buf the buffer the encoded data should be written to
    */
   private static void encodeHeader(DnsQueryHeader header, ByteBuf buf) {
     buf.writeShort(header.getId());
@@ -55,8 +56,8 @@ public class DnsQueryEncoder extends MessageToByteEncoder<DnsQuery> {
    * specified {@link io.netty.buffer.ByteBuf}.
    *
    * @param question the question being encoded
-   * @param charset  charset names are encoded in
-   * @param buf      the buffer the encoded data should be written to
+   * @param charset charset names are encoded in
+   * @param buf the buffer the encoded data should be written to
    */
   private static void encodeQuestion(DnsQuestion question, Charset charset, ByteBuf buf) {
     String[] parts = question.name().split("\\.");
@@ -73,7 +74,7 @@ public class DnsQueryEncoder extends MessageToByteEncoder<DnsQuery> {
    * Encodes a query and writes it to a {@link io.netty.buffer.ByteBuf}.
    *
    * @param query the {@link DnsQuery} being encoded
-   * @param buf   the {@link io.netty.buffer.ByteBuf} the query will be written to
+   * @param buf the {@link io.netty.buffer.ByteBuf} the query will be written to
    */
   protected static void encodeQuery(DnsQuery query, ByteBuf buf) {
     encodeHeader(query.getHeader(), buf);
@@ -84,15 +85,16 @@ public class DnsQueryEncoder extends MessageToByteEncoder<DnsQuery> {
   }
 
   /**
-   * Encodes a query and writes it to a {@link io.netty.buffer.ByteBuf}. Queries are sent to a
-   * DNS server and a response will be returned from the server. The encoded
-   * ByteBuf is written to the specified {@link io.netty.buffer.ByteBuf}.
+   * Encodes a query and writes it to a {@link io.netty.buffer.ByteBuf}. Queries
+   * are sent to a DNS server and a response will be returned from the server.
+   * The encoded ByteBuf is written to the specified
+   * {@link io.netty.buffer.ByteBuf}.
    *
-   * @param ctx   the {@link io.netty.channel.ChannelHandlerContext} this {@link io.vertx.core.dns.impl.netty.DnsQueryEncoder}
-   *              belongs to
+   * @param ctx the {@link io.netty.channel.ChannelHandlerContext} this
+   * {@link io.vertx.core.dns.impl.netty.DnsQueryEncoder} belongs to
    * @param query the query being encoded
-   * @param out   the {@link io.netty.buffer.ByteBuf} to which encoded messages should be
-   *              written
+   * @param out the {@link io.netty.buffer.ByteBuf} to which encoded messages
+   * should be written
    * @throws Exception
    */
   @Override

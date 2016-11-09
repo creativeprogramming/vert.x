@@ -13,9 +13,7 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.logging;
-
 
 import io.vertx.core.spi.logging.LogDelegate;
 import org.slf4j.Logger;
@@ -28,6 +26,7 @@ import static org.slf4j.spi.LocationAwareLogger.*;
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
 public class SLF4JLogDelegate implements LogDelegate {
+
   private static final String FQCN = io.vertx.core.logging.Logger.class.getCanonicalName();
 
   private final Logger logger;
@@ -160,12 +159,12 @@ public class SLF4JLogDelegate implements LogDelegate {
     // If we don't have parameters, we need to build a new array [t]
     // If we don't have error, it's just params.
     Object[] parameters = params;
-    if (params != null  && t != null) {
+    if (params != null && t != null) {
       parameters = new Object[params.length + 1];
       System.arraycopy(params, 0, parameters, 0, params.length);
       parameters[params.length] = t;
-    } else if (params == null  && t != null) {
-      parameters = new Object[] {t};
+    } else if (params == null && t != null) {
+      parameters = new Object[]{t};
     }
 
     if (logger instanceof LocationAwareLogger) {

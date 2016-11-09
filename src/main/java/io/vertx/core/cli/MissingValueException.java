@@ -16,17 +16,19 @@
 package io.vertx.core.cli;
 
 /**
- * Exception thrown when an option requiring a value does not receive the value, or when a mandatory argument does not
- * receive a value.
+ * Exception thrown when an option requiring a value does not receive the value,
+ * or when a mandatory argument does not receive a value.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
 public class MissingValueException extends CLIException {
+
   private final Option option;
   private final Argument argument;
 
   /**
-   * Creates a new instance of {@link MissingValueException} when an option requiring a value does not receive a value.
+   * Creates a new instance of {@link MissingValueException} when an option
+   * requiring a value does not receive a value.
    *
    * @param option the option
    */
@@ -37,28 +39,30 @@ public class MissingValueException extends CLIException {
   }
 
   /**
-   * Creates a new instance of {@link MissingValueException} when a mandatory argument is not set in the user command
-   * line.
+   * Creates a new instance of {@link MissingValueException} when a mandatory
+   * argument is not set in the user command line.
    *
    * @param argument the argument
    */
   public MissingValueException(Argument argument) {
     super("The argument '"
-        + (argument.getArgName() != null ? argument.getArgName() : argument.getIndex())
-        + "' is required");
+            + (argument.getArgName() != null ? argument.getArgName() : argument.getIndex())
+            + "' is required");
     this.option = null;
     this.argument = argument;
   }
 
   /**
-   * @return the option, may be {@code null} if the exception is about an argument.
+   * @return the option, may be {@code null} if the exception is about an
+   * argument.
    */
   public Option getOption() {
     return option;
   }
 
   /**
-   * @return the argument, may be {@code null} if the exception is about an option.
+   * @return the argument, may be {@code null} if the exception is about an
+   * option.
    */
   public Argument getArgument() {
     return argument;

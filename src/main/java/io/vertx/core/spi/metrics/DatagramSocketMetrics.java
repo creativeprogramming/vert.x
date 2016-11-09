@@ -13,35 +13,37 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.spi.metrics;
 
 import io.vertx.core.net.SocketAddress;
 
 /**
- * The datagram/udp metrics SPI which Vert.x will use to call when each event occurs pertaining to datagram sockets.<p/>
+ * The datagram/udp metrics SPI which Vert.x will use to call when each event
+ * occurs pertaining to datagram sockets.<p/>
  *
- * The thread model for the datagram socket depends on the actual context thats started the server.<p/>
+ * The thread model for the datagram socket depends on the actual context thats
+ * started the server.<p/>
  *
  * <h3>Event loop context</h3>
  *
- * Unless specified otherwise, all the methods on this object including the methods inherited from the super interfaces are invoked
- * with the thread of the http server and therefore are the same than the
- * {@link io.vertx.core.spi.metrics.VertxMetrics} {@code createMetrics} method that created and returned
- * this metrics object.
+ * Unless specified otherwise, all the methods on this object including the
+ * methods inherited from the super interfaces are invoked with the thread of
+ * the http server and therefore are the same than the
+ * {@link io.vertx.core.spi.metrics.VertxMetrics} {@code createMetrics} method
+ * that created and returned this metrics object.
  *
  * <h3>Worker context</h3>
  *
- * Unless specified otherwise, all the methods on this object including the methods inherited from the super interfaces are invoked
- * with a worker thread.
+ * Unless specified otherwise, all the methods on this object including the
+ * methods inherited from the super interfaces are invoked with a worker thread.
  *
  * @author <a href="mailto:nscavell@redhat.com">Nick Scavelli</a>
  */
 public interface DatagramSocketMetrics extends NetworkMetrics<Void> {
 
   /**
-   * Called when a socket is listening. For example, this is called when an http or net server
-   * has been created and is listening on a specific host/port.
+   * Called when a socket is listening. For example, this is called when an http
+   * or net server has been created and is listening on a specific host/port.
    *
    * @param localName
    * @param localAddress the local address the net socket is listening on.

@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.AsyncResult;
@@ -33,7 +32,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
-
 
 /**
  * @author <a href="http://tfox.org">Tim Fox</a>
@@ -82,7 +80,7 @@ public class ClusteredEventBusTestBase extends EventBusTestBase {
   }
 
   @Override
-  protected <T> void testSend(T val, Consumer <T> consumer) {
+  protected <T> void testSend(T val, Consumer<T> consumer) {
     testSend(val, val, consumer, null);
   }
 
@@ -113,7 +111,7 @@ public class ClusteredEventBusTestBase extends EventBusTestBase {
           if (options != null && options.getHeaders() != null) {
             assertNotNull(reply.headers());
             assertEquals(options.getHeaders().size(), reply.headers().size());
-            for (Map.Entry<String, String> entry: options.getHeaders().entries()) {
+            for (Map.Entry<String, String> entry : options.getHeaders().entries()) {
               assertEquals(reply.headers().get(entry.getKey()), entry.getValue());
             }
           }
@@ -161,6 +159,7 @@ public class ClusteredEventBusTestBase extends EventBusTestBase {
     startNodes(numNodes);
     AtomicInteger count = new AtomicInteger();
     class MyHandler implements Handler<Message<T>> {
+
       @Override
       public void handle(Message<T> msg) {
         if (consumer == null) {
@@ -175,6 +174,7 @@ public class ClusteredEventBusTestBase extends EventBusTestBase {
     }
     AtomicInteger registerCount = new AtomicInteger(0);
     class MyRegisterHandler implements Handler<AsyncResult<Void>> {
+
       @Override
       public void handle(AsyncResult<Void> ar) {
         assertTrue(ar.succeeded());

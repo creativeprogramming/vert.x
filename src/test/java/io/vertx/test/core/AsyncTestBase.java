@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.AsyncResult;
@@ -54,7 +53,6 @@ public class AsyncTestBase {
   @Rule
   public TestName name = new TestName();
 
-
   protected void setUp() throws Exception {
     log.info("Starting test: " + this.getClass().getSimpleName() + "#" + name.getMethodName());
     mainThreadName = Thread.currentThread().getName();
@@ -86,7 +84,7 @@ public class AsyncTestBase {
   }
 
   protected synchronized void waitForMore(int count) {
-    latch = new CountDownLatch(count + (int)latch.getCount());
+    latch = new CountDownLatch(count + (int) latch.getCount());
   }
 
   protected synchronized void complete() {
@@ -140,9 +138,9 @@ public class AsyncTestBase {
   private void rethrowError() {
     if (throwable != null) {
       if (throwable instanceof Error) {
-        throw (Error)throwable;
+        throw (Error) throwable;
       } else if (throwable instanceof RuntimeException) {
-        throw (RuntimeException)throwable;
+        throw (RuntimeException) throwable;
       } else {
         // Unexpected throwable- Should never happen
         throw new IllegalStateException(throwable);
@@ -160,7 +158,7 @@ public class AsyncTestBase {
       // Throwable caught from non main thread
       throw new IllegalStateException("Assert or failure from non main thread but no await() on main thread", throwable);
     }
-    for (Map.Entry<String, Exception> entry: threadNames.entrySet()) {
+    for (Map.Entry<String, Exception> entry : threadNames.entrySet()) {
       if (!entry.getKey().equals(mainThreadName)) {
         if (threadChecksEnabled && !entry.getKey().startsWith("vert.x-")) {
           IllegalStateException is = new IllegalStateException("Non Vert.x thread! :" + entry.getKey());
@@ -181,7 +179,7 @@ public class AsyncTestBase {
     thrownThread = Thread.currentThread();
     latch.countDown();
     if (t instanceof AssertionError) {
-      throw (AssertionError)t;
+      throw (AssertionError) t;
     }
   }
 
@@ -292,7 +290,6 @@ public class AsyncTestBase {
       handleThrowable(e);
     }
   }
-
 
   protected void assertArrayEquals(String message, double[] expecteds, double[] actuals, double delta) throws ArrayComparisonFailure {
     checkThread();

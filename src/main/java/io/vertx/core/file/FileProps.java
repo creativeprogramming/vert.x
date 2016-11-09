@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.file;
 
 import io.vertx.codegen.annotations.VertxGen;
@@ -48,7 +47,8 @@ public interface FileProps {
   boolean isDirectory();
 
   /**
-   * Is the file some other type? (I.e. not a directory, regular file or symbolic link)
+   * Is the file some other type? (I.e. not a directory, regular file or
+   * symbolic link)
    */
   boolean isOther();
 

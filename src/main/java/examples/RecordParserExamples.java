@@ -8,7 +8,6 @@ import io.vertx.core.parsetools.RecordParser;
  */
 public class RecordParserExamples {
 
-
   public void example1() {
     final RecordParser parser = RecordParser.newDelimited("\n", h -> {
       System.out.println(h.toString());

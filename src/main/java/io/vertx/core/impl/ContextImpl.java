@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 import io.netty.channel.EventLoop;
@@ -60,7 +59,7 @@ public abstract class ContextImpl implements ContextInternal {
   protected final Executor workerExec;
 
   protected ContextImpl(VertxInternal vertx, WorkerPool internalBlockingPool, WorkerPool workerPool, String deploymentID, JsonObject config,
-                        ClassLoader tccl) {
+          ClassLoader tccl) {
     if (DISABLE_TCCL && !tccl.getClass().getName().equals("sun.misc.Launcher$AppClassLoader")) {
       log.warn("You have disabled TCCL checks but you have a custom TCCL to set.");
     }
@@ -243,8 +242,8 @@ public abstract class ContextImpl implements ContextInternal {
   }
 
   <T> void executeBlocking(Action<T> action, Handler<Future<T>> blockingCodeHandler,
-      Handler<AsyncResult<T>> resultHandler,
-      Executor exec, PoolMetrics metrics) {
+          Handler<AsyncResult<T>> resultHandler,
+          Executor exec, PoolMetrics metrics) {
     Object queueMetric = metrics != null ? metrics.submitted() : null;
     try {
       exec.execute(() -> {

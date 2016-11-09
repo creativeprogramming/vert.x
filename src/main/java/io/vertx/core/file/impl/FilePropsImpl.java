@@ -13,16 +13,14 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.file.impl;
 
 import io.vertx.core.file.FileProps;
 
 import java.nio.file.attribute.BasicFileAttributes;
 
-
 public class FilePropsImpl implements FileProps {
-  
+
   private final long creationTime;
   private final long lastAccessTime;
   private final long lastModifiedTime;

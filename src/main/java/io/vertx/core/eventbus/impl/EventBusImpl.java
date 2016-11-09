@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.eventbus.impl;
 
 import io.vertx.core.*;
@@ -35,7 +34,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * A local event bus implementation
  *
- * @author <a href="http://tfox.org">Tim Fox</a>                                                                                        T
+ * @author <a href="http://tfox.org">Tim Fox</a> T
  */
 public class EventBusImpl implements EventBus, MetricsProvider {
 
@@ -217,20 +216,20 @@ public class EventBusImpl implements EventBus, MetricsProvider {
   }
 
   protected <T> void addRegistration(String address, HandlerRegistration<T> registration,
-                                     boolean replyHandler, boolean localOnly) {
+          boolean replyHandler, boolean localOnly) {
     Objects.requireNonNull(registration.getHandler(), "handler");
     boolean newAddress = addLocalRegistration(address, registration, replyHandler, localOnly);
     addRegistration(newAddress, address, replyHandler, localOnly, registration::setResult);
   }
 
   protected <T> void addRegistration(boolean newAddress, String address,
-                                     boolean replyHandler, boolean localOnly,
-                                     Handler<AsyncResult<Void>> completionHandler) {
+          boolean replyHandler, boolean localOnly,
+          Handler<AsyncResult<Void>> completionHandler) {
     completionHandler.handle(Future.succeededFuture());
   }
 
   protected <T> boolean addLocalRegistration(String address, HandlerRegistration<T> registration,
-                                             boolean replyHandler, boolean localOnly) {
+          boolean replyHandler, boolean localOnly) {
     Objects.requireNonNull(address, "address");
 
     Context context = Vertx.currentContext();
@@ -270,7 +269,7 @@ public class EventBusImpl implements EventBus, MetricsProvider {
   }
 
   protected <T> void removeRegistration(HandlerHolder handlerHolder, String address,
-                                        Handler<AsyncResult<Void>> completionHandler) {
+          Handler<AsyncResult<Void>> completionHandler) {
     callCompletionHandlerAsync(completionHandler);
   }
 
@@ -301,7 +300,7 @@ public class EventBusImpl implements EventBus, MetricsProvider {
   }
 
   protected <T> void sendReply(MessageImpl replyMessage, MessageImpl replierMessage, DeliveryOptions options,
-                               Handler<AsyncResult<Message<T>>> replyHandler) {
+          Handler<AsyncResult<Message<T>>> replyHandler) {
     if (replyMessage.address() == null) {
       throw new IllegalStateException("address not specified");
     } else {
@@ -349,7 +348,7 @@ public class EventBusImpl implements EventBus, MetricsProvider {
       metrics.replyFailure(sendContext.message.address, ReplyFailure.NO_HANDLERS);
       if (sendContext.handlerRegistration != null) {
         sendContext.handlerRegistration.sendAsyncResultFailure(ReplyFailure.NO_HANDLERS, "No handlers for address "
-                                                               + sendContext.message.address);
+                + sendContext.message.address);
       }
     }
   }
@@ -372,7 +371,7 @@ public class EventBusImpl implements EventBus, MetricsProvider {
       } else {
         // Publish
         metrics.messageReceived(msg.address(), !msg.send(), isMessageLocal(msg), handlers.list.size());
-        for (HandlerHolder holder: handlers.list) {
+        for (HandlerHolder holder : handlers.list) {
           deliverToHandler(msg, holder);
         }
       }
@@ -394,15 +393,15 @@ public class EventBusImpl implements EventBus, MetricsProvider {
   }
 
   private <T> HandlerRegistration<T> createReplyHandlerRegistration(MessageImpl message,
-                                                                    DeliveryOptions options,
-                                                                    Handler<AsyncResult<Message<T>>> replyHandler) {
+          DeliveryOptions options,
+          Handler<AsyncResult<Message<T>>> replyHandler) {
     if (replyHandler != null) {
       long timeout = options.getSendTimeout();
       String replyAddress = generateReplyAddress();
       message.setReplyAddress(replyAddress);
       Handler<Message<T>> simpleReplyHandler = convertHandler(replyHandler);
-      HandlerRegistration<T> registration =
-        new HandlerRegistration<>(vertx, metrics, this, replyAddress, message.address, true, replyHandler, timeout);
+      HandlerRegistration<T> registration
+              = new HandlerRegistration<>(vertx, metrics, this, replyAddress, message.address, true, replyHandler, timeout);
       registration.handler(simpleReplyHandler);
       return registration;
     } else {
@@ -411,7 +410,7 @@ public class EventBusImpl implements EventBus, MetricsProvider {
   }
 
   private <T> void sendOrPubInternal(MessageImpl message, DeliveryOptions options,
-                                     Handler<AsyncResult<Message<T>>> replyHandler) {
+          Handler<AsyncResult<Message<T>>> replyHandler) {
     checkStarted();
     HandlerRegistration<T> replyHandlerRegistration = createReplyHandlerRegistration(message, options, replyHandler);
     SendContextImpl<T> sendContext = new SendContextImpl<>(message, options, replyHandlerRegistration);
@@ -462,7 +461,7 @@ public class EventBusImpl implements EventBus, MetricsProvider {
     private final MessageImpl replierMessage;
 
     public ReplySendContextImpl(MessageImpl message, DeliveryOptions options, HandlerRegistration<T> handlerRegistration,
-                                MessageImpl replierMessage) {
+            MessageImpl replierMessage) {
       super(message, options, handlerRegistration);
       this.replierMessage = replierMessage;
     }
@@ -478,11 +477,10 @@ public class EventBusImpl implements EventBus, MetricsProvider {
     }
   }
 
-
   private void unregisterAll() {
     // Unregister all handlers explicitly - don't rely on context hooks
-    for (Handlers handlers: handlerMap.values()) {
-      for (HandlerHolder holder: handlers.list) {
+    for (Handlers handlers : handlerMap.values()) {
+      for (HandlerHolder holder : handlers.list) {
         holder.getHandler().unregister(true);
       }
     }
@@ -513,6 +511,7 @@ public class EventBusImpl implements EventBus, MetricsProvider {
   }
 
   public class HandlerEntry<T> implements Closeable {
+
     final String address;
     final HandlerRegistration<T> handler;
 
@@ -523,12 +522,22 @@ public class EventBusImpl implements EventBus, MetricsProvider {
 
     @Override
     public boolean equals(Object o) {
-      if (o == null) return false;
-      if (this == o) return true;
-      if (getClass() != o.getClass()) return false;
+      if (o == null) {
+        return false;
+      }
+      if (this == o) {
+        return true;
+      }
+      if (getClass() != o.getClass()) {
+        return false;
+      }
       HandlerEntry entry = (HandlerEntry) o;
-      if (!address.equals(entry.address)) return false;
-      if (!handler.equals(entry.handler)) return false;
+      if (!address.equals(entry.address)) {
+        return false;
+      }
+      if (!handler.equals(entry.handler)) {
+        return false;
+      }
       return true;
     }
 
@@ -551,9 +560,9 @@ public class EventBusImpl implements EventBus, MetricsProvider {
     // Make sure this gets cleaned up if there are no more references to it
     // so as not to leave connections and resources dangling until the system is shutdown
     // which could make the JVM run out of file handles.
-    close(ar -> {});
+    close(ar -> {
+    });
     super.finalize();
   }
 
 }
-

@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.handler.codec.http.DefaultHttpContent;
@@ -85,7 +84,7 @@ public class Http2ServerRequestImpl extends VertxHttp2Stream<Http2ServerConnecti
   private NetSocket netSocket;
 
   public Http2ServerRequestImpl(Http2ServerConnection conn, Http2Stream stream, HttpServerMetrics metrics,
-      String serverOrigin, Http2Headers headers, String contentEncoding, boolean writable) {
+          String serverOrigin, Http2Headers headers, String contentEncoding, boolean writable) {
     super(conn, stream, writable);
 
     this.serverOrigin = serverOrigin;
@@ -413,15 +412,15 @@ public class Http2ServerRequestImpl extends VertxHttp2Stream<Http2ServerConnecti
             io.netty.handler.codec.http.HttpMethod method = io.netty.handler.codec.http.HttpMethod.valueOf(headers.method().toString());
             String lowerCaseContentType = contentType.toString().toLowerCase();
             boolean isURLEncoded = lowerCaseContentType.startsWith(HttpHeaderValues.APPLICATION_X_WWW_FORM_URLENCODED.toString());
-            if ((lowerCaseContentType.startsWith(HttpHeaderValues.MULTIPART_FORM_DATA.toString()) || isURLEncoded) &&
-                (method == io.netty.handler.codec.http.HttpMethod.POST ||
-                    method == io.netty.handler.codec.http.HttpMethod.PUT ||
-                    method == io.netty.handler.codec.http.HttpMethod.PATCH ||
-                    method == io.netty.handler.codec.http.HttpMethod.DELETE)) {
+            if ((lowerCaseContentType.startsWith(HttpHeaderValues.MULTIPART_FORM_DATA.toString()) || isURLEncoded)
+                    && (method == io.netty.handler.codec.http.HttpMethod.POST
+                    || method == io.netty.handler.codec.http.HttpMethod.PUT
+                    || method == io.netty.handler.codec.http.HttpMethod.PATCH
+                    || method == io.netty.handler.codec.http.HttpMethod.DELETE)) {
               HttpRequest req = new DefaultHttpRequest(
-                  io.netty.handler.codec.http.HttpVersion.HTTP_1_1,
-                  method,
-                  headers.path().toString());
+                      io.netty.handler.codec.http.HttpVersion.HTTP_1_1,
+                      method,
+                      headers.path().toString());
               req.headers().add(HttpHeaderNames.CONTENT_TYPE, contentType);
               postRequestDecoder = new HttpPostRequestDecoder(new NettyFileUploadDataFactory(vertx, this, () -> uploadHandler), req);
             }

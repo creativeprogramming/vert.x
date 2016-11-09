@@ -28,7 +28,6 @@ public class HiddenCommand extends DefaultCommand {
   public String name;
   private int count;
 
-
   @Option(longName = "name", shortName = "n", required = true)
   public void setAName(String name) {
     this.name = name;
@@ -39,7 +38,6 @@ public class HiddenCommand extends DefaultCommand {
   public void setCount(int count) {
     this.count = count;
   }
-
 
   /**
    * Executes the command.

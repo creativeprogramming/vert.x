@@ -23,7 +23,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotates {@link Option @Option} setters to indicate how the value is converted to the argument type.
+ * Annotates {@link Option @Option} setters to indicate how the value is
+ * converted to the argument type.
  *
  * @author Clement Escoffier <clement@apache.org>
  */
@@ -32,8 +33,8 @@ import java.lang.annotation.Target;
 public @interface ConvertedBy {
 
   /**
-   * The converter class used to transform the value as String to the target type. This converter is also used for
-   * the {@link DefaultValue}.
+   * The converter class used to transform the value as String to the target
+   * type. This converter is also used for the {@link DefaultValue}.
    */
   Class<? extends Converter<?>> value();
 

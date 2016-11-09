@@ -13,9 +13,7 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.launcher.commands;
-
 
 import io.vertx.core.cli.annotations.*;
 import io.vertx.core.impl.launcher.CommandLineUtils;
@@ -44,7 +42,8 @@ public class StartCommand extends DefaultCommand {
   private String jvmOptions;
 
   /**
-   * Sets the "application id" that would be to stop the application and be lsited in the {@code list} command.
+   * Sets the "application id" that would be to stop the application and be
+   * lsited in the {@code list} command.
    *
    * @param id the id
    */
@@ -55,14 +54,14 @@ public class StartCommand extends DefaultCommand {
   }
 
   /**
-   * Sets the Java Virtual Machine options to pass to the spawned process. If not set, the JAVA_OPTS environment
-   * variable is used.
+   * Sets the Java Virtual Machine options to pass to the spawned process. If
+   * not set, the JAVA_OPTS environment variable is used.
    *
    * @param options the jvm options
    */
   @Option(longName = "java-opts", required = false, acceptValue = true)
-  @Description("Java Virtual Machine options to pass to the spawned process such as \"-Xmx1G -Xms256m " +
-      "-XX:MaxPermSize=256m\". If not set the `JAVA_OPTS` environment variable is used.")
+  @Description("Java Virtual Machine options to pass to the spawned process such as \"-Xmx1G -Xms256m "
+          + "-XX:MaxPermSize=256m\". If not set the `JAVA_OPTS` environment variable is used.")
   public void setJavaOptions(String options) {
     this.jvmOptions = options;
   }
@@ -79,7 +78,8 @@ public class StartCommand extends DefaultCommand {
   }
 
   /**
-   * Whether or not the created process error streams and output streams needs to be redirected to the launcher process.
+   * Whether or not the created process error streams and output streams needs
+   * to be redirected to the launcher process.
    *
    * @param redirect {@code true} to enable redirection, {@code false} otherwise
    */

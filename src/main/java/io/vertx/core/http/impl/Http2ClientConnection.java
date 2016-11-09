@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.buffer.ByteBuf;
@@ -58,11 +57,11 @@ class Http2ClientConnection extends Http2ConnectionBase implements HttpClientCon
   int streamCount;
 
   public Http2ClientConnection(Http2Pool http2Pool,
-                               Object queueMetric,
-                               ContextImpl context,
-                               Channel channel,
-                               VertxHttp2ConnectionHandler connHandler,
-                               HttpClientMetrics metrics) {
+          Object queueMetric,
+          ContextImpl context,
+          Channel channel,
+          VertxHttp2ConnectionHandler connHandler,
+          HttpClientMetrics metrics) {
     super(channel, context, connHandler, metrics);
     this.http2Pool = http2Pool;
     this.metrics = metrics;
@@ -248,12 +247,12 @@ class Http2ClientConnection extends Http2ConnectionBase implements HttpClientCon
           return;
         }
         response = new HttpClientResponseImpl(
-            request,
-            HttpVersion.HTTP_2,
-            this,
-            status,
-            statusMessage,
-            new Http2HeadersAdaptor(headers)
+                request,
+                HttpVersion.HTTP_2,
+                this,
+                status,
+                statusMessage,
+                new Http2HeadersAdaptor(headers)
         );
         if (conn.metrics.isEnabled()) {
           conn.metrics.responseBegin(request.metric(), response);

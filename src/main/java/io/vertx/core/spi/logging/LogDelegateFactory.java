@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.spi.logging;
 
 /**
@@ -22,5 +21,6 @@ package io.vertx.core.spi.logging;
  * @author <a href="kenny.macleod@kizoom.com">Kenny MacLeod</a>
  */
 public interface LogDelegateFactory {
+
   LogDelegate createDelegate(String name);
 }

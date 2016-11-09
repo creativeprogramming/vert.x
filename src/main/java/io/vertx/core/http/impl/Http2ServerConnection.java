@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.channel.Channel;
@@ -59,13 +58,13 @@ public class Http2ServerConnection extends Http2ConnectionBase {
   private final ArrayDeque<Push> pendingPushes = new ArrayDeque<>(8);
 
   Http2ServerConnection(
-      Channel channel,
-      ContextImpl context,
-      String serverOrigin,
-      VertxHttp2ConnectionHandler connHandler,
-      HttpServerOptions options,
-      Handler<HttpServerRequest> requestHandler,
-      HttpServerMetrics metrics) {
+          Channel channel,
+          ContextImpl context,
+          String serverOrigin,
+          VertxHttp2ConnectionHandler connHandler,
+          HttpServerOptions options,
+          Handler<HttpServerRequest> requestHandler,
+          HttpServerMetrics metrics) {
     super(channel, context, connHandler, metrics);
 
     this.options = options;
@@ -109,7 +108,7 @@ public class Http2ServerConnection extends Http2ConnectionBase {
 
   @Override
   public synchronized void onHeadersRead(ChannelHandlerContext ctx, int streamId,
-                            Http2Headers headers, int padding, boolean endOfStream) {
+          Http2Headers headers, int padding, boolean endOfStream) {
     VertxHttp2Stream stream = streams.get(streamId);
     if (stream == null) {
       if (isMalformedRequest(headers)) {
@@ -122,9 +121,9 @@ public class Http2ServerConnection extends Http2ConnectionBase {
       Http2ServerRequestImpl req = new Http2ServerRequestImpl(this, s, metrics, serverOrigin, headers, contentEncoding, writable);
       stream = req;
       CharSequence value = headers.get(HttpHeaderNames.EXPECT);
-      if (options.isHandle100ContinueAutomatically() &&
-          ((value != null && HttpHeaderValues.CONTINUE.equals(value)) ||
-              headers.contains(HttpHeaderNames.EXPECT, HttpHeaderValues.CONTINUE))) {
+      if (options.isHandle100ContinueAutomatically()
+              && ((value != null && HttpHeaderValues.CONTINUE.equals(value))
+              || headers.contains(HttpHeaderNames.EXPECT, HttpHeaderValues.CONTINUE))) {
         req.response().writeContinue();
       }
       streams.put(streamId, req);
@@ -215,11 +214,11 @@ public class Http2ServerConnection extends Http2ConnectionBase {
     private final Future<HttpServerResponse> completionHandler;
 
     public Push(Http2Stream stream,
-                String contentEncoding,
-                HttpMethod method,
-                String uri,
-                boolean writable,
-                Handler<AsyncResult<HttpServerResponse>> completionHandler) {
+            String contentEncoding,
+            HttpMethod method,
+            String uri,
+            boolean writable,
+            Handler<AsyncResult<HttpServerResponse>> completionHandler) {
       super(Http2ServerConnection.this, stream, writable);
       this.method = method;
       this.uri = uri;

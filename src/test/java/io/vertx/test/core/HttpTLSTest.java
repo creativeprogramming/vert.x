@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.VertxException;
@@ -134,6 +133,7 @@ public abstract class HttpTLSTest extends HttpTestBase {
   public void testTLSClientTrustServerCertMultiPemWithPEMRootCA() throws Exception {
     testTLS(Cert.NONE, Trust.SERVER_PEM_ROOT_CA_AND_OTHER_CA, Cert.SERVER_PEM_ROOT_CA, Trust.NONE).pass();
   }
+
   @Test
   // Server specifies cert that the client trusts via a other CA that is in a multi pem store (not trust all)
   public void testTLSClientTrustServerCertMultiPemWithPEMOtherCA() throws Exception {
@@ -291,7 +291,6 @@ public abstract class HttpTLSTest extends HttpTestBase {
   }
 
   // OpenSSL tests
-
   @Test
   // Server uses OpenSSL with JKS
   public void testTLSClientTrustServerCertJKSOpenSSL() throws Exception {
@@ -367,10 +366,9 @@ public abstract class HttpTLSTest extends HttpTestBase {
     boolean useSocksProxy;
     String[] clientEnabledCipherSuites = new String[0];
     String[] serverEnabledCipherSuites = new String[0];
-    String[] clientEnabledSecureTransportProtocol   = new String[0];
-    String[] serverEnabledSecureTransportProtocol   = new String[0];
+    String[] clientEnabledSecureTransportProtocol = new String[0];
+    String[] serverEnabledSecureTransportProtocol = new String[0];
     private String connectHostname;
-
 
     public TLSTest(Cert<?> clientCert, Trust<?> clientTrust, Cert<?> serverCert, Trust<?> serverTrust) {
       this.version = HttpVersion.HTTP_1_1;
@@ -431,8 +429,8 @@ public abstract class HttpTLSTest extends HttpTestBase {
     }
 
     TLSTest serverEnabledCipherSuites(String[] value) {
-     serverEnabledCipherSuites = value;
-     return this;
+      serverEnabledCipherSuites = value;
+      return this;
     }
 
     TLSTest clientEnabledSecureTransportProtocol(String[] value) {
@@ -503,10 +501,10 @@ public abstract class HttpTLSTest extends HttpTestBase {
       options.setVerifyHost(clientVerifyHost);
       setOptions(options, clientTrust);
       setOptions(options, clientCert);
-      for (String suite: clientEnabledCipherSuites) {
+      for (String suite : clientEnabledCipherSuites) {
         options.addEnabledCipherSuite(suite);
       }
-      for (String protocols: clientEnabledSecureTransportProtocol) {
+      for (String protocols : clientEnabledSecureTransportProtocol) {
         options.addEnabledSecureTransportProtocol(protocols);
       }
       if (useProxy) {
@@ -539,10 +537,10 @@ public abstract class HttpTLSTest extends HttpTestBase {
       if (serverUsesAlpn) {
         serverOptions.setUseAlpn(true);
       }
-      for (String suite: serverEnabledCipherSuites) {
+      for (String suite : serverEnabledCipherSuites) {
         serverOptions.addEnabledCipherSuite(suite);
       }
-      for (String protocols: serverEnabledSecureTransportProtocol) {
+      for (String protocols : serverEnabledSecureTransportProtocol) {
         serverOptions.addEnabledSecureTransportProtocol(protocols);
       }
       server = createHttpServer(serverOptions.setPort(4043));
@@ -592,7 +590,7 @@ public abstract class HttpTLSTest extends HttpTestBase {
   abstract HttpClient createHttpClient(HttpClientOptions options);
 
   protected TLSTest testTLS(Cert<?> clientCert, Trust<?> clientTrust,
-                          Cert<?> serverCert, Trust<?> serverTrust) throws Exception {
+          Cert<?> serverCert, Trust<?> serverTrust) throws Exception {
     return new TLSTest(clientCert, clientTrust, serverCert, serverTrust);
   }
 
@@ -624,8 +622,8 @@ public abstract class HttpTLSTest extends HttpTestBase {
   @Test
   public void testPKCS12InvalidPassword() {
     testInvalidKeyStore(Cert.SERVER_PKCS12.get().setPassword("wrongpassword"), Arrays.asList(
-        "failed to decrypt safe contents entry: javax.crypto.BadPaddingException: Given final block not properly padded",
-        "keystore password was incorrect"), null);
+            "failed to decrypt safe contents entry: javax.crypto.BadPaddingException: Given final block not properly padded",
+            "keystore password was incorrect"), null);
   }
 
   @Test
@@ -651,18 +649,18 @@ public abstract class HttpTLSTest extends HttpTestBase {
   @Test
   public void testKeyCertInvalidPem() throws IOException {
     String[] contents = {
-        "",
-        "-----BEGIN PRIVATE KEY-----",
-        "-----BEGIN PRIVATE KEY-----\n-----END PRIVATE KEY-----",
-        "-----BEGIN PRIVATE KEY-----\n*\n-----END PRIVATE KEY-----"
+      "",
+      "-----BEGIN PRIVATE KEY-----",
+      "-----BEGIN PRIVATE KEY-----\n-----END PRIVATE KEY-----",
+      "-----BEGIN PRIVATE KEY-----\n*\n-----END PRIVATE KEY-----"
     };
     String[] messages = {
-        "Missing -----BEGIN PRIVATE KEY----- delimiter",
-        "Missing -----END PRIVATE KEY----- delimiter",
-        "Empty pem file",
-        "Input byte[] should at least have 2 bytes for base64 bytes"
+      "Missing -----BEGIN PRIVATE KEY----- delimiter",
+      "Missing -----END PRIVATE KEY----- delimiter",
+      "Empty pem file",
+      "Input byte[] should at least have 2 bytes for base64 bytes"
     };
-    for (int i = 0;i < contents.length;i++) {
+    for (int i = 0; i < contents.length; i++) {
       Path file = testFolder.newFile("vertx" + UUID.randomUUID().toString() + ".pem").toPath();
       Files.write(file, Collections.singleton(contents[i]));
       String expectedMessage = messages[i];
@@ -683,18 +681,18 @@ public abstract class HttpTLSTest extends HttpTestBase {
   @Test
   public void testCaInvalidPem() throws IOException {
     String[] contents = {
-        "",
-        "-----BEGIN CERTIFICATE-----",
-        "-----BEGIN CERTIFICATE-----\n-----END CERTIFICATE-----",
-        "-----BEGIN CERTIFICATE-----\n*\n-----END CERTIFICATE-----"
+      "",
+      "-----BEGIN CERTIFICATE-----",
+      "-----BEGIN CERTIFICATE-----\n-----END CERTIFICATE-----",
+      "-----BEGIN CERTIFICATE-----\n*\n-----END CERTIFICATE-----"
     };
     String[] messages = {
-        "Missing -----BEGIN CERTIFICATE----- delimiter",
-        "Missing -----END CERTIFICATE----- delimiter",
-        "Empty pem file",
-        "Input byte[] should at least have 2 bytes for base64 bytes"
+      "Missing -----BEGIN CERTIFICATE----- delimiter",
+      "Missing -----END CERTIFICATE----- delimiter",
+      "Empty pem file",
+      "Input byte[] should at least have 2 bytes for base64 bytes"
     };
-    for (int i = 0;i < contents.length;i++) {
+    for (int i = 0; i < contents.length; i++) {
       Path file = testFolder.newFile("vertx" + UUID.randomUUID().toString() + ".pem").toPath();
       Files.write(file, Collections.singleton(contents[i]));
       String expectedMessage = messages[i];
@@ -731,7 +729,7 @@ public abstract class HttpTLSTest extends HttpTestBase {
       fail("Was expecting a failure");
     } catch (VertxException e) {
       Throwable cause = e.getCause();
-      if(expectedSuffix == null) {
+      if (expectedSuffix == null) {
         boolean ok = expectedPossiblePrefixes.isEmpty();
         for (String expectedPossiblePrefix : expectedPossiblePrefixes) {
           ok |= expectedPossiblePrefix.equals(cause.getMessage());
@@ -759,7 +757,8 @@ public abstract class HttpTLSTest extends HttpTestBase {
     clientOptions.setSsl(true);
     clientOptions.addCrlPath("/invalid.pem");
     HttpClient client = vertx.createHttpClient(clientOptions);
-    HttpClientRequest req = client.request(HttpMethod.CONNECT, DEFAULT_HTTP_PORT, DEFAULT_HTTP_HOST, "/", (handler) -> {});
+    HttpClientRequest req = client.request(HttpMethod.CONNECT, DEFAULT_HTTP_PORT, DEFAULT_HTTP_HOST, "/", (handler) -> {
+    });
     try {
       req.end();
       fail("Was expecting a failure");
@@ -804,7 +803,7 @@ public abstract class HttpTLSTest extends HttpTestBase {
     startProxy(null, ProxyType.HTTP);
     proxy.setForceUri("localhost:4043");
     testTLS(Cert.NONE, Trust.SERVER_JKS, Cert.SERVER_JKS, Trust.NONE).useProxy()
-        .connectHostname("doesnt-resolve.host-name").clientTrustAll().clientVerifyHost(false).pass();
+            .connectHostname("doesnt-resolve.host-name").clientTrustAll().clientVerifyHost(false).pass();
     assertNotNull("connection didn't access the proxy", proxy.getLastUri());
     assertEquals("hostname resolved but it shouldn't be", "doesnt-resolve.host-name:4043", proxy.getLastUri());
     assertEquals("Host header doesn't contain target host", "doesnt-resolve.host-name:4043", proxy.getLastRequestHeaders().get("Host"));
@@ -836,7 +835,7 @@ public abstract class HttpTLSTest extends HttpTestBase {
     startProxy(null, ProxyType.SOCKS5);
     proxy.setForceUri("localhost:4043");
     testTLS(Cert.NONE, Trust.SERVER_JKS, Cert.SERVER_JKS, Trust.NONE).useProxy().useSocksProxy()
-        .connectHostname("doesnt-resolve.host-name").clientTrustAll().clientVerifyHost(false).pass();
+            .connectHostname("doesnt-resolve.host-name").clientTrustAll().clientVerifyHost(false).pass();
     assertNotNull("connection didn't access the proxy", proxy.getLastUri());
     assertEquals("hostname resolved but it shouldn't be", "doesnt-resolve.host-name:4043", proxy.getLastUri());
   }

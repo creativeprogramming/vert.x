@@ -79,9 +79,9 @@ public class KeyStoreTest extends VertxTestBase {
     String path = TestUtils.randomAlphaString(100);
     String value = TestUtils.randomAlphaString(100);
     options = new JksOptions(new JsonObject().
-        put("password", password).
-        put("path", path).
-        put("value", value.getBytes()));
+            put("password", password).
+            put("path", path).
+            put("value", value.getBytes()));
     assertEquals(password, options.getPassword());
     assertEquals(path, options.getPath());
     assertEquals(Buffer.buffer(value), options.getValue());
@@ -137,9 +137,9 @@ public class KeyStoreTest extends VertxTestBase {
     String path = TestUtils.randomAlphaString(100);
     String value = TestUtils.randomAlphaString(100);
     options = new PfxOptions(new JsonObject().
-        put("password", password).
-        put("path", path).
-        put("value", value.getBytes()));
+            put("password", password).
+            put("path", path).
+            put("value", value.getBytes()));
     assertEquals(password, options.getPassword());
     assertEquals(path, options.getPath());
     assertEquals(Buffer.buffer(value), options.getValue());
@@ -198,10 +198,10 @@ public class KeyStoreTest extends VertxTestBase {
     String certPath = TestUtils.randomAlphaString(100);
     String certValue = TestUtils.randomAlphaString(100);
     options = new PemKeyCertOptions(new JsonObject().
-        put("keyPath", keyPath).
-        put("keyValue", keyValue.getBytes()).
-        put("certPath", certPath).
-        put("certValue", certValue.getBytes()));
+            put("keyPath", keyPath).
+            put("keyValue", keyValue.getBytes()).
+            put("certPath", certPath).
+            put("certValue", certValue.getBytes()));
     assertEquals(keyPath, options.getKeyPath());
     assertEquals(Buffer.buffer(keyValue), options.getKeyValue());
     assertEquals(certPath, options.getCertPath());
@@ -254,8 +254,8 @@ public class KeyStoreTest extends VertxTestBase {
     String certPath = TestUtils.randomAlphaString(100);
     String certValue = TestUtils.randomAlphaString(100);
     JsonObject json = new JsonObject().
-        put("certPaths", new JsonArray().add(certPath)).
-        put("certValues", new JsonArray().add(certValue.getBytes()));
+            put("certPaths", new JsonArray().add(certPath)).
+            put("certValues", new JsonArray().add(certValue.getBytes()));
     options = new PemTrustOptions(json);
     assertEquals(Collections.singletonList(certPath), options.getCertPaths());
     assertEquals(Collections.singletonList(Buffer.buffer(certValue)), options.getCertValues());
@@ -331,9 +331,9 @@ public class KeyStoreTest extends VertxTestBase {
   public void testCaPathValue() throws Exception {
     PemTrustOptions options = Trust.SERVER_PEM.get();
     options.getCertPaths().
-        stream().
-        map(vertx.fileSystem()::readFileBlocking).
-        forEach(options::addCertValue);
+            stream().
+            map(vertx.fileSystem()::readFileBlocking).
+            forEach(options::addCertValue);
     options.getCertPaths().clear();
     testTrustStore(options);
   }

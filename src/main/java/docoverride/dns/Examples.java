@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package docoverride.dns;
 
 import io.vertx.core.Vertx;

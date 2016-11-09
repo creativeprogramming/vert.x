@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.Verticle;
@@ -23,7 +22,7 @@ import io.vertx.core.spi.VerticleFactory;
 /**
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
-public class ClasspathVerticleFactory implements VerticleFactory{
+public class ClasspathVerticleFactory implements VerticleFactory {
 
   @Override
   public void init(Vertx vertx) {

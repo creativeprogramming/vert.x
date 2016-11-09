@@ -15,7 +15,6 @@
  */
 package io.vertx.core.cli.converters;
 
-
 public class Person4 {
 
   public final String first;

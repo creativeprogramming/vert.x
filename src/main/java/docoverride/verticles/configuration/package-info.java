@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 /**
  * === Passing configuration to a verticle
  *
@@ -21,25 +20,22 @@
  *
  * [source,$lang]
  * ----
- * {@link examples.CoreExamples#example13}
- * ----
+ * {@link examples.CoreExamples#example13} ----
  *
- * This configuration is then available via the {@link io.vertx.core.Context} object or directly using the
- * {@link io.vertx.core.AbstractVerticle#config()} method. The configuration is returned as a JSON object so you
- * can retrieve data as follows:
+ * This configuration is then available via the {@link io.vertx.core.Context}
+ * object or directly using the {@link io.vertx.core.AbstractVerticle#config()}
+ * method. The configuration is returned as a JSON object so you can retrieve
+ * data as follows:
  *
- * [source,$lang]
- * ----
- * {@link examples.ConfigurableVerticleExamples#start()}
+ * [source,$lang] ---- {@link examples.ConfigurableVerticleExamples#start()}
  * ----
  *
  * === Accessing environment variables in a Verticle
  *
- * Environment variables and system properties are accessible using the Java API:
+ * Environment variables and system properties are accessible using the Java
+ * API:
  *
- * [source,$lang]
- * ----
- * {@link examples.CoreExamples#systemAndEnvProperties()}
+ * [source,$lang] ---- {@link examples.CoreExamples#systemAndEnvProperties()}
  * ----
  *
  */

@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -35,7 +34,8 @@ public abstract class ClientOptionsBase extends TCPSSLOptions {
   public static final int DEFAULT_CONNECT_TIMEOUT = 60000;
 
   /**
-   * The default value of whether all servers (SSL/TLS) should be trusted = false
+   * The default value of whether all servers (SSL/TLS) should be trusted =
+   * false
    */
   public static final boolean DEFAULT_TRUST_ALL = false;
 
@@ -61,7 +61,7 @@ public abstract class ClientOptionsBase extends TCPSSLOptions {
   /**
    * Copy constructor
    *
-   * @param other  the options to copy
+   * @param other the options to copy
    */
   public ClientOptionsBase(ClientOptionsBase other) {
     super(other);
@@ -75,7 +75,7 @@ public abstract class ClientOptionsBase extends TCPSSLOptions {
   /**
    * Create options from some JSON
    *
-   * @param json  the JSON
+   * @param json the JSON
    */
   public ClientOptionsBase(JsonObject json) {
     super(json);
@@ -120,7 +120,7 @@ public abstract class ClientOptionsBase extends TCPSSLOptions {
   /**
    * Set the connect timeout
    *
-   * @param connectTimeout  connect timeout, in ms
+   * @param connectTimeout connect timeout, in ms
    * @return a reference to this, so the API can be used fluently
    */
   public ClientOptionsBase setConnectTimeout(int connectTimeout) {
@@ -139,8 +139,8 @@ public abstract class ClientOptionsBase extends TCPSSLOptions {
   }
 
   /**
-   * Set the metrics name identifying the reported metrics, useful for grouping metrics
-   * with the same name.
+   * Set the metrics name identifying the reported metrics, useful for grouping
+   * metrics with the same name.
    *
    * @param metricsName the metrics name
    * @return a reference to this, so the API can be used fluently
@@ -151,7 +151,8 @@ public abstract class ClientOptionsBase extends TCPSSLOptions {
   }
 
   /**
-   * Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
+   * Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS
+   * proxy.
    *
    * @param proxyOptions proxy options object
    * @return a reference to this, so the API can be used fluently
@@ -178,8 +179,9 @@ public abstract class ClientOptionsBase extends TCPSSLOptions {
   }
 
   /**
-   * Set the local interface to bind for network connections. When the local address is null,
-   * it will pick any local address, the default local address is null.
+   * Set the local interface to bind for network connections. When the local
+   * address is null, it will pick any local address, the default local address
+   * is null.
    *
    * @param localAddress the local address
    * @return a reference to this, so the API can be used fluently
@@ -196,17 +198,33 @@ public abstract class ClientOptionsBase extends TCPSSLOptions {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof ClientOptionsBase)) return false;
-    if (!super.equals(o)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof ClientOptionsBase)) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
 
     ClientOptionsBase that = (ClientOptionsBase) o;
 
-    if (connectTimeout != that.connectTimeout) return false;
-    if (trustAll != that.trustAll) return false;
-    if (!Objects.equals(metricsName, that.metricsName)) return false;
-    if (!Objects.equals(proxyOptions, that.proxyOptions)) return false;
-    if (!Objects.equals(localAddress, that.localAddress)) return false;
+    if (connectTimeout != that.connectTimeout) {
+      return false;
+    }
+    if (trustAll != that.trustAll) {
+      return false;
+    }
+    if (!Objects.equals(metricsName, that.metricsName)) {
+      return false;
+    }
+    if (!Objects.equals(proxyOptions, that.proxyOptions)) {
+      return false;
+    }
+    if (!Objects.equals(localAddress, that.localAddress)) {
+      return false;
+    }
 
     return true;
   }

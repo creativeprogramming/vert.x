@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 /**
  * == Record Parser
  *
@@ -43,21 +42,17 @@
  *
  * [source, $lang]
  * ----
- * {@link examples.RecordParserExamples#example1()}
- * ----
+ * {@link examples.RecordParserExamples#example1()} ----
  *
  * You can also produce fixed sized chunks as follows:
  *
- * [source, $lang]
- * ----
- * {@link examples.RecordParserExamples#example2()}
- * ----
+ * [source, $lang] ---- {@link examples.RecordParserExamples#example2()} ----
  *
- * For more details, check out the {@link io.vertx.core.parsetools.RecordParser} class.
+ * For more details, check out the {@link io.vertx.core.parsetools.RecordParser}
+ * class.
  *
  */
 @Document(fileName = "parsetools.adoc")
 package io.vertx.core.parsetools;
 
 import io.vertx.docgen.Document;
-

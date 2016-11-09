@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -109,9 +108,9 @@ public class Http2ClientTest extends Http2TestBase {
     eventLoopGroups.clear();
     super.setUp();
     clientOptions = new HttpClientOptions().
-        setUseAlpn(true).
-        setTrustStoreOptions(Trust.SERVER_JKS.get()).
-        setProtocolVersion(HttpVersion.HTTP_2);
+            setUseAlpn(true).
+            setTrustStoreOptions(Trust.SERVER_JKS.get()).
+            setProtocolVersion(HttpVersion.HTTP_2);
     client = vertx.createHttpClient(clientOptions);
   }
 
@@ -173,7 +172,7 @@ public class Http2ClientTest extends Http2TestBase {
   public void testServerSettings() throws Exception {
     waitFor(2);
     io.vertx.core.http.Http2Settings expectedSettings = TestUtils.randomHttp2Settings();
-    expectedSettings.setHeaderTableSize((int)io.vertx.core.http.Http2Settings.DEFAULT_HEADER_TABLE_SIZE);
+    expectedSettings.setHeaderTableSize((int) io.vertx.core.http.Http2Settings.DEFAULT_HEADER_TABLE_SIZE);
     server.close();
     server = vertx.createHttpServer(serverOptions);
     Context otherContext = vertx.getOrCreateContext();
@@ -221,6 +220,7 @@ public class Http2ClientTest extends Http2TestBase {
           ctx.flush();
         });
       }
+
       @Override
       public void onGoAwayRead(ChannelHandlerContext ctx, int lastStreamId, long errorCode, ByteBuf debugData) throws Http2Exception {
         vertx.runOnContext(v -> {
@@ -288,11 +288,11 @@ public class Http2ClientTest extends Http2TestBase {
         testComplete();
       });
     })
-        .putHeader("Foo_request", "foo_request_value")
-        .putHeader("bar_request", "bar_request_value")
-        .putHeader("juu_request", Arrays.<CharSequence>asList("juu_request_value_1", "juu_request_value_2"))
-        .exceptionHandler(err -> fail())
-        .end();
+            .putHeader("Foo_request", "foo_request_value")
+            .putHeader("bar_request", "bar_request_value")
+            .putHeader("juu_request", Arrays.<CharSequence>asList("juu_request_value_1", "juu_request_value_2"))
+            .exceptionHandler(err -> fail())
+            .end();
     await();
   }
 
@@ -325,8 +325,8 @@ public class Http2ClientTest extends Http2TestBase {
         testComplete();
       });
     })
-        .exceptionHandler(err -> fail())
-        .end();
+            .exceptionHandler(err -> fail())
+            .end();
     await();
   }
 
@@ -340,9 +340,9 @@ public class Http2ClientTest extends Http2TestBase {
     client.get(DEFAULT_HTTPS_PORT, DEFAULT_HTTPS_HOST, "/somepath", resp -> {
       testComplete();
     })
-        .setHost("localhost:4444")
-        .exceptionHandler(err -> fail())
-        .end();
+            .setHost("localhost:4444")
+            .exceptionHandler(err -> fail())
+            .end();
     await();
   }
 
@@ -354,7 +354,7 @@ public class Http2ClientTest extends Http2TestBase {
       resp.write("some-content");
       resp.putTrailer("Foo", "foo_value");
       resp.putTrailer("bar", "bar_value");
-      resp.putTrailer("juu", (List<String>)Arrays.asList("juu_value_1", "juu_value_2"));
+      resp.putTrailer("juu", (List<String>) Arrays.asList("juu_value_1", "juu_value_2"));
       resp.end();
     });
     startServer();
@@ -575,7 +575,7 @@ public class Http2ClientTest extends Http2TestBase {
       fail();
     }).end();
     awaitLatch(latch);
-    for (int i = 0;i < numReq;i++) {
+    for (int i = 0; i < numReq; i++) {
       client.get(DEFAULT_HTTPS_PORT, DEFAULT_HTTPS_HOST, "/somepath", resp -> {
         Buffer content = Buffer.buffer();
         resp.handler(content::appendBuffer);
@@ -1040,6 +1040,7 @@ public class Http2ClientTest extends Http2TestBase {
   private Http2ConnectionHandler createHttpConnectionHandler(BiFunction<Http2ConnectionDecoder, Http2ConnectionEncoder, Http2FrameListener> handler) {
 
     class Handler extends Http2ConnectionHandler {
+
       public Handler(Http2ConnectionDecoder decoder, Http2ConnectionEncoder encoder, Http2Settings initialSettings) {
         super(decoder, encoder, initialSettings);
         decoder.frameListener(handler.apply(decoder, encoder));
@@ -1047,10 +1048,12 @@ public class Http2ClientTest extends Http2TestBase {
     }
 
     class Builder extends AbstractHttp2ConnectionHandlerBuilder<Handler, Builder> {
+
       @Override
       protected Handler build(Http2ConnectionDecoder decoder, Http2ConnectionEncoder encoder, Http2Settings initialSettings) throws Exception {
         return new Handler(decoder, encoder, initialSettings);
       }
+
       @Override
       public Handler build() {
         return super.build();
@@ -1131,8 +1134,8 @@ public class Http2ClientTest extends Http2TestBase {
         // normal frame    : 00 00 12 00 08 00 00 00 03 0c 68 65 6c 6c 6f 00 00 00 00 00 00 00 00 00 00 00 00
         // corrupted frame : 00 00 12 00 08 00 00 00 03 1F 68 65 6c 6c 6f 00 00 00 00 00 00 00 00 00 00 00 00
         ctx.channel().write(Buffer.buffer(new byte[]{
-            0x00, 0x00, 0x12, 0x00, 0x08, 0x00, 0x00, 0x00, (byte)(streamId & 0xFF), 0x1F, 0x68, 0x65, 0x6c, 0x6c,
-            0x6f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+          0x00, 0x00, 0x12, 0x00, 0x08, 0x00, 0x00, 0x00, (byte) (streamId & 0xFF), 0x1F, 0x68, 0x65, 0x6c, 0x6c,
+          0x6f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
         }).getByteBuf());
         ctx.flush();
       }
@@ -1552,13 +1555,13 @@ public class Http2ClientTest extends Http2TestBase {
   @Test
   public void testIdleTimeoutClearText() throws Exception {
     testIdleTimeout(new HttpServerOptions().setPort(DEFAULT_HTTP_PORT).setHost(DEFAULT_HTTPS_HOST),
-        clientOptions.setDefaultPort(DEFAULT_HTTP_PORT).setUseAlpn(false).setSsl(false).setHttp2ClearTextUpgrade(true));
+            clientOptions.setDefaultPort(DEFAULT_HTTP_PORT).setUseAlpn(false).setSsl(false).setHttp2ClearTextUpgrade(true));
   }
 
   @Test
   public void testIdleTimeoutClearTextDirect() throws Exception {
     testIdleTimeout(new HttpServerOptions().setPort(DEFAULT_HTTP_PORT).setHost(DEFAULT_HTTPS_HOST),
-        clientOptions.setDefaultPort(DEFAULT_HTTP_PORT).setUseAlpn(false).setSsl(false).setHttp2ClearTextUpgrade(false));
+            clientOptions.setDefaultPort(DEFAULT_HTTP_PORT).setUseAlpn(false).setSsl(false).setHttp2ClearTextUpgrade(false));
   }
 
   private void testIdleTimeout(HttpServerOptions serverOptions, HttpClientOptions clientOptions) throws Exception {
@@ -1643,7 +1646,8 @@ public class Http2ClientTest extends Http2TestBase {
         complete();
       });
     });
-    server.requestHandler(req -> {});
+    server.requestHandler(req -> {
+    });
     startServer(ctx);
     HttpClientRequest req = client.get(DEFAULT_HTTPS_PORT, DEFAULT_HTTPS_HOST, "/somepath", resp -> {
 
@@ -1670,7 +1674,8 @@ public class Http2ClientTest extends Http2TestBase {
 
       });
     });
-    server.requestHandler(req -> {});
+    server.requestHandler(req -> {
+    });
     startServer(ctx);
     HttpClientRequest req = client.get(DEFAULT_HTTPS_PORT, DEFAULT_HTTPS_HOST, "/somepath", resp -> {
 
@@ -1722,13 +1727,13 @@ public class Http2ClientTest extends Http2TestBase {
     startServer();
     client.close();
     client = vertx.createHttpClient(new HttpClientOptions(clientOptions).
-        setHttp2MaxPoolSize(poolSize).
-        setHttp2MultiplexingLimit(maxConcurrency));
+            setHttp2MaxPoolSize(poolSize).
+            setHttp2MultiplexingLimit(maxConcurrency));
     AtomicInteger respCount = new AtomicInteger();
 
     Set<HttpConnection> clientConnections = Collections.synchronizedSet(new HashSet<>());
-    for (int j = 0;j < rounds;j++) {
-      for (int i = 0;i < maxConcurrency;i++) {
+    for (int j = 0; j < rounds; j++) {
+      for (int i = 0; i < maxConcurrency; i++) {
         client.get(DEFAULT_HTTPS_PORT, DEFAULT_HTTPS_HOST, "/somepath", resp -> {
           resp.endHandler(v -> {
             if (respCount.incrementAndGet() == totalRequests) {
@@ -1788,7 +1793,7 @@ public class Http2ClientTest extends Http2TestBase {
     await();
   }
 
-/*
+  /*
   @Test
   public void testFillsSingleConnection() throws Exception {
 
@@ -1816,5 +1821,5 @@ public class Http2ClientTest extends Http2TestBase {
     }
     await();
   }
-*/
+   */
 }

@@ -18,12 +18,12 @@ package io.vertx.core.http;
 /**
  * Contains often used Header names.
  * <p>
- * It also contains a utility method to create optimized {@link CharSequence} which can be used as header name and value.
+ * It also contains a utility method to create optimized {@link CharSequence}
+ * which can be used as header name and value.
  *
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>
  */
 public final class HttpHeaders {
-
 
   /**
    * Accept header name
@@ -96,7 +96,7 @@ public final class HttpHeaders {
   public static final CharSequence ACCESS_CONTROL_REQUEST_METHOD = createOptimized(io.netty.handler.codec.http.HttpHeaders.Names.ACCESS_CONTROL_REQUEST_METHOD);
 
   /**
-   *  Age header name
+   * Age header name
    */
   public static final CharSequence AGE = createOptimized(io.netty.handler.codec.http.HttpHeaders.Names.AGE);
 
@@ -278,21 +278,21 @@ public final class HttpHeaders {
   /**
    * chunked header value
    */
-  public static final CharSequence CHUNKED =  createOptimized(io.netty.handler.codec.http.HttpHeaders.Values.CHUNKED);
+  public static final CharSequence CHUNKED = createOptimized(io.netty.handler.codec.http.HttpHeaders.Values.CHUNKED);
   /**
    * close header value
    */
-  public static final CharSequence CLOSE =  createOptimized(io.netty.handler.codec.http.HttpHeaders.Values.CLOSE);
+  public static final CharSequence CLOSE = createOptimized(io.netty.handler.codec.http.HttpHeaders.Values.CLOSE);
 
   /**
    * 100-continue header value
    */
-  public static final CharSequence CONTINUE =  createOptimized(io.netty.handler.codec.http.HttpHeaders.Values.CONTINUE);
+  public static final CharSequence CONTINUE = createOptimized(io.netty.handler.codec.http.HttpHeaders.Values.CONTINUE);
 
   /**
    * identity header value
    */
-  public static final CharSequence IDENTITY =  createOptimized(io.netty.handler.codec.http.HttpHeaders.Values.IDENTITY);
+  public static final CharSequence IDENTITY = createOptimized(io.netty.handler.codec.http.HttpHeaders.Values.IDENTITY);
   /**
    * keep-alive header value
    */
@@ -323,9 +323,10 @@ public final class HttpHeaders {
   public static final CharSequence GET = createOptimized("GET");
 
   /**
-   * Create an optimized {@link CharSequence} which can be used as header name or value.
-   * This should be used if you expect to use it multiple times liked for example adding the same header name or value
-   * for multiple responses or requests.
+   * Create an optimized {@link CharSequence} which can be used as header name
+   * or value. This should be used if you expect to use it multiple times liked
+   * for example adding the same header name or value for multiple responses or
+   * requests.
    */
   public static CharSequence createOptimized(String value) {
     return io.netty.handler.codec.http.HttpHeaders.newEntity(value);

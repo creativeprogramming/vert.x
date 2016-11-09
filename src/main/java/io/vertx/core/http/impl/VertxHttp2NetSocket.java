@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.buffer.Unpooled;
@@ -54,7 +53,6 @@ class VertxHttp2NetSocket<C extends Http2ConnectionBase> extends VertxHttp2Strea
   }
 
   // Stream impl
-
   @Override
   void handleEnd(MultiMap trailers) {
     try {
@@ -102,7 +100,6 @@ class VertxHttp2NetSocket<C extends Http2ConnectionBase> extends VertxHttp2Strea
   }
 
   // NetSocket impl
-
   @Override
   public NetSocket exceptionHandler(Handler<Throwable> handler) {
     synchronized (conn) {

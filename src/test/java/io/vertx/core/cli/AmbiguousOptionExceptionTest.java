@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.cli;
 
 import org.junit.Test;
@@ -30,13 +29,13 @@ public class AmbiguousOptionExceptionTest {
   @Test
   public void testCreation() {
     AmbiguousOptionException exception = new AmbiguousOptionException("foo",
-        Arrays.asList(new Option().setLongName("foobar"), new Option().setLongName("foobaz")));
+            Arrays.asList(new Option().setLongName("foobar"), new Option().setLongName("foobaz")));
     assertThat(exception.getOptions()).hasSize(2);
     assertThat(exception.getToken()).isEqualTo("foo");
     assertThat(exception.getMessage())
-        .contains("Ambiguous argument in command line")
-        .contains("'foo'")
-        .contains("foobar").contains("foobaz");
+            .contains("Ambiguous argument in command line")
+            .contains("'foo'")
+            .contains("foobar").contains("foobaz");
   }
 
 }

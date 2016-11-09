@@ -107,10 +107,10 @@ public abstract class KeyStoreHelper {
     } else if (options instanceof PemTrustOptions) {
       PemTrustOptions trustOptions = (PemTrustOptions) options;
       Stream<Buffer> certValues = trustOptions.
-          getCertPaths().
-          stream().
-          map(path -> vertx.resolveFile(path).getAbsolutePath()).
-          map(vertx.fileSystem()::readFileBlocking);
+              getCertPaths().
+              stream().
+              map(path -> vertx.resolveFile(path).getAbsolutePath()).
+              map(vertx.fileSystem()::readFileBlocking);
       certValues = Stream.concat(certValues, trustOptions.getCertValues().stream());
       return new CA(certValues);
     } else {
@@ -128,7 +128,7 @@ public abstract class KeyStoreHelper {
     KeyManagerFactory fact = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
     fact.getProvider();
     KeyStore ks = loadStore(vertx);
-    fact.init(ks, password != null ? password.toCharArray(): null);
+    fact.init(ks, password != null ? password.toCharArray() : null);
     return fact;
   }
 
@@ -171,7 +171,7 @@ public abstract class KeyStoreHelper {
       InputStream in = null;
       try {
         in = new ByteArrayInputStream(value.get().getBytes());
-        ks.load(in, password != null ? password.toCharArray(): null);
+        ks.load(in, password != null ? password.toCharArray() : null);
       } finally {
         if (in != null) {
           try {

@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.AbstractVerticle;
@@ -30,5 +29,6 @@ public class TestVerticle3 extends AbstractVerticle {
   }
 
   @Override
-  public void stop(Future<Void> stopFuture) throws Exception { }
+  public void stop(Future<Void> stopFuture) throws Exception {
+  }
 }

@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 import io.vertx.core.AsyncResult;
@@ -21,6 +20,7 @@ import io.vertx.core.Future;
 import io.vertx.core.Handler;
 
 class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
+
   private boolean failed;
   private boolean succeeded;
   private Handler<AsyncResult<T>> handler;
@@ -35,6 +35,7 @@ class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
 
   /**
    * Create a future that has already failed
+   *
    * @param t the throwable
    */
   FutureImpl(Throwable t) {
@@ -43,6 +44,7 @@ class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
 
   /**
    * Create a future that has already failed
+   *
    * @param failureMessage the failure message
    */
   FutureImpl(String failureMessage) {
@@ -51,6 +53,7 @@ class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
 
   /**
    * Create a future that has already succeeded
+   *
    * @param result the result
    */
   FutureImpl(T result) {
@@ -65,7 +68,8 @@ class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
   }
 
   /**
-   * An exception describing failure. This will be null if the operation succeeded.
+   * An exception describing failure. This will be null if the operation
+   * succeeded.
    */
   public Throwable cause() {
     return throwable;

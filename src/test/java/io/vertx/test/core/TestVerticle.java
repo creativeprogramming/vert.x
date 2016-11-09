@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.AbstractVerticle;
@@ -42,7 +41,7 @@ public class TestVerticle extends AbstractVerticle {
 //      throw new IllegalStateException("Wrong tccl!");
 //    }
     vertx.eventBus().send("testcounts",
-      new JsonObject().put("deploymentID", context.deploymentID()).put("count", instanceCount.incrementAndGet()));
+            new JsonObject().put("deploymentID", context.deploymentID()).put("count", instanceCount.incrementAndGet()));
   }
 
   @Override

@@ -50,7 +50,7 @@ public class ReflectionUtils {
   public static boolean isMultiple(Method setter) {
     final Class<?> type = setter.getParameterTypes()[0];
     return type.isArray() || List.class.isAssignableFrom(type) || Set.class.isAssignableFrom(type)
-        || Collection.class.isAssignableFrom(type);
+            || Collection.class.isAssignableFrom(type);
   }
 
   public static Class getComponentType(Parameter parameter) {

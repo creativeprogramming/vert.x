@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.handler.codec.http.DefaultHttpHeaders;
@@ -30,15 +29,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is optimised for performance when used on the same event loop that is was passed to the handler with.
- * However it can be used safely from other threads.
+ * This class is optimised for performance when used on the same event loop that
+ * is was passed to the handler with. However it can be used safely from other
+ * threads.
  *
- * The internal state is protected using the synchronized keyword. If always used on the same event loop, then
- * we benefit from biased locking which makes the overhead of synchronized near zero.
+ * The internal state is protected using the synchronized keyword. If always
+ * used on the same event loop, then we benefit from biased locking which makes
+ * the overhead of synchronized near zero.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
-public class HttpClientResponseImpl implements HttpClientResponse  {
+public class HttpClientResponseImpl implements HttpClientResponse {
 
   private final HttpVersion version;
   private final int statusCode;
@@ -281,6 +282,7 @@ public class HttpClientResponseImpl implements HttpClientResponse  {
   }
 
   private static final class BodyHandler implements Handler<Buffer> {
+
     private Buffer body;
 
     @Override

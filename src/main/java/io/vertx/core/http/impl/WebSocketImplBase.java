@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.buffer.ByteBuf;
@@ -32,10 +31,12 @@ import io.vertx.core.net.impl.ConnectionBase;
 import java.util.UUID;
 
 /**
- * This class is optimised for performance when used on the same event loop. However it can be used safely from other threads.
+ * This class is optimised for performance when used on the same event loop.
+ * However it can be used safely from other threads.
  *
- * The internal state is protected using the synchronized keyword. If always used on the same event loop, then
- * we benefit from biased locking which makes the overhead of synchronized near zero.
+ * The internal state is protected using the synchronized keyword. If always
+ * used on the same event loop, then we benefit from biased locking which makes
+ * the overhead of synchronized near zero.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
@@ -58,7 +59,7 @@ public abstract class WebSocketImplBase implements WebSocketBase {
   protected boolean closed;
 
   protected WebSocketImplBase(VertxInternal vertx, ConnectionBase conn, boolean supportsContinuation,
-                              int maxWebSocketFrameSize) {
+          int maxWebSocketFrameSize) {
     this.supportsContinuation = supportsContinuation;
     this.textHandlerID = UUID.randomUUID().toString();
     this.binaryHandlerID = UUID.randomUUID().toString();
@@ -114,7 +115,7 @@ public abstract class WebSocketImplBase implements WebSocketBase {
     int end = offset + maxWebSocketFrameSize;
     boolean isFinal;
     if (end >= data.length()) {
-      end  = data.length();
+      end = data.length();
       isFinal = true;
     } else {
       isFinal = false;

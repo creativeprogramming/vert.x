@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.AsyncResult;
@@ -33,7 +32,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
-
 
 /**
  * @author <a href="http://tfox.org">Tim Fox</a>
@@ -186,7 +184,8 @@ public class ClusteredEventBusTest extends ClusteredEventBusTestBase {
       assertNull(stack.get());
       testComplete();
     });
-    consumer.handler(msg -> {});
+    consumer.handler(msg -> {
+    });
     await();
   }
 
@@ -219,7 +218,7 @@ public class ClusteredEventBusTest extends ClusteredEventBusTestBase {
   @Test
   public void testSubsRemovedForKilledNode() throws Exception {
     testSubsRemoved(latch -> {
-      VertxInternal vi = (VertxInternal)vertices[1];
+      VertxInternal vi = (VertxInternal) vertices[1];
       vi.getClusterManager().leave(onSuccess(v -> {
         latch.countDown();
       }));
@@ -287,7 +286,7 @@ public class ClusteredEventBusTest extends ClusteredEventBusTestBase {
     });
     latch.await();
     EventBus bus = vertices[0].eventBus();
-    for (int i = 0;i < size;i++) {
+    for (int i = 0; i < size; i++) {
       expected.add(i);
       bus.send(ADDRESS1, i);
     }

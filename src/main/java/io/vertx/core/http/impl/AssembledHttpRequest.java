@@ -25,14 +25,14 @@ import io.netty.handler.codec.http.HttpMethod;
 import io.netty.handler.codec.http.HttpRequest;
 import io.netty.handler.codec.http.HttpVersion;
 
-
 /**
- * Helper wrapper class which allows to assemble a HttpContent and a HttpRequest into one "packet" and so more
- * efficient write it through the pipeline.
+ * Helper wrapper class which allows to assemble a HttpContent and a HttpRequest
+ * into one "packet" and so more efficient write it through the pipeline.
  *
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>
  */
 class AssembledHttpRequest implements HttpContent, HttpRequest {
+
   private final HttpRequest request;
   protected final HttpContent content;
 

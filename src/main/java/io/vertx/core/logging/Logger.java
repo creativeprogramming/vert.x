@@ -13,24 +13,27 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.logging;
 
 import io.vertx.core.spi.logging.LogDelegate;
 
 /**
- * This class allows us to isolate all our logging dependencies in one place. It also allows us to have zero runtime
- * 3rd party logging jar dependencies, since we default to JUL by default.
+ * This class allows us to isolate all our logging dependencies in one place. It
+ * also allows us to have zero runtime 3rd party logging jar dependencies, since
+ * we default to JUL by default.
  * <p>
- * By default logging will occur using JUL (Java-Util-Logging). The logging configuration file (logging.properties)
- * used by JUL will taken from the default logging.properties in the JDK installation if no {@code  java.util.logging.config.file} system
- * property is set.
+ * By default logging will occur using JUL (Java-Util-Logging). The logging
+ * configuration file (logging.properties) used by JUL will taken from the
+ * default logging.properties in the JDK installation if no
+ * {@code  java.util.logging.config.file} system property is set.
  * <p>
- * If you would prefer to use Log4J or SLF4J instead of JUL then you can set a system property called
- * {@code vertx.logger-delegate-factory-class-name} to the class name of the delegate for your logging system.
- * For Log4J the value is {@code io.vertx.core.logging.Log4jLogDelegateFactory}, for SLF4J the value
- * is {@code io.vertx.core.logging.SLF4JLogDelegateFactory}. You will need to ensure whatever jar files
- * required by your favourite log framework are on your classpath.
+ * If you would prefer to use Log4J or SLF4J instead of JUL then you can set a
+ * system property called {@code vertx.logger-delegate-factory-class-name} to
+ * the class name of the delegate for your logging system. For Log4J the value
+ * is {@code io.vertx.core.logging.Log4jLogDelegateFactory}, for SLF4J the value
+ * is {@code io.vertx.core.logging.SLF4JLogDelegateFactory}. You will need to
+ * ensure whatever jar files required by your favourite log framework are on
+ * your classpath.
  *
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
  */
@@ -143,7 +146,8 @@ public class Logger {
   }
 
   /**
-   * @return the delegate instance sending operations to the underlying logging framework
+   * @return the delegate instance sending operations to the underlying logging
+   * framework
    */
   public LogDelegate getDelegate() {
     return delegate;

@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.fakedns;
 
 import org.apache.directory.server.dns.DnsServer;
@@ -57,7 +56,6 @@ public final class FakeDNSServer extends DnsServer {
 
   private final RecordStore store;
   private DatagramAcceptor acceptor;
-
 
   private FakeDNSServer(RecordStore store) {
     this.store = store;
@@ -305,7 +303,7 @@ public final class FakeDNSServer extends DnsServer {
   @Override
   public void start() throws IOException {
     UdpTransport transport = new UdpTransport("127.0.0.1", PORT);
-    setTransports( transport );
+    setTransports(transport);
 
     acceptor = transport.getAcceptor();
 
@@ -314,7 +312,7 @@ public final class FakeDNSServer extends DnsServer {
       public void sessionCreated(IoSession session) throws Exception {
         // USe our own codec to support AAAA testing
         session.getFilterChain().addFirst("codec",
-          new ProtocolCodecFilter(new TestDnsProtocolUdpCodecFactory()));
+                new ProtocolCodecFilter(new TestDnsProtocolUdpCodecFactory()));
       }
     });
 
@@ -325,17 +323,16 @@ public final class FakeDNSServer extends DnsServer {
     acceptor.bind();
   }
 
-
   @Override
   public void stop() {
     acceptor.dispose();
   }
 
-
   /**
    * ProtocolCodecFactory which allows to test AAAA resolution
    */
   private final class TestDnsProtocolUdpCodecFactory implements ProtocolCodecFactory {
+
     private DnsMessageEncoder encoder = new DnsMessageEncoder();
     private TestAAAARecordEncoder recordEncoder = new TestAAAARecordEncoder();
 
@@ -345,10 +342,10 @@ public final class FakeDNSServer extends DnsServer {
 
         @Override
         public void encode(IoSession session, Object message, ProtocolEncoderOutput out) {
-          IoBuffer buf = IoBuffer.allocate( 1024 );
+          IoBuffer buf = IoBuffer.allocate(1024);
           DnsMessage dnsMessage = (DnsMessage) message;
           encoder.encode(buf, dnsMessage);
-          for (ResourceRecord record: dnsMessage.getAnswerRecords()) {
+          for (ResourceRecord record : dnsMessage.getAnswerRecords()) {
             // This is a hack to allow to also test for AAAA resolution as DnsMessageEncoder does not support it and it
             // is hard to extend, because the interesting methods are private...
             // In case of RecordType.AAAA we need to encode the RecordType by ourself
@@ -363,7 +360,7 @@ public final class FakeDNSServer extends DnsServer {
           }
           buf.flip();
 
-          out.write( buf );
+          out.write(buf);
         }
       };
     }
@@ -374,6 +371,7 @@ public final class FakeDNSServer extends DnsServer {
     }
 
     private final class TestAAAARecordEncoder extends ResourceRecordEncoder {
+
       @Override
       protected void putResourceRecordData(IoBuffer ioBuffer, ResourceRecord resourceRecord) {
         if (!resourceRecord.get(DnsAttribute.IP_ADDRESS).equals("::1")) {

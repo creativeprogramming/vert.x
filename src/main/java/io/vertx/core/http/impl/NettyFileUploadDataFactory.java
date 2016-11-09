@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.handler.codec.http.HttpRequest;
@@ -46,9 +45,9 @@ class NettyFileUploadDataFactory extends DefaultHttpDataFactory {
   @Override
   public FileUpload createFileUpload(HttpRequest httpRequest, String name, String filename, String contentType, String contentTransferEncoding, Charset charset, long size) {
     HttpServerFileUploadImpl upload = new HttpServerFileUploadImpl(vertx, request, name, filename, contentType, contentTransferEncoding, charset,
-        size);
+            size);
     NettyFileUpload nettyUpload = new NettyFileUpload(upload, name, filename, contentType,
-        contentTransferEncoding, charset);
+            contentTransferEncoding, charset);
     Handler<HttpServerFileUpload> uploadHandler = lazyUploadHandler.get();
     if (uploadHandler != null) {
       uploadHandler.handle(upload);

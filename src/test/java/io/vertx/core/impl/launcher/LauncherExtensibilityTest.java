@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.launcher;
 
 import io.vertx.core.Launcher;
@@ -193,7 +192,7 @@ public class LauncherExtensibilityTest extends CommandTestBase {
       }
     };
 
-    myLauncher.dispatch(new String[] {"-conf=\"{\"time\":345667}"});
+    myLauncher.dispatch(new String[]{"-conf=\"{\"time\":345667}"});
     waitUntil(() -> {
       try {
         return RunCommandTest.getHttpCode() == 200;

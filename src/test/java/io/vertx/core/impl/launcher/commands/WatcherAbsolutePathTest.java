@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.launcher.commands;
 
 import org.junit.Before;
@@ -24,7 +23,8 @@ import java.util.Collections;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Test the watching service behavior when using absolute path in the include list.
+ * Test the watching service behavior when using absolute path in the include
+ * list.
  *
  * @author <a href="http://escoffier.me">Clement Escoffier</a>
  */
@@ -43,20 +43,20 @@ public class WatcherAbsolutePathTest extends WatcherTest {
     undeploy = new AtomicInteger();
 
     watcher = new Watcher(otherRoot, Collections.unmodifiableList(
-        Arrays.asList(
-            root.getAbsolutePath() + File.separator + "**" + File.separator + "*.txt",
-            root.getAbsolutePath() + File.separator + "windows\\*.win",
-            root.getAbsolutePath() + File.separator + "unix/*.nix",
-            "FOO.bar")), next -> {
-      deploy.incrementAndGet();
-      if (next != null) {
-        next.handle(null);
-      }
-    }, next -> {
-      undeploy.incrementAndGet();
-      if (next != null) {
-        next.handle(null);
-      }
-    }, null, 10, 10);
+            Arrays.asList(
+                    root.getAbsolutePath() + File.separator + "**" + File.separator + "*.txt",
+                    root.getAbsolutePath() + File.separator + "windows\\*.win",
+                    root.getAbsolutePath() + File.separator + "unix/*.nix",
+                    "FOO.bar")), next -> {
+              deploy.incrementAndGet();
+              if (next != null) {
+                next.handle(null);
+              }
+            }, next -> {
+              undeploy.incrementAndGet();
+              if (next != null) {
+                next.handle(null);
+              }
+            }, null, 10, 10);
   }
 }

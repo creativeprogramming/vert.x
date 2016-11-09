@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net.impl;
 
 import io.netty.channel.*;
@@ -169,6 +168,7 @@ public final class VertxEventLoopGroup extends AbstractEventExecutorGroup implem
   }
 
   private static class EventLoopHolder {
+
     int count = 1;
     final EventLoop worker;
 
@@ -178,12 +178,18 @@ public final class VertxEventLoopGroup extends AbstractEventExecutorGroup implem
 
     @Override
     public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
+      if (this == o) {
+        return true;
+      }
+      if (o == null || getClass() != o.getClass()) {
+        return false;
+      }
 
       EventLoopHolder that = (EventLoopHolder) o;
 
-      if (worker != null ? !worker.equals(that.worker) : that.worker != null) return false;
+      if (worker != null ? !worker.equals(that.worker) : that.worker != null) {
+        return false;
+      }
 
       return true;
     }
@@ -263,6 +269,7 @@ public final class VertxEventLoopGroup extends AbstractEventExecutorGroup implem
   };
 
   private static final class EventLoopIterator implements Iterator<EventExecutor> {
+
     private final Iterator<EventLoopHolder> holderIt;
 
     public EventLoopIterator(Iterator<EventLoopHolder> holderIt) {

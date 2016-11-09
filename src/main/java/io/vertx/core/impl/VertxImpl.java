@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 import io.netty.channel.EventLoop;
@@ -141,10 +140,10 @@ public class VertxImpl implements VertxInternal, MetricsProvider {
     metrics = initialiseMetrics(options);
 
     ExecutorService workerExec = Executors.newFixedThreadPool(options.getWorkerPoolSize(),
-        new VertxThreadFactory("vert.x-worker-thread-", checker, true, options.getMaxWorkerExecuteTime()));
+            new VertxThreadFactory("vert.x-worker-thread-", checker, true, options.getMaxWorkerExecuteTime()));
     PoolMetrics workerPoolMetrics = isMetricsEnabled() ? metrics.createMetrics(workerExec, "worker", "vert.x-worker-thread", options.getWorkerPoolSize()) : null;
     ExecutorService internalBlockingExec = Executors.newFixedThreadPool(options.getInternalBlockingPoolSize(),
-        new VertxThreadFactory("vert.x-internal-blocking-", checker, true, options.getMaxWorkerExecuteTime()));
+            new VertxThreadFactory("vert.x-internal-blocking-", checker, true, options.getMaxWorkerExecuteTime()));
     PoolMetrics internalBlockingPoolMetrics = isMetricsEnabled() ? metrics.createMetrics(internalBlockingExec, "worker", "vert.x-internal-blocking", options.getInternalBlockingPoolSize()) : null;
     internalBlockingPool = new WorkerPool(internalBlockingExec, internalBlockingPoolMetrics);
     namedWorkerPools = new HashMap<>();
@@ -166,7 +165,7 @@ public class VertxImpl implements VertxInternal, MetricsProvider {
           // Provide a memory barrier as we are setting from a different thread
           synchronized (VertxImpl.this) {
             haManager = new HAManager(this, deploymentManager, clusterManager, options.getQuorumSize(),
-                                      options.getHAGroup(), haEnabled);
+                    options.getHAGroup(), haEnabled);
             createAndStartEventBus(options, resultHandler);
           }
         }
@@ -203,7 +202,7 @@ public class VertxImpl implements VertxInternal, MetricsProvider {
    * @return The FileSystem implementation for the OS
    */
   protected FileSystem getFileSystem() {
-  	return Utils.isWindows() ? new WindowsFileSystem(this) : new FileSystemImpl(this);
+    return Utils.isWindows() ? new WindowsFileSystem(this) : new FileSystemImpl(this);
   }
 
   @Override
@@ -349,7 +348,7 @@ public class VertxImpl implements VertxInternal, MetricsProvider {
   }
 
   public ContextImpl createWorkerContext(boolean multiThreaded, String deploymentID, WorkerPool workerPool, JsonObject config,
-                                         ClassLoader tccl) {
+          ClassLoader tccl) {
     if (workerPool == null) {
       workerPool = this.workerPool;
     }
@@ -623,14 +622,14 @@ public class VertxImpl implements VertxInternal, MetricsProvider {
 
   @Override
   public <T> void executeBlocking(Handler<Future<T>> blockingCodeHandler, boolean ordered,
-                                  Handler<AsyncResult<T>> asyncResultHandler) {
+          Handler<AsyncResult<T>> asyncResultHandler) {
     ContextImpl context = getOrCreateContext();
     context.executeBlocking(blockingCodeHandler, ordered, asyncResultHandler);
   }
 
   @Override
   public <T> void executeBlocking(Handler<Future<T>> blockingCodeHandler,
-                                  Handler<AsyncResult<T>> asyncResultHandler) {
+          Handler<AsyncResult<T>> asyncResultHandler) {
     executeBlocking(blockingCodeHandler, true, asyncResultHandler);
   }
 
@@ -751,6 +750,7 @@ public class VertxImpl implements VertxInternal, MetricsProvider {
   }
 
   private class InternalTimerHandler implements Handler<Void>, Closeable {
+
     final Handler<Long> handler;
     final boolean periodic;
     final long timerID;

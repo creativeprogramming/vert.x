@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.externals;
 
 import io.vertx.test.spi.SomeFactory;
@@ -22,6 +21,7 @@ import io.vertx.test.spi.SomeFactory;
  * @author <a href="http://escoffier.me">Clement Escoffier</a>
  */
 public class SomeFactoryImplA implements SomeFactory {
+
   @Override
   public String name() {
     return "A";

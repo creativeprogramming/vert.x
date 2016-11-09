@@ -14,7 +14,6 @@
  * You may elect to redistribute this code under either of these licenses.
  *
  */
-
 package io.vertx.core.impl;
 
 import io.vertx.core.logging.Logger;
@@ -24,13 +23,15 @@ import java.util.LinkedList;
 import java.util.concurrent.Executor;
 
 /**
- * A factory for producing executors that run all tasks in order, which delegate to a single common executor instance.
+ * A factory for producing executors that run all tasks in order, which delegate
+ * to a single common executor instance.
  *
  * @author <a href="david.lloyd@jboss.com">David Lloyd</a>
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
  * @version <tt>$Revision$</tt>
  */
 public class OrderedExecutorFactory {
+
   // It must be package-protected rather than `private` in order to avoid the generation of an accessor, which would
   // cause Quasar 0.7.5-SNAPSHOT+ to print print an harmless error message during vert.x boot when using the agent
   // instrumentation method. See https://github.com/puniverse/quasar/issues/160#issuecomment-205977756 for details.
@@ -57,12 +58,15 @@ public class OrderedExecutorFactory {
   }
 
   /**
-   * An executor that always runs all tasks in order, using a delegate executor to run the tasks.
+   * An executor that always runs all tasks in order, using a delegate executor
+   * to run the tasks.
    * <p/>
-   * More specifically, any call B to the {@link #execute(Runnable)} method that happens-after another call A to the
-   * same method, will result in B's task running after A's.
+   * More specifically, any call B to the {@link #execute(Runnable)} method that
+   * happens-after another call A to the same method, will result in B's task
+   * running after A's.
    */
   private static final class OrderedExecutor implements Executor {
+
     // @protectedby tasks
     private final LinkedList<Runnable> tasks = new LinkedList<>();
 
@@ -81,7 +85,7 @@ public class OrderedExecutorFactory {
     public OrderedExecutor(Executor parent) {
       this.parent = parent;
       runner = () -> {
-        for (; ; ) {
+        for (;;) {
           final Runnable task;
           synchronized (tasks) {
             task = tasks.poll();

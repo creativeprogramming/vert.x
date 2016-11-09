@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.Vertx;
@@ -23,13 +22,13 @@ import io.vertx.core.Vertx;
  */
 public class ClusterWideMapTestDifferentNodes extends ClusterWideMapTest {
 
-
   @Override
   protected int getNumNodes() {
     return 2;
   }
 
   int pos;
+
   @Override
   protected Vertx getVertx() {
     Vertx vertx = vertices[pos];
@@ -38,6 +37,5 @@ public class ClusterWideMapTestDifferentNodes extends ClusterWideMapTest {
     }
     return vertx;
   }
-
 
 }

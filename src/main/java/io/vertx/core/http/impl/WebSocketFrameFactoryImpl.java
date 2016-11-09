@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.vertx.core.buffer.Buffer;
@@ -25,7 +24,6 @@ import io.vertx.core.spi.WebSocketFrameFactory;
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
 public class WebSocketFrameFactoryImpl implements WebSocketFrameFactory {
-
 
   @Override
   public WebSocketFrame binaryFrame(Buffer data, boolean isFinal) {

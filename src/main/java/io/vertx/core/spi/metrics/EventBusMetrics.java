@@ -13,13 +13,13 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.spi.metrics;
 
 import io.vertx.core.eventbus.ReplyFailure;
 
 /**
- * The event bus metrics SPI which Vert.x will use to call when each event occurs.
+ * The event bus metrics SPI which Vert.x will use to call when each event
+ * occurs.
  *
  * @author <a href="mailto:nscavell@redhat.com">Nick Scavelli</a>
  */
@@ -31,7 +31,8 @@ public interface EventBusMetrics<H> extends Metrics {
    * No specific thread and context can be expected when this method is called.
    *
    * @param address the address used to register the handler
-   * @param repliedAddress null when the handler is not a reply handler, otherwise the address this handler is replying to
+   * @param repliedAddress null when the handler is not a reply handler,
+   * otherwise the address this handler is replying to
    */
   H handlerRegistered(String address, String repliedAddress);
 
@@ -57,7 +58,8 @@ public interface EventBusMetrics<H> extends Metrics {
   /**
    * Called when an handler begin to process a message.<p/>
    *
-   * The thread model depends on the actual context thats registered the handler.<p/>
+   * The thread model depends on the actual context thats registered the
+   * handler.<p/>
    *
    * <h3>Event loop context</h3>
    *
@@ -75,7 +77,8 @@ public interface EventBusMetrics<H> extends Metrics {
   /**
    * Called when an handler finish to process a message.<p/>
    *
-   * The thread model depends on the actual context thats registered the handler.<p/>
+   * The thread model depends on the actual context thats registered the
+   * handler.<p/>
    *
    * <h3>Event loop context</h3>
    *
@@ -135,8 +138,10 @@ public interface EventBusMetrics<H> extends Metrics {
   void messageRead(String address, int numberOfBytes);
 
   /**
-   * Called whenever the event bus delivers a reply failure to the sender/publisher, the
-   * {@link io.vertx.core.eventbus.ReplyFailure reply failure} indicates the nature of the failure.<p/>
+   * Called whenever the event bus delivers a reply failure to the
+   * sender/publisher, the
+   * {@link io.vertx.core.eventbus.ReplyFailure reply failure} indicates the
+   * nature of the failure.<p/>
    *
    * No specific thread and context can be expected when this method is called.
    *

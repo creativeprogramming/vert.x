@@ -15,14 +15,14 @@
  */
 package io.vertx.core.cli.converters;
 
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 /**
- * This 'default' converter tries to create objects using a static 'from' method taking a single String argument.
- * This converter is particularly convenient for builders.
+ * This 'default' converter tries to create objects using a static 'from' method
+ * taking a single String argument. This converter is particularly convenient
+ * for builders.
  *
  * @param <T> the built type.
  * @author Clement Escoffier <clement@apache.org>
@@ -39,8 +39,10 @@ public final class FromBasedConverter<T> implements Converter<T> {
   }
 
   /**
-   * Checks whether the given class can be used by the {@link FromBasedConverter} (i.e. has a static 'from' method
-   * taking a single String as argument). If so, creates a new instance of converter for this type.
+   * Checks whether the given class can be used by the
+   * {@link FromBasedConverter} (i.e. has a static 'from' method taking a single
+   * String as argument). If so, creates a new instance of converter for this
+   * type.
    *
    * @param clazz the class
    * @return a {@link FromBasedConverter} if the given class is eligible,
@@ -66,12 +68,13 @@ public final class FromBasedConverter<T> implements Converter<T> {
   }
 
   /**
-   * Converts the given input to an object by using the 'from' method. Notice that the method may
-   * receive a {@literal null} value.
+   * Converts the given input to an object by using the 'from' method. Notice
+   * that the method may receive a {@literal null} value.
    *
    * @param input the input, can be {@literal null}
    * @return the instance of T
-   * @throws IllegalArgumentException if the instance of T cannot be created from the input.
+   * @throws IllegalArgumentException if the instance of T cannot be created
+   * from the input.
    */
   @Override
   public T fromString(String input) throws IllegalArgumentException {

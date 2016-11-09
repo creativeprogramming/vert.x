@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.AbstractVerticle;
@@ -100,7 +99,8 @@ public class VertxTestBase extends AsyncTestBase {
   }
 
   /**
-   * @return create a blank new Vert.x instance with no options closed when tear down executes.
+   * @return create a blank new Vert.x instance with no options closed when tear
+   * down executes.
    */
   protected Vertx vertx() {
     if (created == null) {
@@ -112,7 +112,8 @@ public class VertxTestBase extends AsyncTestBase {
   }
 
   /**
-   * @return create a blank new Vert.x instance with @{@code options} closed when tear down executes.
+   * @return create a blank new Vert.x instance with @{@code options} closed
+   * when tear down executes.
    */
   protected Vertx vertx(VertxOptions options) {
     if (created == null) {
@@ -124,7 +125,8 @@ public class VertxTestBase extends AsyncTestBase {
   }
 
   /**
-   * Create a blank new clustered Vert.x instance with @{@code options} closed when tear down executes.
+   * Create a blank new clustered Vert.x instance with @{@code options} closed
+   * when tear down executes.
    */
   protected void clusteredVertx(VertxOptions options, Handler<AsyncResult<Vertx>> ar) {
     if (created == null) {
@@ -152,17 +154,16 @@ public class VertxTestBase extends AsyncTestBase {
     for (int i = 0; i < numNodes; i++) {
       int index = i;
       clusteredVertx(options.setClusterHost("localhost").setClusterPort(0).setClustered(true)
-        .setClusterManager(getClusterManager()), ar -> {
-          try {
-            if (ar.failed()) {
-              ar.cause().printStackTrace();
-            }
-            assertTrue("Failed to start node", ar.succeeded());
-            vertices[index] = ar.result();
+              .setClusterManager(getClusterManager()), ar -> {
+        try {
+          if (ar.failed()) {
+            ar.cause().printStackTrace();
           }
-          finally {
-            latch.countDown();
-          }
+          assertTrue("Failed to start node", ar.succeeded());
+          vertices[index] = ar.result();
+        } finally {
+          latch.countDown();
+        }
       });
     }
     try {
@@ -171,7 +172,6 @@ public class VertxTestBase extends AsyncTestBase {
       fail(e.getMessage());
     }
   }
-
 
   protected static void setOptions(TCPSSLOptions sslOptions, KeyCertOptions options) {
     if (options instanceof JksOptions) {
@@ -193,80 +193,80 @@ public class VertxTestBase extends AsyncTestBase {
     }
   }
 
-  protected static final String[] ENABLED_CIPHER_SUITES =
-    new String[] {
-      "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",
-      "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",
-      "TLS_RSA_WITH_AES_128_CBC_SHA256",
-      "TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256",
-      "TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256",
-      "TLS_DHE_RSA_WITH_AES_128_CBC_SHA256",
-      "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256",
-      "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA",
-      "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",
-      "TLS_RSA_WITH_AES_128_CBC_SHA",
-      "TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA",
-      "TLS_ECDH_RSA_WITH_AES_128_CBC_SHA",
-      "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
-      "TLS_DHE_DSS_WITH_AES_128_CBC_SHA",
-      "TLS_ECDHE_ECDSA_WITH_RC4_128_SHA",
-      "TLS_ECDHE_RSA_WITH_RC4_128_SHA",
-      "SSL_RSA_WITH_RC4_128_SHA",
-      "TLS_ECDH_ECDSA_WITH_RC4_128_SHA",
-      "TLS_ECDH_RSA_WITH_RC4_128_SHA",
-      "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",
-      "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
-      "TLS_RSA_WITH_AES_128_GCM_SHA256",
-      "TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256",
-      "TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256",
-      "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256",
-      "TLS_DHE_DSS_WITH_AES_128_GCM_SHA256",
-      "TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA",
-      "TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA",
-      "SSL_RSA_WITH_3DES_EDE_CBC_SHA",
-      "TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA",
-      "TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA",
-      "SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA",
-      "SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA",
-      "SSL_RSA_WITH_RC4_128_MD5",
-      "TLS_EMPTY_RENEGOTIATION_INFO_SCSV",
-      "TLS_DH_anon_WITH_AES_128_GCM_SHA256",
-      "TLS_DH_anon_WITH_AES_128_CBC_SHA256",
-      "TLS_ECDH_anon_WITH_AES_128_CBC_SHA",
-      "TLS_DH_anon_WITH_AES_128_CBC_SHA",
-      "TLS_ECDH_anon_WITH_RC4_128_SHA",
-      "SSL_DH_anon_WITH_RC4_128_MD5",
-      "TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA",
-      "SSL_DH_anon_WITH_3DES_EDE_CBC_SHA",
-      "TLS_RSA_WITH_NULL_SHA256",
-      "TLS_ECDHE_ECDSA_WITH_NULL_SHA",
-      "TLS_ECDHE_RSA_WITH_NULL_SHA",
-      "SSL_RSA_WITH_NULL_SHA",
-      "TLS_ECDH_ECDSA_WITH_NULL_SHA",
-      "TLS_ECDH_RSA_WITH_NULL_SHA",
-      "TLS_ECDH_anon_WITH_NULL_SHA",
-      "SSL_RSA_WITH_NULL_MD5",
-      "SSL_RSA_WITH_DES_CBC_SHA",
-      "SSL_DHE_RSA_WITH_DES_CBC_SHA",
-      "SSL_DHE_DSS_WITH_DES_CBC_SHA",
-      "SSL_DH_anon_WITH_DES_CBC_SHA",
-      "SSL_RSA_EXPORT_WITH_RC4_40_MD5",
-      "SSL_DH_anon_EXPORT_WITH_RC4_40_MD5",
-      "SSL_RSA_EXPORT_WITH_DES40_CBC_SHA",
-      "SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA",
-      "SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA",
-      "SSL_DH_anon_EXPORT_WITH_DES40_CBC_SHA",
-      "TLS_KRB5_WITH_RC4_128_SHA",
-      "TLS_KRB5_WITH_RC4_128_MD5",
-      "TLS_KRB5_WITH_3DES_EDE_CBC_SHA",
-      "TLS_KRB5_WITH_3DES_EDE_CBC_MD5",
-      "TLS_KRB5_WITH_DES_CBC_SHA",
-      "TLS_KRB5_WITH_DES_CBC_MD5",
-      "TLS_KRB5_EXPORT_WITH_RC4_40_SHA",
-      "TLS_KRB5_EXPORT_WITH_RC4_40_MD5",
-      "TLS_KRB5_EXPORT_WITH_DES_CBC_40_SHA",
-      "TLS_KRB5_EXPORT_WITH_DES_CBC_40_MD5"
-    };
+  protected static final String[] ENABLED_CIPHER_SUITES
+          = new String[]{
+            "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",
+            "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",
+            "TLS_RSA_WITH_AES_128_CBC_SHA256",
+            "TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256",
+            "TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256",
+            "TLS_DHE_RSA_WITH_AES_128_CBC_SHA256",
+            "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256",
+            "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA",
+            "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",
+            "TLS_RSA_WITH_AES_128_CBC_SHA",
+            "TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA",
+            "TLS_ECDH_RSA_WITH_AES_128_CBC_SHA",
+            "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
+            "TLS_DHE_DSS_WITH_AES_128_CBC_SHA",
+            "TLS_ECDHE_ECDSA_WITH_RC4_128_SHA",
+            "TLS_ECDHE_RSA_WITH_RC4_128_SHA",
+            "SSL_RSA_WITH_RC4_128_SHA",
+            "TLS_ECDH_ECDSA_WITH_RC4_128_SHA",
+            "TLS_ECDH_RSA_WITH_RC4_128_SHA",
+            "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",
+            "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
+            "TLS_RSA_WITH_AES_128_GCM_SHA256",
+            "TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256",
+            "TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256",
+            "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256",
+            "TLS_DHE_DSS_WITH_AES_128_GCM_SHA256",
+            "TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA",
+            "TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA",
+            "SSL_RSA_WITH_3DES_EDE_CBC_SHA",
+            "TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA",
+            "TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA",
+            "SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA",
+            "SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA",
+            "SSL_RSA_WITH_RC4_128_MD5",
+            "TLS_EMPTY_RENEGOTIATION_INFO_SCSV",
+            "TLS_DH_anon_WITH_AES_128_GCM_SHA256",
+            "TLS_DH_anon_WITH_AES_128_CBC_SHA256",
+            "TLS_ECDH_anon_WITH_AES_128_CBC_SHA",
+            "TLS_DH_anon_WITH_AES_128_CBC_SHA",
+            "TLS_ECDH_anon_WITH_RC4_128_SHA",
+            "SSL_DH_anon_WITH_RC4_128_MD5",
+            "TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA",
+            "SSL_DH_anon_WITH_3DES_EDE_CBC_SHA",
+            "TLS_RSA_WITH_NULL_SHA256",
+            "TLS_ECDHE_ECDSA_WITH_NULL_SHA",
+            "TLS_ECDHE_RSA_WITH_NULL_SHA",
+            "SSL_RSA_WITH_NULL_SHA",
+            "TLS_ECDH_ECDSA_WITH_NULL_SHA",
+            "TLS_ECDH_RSA_WITH_NULL_SHA",
+            "TLS_ECDH_anon_WITH_NULL_SHA",
+            "SSL_RSA_WITH_NULL_MD5",
+            "SSL_RSA_WITH_DES_CBC_SHA",
+            "SSL_DHE_RSA_WITH_DES_CBC_SHA",
+            "SSL_DHE_DSS_WITH_DES_CBC_SHA",
+            "SSL_DH_anon_WITH_DES_CBC_SHA",
+            "SSL_RSA_EXPORT_WITH_RC4_40_MD5",
+            "SSL_DH_anon_EXPORT_WITH_RC4_40_MD5",
+            "SSL_RSA_EXPORT_WITH_DES40_CBC_SHA",
+            "SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA",
+            "SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA",
+            "SSL_DH_anon_EXPORT_WITH_DES40_CBC_SHA",
+            "TLS_KRB5_WITH_RC4_128_SHA",
+            "TLS_KRB5_WITH_RC4_128_MD5",
+            "TLS_KRB5_WITH_3DES_EDE_CBC_SHA",
+            "TLS_KRB5_WITH_3DES_EDE_CBC_MD5",
+            "TLS_KRB5_WITH_DES_CBC_SHA",
+            "TLS_KRB5_WITH_DES_CBC_MD5",
+            "TLS_KRB5_EXPORT_WITH_RC4_40_SHA",
+            "TLS_KRB5_EXPORT_WITH_RC4_40_MD5",
+            "TLS_KRB5_EXPORT_WITH_DES_CBC_40_SHA",
+            "TLS_KRB5_EXPORT_WITH_DES_CBC_40_MD5"
+          };
 
   /**
    * Create a worker verticle for the current Vert.x and return its context.
@@ -290,7 +290,8 @@ public class VertxTestBase extends AsyncTestBase {
   }
 
   /**
-   * Create worker verticles for the current Vert.x and returns the list of their contexts.
+   * Create worker verticles for the current Vert.x and returns the list of
+   * their contexts.
    *
    * @param num the number of verticles to create
    * @return the contexts
@@ -298,7 +299,7 @@ public class VertxTestBase extends AsyncTestBase {
    */
   protected List<Context> createWorkers(int num) throws Exception {
     List<Context> contexts = new ArrayList<>();
-    for (int i = 0;i < num;i++) {
+    for (int i = 0; i < num; i++) {
       contexts.add(createWorker());
     }
     return contexts;

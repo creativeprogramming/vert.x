@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 /**
@@ -30,14 +29,14 @@ public class RepeatRule implements TestRule {
     private final int times;
     private final Statement statement;
 
-    private RepeatStatement( int times, Statement statement ) {
+    private RepeatStatement(int times, Statement statement) {
       this.times = times;
       this.statement = statement;
     }
 
     @Override
     public void evaluate() throws Throwable {
-      for( int i = 0; i < times; i++ ) {
+      for (int i = 0; i < times; i++) {
         System.out.println("*** Iteration " + (i + 1) + "/" + times + " of test");
         statement.evaluate();
       }
@@ -45,12 +44,12 @@ public class RepeatRule implements TestRule {
   }
 
   @Override
-  public Statement apply( Statement statement, Description description ) {
+  public Statement apply(Statement statement, Description description) {
     Statement result = statement;
     Repeat repeat = description.getAnnotation(Repeat.class);
-    if( repeat != null ) {
+    if (repeat != null) {
       int times = repeat.times();
-      result = new RepeatStatement( times, statement );
+      result = new RepeatStatement(times, statement);
     }
     return result;
   }

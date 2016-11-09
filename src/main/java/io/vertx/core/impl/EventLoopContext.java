@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 import io.vertx.core.Handler;
@@ -29,7 +28,7 @@ public class EventLoopContext extends ContextImpl {
   private static final Logger log = LoggerFactory.getLogger(EventLoopContext.class);
 
   public EventLoopContext(VertxInternal vertx, WorkerPool internalBlockingPool, WorkerPool workerPool, String deploymentID, JsonObject config,
-                          ClassLoader tccl) {
+          ClassLoader tccl) {
     super(vertx, internalBlockingPool, workerPool, deploymentID, config, tccl);
   }
 
@@ -57,5 +56,5 @@ public class EventLoopContext extends ContextImpl {
       throw new IllegalStateException("Event delivered on unexpected thread " + current + " expected: " + contextThread);
     }
   }
-  
+
 }

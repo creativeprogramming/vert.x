@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -88,7 +87,7 @@ public class DeploymentOptions {
   /**
    * Constructor for creating a instance from JSON
    *
-   * @param json  the JSON
+   * @param json the JSON
    */
   public DeploymentOptions(JsonObject json) {
     this();
@@ -98,7 +97,7 @@ public class DeploymentOptions {
   /**
    * Initialise the fields of this instance from the specified JSON
    *
-   * @param json  the JSON
+   * @param json the JSON
    */
   public void fromJson(JsonObject json) {
     this.config = json.getJsonObject("config");
@@ -118,18 +117,20 @@ public class DeploymentOptions {
   }
 
   /**
-   * Get the JSON configuration that will be passed to the verticle(s) when deployed.
+   * Get the JSON configuration that will be passed to the verticle(s) when
+   * deployed.
    *
-   * @return  the JSON config
+   * @return the JSON config
    */
   public JsonObject getConfig() {
     return config;
   }
 
   /**
-   * Set the JSON configuration that will be passed to the verticle(s) when it's deployed
+   * Set the JSON configuration that will be passed to the verticle(s) when it's
+   * deployed
    *
-   * @param config  the JSON config
+   * @param config the JSON config
    * @return a reference to this, so the API can be used fluently
    */
   public DeploymentOptions setConfig(JsonObject config) {
@@ -169,7 +170,8 @@ public class DeploymentOptions {
   }
 
   /**
-   * Set whether the verticle(s) should be deployed as a multi-threaded worker verticle
+   * Set whether the verticle(s) should be deployed as a multi-threaded worker
+   * verticle
    *
    * @param multiThreaded true for multi-threaded worker, false otherwise
    * @return a reference to this, so the API can be used fluently
@@ -211,7 +213,7 @@ public class DeploymentOptions {
   /**
    * Set whether the verticle(s) will be deployed as HA.
    *
-   * @param ha  true if to be deployed as HA, false otherwise
+   * @param ha true if to be deployed as HA, false otherwise
    * @return a reference to this, so the API can be used fluently
    */
   public DeploymentOptions setHa(boolean ha) {
@@ -224,7 +226,7 @@ public class DeploymentOptions {
    * <p>
    * Ignored if no isolation group is set.
    *
-   * @return  any extra classpath
+   * @return any extra classpath
    */
   public List<String> getExtraClasspath() {
     return extraClasspath;
@@ -245,7 +247,7 @@ public class DeploymentOptions {
   /**
    * Get the number of instances that should be deployed.
    *
-   * @return  the number of instances
+   * @return the number of instances
    */
   public int getInstances() {
     return instances;
@@ -254,7 +256,7 @@ public class DeploymentOptions {
   /**
    * Set the number of instances that should be deployed.
    *
-   * @param instances  the number of instances
+   * @param instances the number of instances
    * @return a reference to this, so the API can be used fluently
    */
   public DeploymentOptions setInstances(int instances) {
@@ -263,8 +265,9 @@ public class DeploymentOptions {
   }
 
   /**
-   * Get the list of isolated class names, the names can be a Java class fully qualified name such as
-   * 'com.mycompany.myproject.engine.MyClass' or a wildcard matching such as `com.mycompany.myproject.*`.
+   * Get the list of isolated class names, the names can be a Java class fully
+   * qualified name such as 'com.mycompany.myproject.engine.MyClass' or a
+   * wildcard matching such as `com.mycompany.myproject.*`.
    *
    * @return the list of isolated classes
    */
@@ -291,8 +294,9 @@ public class DeploymentOptions {
   }
 
   /**
-   * Set the worker pool name to use for this verticle. When no name is set, the Vert.x
-   * worker pool will be used, when a name is set, the verticle will use a named worker pool.
+   * Set the worker pool name to use for this verticle. When no name is set, the
+   * Vert.x worker pool will be used, when a name is set, the verticle will use
+   * a named worker pool.
    *
    * @param workerPoolName the worker pool name
    * @return a reference to this, so the API can be used fluently
@@ -303,9 +307,9 @@ public class DeploymentOptions {
   }
 
   /**
-   * Get the maximum number of worker threads to be used by the worker pool when the verticle is deployed
-   * with a {@link #setWorkerPoolName}. When the verticle does not use a named worker pool, this option
-   * has no effect.
+   * Get the maximum number of worker threads to be used by the worker pool when
+   * the verticle is deployed with a {@link #setWorkerPoolName}. When the
+   * verticle does not use a named worker pool, this option has no effect.
    * <p>
    * Worker threads are used for running blocking code and worker verticles.
    *
@@ -332,10 +336,12 @@ public class DeploymentOptions {
   /**
    * Get the value of max worker execute time, in ns.
    * <p>
-   * Vert.x will automatically log a warning if it detects that worker threads haven't returned within this time.
+   * Vert.x will automatically log a warning if it detects that worker threads
+   * haven't returned within this time.
    * <p>
-   * This can be used to detect where the user is blocking a worker thread for too long. Although worker threads
-   * can be blocked longer than event loop threads, they shouldn't be blocked for long periods of time.
+   * This can be used to detect where the user is blocking a worker thread for
+   * too long. Although worker threads can be blocked longer than event loop
+   * threads, they shouldn't be blocked for long periods of time.
    *
    * @return The value of max worker execute time, in ns.
    */
@@ -360,7 +366,7 @@ public class DeploymentOptions {
   /**
    * Convert this to JSON
    *
-   * @return  the JSON
+   * @return the JSON
    */
   public JsonObject toJson() {
     JsonObject json = new JsonObject();
@@ -370,20 +376,36 @@ public class DeploymentOptions {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
 
     DeploymentOptions that = (DeploymentOptions) o;
 
-    if (worker != that.worker) return false;
-    if (multiThreaded != that.multiThreaded) return false;
-    if (ha != that.ha) return false;
-    if (instances != that.instances) return false;
-    if (config != null ? !config.equals(that.config) : that.config != null) return false;
-    if (isolationGroup != null ? !isolationGroup.equals(that.isolationGroup) : that.isolationGroup != null)
+    if (worker != that.worker) {
       return false;
-    if (extraClasspath != null ? !extraClasspath.equals(that.extraClasspath) : that.extraClasspath != null)
+    }
+    if (multiThreaded != that.multiThreaded) {
       return false;
+    }
+    if (ha != that.ha) {
+      return false;
+    }
+    if (instances != that.instances) {
+      return false;
+    }
+    if (config != null ? !config.equals(that.config) : that.config != null) {
+      return false;
+    }
+    if (isolationGroup != null ? !isolationGroup.equals(that.isolationGroup) : that.isolationGroup != null) {
+      return false;
+    }
+    if (extraClasspath != null ? !extraClasspath.equals(that.extraClasspath) : that.extraClasspath != null) {
+      return false;
+    }
     return !(isolatedClasses != null ? !isolatedClasses.equals(that.isolatedClasses) : that.isolatedClasses != null);
 
   }

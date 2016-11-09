@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.Vertx;
@@ -52,12 +51,12 @@ public class ClusterWideMapTest extends VertxTestBase {
 
   @Test
   public void testMapPutGetByte() {
-    testMapPutGet((byte)1, (byte)2);
+    testMapPutGet((byte) 1, (byte) 2);
   }
 
   @Test
   public void testMapPutGetShort() {
-    testMapPutGet((short)1, (short)2);
+    testMapPutGet((short) 1, (short) 2);
   }
 
   @Test
@@ -129,12 +128,12 @@ public class ClusterWideMapTest extends VertxTestBase {
 
   @Test
   public void testMapPutIfAbsentGetByte() {
-    testMapPutIfAbsentGet((byte)1, (byte)2);
+    testMapPutIfAbsentGet((byte) 1, (byte) 2);
   }
 
   @Test
   public void testMapPutIfAbsentGetShort() {
-    testMapPutIfAbsentGet((short)1, (short)2);
+    testMapPutIfAbsentGet((short) 1, (short) 2);
   }
 
   @Test
@@ -207,12 +206,12 @@ public class ClusterWideMapTest extends VertxTestBase {
 
   @Test
   public void testMapRemoveByte() {
-    testMapRemove((byte)1, (byte)2);
+    testMapRemove((byte) 1, (byte) 2);
   }
 
   @Test
   public void testMapRemoveShort() {
-    testMapRemove((short)1, (short)2);
+    testMapRemove((short) 1, (short) 2);
   }
 
   @Test
@@ -267,12 +266,12 @@ public class ClusterWideMapTest extends VertxTestBase {
 
   @Test
   public void testMapRemoveIfPresentByte() {
-    testMapRemoveIfPresent((byte)1, (byte)2, (byte)3);
+    testMapRemoveIfPresent((byte) 1, (byte) 2, (byte) 3);
   }
 
   @Test
   public void testMapRemoveIfPresentShort() {
-    testMapRemoveIfPresent((short)1, (short)2, (short)3);
+    testMapRemoveIfPresent((short) 1, (short) 2, (short) 3);
   }
 
   @Test
@@ -313,13 +312,13 @@ public class ClusterWideMapTest extends VertxTestBase {
   @Test
   public void testMapRemoveIfPresentJsonObject() {
     testMapRemoveIfPresent(new JsonObject().put("foo", "bar"), new JsonObject().put("uihwqduh", "qiwiojw"),
-                           new JsonObject().put("regerg", "wfwef"));
+            new JsonObject().put("regerg", "wfwef"));
   }
 
   @Test
   public void testMapRemoveIfPresentJsonArray() {
     testMapRemoveIfPresent(new JsonArray().add("foo").add(2), new JsonArray().add("uihwqduh").add(false),
-                           new JsonArray().add("qqddq").add(true));
+            new JsonArray().add("qqddq").add(true));
   }
 
   @Test
@@ -329,12 +328,12 @@ public class ClusterWideMapTest extends VertxTestBase {
 
   @Test
   public void testMapReplaceByte() {
-    testMapReplace((byte)1, (byte)2, (byte)3);
+    testMapReplace((byte) 1, (byte) 2, (byte) 3);
   }
 
   @Test
   public void testMapReplaceShort() {
-    testMapReplace((short)1, (short)2, (short)3);
+    testMapReplace((short) 1, (short) 2, (short) 3);
   }
 
   @Test
@@ -375,13 +374,13 @@ public class ClusterWideMapTest extends VertxTestBase {
   @Test
   public void testMapReplaceJsonObject() {
     testMapReplace(new JsonObject().put("foo", "bar"), new JsonObject().put("uihwqduh", "qiwiojw"),
-      new JsonObject().put("regerg", "wfwef"));
+            new JsonObject().put("regerg", "wfwef"));
   }
 
   @Test
   public void testMapReplaceJsonArray() {
     testMapReplace(new JsonArray().add("foo").add(2), new JsonArray().add("uihwqduh").add(false),
-      new JsonArray().add("qqddq").add(true));
+            new JsonArray().add("qqddq").add(true));
   }
 
   @Test
@@ -391,12 +390,12 @@ public class ClusterWideMapTest extends VertxTestBase {
 
   @Test
   public void testMapReplaceIfPresentByte() {
-    testMapReplaceIfPresent((byte)1, (byte)2, (byte)3);
+    testMapReplaceIfPresent((byte) 1, (byte) 2, (byte) 3);
   }
 
   @Test
   public void testMapReplaceIfPresentShort() {
-    testMapReplaceIfPresent((short)1, (short)2, (short)3);
+    testMapReplaceIfPresent((short) 1, (short) 2, (short) 3);
   }
 
   @Test
@@ -437,13 +436,13 @@ public class ClusterWideMapTest extends VertxTestBase {
   @Test
   public void testMapReplaceIfPresentJsonObject() {
     testMapReplaceIfPresent(new JsonObject().put("foo", "bar"), new JsonObject().put("uihwqduh", "qiwiojw"),
-      new JsonObject().put("regerg", "wfwef"));
+            new JsonObject().put("regerg", "wfwef"));
   }
 
   @Test
   public void testMapReplaceIfPresentJsonArray() {
     testMapReplaceIfPresent(new JsonArray().add("foo").add(2), new JsonArray().add("uihwqduh").add(false),
-      new JsonArray().add("qqddq").add(true));
+            new JsonArray().add("qqddq").add(true));
   }
 
   @Test
@@ -453,7 +452,8 @@ public class ClusterWideMapTest extends VertxTestBase {
 
   @Test
   public void testGetMapWithNullName() throws Exception {
-    assertNullPointerException(() -> getVertx().sharedData().<String, String>getClusterWideMap(null, ar -> {}));
+    assertNullPointerException(() -> getVertx().sharedData().<String, String>getClusterWideMap(null, ar -> {
+    }));
   }
 
   @Test
@@ -464,7 +464,8 @@ public class ClusterWideMapTest extends VertxTestBase {
   @Test
   public void testPutNullKey() {
     getVertx().sharedData().<String, String>getClusterWideMap("foo", onSuccess(map -> {
-      assertIllegalArgumentException(() -> map.put(null, "foo", ar2 -> {}));
+      assertIllegalArgumentException(() -> map.put(null, "foo", ar2 -> {
+      }));
       testComplete();
     }));
     await();
@@ -473,7 +474,8 @@ public class ClusterWideMapTest extends VertxTestBase {
   @Test
   public void testPutNullValue() {
     getVertx().sharedData().<String, String>getClusterWideMap("foo", onSuccess(map -> {
-      assertIllegalArgumentException(() -> map.put("foo", null, ar2 -> {}));
+      assertIllegalArgumentException(() -> map.put("foo", null, ar2 -> {
+      }));
       testComplete();
     }));
     await();
@@ -482,7 +484,8 @@ public class ClusterWideMapTest extends VertxTestBase {
   @Test
   public void testPutInvalidKey() {
     getVertx().sharedData().<SomeObject, String>getClusterWideMap("foo", onSuccess(map -> {
-      assertIllegalArgumentException(() -> map.put(new SomeObject(), "foo", ar2 -> {}));
+      assertIllegalArgumentException(() -> map.put(new SomeObject(), "foo", ar2 -> {
+      }));
       testComplete();
     }));
     await();
@@ -491,7 +494,8 @@ public class ClusterWideMapTest extends VertxTestBase {
   @Test
   public void testPutInvalidValue() {
     getVertx().sharedData().<String, SomeObject>getClusterWideMap("foo", onSuccess(map -> {
-      assertIllegalArgumentException(() -> map.put("foo", new SomeObject(), ar2 -> {}));
+      assertIllegalArgumentException(() -> map.put("foo", new SomeObject(), ar2 -> {
+      }));
       testComplete();
     }));
     await();
@@ -500,7 +504,8 @@ public class ClusterWideMapTest extends VertxTestBase {
   @Test
   public void testPutIfAbsentInvalidKey() {
     getVertx().sharedData().<SomeObject, String>getClusterWideMap("foo", onSuccess(map -> {
-      assertIllegalArgumentException(() -> map.putIfAbsent(new SomeObject(), "foo", ar2 -> {}));
+      assertIllegalArgumentException(() -> map.putIfAbsent(new SomeObject(), "foo", ar2 -> {
+      }));
       testComplete();
     }));
     await();
@@ -509,7 +514,8 @@ public class ClusterWideMapTest extends VertxTestBase {
   @Test
   public void testPutIfAbsentInvalidValue() {
     getVertx().sharedData().<String, SomeObject>getClusterWideMap("foo", onSuccess(map -> {
-      assertIllegalArgumentException(() -> map.putIfAbsent("foo", new SomeObject(), ar2 -> {}));
+      assertIllegalArgumentException(() -> map.putIfAbsent("foo", new SomeObject(), ar2 -> {
+      }));
       testComplete();
     }));
     await();
@@ -683,6 +689,7 @@ public class ClusterWideMapTest extends VertxTestBase {
   }
 
   public static final class SomeSerializableObject implements Serializable {
+
     private String str;
 
     public SomeSerializableObject(String str) {
@@ -694,10 +701,16 @@ public class ClusterWideMapTest extends VertxTestBase {
 
     @Override
     public boolean equals(Object o) {
-      if (this == o) return true;
-      if (!(o instanceof SomeSerializableObject)) return false;
+      if (this == o) {
+        return true;
+      }
+      if (!(o instanceof SomeSerializableObject)) {
+        return false;
+      }
       SomeSerializableObject that = (SomeSerializableObject) o;
-      if (str != null ? !str.equals(that.str) : that.str != null) return false;
+      if (str != null ? !str.equals(that.str) : that.str != null) {
+        return false;
+      }
       return true;
     }
 

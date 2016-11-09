@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.eventbus;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -39,14 +38,15 @@ public class EventBusOptions extends TCPSSLOptions {
   private long clusterPingReplyInterval = VertxOptions.DEFAULT_CLUSTER_PING_REPLY_INTERVAL;
 
   // Attributes used to configure the server of the event bus when the event bus is clustered.
-
   /**
-   * The default port to listen on = 0 (meaning a random ephemeral free port will be chosen)
+   * The default port to listen on = 0 (meaning a random ephemeral free port
+   * will be chosen)
    */
   public static final int DEFAULT_PORT = VertxOptions.DEFAULT_CLUSTER_PORT;
 
   /**
-   * The default host to listen on = "0.0.0.0" (meaning listen on all available interfaces).
+   * The default host to listen on = "0.0.0.0" (meaning listen on all available
+   * interfaces).
    */
   public static final String DEFAULT_HOST = VertxOptions.DEFAULT_CLUSTER_HOST;
 
@@ -66,7 +66,6 @@ public class EventBusOptions extends TCPSSLOptions {
   private ClientAuth clientAuth = DEFAULT_CLIENT_AUTH;
 
   // Attributes used to configure the client of the event bus when the event bus is clustered.
-
   /**
    * The default value for reconnect attempts = 0
    */
@@ -94,7 +93,8 @@ public class EventBusOptions extends TCPSSLOptions {
   private boolean trustAll;
 
   /**
-   * Creates a new instance of {@link EventBusOptions} using the default configuration.
+   * Creates a new instance of {@link EventBusOptions} using the default
+   * configuration.
    */
   public EventBusOptions() {
     super();
@@ -114,7 +114,8 @@ public class EventBusOptions extends TCPSSLOptions {
   }
 
   /**
-   * Copy constructor to create an instance of {@link EventBusOptions} using the values of the given object.
+   * Copy constructor to create an instance of {@link EventBusOptions} using the
+   * values of the given object.
    *
    * @param other the other {@link EventBusOptions}
    */
@@ -139,8 +140,8 @@ public class EventBusOptions extends TCPSSLOptions {
   }
 
   /**
-   * Creates a new instance of {@link EventBusOptions} from the JSON object. This JSOn object has (generally)
-   * be generated using {@link #toJson()}.
+   * Creates a new instance of {@link EventBusOptions} from the JSON object.
+   * This JSOn object has (generally) be generated using {@link #toJson()}.
    *
    * @param json the json object
    */
@@ -172,9 +173,10 @@ public class EventBusOptions extends TCPSSLOptions {
   /**
    * Set whether client auth is required
    *
-   * @param clientAuth One of "NONE, REQUEST, REQUIRED". If it's set to "REQUIRED" then server will require the
-   *                   SSL cert to be presented otherwise it won't accept the request. If it's set to "REQUEST" then
-   *                   it won't mandate the certificate to be presented, basically make it optional.
+   * @param clientAuth One of "NONE, REQUEST, REQUIRED". If it's set to
+   * "REQUIRED" then server will require the SSL cert to be presented otherwise
+   * it won't accept the request. If it's set to "REQUEST" then it won't mandate
+   * the certificate to be presented, basically make it optional.
    * @return a reference to this, so the API can be used fluently
    * @see NetServerOptions#setClientAuth(ClientAuth)
    */
@@ -204,8 +206,9 @@ public class EventBusOptions extends TCPSSLOptions {
   }
 
   /**
-   * @return the host, which can be configured from the {@link VertxOptions#setClusterHost(String)}, or using
-   * the {@code --cluster-host} command line option.
+   * @return the host, which can be configured from the
+   * {@link VertxOptions#setClusterHost(String)}, or using the
+   * {@code --cluster-host} command line option.
    * @see NetServerOptions#getHost()
    */
   public String getHost() {
@@ -225,8 +228,9 @@ public class EventBusOptions extends TCPSSLOptions {
   }
 
   /**
-   * @return the port, which can be configured from the {@link VertxOptions#setClusterPort(int)}, or
-   * using the {@code --cluster-port} command line option.
+   * @return the port, which can be configured from the
+   * {@link VertxOptions#setClusterPort(int)}, or using the
+   * {@code --cluster-port} command line option.
    * @see NetServerOptions#getPort()
    */
   public int getPort() {
@@ -248,7 +252,6 @@ public class EventBusOptions extends TCPSSLOptions {
     return this;
   }
 
-
   /**
    * @return the value of reconnect attempts
    * @see NetClientOptions#getReconnectAttempts()
@@ -256,7 +259,6 @@ public class EventBusOptions extends TCPSSLOptions {
   public int getReconnectAttempts() {
     return reconnectAttempts;
   }
-
 
   /**
    * Sets the value of reconnect attempts.
@@ -418,9 +420,9 @@ public class EventBusOptions extends TCPSSLOptions {
   }
 
   /**
-   * @return whether or not the event bus is clustered. This can be configured from the
-   * {@link VertxOptions#setClustered(boolean)} method or from the {@code --cluster} option from the command
-   * line.
+   * @return whether or not the event bus is clustered. This can be configured
+   * from the {@link VertxOptions#setClustered(boolean)} method or from the
+   * {@code --cluster} option from the command line.
    */
   public boolean isClustered() {
     return clustered;
@@ -429,7 +431,8 @@ public class EventBusOptions extends TCPSSLOptions {
   /**
    * Sets whether or not the event bus is clustered.
    *
-   * @param clustered {@code true} to start the event bus as a clustered event bus.
+   * @param clustered {@code true} to start the event bus as a clustered event
+   * bus.
    * @return a reference to this, so the API can be used fluently
    */
   public EventBusOptions setClustered(boolean clustered) {
@@ -478,10 +481,11 @@ public class EventBusOptions extends TCPSSLOptions {
   }
 
   /**
-   * Get the value of cluster ping reply interval, in ms.
-   * After sending a ping, if a pong is not received in this time, the node will be considered dead.
+   * Get the value of cluster ping reply interval, in ms. After sending a ping,
+   * if a pong is not received in this time, the node will be considered dead.
    * <p>
-   * The value can be configured from {@link VertxOptions#setClusterPingInterval(long)}.
+   * The value can be configured from
+   * {@link VertxOptions#setClusterPingInterval(long)}.
    *
    * @return the value of cluster ping reply interval
    */
@@ -504,10 +508,11 @@ public class EventBusOptions extends TCPSSLOptions {
   }
 
   /**
-   * Get the value of cluster ping reply interval, in ms.
-   * After sending a ping, if a pong is not received in this time, the node will be considered dead.
+   * Get the value of cluster ping reply interval, in ms. After sending a ping,
+   * if a pong is not received in this time, the node will be considered dead.
    * <p>
-   * The value can be configured from {@link VertxOptions#setClusterPingReplyInterval(long)}}.
+   * The value can be configured from
+   * {@link VertxOptions#setClusterPingReplyInterval(long)}}.
    *
    * @return the value of cluster ping reply interval
    */
@@ -518,7 +523,8 @@ public class EventBusOptions extends TCPSSLOptions {
   /**
    * Set the value of cluster ping reply interval, in ms.
    *
-   * @param clusterPingReplyInterval The value of cluster ping reply interval, in ms.
+   * @param clusterPingReplyInterval The value of cluster ping reply interval,
+   * in ms.
    * @return a reference to this, so the API can be used fluently
    */
   public EventBusOptions setClusterPingReplyInterval(long clusterPingReplyInterval) {
@@ -532,7 +538,8 @@ public class EventBusOptions extends TCPSSLOptions {
   /**
    * Get the public facing port to be used when clustering.
    * <p>
-   * It can be configured using {@link VertxOptions#setClusterPublicHost(String)}
+   * It can be configured using
+   * {@link VertxOptions#setClusterPublicHost(String)}
    *
    * @return the public facing port
    */
@@ -541,11 +548,12 @@ public class EventBusOptions extends TCPSSLOptions {
   }
 
   /**
-   * Set the public facing hostname to be used for clustering.
-   * Sometimes, e.g. when running on certain clouds, the local address the server listens on for clustering is
-   * not the same address that other nodes connect to it at, as the OS / cloud infrastructure does some kind of
-   * proxying. If this is the case you can specify a public hostname which is different from the hostname the
-   * server listens at.
+   * Set the public facing hostname to be used for clustering. Sometimes, e.g.
+   * when running on certain clouds, the local address the server listens on for
+   * clustering is not the same address that other nodes connect to it at, as
+   * the OS / cloud infrastructure does some kind of proxying. If this is the
+   * case you can specify a public hostname which is different from the hostname
+   * the server listens at.
    * <p>
    * The default value is null which means use the same as the cluster hostname.
    *
@@ -571,7 +579,7 @@ public class EventBusOptions extends TCPSSLOptions {
   /**
    * See {@link #setClusterPublicHost(String)} for an explanation.
    *
-   * @param clusterPublicPort  the public port to use
+   * @param clusterPublicPort the public port to use
    * @return a reference to this, so the API can be used fluently
    */
   public EventBusOptions setClusterPublicPort(int clusterPublicPort) {

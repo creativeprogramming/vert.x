@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.Vertx;
@@ -59,8 +58,8 @@ public class ClusteredAsynchronousLockTest extends AsynchronousLockTest {
   }
 
   /**
-   * Cannot run with the fake cluster manager.
-   * Subclasses need to override the method and call <code>super.testLockReleasedForClosedNode()</code>.
+   * Cannot run with the fake cluster manager. Subclasses need to override the
+   * method and call <code>super.testLockReleasedForClosedNode()</code>.
    */
   @Test
   @Ignore
@@ -73,8 +72,8 @@ public class ClusteredAsynchronousLockTest extends AsynchronousLockTest {
   }
 
   /**
-   * Cannot run with the fake cluster manager.
-   * Subclasses need to override the method and call <code>super.testLockReleasedForKilledNode()</code>.
+   * Cannot run with the fake cluster manager. Subclasses need to override the
+   * method and call <code>super.testLockReleasedForKilledNode()</code>.
    */
   @Test
   @Ignore

@@ -22,17 +22,19 @@ import io.vertx.core.streams.Pump;
  * Http Proxy for testing
  *
  * <p>
- * A simple Http proxy for testing http proxy functionality. HTTP server running on localhost allowing CONNECT and GET
- * requests only.
- * CONNECT is basically a socket forwarding protocol allowing to use the proxy server to connect to the internet,
- * e.g. CONNECT www.google.com:443 HTTP/1.1.
- * GET accepts an absolute url and gets the url from the origin server, e.g. GET http://www.google.de/ HTTP/1.1.
+ * A simple Http proxy for testing http proxy functionality. HTTP server running
+ * on localhost allowing CONNECT and GET requests only. CONNECT is basically a
+ * socket forwarding protocol allowing to use the proxy server to connect to the
+ * internet, e.g. CONNECT www.google.com:443 HTTP/1.1. GET accepts an absolute
+ * url and gets the url from the origin server, e.g. GET http://www.google.de/
+ * HTTP/1.1.
  * <p>
- * Usually the server will be started in @Before and stopped in @After for a unit test using HttpClient with the
- * setProxyXXX methods.
+ * Usually the server will be started in @Before and stopped in @After for a
+ * unit test using HttpClient with the setProxyXXX methods.
  * <p>
- * The proxy is not useful for anything except testing, since it lacks most security checks like client acls, however in a
- * test scenario it will bind to localhost only.
+ * The proxy is not useful for anything except testing, since it lacks most
+ * security checks like client acls, however in a test scenario it will bind to
+ * localhost only.
  * <p>
  * @author <a href="http://oss.lehmann.cx/">Alexander Lehmann</a>
  */
@@ -54,11 +56,9 @@ public class HttpProxy extends TestProxyBase {
 
   /**
    * Start the server.
-   * 
-   * @param vertx
-   *          Vertx instance to use for creating the server and client
-   * @param finishedHandler
-   *          will be called when the server has started
+   *
+   * @param vertx Vertx instance to use for creating the server and client
+   * @param finishedHandler will be called when the server has started
    */
   @Override
   public void start(Vertx vertx, Handler<Void> finishedHandler) {

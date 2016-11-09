@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.AbstractVerticle;
@@ -63,7 +62,9 @@ public class TimerTest extends VertxTestBase {
   @Test
   public void testInVerticle() throws Exception {
     class MyVerticle extends AbstractVerticle {
+
       AtomicInteger cnt = new AtomicInteger();
+
       @Override
       public void start() {
         Thread thr = Thread.currentThread();
@@ -112,6 +113,7 @@ public class TimerTest extends VertxTestBase {
     id.set(vertx.setTimer(delay, new Handler<Long>() {
       int count;
       boolean fired;
+
       public void handle(Long timerID) {
         assertFalse(fired);
         fired = true;

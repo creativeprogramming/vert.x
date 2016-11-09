@@ -13,11 +13,9 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package examples.cli;
 
 // tag::content[]
-
 import io.vertx.core.cli.CLIException;
 import io.vertx.core.cli.annotations.Name;
 import io.vertx.core.cli.annotations.Option;

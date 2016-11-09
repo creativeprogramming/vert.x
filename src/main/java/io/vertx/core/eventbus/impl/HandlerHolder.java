@@ -16,7 +16,7 @@ public class HandlerHolder<T> {
   private boolean removed;
 
   public HandlerHolder(EventBusMetrics metrics, HandlerRegistration<T> handler, boolean replyHandler, boolean localOnly,
-                       Context context) {
+          Context context) {
     this.metrics = metrics;
     this.context = context;
     this.handler = handler;
@@ -46,10 +46,16 @@ public class HandlerHolder<T> {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     HandlerHolder that = (HandlerHolder) o;
-    if (handler != null ? !handler.equals(that.handler) : that.handler != null) return false;
+    if (handler != null ? !handler.equals(that.handler) : that.handler != null) {
+      return false;
+    }
     return true;
   }
 

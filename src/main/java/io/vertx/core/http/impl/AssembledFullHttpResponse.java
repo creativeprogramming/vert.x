@@ -28,8 +28,9 @@ import io.netty.handler.codec.http.LastHttpContent;
 import io.netty.handler.codec.DecoderResult;
 
 /**
- * Helper wrapper class which allows to assemble a LastHttpContent and a HttpResponse into one "packet" and so more
- * efficient write it through the pipeline.
+ * Helper wrapper class which allows to assemble a LastHttpContent and a
+ * HttpResponse into one "packet" and so more efficient write it through the
+ * pipeline.
  *
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>
  */

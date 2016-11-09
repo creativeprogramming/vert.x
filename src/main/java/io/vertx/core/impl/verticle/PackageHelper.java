@@ -31,8 +31,8 @@ import java.util.jar.JarEntry;
 /**
  * @author Janne Hietam&auml;ki
  */
-
 public class PackageHelper {
+
   private final static String CLASS_FILE = ".class";
 
   private final ClassLoader classLoader;

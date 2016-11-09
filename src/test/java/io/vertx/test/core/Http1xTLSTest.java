@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.http.HttpClient;
@@ -39,9 +38,7 @@ public class Http1xTLSTest extends HttpTLSTest {
     return vertx.createHttpClient(options);
   }
 
-
   // ALPN tests
-
   @Test
   // Client and server uses ALPN
   public void testAlpn() throws Exception {

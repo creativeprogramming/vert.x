@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-
 package io.vertx.core.net;
 
 import io.vertx.core.json.JsonObject;
@@ -22,25 +21,27 @@ import io.vertx.core.json.JsonArray;
 /**
  * Converter for {@link io.vertx.core.net.ClientOptionsBase}.
  *
- * NOTE: This class has been automatically generated from the {@link io.vertx.core.net.ClientOptionsBase} original class using Vert.x codegen.
+ * NOTE: This class has been automatically generated from the
+ * {@link io.vertx.core.net.ClientOptionsBase} original class using Vert.x
+ * codegen.
  */
 public class ClientOptionsBaseConverter {
 
   public static void fromJson(JsonObject json, ClientOptionsBase obj) {
     if (json.getValue("connectTimeout") instanceof Number) {
-      obj.setConnectTimeout(((Number)json.getValue("connectTimeout")).intValue());
+      obj.setConnectTimeout(((Number) json.getValue("connectTimeout")).intValue());
     }
     if (json.getValue("localAddress") instanceof String) {
-      obj.setLocalAddress((String)json.getValue("localAddress"));
+      obj.setLocalAddress((String) json.getValue("localAddress"));
     }
     if (json.getValue("metricsName") instanceof String) {
-      obj.setMetricsName((String)json.getValue("metricsName"));
+      obj.setMetricsName((String) json.getValue("metricsName"));
     }
     if (json.getValue("proxyOptions") instanceof JsonObject) {
-      obj.setProxyOptions(new io.vertx.core.net.ProxyOptions((JsonObject)json.getValue("proxyOptions")));
+      obj.setProxyOptions(new io.vertx.core.net.ProxyOptions((JsonObject) json.getValue("proxyOptions")));
     }
     if (json.getValue("trustAll") instanceof Boolean) {
-      obj.setTrustAll((Boolean)json.getValue("trustAll"));
+      obj.setTrustAll((Boolean) json.getValue("trustAll"));
     }
   }
 

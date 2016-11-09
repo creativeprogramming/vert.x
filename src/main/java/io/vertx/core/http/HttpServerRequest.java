@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http;
 
 import io.vertx.codegen.annotations.Nullable;
@@ -36,8 +35,9 @@ import javax.security.cert.X509Certificate;
  * <p>
  * Instances are created for each request and passed to the user via a handler.
  * <p>
- * Each instance of this class is associated with a corresponding {@link HttpServerResponse} instance via
- * {@link #response}.<p>
+ * Each instance of this class is associated with a corresponding
+ * {@link HttpServerResponse} instance via {@link #response}
+ * .<p>
  * It implements {@link io.vertx.core.streams.ReadStream} so it can be used with
  * {@link io.vertx.core.streams.Pump} to pump data with flow control.
  * <p>
@@ -76,9 +76,10 @@ public interface HttpServerRequest extends ReadStream<Buffer> {
    * @return the HTTP method as sent by the client
    */
   String rawMethod();
-  
+
   /**
-   * @return true if this {@link io.vertx.core.net.NetSocket} is encrypted via SSL/TLS
+   * @return true if this {@link io.vertx.core.net.NetSocket} is encrypted via
+   * SSL/TLS
    */
   boolean isSSL();
 
@@ -94,26 +95,30 @@ public interface HttpServerRequest extends ReadStream<Buffer> {
   String uri();
 
   /**
-   * @return The path part of the uri. For example /somepath/somemorepath/someresource.foo
+   * @return The path part of the uri. For example
+   * /somepath/somemorepath/someresource.foo
    */
   @Nullable
   String path();
 
   /**
-   * @return the query part of the uri. For example someparam=32&amp;someotherparam=x
+   * @return the query part of the uri. For example
+   * someparam=32&amp;someotherparam=x
    */
   @Nullable
   String query();
 
   /**
-   * @return the request host. For HTTP2 it returns the {@literal :authority} pseudo header otherwise it returns the {@literal Host} header
+   * @return the request host. For HTTP2 it returns the {@literal :authority}
+   * pseudo header otherwise it returns the {@literal Host} header
    */
   @Nullable
   String host();
 
   /**
-   * @return the response. Each instance of this class has an {@link HttpServerResponse} instance attached to it. This is used
-   * to send the response back to the client.
+   * @return the response. Each instance of this class has an
+   * {@link HttpServerResponse} instance attached to it. This is used to send
+   * the response back to the client.
    */
   @CacheReturn
   HttpServerResponse response();
@@ -127,7 +132,7 @@ public interface HttpServerRequest extends ReadStream<Buffer> {
   /**
    * Return the first header value with the specified name
    *
-   * @param headerName  the header name
+   * @param headerName the header name
    * @return the header value
    */
   @Nullable
@@ -136,7 +141,7 @@ public interface HttpServerRequest extends ReadStream<Buffer> {
   /**
    * Return the first header value with the specified name
    *
-   * @param headerName  the header name
+   * @param headerName the header name
    * @return the header value
    */
   @GenIgnore
@@ -151,12 +156,11 @@ public interface HttpServerRequest extends ReadStream<Buffer> {
   /**
    * Return the first param value with the specified name
    *
-   * @param paramName  the param name
+   * @param paramName the param name
    * @return the param value
    */
   @Nullable
   String getParam(String paramName);
-
 
   /**
    * @return the remote (client side) address of the request
@@ -165,16 +169,18 @@ public interface HttpServerRequest extends ReadStream<Buffer> {
   SocketAddress remoteAddress();
 
   /**
-   * @return the local (server side) address of the server that handles the request
+   * @return the local (server side) address of the server that handles the
+   * request
    */
   @CacheReturn
   SocketAddress localAddress();
 
   /**
    * @return an array of the peer certificates. Returns null if connection is
-   *         not SSL.
-   * @throws javax.net.ssl.SSLPeerUnverifiedException SSL peer's identity has not been verified.
-  */
+   * not SSL.
+   * @throws javax.net.ssl.SSLPeerUnverifiedException SSL peer's identity has
+   * not been verified.
+   */
   @GenIgnore
   X509Certificate[] peerCertificateChain() throws SSLPeerUnverifiedException;
 
@@ -186,10 +192,12 @@ public interface HttpServerRequest extends ReadStream<Buffer> {
   /**
    * Convenience method for receiving the entire request body in one piece.
    * <p>
-   * This saves the user having to manually setting a data and end handler and append the chunks of the body until
-   * the whole body received. Don't use this if your request body is large - you could potentially run out of RAM.
+   * This saves the user having to manually setting a data and end handler and
+   * append the chunks of the body until the whole body received. Don't use this
+   * if your request body is large - you could potentially run out of RAM.
    *
-   * @param bodyHandler This handler will be called after all the body has been received
+   * @param bodyHandler This handler will be called after all the body has been
+   * received
    */
   @Fluent
   default HttpServerRequest bodyHandler(@Nullable Handler<Buffer> bodyHandler) {
@@ -204,9 +212,10 @@ public interface HttpServerRequest extends ReadStream<Buffer> {
    * <p>
    * USE THIS WITH CAUTION!
    * <p>
-   * Once you have called this method, you must handle writing to the connection yourself using the net socket,
-   * the server request instance will no longer be usable as normal.
-   * Writing to the socket directly if you don't know what you're doing can easily break the HTTP protocol.
+   * Once you have called this method, you must handle writing to the connection
+   * yourself using the net socket, the server request instance will no longer
+   * be usable as normal. Writing to the socket directly if you don't know what
+   * you're doing can easily break the HTTP protocol.
    *
    * @return the net socket
    */
@@ -214,23 +223,25 @@ public interface HttpServerRequest extends ReadStream<Buffer> {
   NetSocket netSocket();
 
   /**
-   * Call this with true if you are expecting a multi-part body to be submitted in the request.
-   * This must be called before the body of the request has been received
+   * Call this with true if you are expecting a multi-part body to be submitted
+   * in the request. This must be called before the body of the request has been
+   * received
    *
-   * @param expect  true - if you are expecting a multi-part body
+   * @param expect true - if you are expecting a multi-part body
    * @return a reference to this, so the API can be used fluently
    */
   @Fluent
   HttpServerRequest setExpectMultipart(boolean expect);
 
   /**
-   * @return  true if we are expecting a multi-part body for this request. See {@link #setExpectMultipart}.
+   * @return true if we are expecting a multi-part body for this request. See
+   * {@link #setExpectMultipart}.
    */
   boolean isExpectMultipart();
 
   /**
-   * Set an upload handler. The handler will get notified once a new file upload was received to allow you to deal
-   * with the file upload.
+   * Set an upload handler. The handler will get notified once a new file upload
+   * was received to allow you to deal with the file upload.
    *
    * @return a reference to this, so the API can be used fluently
    */
@@ -240,10 +251,11 @@ public interface HttpServerRequest extends ReadStream<Buffer> {
   /**
    * Returns a map of all form attributes in the request.
    * <p>
-   * Be aware that the attributes will only be available after the whole body has been received, i.e. after
-   * the request end handler has been called.
+   * Be aware that the attributes will only be available after the whole body
+   * has been received, i.e. after the request end handler has been called.
    * <p>
-   * {@link #setExpectMultipart(boolean)} must be called first before trying to get the form attributes.
+   * {@link #setExpectMultipart(boolean)} must be called first before trying to
+   * get the form attributes.
    *
    * @return the form attributes
    */
@@ -253,7 +265,7 @@ public interface HttpServerRequest extends ReadStream<Buffer> {
   /**
    * Return the first form attribute value with the specified name
    *
-   * @param attributeName  the attribute name
+   * @param attributeName the attribute name
    * @return the attribute value
    */
   @Nullable
@@ -262,23 +274,26 @@ public interface HttpServerRequest extends ReadStream<Buffer> {
   /**
    * Upgrade the connection to a WebSocket connection.
    * <p>
-   * This is an alternative way of handling WebSockets and can only be used if no websocket handlers are set on the
-   * Http server, and can only be used during the upgrade request during the WebSocket handshake.
+   * This is an alternative way of handling WebSockets and can only be used if
+   * no websocket handlers are set on the Http server, and can only be used
+   * during the upgrade request during the WebSocket handshake.
    *
-   * @return  the WebSocket
+   * @return the WebSocket
    */
   ServerWebSocket upgrade();
 
   /**
-   * Has the request ended? I.e. has the entire request, including the body been read?
+   * Has the request ended? I.e. has the entire request, including the body been
+   * read?
    *
    * @return true if ended
    */
   boolean isEnded();
 
   /**
-   * Set a custom frame handler. The handler will get notified when the http stream receives an custom HTTP/2
-   * frame. HTTP/2 permits extension of the protocol.
+   * Set a custom frame handler. The handler will get notified when the http
+   * stream receives an custom HTTP/2 frame. HTTP/2 permits extension of the
+   * protocol.
    *
    * @return a reference to this, so the API can be used fluently
    */

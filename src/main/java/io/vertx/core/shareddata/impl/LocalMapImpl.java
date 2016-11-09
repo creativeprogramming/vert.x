@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.shareddata.impl;
 
 import io.vertx.core.shareddata.LocalMap;
@@ -109,7 +108,7 @@ class LocalMapImpl<K, V> implements LocalMap<K, V> {
   @Override
   public Set<K> keySet() {
     Set<K> keys = new HashSet<>(map.size());
-    for (K k: map.keySet()) {
+    for (K k : map.keySet()) {
       keys.add(copyIfRequired(k));
     }
     return keys;
@@ -118,7 +117,7 @@ class LocalMapImpl<K, V> implements LocalMap<K, V> {
   @Override
   public Collection<V> values() {
     List<V> values = new ArrayList<>(map.size());
-    for (V v: map.values()) {
+    for (V v : map.values()) {
       values.add(copyIfRequired(v));
     }
     return values;

@@ -26,6 +26,7 @@ import java.util.HashMap;
  * The execution context contains various information on the execution.
  */
 public class ExecutionContext extends HashMap<String, Object> {
+
   private final VertxCommandLauncher launcher;
   private final Command command;
   private final CommandLine commandLine;
@@ -33,8 +34,8 @@ public class ExecutionContext extends HashMap<String, Object> {
   /**
    * Creates a new instance of {@link ExecutionContext}.
    *
-   * @param command     the command instance that is executed
-   * @param launcher    the launcher class
+   * @param command the command instance that is executed
+   * @param launcher the launcher class
    * @param commandLine the command line
    */
   public ExecutionContext(Command command, VertxCommandLauncher launcher, CommandLine commandLine) {
@@ -75,7 +76,7 @@ public class ExecutionContext extends HashMap<String, Object> {
    * Executes another command.
    *
    * @param command the command name
-   * @param args    the arguments
+   * @param args the arguments
    */
   public void execute(String command, String... args) {
     launcher.execute(command, args);

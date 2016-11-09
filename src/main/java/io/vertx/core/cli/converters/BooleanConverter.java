@@ -19,8 +19,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * A converter for boolean. This converter considered as 'true' : "true", "on", "1",
- * "yes". All other values are considered as 'false' (as a consequence, 'null' is considered as 'false').
+ * A converter for boolean. This converter considered as 'true' : "true", "on",
+ * "1", "yes". All other values are considered as 'false' (as a consequence,
+ * 'null' is considered as 'false').
  *
  * @author Clement Escoffier <clement@apache.org>
  */
@@ -40,8 +41,8 @@ public final class BooleanConverter implements Converter<Boolean> {
   }
 
   /**
-   * Creates the boolean value from the given String. If the given String does not match one of the 'true' value,
-   * {@code false} is returned.
+   * Creates the boolean value from the given String. If the given String does
+   * not match one of the 'true' value, {@code false} is returned.
    *
    * @param value the value
    * @return the boolean object

@@ -36,15 +36,16 @@ public @interface Argument {
   String argName() default "value";
 
   /**
-   * The (0-based) position of this argument relative to the argument list. The first parameter has the index 0,
-   * the second 1...
+   * The (0-based) position of this argument relative to the argument list. The
+   * first parameter has the index 0, the second 1...
    * <p/>
    * Index is mandatory to force you to think to the order.
    */
   int index();
 
   /**
-   * Whether or not the argument is required. An argument is required by default.
+   * Whether or not the argument is required. An argument is required by
+   * default.
    */
   boolean required() default true;
 }

@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core;
 
 import java.util.function.Function;
@@ -21,7 +20,8 @@ import java.util.function.Function;
 /**
  * Encapsulates the result of an asynchronous operation.
  * <p>
- * Many operations in Vert.x APIs provide results back by passing an instance of this in a {@link io.vertx.core.Handler}.
+ * Many operations in Vert.x APIs provide results back by passing an instance of
+ * this in a {@link io.vertx.core.Handler}.
  * <p>
  * The result can either have failed or succeeded.
  * <p>
@@ -41,7 +41,8 @@ public interface AsyncResult<T> {
   T result();
 
   /**
-   * A Throwable describing failure. This will be null if the operation succeeded.
+   * A Throwable describing failure. This will be null if the operation
+   * succeeded.
    *
    * @return the cause or null if the operation succeeded.
    */
@@ -64,12 +65,15 @@ public interface AsyncResult<T> {
   /**
    * Apply a {@code mapper} function on this async result.<p>
    *
-   * The {@code mapper} is called with the completed value and this mapper returns a value. This value will complete the result returned by this method call.<p>
+   * The {@code mapper} is called with the completed value and this mapper
+   * returns a value. This value will complete the result returned by this
+   * method call.<p>
    *
-   * If the {@code mapper} throws an exception, the returned future will be failed with this exception.<p>
+   * If the {@code mapper} throws an exception, the returned future will be
+   * failed with this exception.<p>
    *
-   * When this async result is failed, the failure will be propagated to the returned future and the {@code mapper}
-   * will not be called.
+   * When this async result is failed, the failure will be propagated to the
+   * returned future and the {@code mapper} will not be called.
    *
    * @param mapper the mapper function
    * @return the mapped async result
@@ -103,11 +107,14 @@ public interface AsyncResult<T> {
   }
 
   /**
-   * Map the result of this async result to a specific {@code value}.<p>
+   * Map the result of this async result to a specific {@code value}
+   * .<p>
    *
-   * When this async result succeeds, this {@code value} will succeeeds the async result returned by this method call.<p>
+   * When this async result succeeds, this {@code value} will succeeeds the
+   * async result returned by this method call.<p>
    *
-   * When this future fails, the failure will be propagated to the returned async result.
+   * When this future fails, the failure will be propagated to the returned
+   * async result.
    *
    * @param value the value that eventually completes the mapped async result
    * @return the mapped async result

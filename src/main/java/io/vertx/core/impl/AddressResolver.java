@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 import io.netty.channel.ChannelFactory;
@@ -212,8 +211,10 @@ public class AddressResolver {
   }
 
   private static class ResolverRegistration {
+
     private final io.netty.resolver.AddressResolver<InetSocketAddress> resolver;
     private final EventLoop executor;
+
     ResolverRegistration(io.netty.resolver.AddressResolver<InetSocketAddress> resolver, EventLoop executor) {
       this.resolver = resolver;
       this.executor = executor;
@@ -221,6 +222,7 @@ public class AddressResolver {
   }
 
   private static abstract class AsyncCloseableResolverGroup extends AddressResolverGroup<InetSocketAddress> {
+
     abstract void close(Handler<Void> doneHandler);
   }
 

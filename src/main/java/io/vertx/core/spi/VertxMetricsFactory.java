@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.spi;
 
 import io.vertx.core.Vertx;
@@ -40,8 +39,9 @@ public interface VertxMetricsFactory {
   VertxMetrics metrics(Vertx vertx, VertxOptions options);
 
   /**
-   * Create an empty metrics options. Providers can override this method to provide a custom metrics options subclass
-   * that exposes custom configuration. It is used by the {@link io.vertx.core.Starter} class when
+   * Create an empty metrics options. Providers can override this method to
+   * provide a custom metrics options subclass that exposes custom
+   * configuration. It is used by the {@link io.vertx.core.Starter} class when
    * creating new options when building a CLI vert.x
    *
    * @return new metrics options

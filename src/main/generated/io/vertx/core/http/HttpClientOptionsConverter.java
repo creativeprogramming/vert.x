@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-
 package io.vertx.core.http;
 
 import io.vertx.core.json.JsonObject;
@@ -22,79 +21,82 @@ import io.vertx.core.json.JsonArray;
 /**
  * Converter for {@link io.vertx.core.http.HttpClientOptions}.
  *
- * NOTE: This class has been automatically generated from the {@link io.vertx.core.http.HttpClientOptions} original class using Vert.x codegen.
+ * NOTE: This class has been automatically generated from the
+ * {@link io.vertx.core.http.HttpClientOptions} original class using Vert.x
+ * codegen.
  */
 public class HttpClientOptionsConverter {
 
   public static void fromJson(JsonObject json, HttpClientOptions obj) {
     if (json.getValue("alpnVersions") instanceof JsonArray) {
       java.util.ArrayList<io.vertx.core.http.HttpVersion> list = new java.util.ArrayList<>();
-      json.getJsonArray("alpnVersions").forEach( item -> {
-        if (item instanceof String)
-          list.add(io.vertx.core.http.HttpVersion.valueOf((String)item));
+      json.getJsonArray("alpnVersions").forEach(item -> {
+        if (item instanceof String) {
+          list.add(io.vertx.core.http.HttpVersion.valueOf((String) item));
+        }
       });
       obj.setAlpnVersions(list);
     }
     if (json.getValue("defaultHost") instanceof String) {
-      obj.setDefaultHost((String)json.getValue("defaultHost"));
+      obj.setDefaultHost((String) json.getValue("defaultHost"));
     }
     if (json.getValue("defaultPort") instanceof Number) {
-      obj.setDefaultPort(((Number)json.getValue("defaultPort")).intValue());
+      obj.setDefaultPort(((Number) json.getValue("defaultPort")).intValue());
     }
     if (json.getValue("http2ClearTextUpgrade") instanceof Boolean) {
-      obj.setHttp2ClearTextUpgrade((Boolean)json.getValue("http2ClearTextUpgrade"));
+      obj.setHttp2ClearTextUpgrade((Boolean) json.getValue("http2ClearTextUpgrade"));
     }
     if (json.getValue("http2ConnectionWindowSize") instanceof Number) {
-      obj.setHttp2ConnectionWindowSize(((Number)json.getValue("http2ConnectionWindowSize")).intValue());
+      obj.setHttp2ConnectionWindowSize(((Number) json.getValue("http2ConnectionWindowSize")).intValue());
     }
     if (json.getValue("http2MaxPoolSize") instanceof Number) {
-      obj.setHttp2MaxPoolSize(((Number)json.getValue("http2MaxPoolSize")).intValue());
+      obj.setHttp2MaxPoolSize(((Number) json.getValue("http2MaxPoolSize")).intValue());
     }
     if (json.getValue("http2MultiplexingLimit") instanceof Number) {
-      obj.setHttp2MultiplexingLimit(((Number)json.getValue("http2MultiplexingLimit")).intValue());
+      obj.setHttp2MultiplexingLimit(((Number) json.getValue("http2MultiplexingLimit")).intValue());
     }
     if (json.getValue("initialSettings") instanceof JsonObject) {
-      obj.setInitialSettings(new io.vertx.core.http.Http2Settings((JsonObject)json.getValue("initialSettings")));
+      obj.setInitialSettings(new io.vertx.core.http.Http2Settings((JsonObject) json.getValue("initialSettings")));
     }
     if (json.getValue("keepAlive") instanceof Boolean) {
-      obj.setKeepAlive((Boolean)json.getValue("keepAlive"));
+      obj.setKeepAlive((Boolean) json.getValue("keepAlive"));
     }
     if (json.getValue("maxChunkSize") instanceof Number) {
-      obj.setMaxChunkSize(((Number)json.getValue("maxChunkSize")).intValue());
+      obj.setMaxChunkSize(((Number) json.getValue("maxChunkSize")).intValue());
     }
     if (json.getValue("maxPoolSize") instanceof Number) {
-      obj.setMaxPoolSize(((Number)json.getValue("maxPoolSize")).intValue());
+      obj.setMaxPoolSize(((Number) json.getValue("maxPoolSize")).intValue());
     }
     if (json.getValue("maxWaitQueueSize") instanceof Number) {
-      obj.setMaxWaitQueueSize(((Number)json.getValue("maxWaitQueueSize")).intValue());
+      obj.setMaxWaitQueueSize(((Number) json.getValue("maxWaitQueueSize")).intValue());
     }
     if (json.getValue("maxWebsocketFrameSize") instanceof Number) {
-      obj.setMaxWebsocketFrameSize(((Number)json.getValue("maxWebsocketFrameSize")).intValue());
+      obj.setMaxWebsocketFrameSize(((Number) json.getValue("maxWebsocketFrameSize")).intValue());
     }
     if (json.getValue("pipelining") instanceof Boolean) {
-      obj.setPipelining((Boolean)json.getValue("pipelining"));
+      obj.setPipelining((Boolean) json.getValue("pipelining"));
     }
     if (json.getValue("pipeliningLimit") instanceof Number) {
-      obj.setPipeliningLimit(((Number)json.getValue("pipeliningLimit")).intValue());
+      obj.setPipeliningLimit(((Number) json.getValue("pipeliningLimit")).intValue());
     }
     if (json.getValue("protocolVersion") instanceof String) {
-      obj.setProtocolVersion(io.vertx.core.http.HttpVersion.valueOf((String)json.getValue("protocolVersion")));
+      obj.setProtocolVersion(io.vertx.core.http.HttpVersion.valueOf((String) json.getValue("protocolVersion")));
     }
     if (json.getValue("tryUseCompression") instanceof Boolean) {
-      obj.setTryUseCompression((Boolean)json.getValue("tryUseCompression"));
+      obj.setTryUseCompression((Boolean) json.getValue("tryUseCompression"));
     }
     if (json.getValue("verifyHost") instanceof Boolean) {
-      obj.setVerifyHost((Boolean)json.getValue("verifyHost"));
+      obj.setVerifyHost((Boolean) json.getValue("verifyHost"));
     }
   }
 
   public static void toJson(HttpClientOptions obj, JsonObject json) {
     if (obj.getAlpnVersions() != null) {
       json.put("alpnVersions", new JsonArray(
-          obj.getAlpnVersions().
-              stream().
-              map(item -> item.name()).
-              collect(java.util.stream.Collectors.toList())));
+              obj.getAlpnVersions().
+                      stream().
+                      map(item -> item.name()).
+                      collect(java.util.stream.Collectors.toList())));
     }
     if (obj.getDefaultHost() != null) {
       json.put("defaultHost", obj.getDefaultHost());

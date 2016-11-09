@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.netty.channel.Channel;
@@ -49,8 +48,8 @@ class Http2Pool implements ConnectionManager.Pool<Http2ClientConnection> {
   final int windowSize;
 
   public Http2Pool(ConnectionManager.ConnQueue queue, HttpClientImpl client, HttpClientMetrics metrics,
-                   Map<Channel, ? super Http2ClientConnection> connectionMap,
-                   int maxConcurrency, boolean logEnabled, int maxSize, int windowSize) {
+          Map<Channel, ? super Http2ClientConnection> connectionMap,
+          int maxConcurrency, boolean logEnabled, int maxSize, int windowSize) {
     this.queue = queue;
     this.client = client;
     this.metrics = metrics;
@@ -88,13 +87,13 @@ class Http2Pool implements ConnectionManager.Pool<Http2ClientConnection> {
     ChannelPipeline p = ch.pipeline();
     synchronized (queue) {
       VertxHttp2ConnectionHandler<Http2ClientConnection> handler = new VertxHttp2ConnectionHandlerBuilder<Http2ClientConnection>()
-          .connectionMap(connectionMap)
-          .server(false)
-          .useCompression(client.getOptions().isTryUseCompression())
-          .initialSettings(client.getOptions().getInitialSettings())
-          .connectionFactory(connHandler -> new Http2ClientConnection(Http2Pool.this, queue.metric, context, ch, connHandler, metrics))
-          .logEnabled(logEnabled)
-          .build();
+              .connectionMap(connectionMap)
+              .server(false)
+              .useCompression(client.getOptions().isTryUseCompression())
+              .initialSettings(client.getOptions().getInitialSettings())
+              .connectionFactory(connHandler -> new Http2ClientConnection(Http2Pool.this, queue.metric, context, ch, connHandler, metrics))
+              .logEnabled(logEnabled)
+              .build();
       if (upgrade) {
         handler.onHttpClientUpgrade();
       }

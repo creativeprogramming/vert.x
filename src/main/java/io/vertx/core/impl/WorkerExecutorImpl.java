@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl;
 
 import io.vertx.core.AsyncResult;
@@ -77,7 +76,7 @@ class WorkerExecutorImpl implements WorkerExecutor, Closeable, MetricsProvider {
       }
     }
     if (releaseOnClose && pool instanceof VertxImpl.SharedWorkerPool) {
-      ((VertxImpl.SharedWorkerPool)pool).release();
+      ((VertxImpl.SharedWorkerPool) pool).release();
     }
   }
 

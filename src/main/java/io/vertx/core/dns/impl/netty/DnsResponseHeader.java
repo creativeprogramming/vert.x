@@ -35,11 +35,11 @@ public class DnsResponseHeader extends DnsHeader {
   private int responseCode;
 
   /**
-   * Constructor for a DNS packet response header. The id is received by
-   * reading a {@link DnsQuery} and is sent back to the client.
+   * Constructor for a DNS packet response header. The id is received by reading
+   * a {@link DnsQuery} and is sent back to the client.
    *
    * @param parent the {@link DnsMessage} this header belongs to
-   * @param id     a 2 bit unsigned identification number received from client
+   * @param id a 2 bit unsigned identification number received from client
    */
   public DnsResponseHeader(DnsMessage<? extends DnsResponseHeader> parent, int id) {
     super(parent);
@@ -56,8 +56,8 @@ public class DnsResponseHeader extends DnsHeader {
   }
 
   /**
-   * Returns {@code true} if response has been truncated, usually if it is
-   * over 512 bytes.
+   * Returns {@code true} if response has been truncated, usually if it is over
+   * 512 bytes.
    */
   public boolean isTruncated() {
     return truncated;
@@ -153,8 +153,8 @@ public class DnsResponseHeader extends DnsHeader {
   }
 
   /**
-   * Sets the field Z. This field is reserved and should remain as 0 if the
-   * DNS server does not make usage of this field.
+   * Sets the field Z. This field is reserved and should remain as 0 if the DNS
+   * server does not make usage of this field.
    *
    * @param z the value for the reserved field Z
    */
@@ -172,8 +172,8 @@ public class DnsResponseHeader extends DnsHeader {
   }
 
   /**
-   * Sets the number of questions that should be read after this header has
-   * been decoded.
+   * Sets the number of questions that should be read after this header has been
+   * decoded.
    *
    * @param readQuestions the number of questions to read
    */

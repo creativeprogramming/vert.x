@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.vertx.core.Future;
@@ -76,7 +75,7 @@ public class HttpClientImpl implements HttpClient, MetricsProvider {
       }
     }
     this.sslHelper = new SSLHelper(options, options.getKeyCertOptions(), options.getTrustOptions()).
-        setApplicationProtocols(alpnVersions);
+            setApplicationProtocols(alpnVersions);
     this.creatingContext = vertx.getContext();
     closeHook = completionHandler -> {
       HttpClientImpl.this.close();
@@ -100,7 +99,7 @@ public class HttpClientImpl implements HttpClient, MetricsProvider {
     return this;
   }
 
-  public HttpClient websocket(int port, String host, String requestURI, Handler<WebSocket> wsConnect, Handler<Throwable> failureHandler){
+  public HttpClient websocket(int port, String host, String requestURI, Handler<WebSocket> wsConnect, Handler<Throwable> failureHandler) {
     websocketStream(port, host, requestURI, null, null).exceptionHandler(failureHandler).handler(wsConnect);
     return this;
   }
@@ -144,8 +143,8 @@ public class HttpClientImpl implements HttpClient, MetricsProvider {
   }
 
   @Override
-  public HttpClient websocket(int port, String host, String requestURI, MultiMap headers, WebsocketVersion version
-          , Handler<WebSocket> wsConnect, Handler<Throwable> failureHandler) {
+  public HttpClient websocket(int port, String host, String requestURI, MultiMap headers, WebsocketVersion version,
+          Handler<WebSocket> wsConnect, Handler<Throwable> failureHandler) {
     websocketStream(port, host, requestURI, headers, version, null).exceptionHandler(failureHandler).handler(wsConnect);
     return this;
   }
@@ -156,21 +155,21 @@ public class HttpClientImpl implements HttpClient, MetricsProvider {
   }
 
   @Override
-  public HttpClient websocket(String host, String requestURI, MultiMap headers, WebsocketVersion version
-          , Handler<WebSocket> wsConnect, Handler<Throwable> failureHandler) {
+  public HttpClient websocket(String host, String requestURI, MultiMap headers, WebsocketVersion version,
+          Handler<WebSocket> wsConnect, Handler<Throwable> failureHandler) {
     return websocket(options.getDefaultPort(), host, requestURI, headers, version, wsConnect, failureHandler);
   }
 
   @Override
   public HttpClient websocket(int port, String host, String requestURI, MultiMap headers, WebsocketVersion version,
-                              String subProtocols, Handler<WebSocket> wsConnect) {
+          String subProtocols, Handler<WebSocket> wsConnect) {
     websocketStream(port, host, requestURI, headers, version, subProtocols).handler(wsConnect);
     return this;
   }
 
   @Override
   public HttpClient websocket(int port, String host, String requestURI, MultiMap headers, WebsocketVersion version,
-                              String subProtocols, Handler<WebSocket> wsConnect, Handler<Throwable> failureHandler) {
+          String subProtocols, Handler<WebSocket> wsConnect, Handler<Throwable> failureHandler) {
     websocketStream(port, host, requestURI, headers, version, subProtocols).exceptionHandler(failureHandler).handler(wsConnect);
     return this;
   }
@@ -181,8 +180,8 @@ public class HttpClientImpl implements HttpClient, MetricsProvider {
   }
 
   @Override
-  public HttpClient websocket(String host, String requestURI, MultiMap headers, WebsocketVersion version, String subProtocols
-          , Handler<WebSocket> wsConnect, Handler<Throwable> failureHandler) {
+  public HttpClient websocket(String host, String requestURI, MultiMap headers, WebsocketVersion version, String subProtocols,
+          Handler<WebSocket> wsConnect, Handler<Throwable> failureHandler) {
     return websocket(options.getDefaultPort(), host, requestURI, headers, version, subProtocols, wsConnect, failureHandler);
   }
 
@@ -220,11 +219,12 @@ public class HttpClientImpl implements HttpClient, MetricsProvider {
   public HttpClient websocket(String requestURI, MultiMap headers, WebsocketVersion version, String subProtocols, Handler<WebSocket> wsConnect) {
     return websocket(options.getDefaultPort(), options.getDefaultHost(), requestURI, headers, version, subProtocols, wsConnect);
   }
+
   @Override
-  public HttpClient websocket(String requestURI, MultiMap headers, WebsocketVersion version, String subProtocols
-          , Handler<WebSocket> wsConnect, Handler<Throwable> failureHandler) {
-    return websocket(options.getDefaultPort(), options.getDefaultHost(), requestURI, headers, version, subProtocols
-            , wsConnect, failureHandler);
+  public HttpClient websocket(String requestURI, MultiMap headers, WebsocketVersion version, String subProtocols,
+          Handler<WebSocket> wsConnect, Handler<Throwable> failureHandler) {
+    return websocket(options.getDefaultPort(), options.getDefaultHost(), requestURI, headers, version, subProtocols,
+            wsConnect, failureHandler);
   }
 
   @Override
@@ -259,7 +259,7 @@ public class HttpClientImpl implements HttpClient, MetricsProvider {
 
   @Override
   public WebSocketStream websocketStream(int port, String host, String requestURI, MultiMap headers, WebsocketVersion version,
-                                         String subProtocols) {
+          String subProtocols) {
     return new WebSocketStreamImpl(port, host, requestURI, headers, version, subProtocols);
   }
 
@@ -324,7 +324,7 @@ public class HttpClientImpl implements HttpClient, MetricsProvider {
       char chend = protocol.charAt(protocol.length() - 1);
       if (chend == 'p') {
         port = 80;
-      } else if (chend == 's'){
+      } else if (chend == 's') {
         port = 443;
       }
     }
@@ -659,23 +659,26 @@ public class HttpClientImpl implements HttpClient, MetricsProvider {
   }
 
   void getConnectionForWebsocket(int port,
-                                 String host,
-                                 Handler<ClientConnection> handler,
-                                 Handler<Throwable> connectionExceptionHandler,
-                                 ContextImpl context) {
+          String host,
+          Handler<ClientConnection> handler,
+          Handler<Throwable> connectionExceptionHandler,
+          ContextImpl context) {
     connectionManager.getConnectionForWebsocket(port, host, new Waiter(null, context) {
       @Override
       void handleConnection(HttpClientConnection conn) {
       }
+
       @Override
       void handleStream(HttpClientStream stream) {
         // Use some variance for this
         handler.handle((ClientConnection) stream);
       }
+
       @Override
       void handleFailure(Throwable failure) {
         connectionExceptionHandler.handle(failure);
       }
+
       @Override
       boolean isCancelled() {
         return false;
@@ -725,10 +728,10 @@ public class HttpClientImpl implements HttpClient, MetricsProvider {
           headers = MultiMap.caseInsensitiveMultiMap();
         }
         headers.add("Proxy-Authorization", "Basic " + Base64.getEncoder()
-            .encodeToString((proxyOptions.getUsername() + ":" + proxyOptions.getPassword()).getBytes()));
+                .encodeToString((proxyOptions.getUsername() + ":" + proxyOptions.getPassword()).getBytes()));
       }
       req = new HttpClientRequestImpl(this, method, proxyOptions.getHost(), proxyOptions.getPort(), options.isSsl(),
-          relativeURI, vertx);
+              relativeURI, vertx);
       req.setHost(host + (port != 80 ? ":" + port : ""));
     } else {
       req = new HttpClientRequestImpl(this, method, host, port, options.isSsl(), relativeURI, vertx);

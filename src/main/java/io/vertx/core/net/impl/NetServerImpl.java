@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.net.impl;
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -194,7 +193,7 @@ public class NetServerImpl implements NetServer, Closeable, MetricsProvider {
               Channel ch = res.result();
               log.trace("Net server listening on " + host + ":" + ch.localAddress());
               // Update port to actual port - wildcard port 0 might have been used
-              NetServerImpl.this.actualPort = ((InetSocketAddress)ch.localAddress()).getPort();
+              NetServerImpl.this.actualPort = ((InetSocketAddress) ch.localAddress()).getPort();
               NetServerImpl.this.id = new ServerID(NetServerImpl.this.actualPort, id.host);
               serverChannelGroup.add(ch);
               vertx.sharedNetServers().put(id, NetServerImpl.this);
@@ -207,7 +206,7 @@ public class NetServerImpl implements NetServer, Closeable, MetricsProvider {
         } catch (Throwable t) {
           // Make sure we send the exception back through the handler (if any)
           if (listenHandler != null) {
-            vertx.runOnContext(v ->  listenHandler.handle(Future.failedFuture(t)));
+            vertx.runOnContext(v -> listenHandler.handle(Future.failedFuture(t)));
           } else {
             // No handler - log so user can see failure
             log.error(t);
@@ -377,6 +376,7 @@ public class NetServerImpl implements NetServer, Closeable, MetricsProvider {
   }
 
   private class ServerHandler extends VertxNetHandler {
+
     public ServerHandler(Channel ch) {
       super(ch, socketMap);
     }
@@ -436,7 +436,7 @@ public class NetServerImpl implements NetServer, Closeable, MetricsProvider {
     Needs to be protected using the NetServerImpl monitor as that protects the listening variable
     In practice synchronized overhead should be close to zero assuming most access is from the same thread due
     to biased locks
-  */
+   */
   private class NetSocketStreamImpl implements NetSocketStream {
 
     private Handler<NetSocket> handler;
@@ -455,10 +455,10 @@ public class NetServerImpl implements NetServer, Closeable, MetricsProvider {
       }
     }
 
-     Handler<Void> endHandler() {
-       synchronized (NetServerImpl.this) {
-         return endHandler;
-       }
+    Handler<Void> endHandler() {
+      synchronized (NetServerImpl.this) {
+        return endHandler;
+      }
     }
 
     @Override

@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.streams;
 
 import io.vertx.codegen.annotations.Fluent;
@@ -24,8 +23,8 @@ import io.vertx.core.Handler;
 /**
  * Represents a stream of items that can be read from.
  * <p>
- * Any class that implements this interface can be used by a {@link Pump} to pump data from it
- * to a {@link WriteStream}.
+ * Any class that implements this interface can be used by a {@link Pump} to
+ * pump data from it to a {@link WriteStream}.
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
@@ -35,13 +34,14 @@ public interface ReadStream<T> extends StreamBase {
   /**
    * Set an exception handler on the read stream.
    *
-   * @param handler  the exception handler
+   * @param handler the exception handler
    * @return a reference to this, so the API can be used fluently
    */
   ReadStream<T> exceptionHandler(Handler<Throwable> handler);
 
   /**
-   * Set a data handler. As data is read, the handler will be called with the data.
+   * Set a data handler. As data is read, the handler will be called with the
+   * data.
    *
    * @return a reference to this, so the API can be used fluently
    */
@@ -49,7 +49,8 @@ public interface ReadStream<T> extends StreamBase {
   ReadStream<T> handler(@Nullable Handler<T> handler);
 
   /**
-   * Pause the {@code ReadSupport}. While it's paused, no data will be sent to the {@code dataHandler}
+   * Pause the {@code ReadSupport}. While it's paused, no data will be sent to
+   * the {@code dataHandler}
    *
    * @return a reference to this, so the API can be used fluently
    */
@@ -57,7 +58,8 @@ public interface ReadStream<T> extends StreamBase {
   ReadStream<T> pause();
 
   /**
-   * Resume reading. If the {@code ReadSupport} has been paused, reading will recommence on it.
+   * Resume reading. If the {@code ReadSupport} has been paused, reading will
+   * recommence on it.
    *
    * @return a reference to this, so the API can be used fluently
    */
@@ -65,7 +67,8 @@ public interface ReadStream<T> extends StreamBase {
   ReadStream<T> resume();
 
   /**
-   * Set an end handler. Once the stream has ended, and there is no more data to be read, this handler will be called.
+   * Set an end handler. Once the stream has ended, and there is no more data to
+   * be read, this handler will be called.
    *
    * @return a reference to this, so the API can be used fluently
    */

@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.eventbus.impl;
 
 import io.vertx.core.AsyncResult;
@@ -47,8 +46,8 @@ public class MessageImpl<U, V> implements Message<V> {
   }
 
   public MessageImpl(String address, String replyAddress, MultiMap headers, U sentBody,
-                     MessageCodec<U, V> messageCodec,
-                     boolean send, EventBusImpl bus) {
+          MessageCodec<U, V> messageCodec,
+          boolean send, EventBusImpl bus) {
     this.messageCodec = messageCodec;
     this.address = address;
     this.replyAddress = replyAddress;
@@ -66,7 +65,7 @@ public class MessageImpl<U, V> implements Message<V> {
     if (other.headers != null) {
       List<Map.Entry<String, String>> entries = other.headers.entries();
       this.headers = new CaseInsensitiveHeaders();
-      for (Map.Entry<String, String> entry: entries) {
+      for (Map.Entry<String, String> entry : entries) {
         this.headers.add(entry.getKey(), entry.getValue());
       }
     }
@@ -112,7 +111,7 @@ public class MessageImpl<U, V> implements Message<V> {
   public void fail(int failureCode, String message) {
     if (replyAddress != null) {
       sendReply(bus.createMessage(true, replyAddress, null,
-        new ReplyException(ReplyFailure.RECIPIENT_FAILURE, failureCode, message), null), null, null);
+              new ReplyException(ReplyFailure.RECIPIENT_FAILURE, failureCode, message), null), null, null);
     }
   }
 

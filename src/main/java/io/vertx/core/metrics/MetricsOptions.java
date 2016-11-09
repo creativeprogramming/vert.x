@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.metrics;
 
 import io.vertx.codegen.annotations.DataObject;
@@ -21,8 +20,8 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.spi.VertxMetricsFactory;
 
 /**
- * Vert.x metrics base configuration, this class can be extended by provider implementations to configure
- * those specific implementations.
+ * Vert.x metrics base configuration, this class can be extended by provider
+ * implementations to configure those specific implementations.
  *
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */
@@ -89,10 +88,12 @@ public class MetricsOptions {
   /**
    * Get the metrics factory to be used when metrics are enabled.
    * <p>
-   * If the metrics factory has been programmatically set here, then that will be used when metrics are enabled
-   * for creating the {@link io.vertx.core.spi.metrics.VertxMetrics} instance.
+   * If the metrics factory has been programmatically set here, then that will
+   * be used when metrics are enabled for creating the
+   * {@link io.vertx.core.spi.metrics.VertxMetrics} instance.
    * <p>
-   * Otherwise Vert.x attempts to locate a metrics factory implementation on the classpath.
+   * Otherwise Vert.x attempts to locate a metrics factory implementation on the
+   * classpath.
    *
    * @return the metrics factory
    */
@@ -101,12 +102,14 @@ public class MetricsOptions {
   }
 
   /**
-   * Programmatically set the metrics factory to be used when metrics are enabled.
+   * Programmatically set the metrics factory to be used when metrics are
+   * enabled.
    * <p>
    * Only valid if {@link MetricsOptions#isEnabled} = true.
    * <p>
-   * Normally Vert.x will look on the classpath for a metrics factory implementation, but if you want to set one
-   * programmatically you can use this method.
+   * Normally Vert.x will look on the classpath for a metrics factory
+   * implementation, but if you want to set one programmatically you can use
+   * this method.
    *
    * @param factory the metrics factory
    * @return a reference to this, so the API can be used fluently
@@ -122,12 +125,18 @@ public class MetricsOptions {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
 
     MetricsOptions that = (MetricsOptions) o;
 
-    if (enabled != that.enabled) return false;
+    if (enabled != that.enabled) {
+      return false;
+    }
     return !(json != null ? !json.equals(that.json) : that.json != null);
 
   }
@@ -141,9 +150,9 @@ public class MetricsOptions {
 
   @Override
   public String toString() {
-    return "MetricsOptions{" +
-      "enabled=" + enabled +
-      ", json=" + json +
-      '}';
+    return "MetricsOptions{"
+            + "enabled=" + enabled
+            + ", json=" + json
+            + '}';
   }
 }

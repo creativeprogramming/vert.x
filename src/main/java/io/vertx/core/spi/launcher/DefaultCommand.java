@@ -15,7 +15,6 @@
  */
 package io.vertx.core.spi.launcher;
 
-
 import io.vertx.core.cli.CLIException;
 import io.vertx.core.cli.annotations.Description;
 import io.vertx.core.cli.annotations.Hidden;
@@ -26,11 +25,11 @@ import java.io.PrintStream;
 import java.util.List;
 
 /**
- * Default implementation of {@link Command} using annotation to define itself. It is highly recommended
- * to extend this class when implementing a command.
+ * Default implementation of {@link Command} using annotation to define itself.
+ * It is highly recommended to extend this class when implementing a command.
  * <p/>
- * It defines two hidden {@link Option}s to create system properties ({@code -Dkey=value}) and a way to
- * configure the current working directory.
+ * It defines two hidden {@link Option}s to create system properties
+ * ({@code -Dkey=value}) and a way to configure the current working directory.
  */
 public abstract class DefaultCommand implements Command {
 
@@ -43,21 +42,22 @@ public abstract class DefaultCommand implements Command {
   protected ExecutionContext executionContext;
 
   /**
-   * The {@link PrintStream} that the command can use to write on the <em>console</em>.
+   * The {@link PrintStream} that the command can use to write on the
+   * <em>console</em>.
    */
   protected PrintStream out;
 
   /**
-   * @return the configure current working directory. If not set use the "regular" Java current working
-   * directory.
+   * @return the configure current working directory. If not set use the
+   * "regular" Java current working directory.
    */
   public File getCwd() {
     return cwd != null ? cwd : new File(".");
   }
 
   /**
-   * Sets the current working directory. This method is called when the user configure the "cwd" option as
-   * follows: {@code --cwd=the-directory}.
+   * Sets the current working directory. This method is called when the user
+   * configure the "cwd" option as follows: {@code --cwd=the-directory}.
    *
    * @param cwd the directory
    */
@@ -70,8 +70,8 @@ public abstract class DefaultCommand implements Command {
   }
 
   /**
-   * Gets system properties passed in the user command line. The user can configure system properties using
-   * {@code -Dkey=value}.
+   * Gets system properties passed in the user command line. The user can
+   * configure system properties using {@code -Dkey=value}.
    *
    * @param props the properties
    */

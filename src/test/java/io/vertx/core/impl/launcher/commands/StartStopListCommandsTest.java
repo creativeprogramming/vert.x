@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.impl.launcher.commands;
 
 import io.vertx.core.Launcher;
@@ -50,7 +49,7 @@ public class StartStopListCommandsTest extends CommandTestBase {
     record();
 
     cli.dispatch(new String[]{"start", "run", HttpTestVerticle.class.getName(),
-        "--launcher-class", Launcher.class.getName()});
+      "--launcher-class", Launcher.class.getName()});
 
     waitForStartup();
     assertThat(output.toString()).contains("Starting vert.x application");
@@ -67,9 +66,8 @@ public class StartStopListCommandsTest extends CommandTestBase {
     // pass --redeploy to not call system.exit
     cli.dispatch(new String[]{"stop", id, "--redeploy"});
     assertThat(output.toString())
-        .contains("Stopping vert.x application '" + id + "'")
-        .contains("Application '" + id + "' terminated with status 0");
-
+            .contains("Stopping vert.x application '" + id + "'")
+            .contains("Application '" + id + "' terminated with status 0");
 
     waitForShutdown();
 
@@ -87,7 +85,7 @@ public class StartStopListCommandsTest extends CommandTestBase {
     record();
 
     cli.dispatch(new String[]{"start", "run", HttpTestVerticle.class.getName(),
-        "--launcher-class", Launcher.class.getName(), "--java-opts=-Dfoo=bar -Dbaz=bar", "--redirect-output"});
+      "--launcher-class", Launcher.class.getName(), "--java-opts=-Dfoo=bar -Dbaz=bar", "--redirect-output"});
 
     waitForStartup();
     assertThat(output.toString()).contains("Starting vert.x application");
@@ -107,8 +105,8 @@ public class StartStopListCommandsTest extends CommandTestBase {
     // pass --redeploy to not call system.exit
     cli.dispatch(new String[]{"stop", id, "--redeploy"});
     assertThat(output.toString())
-        .contains("Stopping vert.x application '" + id + "'")
-        .contains("Application '" + id + "' terminated with status 0");
+            .contains("Stopping vert.x application '" + id + "'")
+            .contains("Application '" + id + "' terminated with status 0");
 
     waitForShutdown();
 
@@ -148,7 +146,7 @@ public class StartStopListCommandsTest extends CommandTestBase {
     record();
 
     cli.dispatch(new String[]{"start", "run", HttpTestVerticle.class.getName(),
-        "--launcher-class", Launcher.class.getName(), "--vertx-id=hello"});
+      "--launcher-class", Launcher.class.getName(), "--vertx-id=hello"});
     waitForStartup();
     assertThat(output.toString()).contains("Starting vert.x application").contains("hello");
 
@@ -164,8 +162,8 @@ public class StartStopListCommandsTest extends CommandTestBase {
     // pass --redeploy to not call system.exit
     cli.dispatch(new String[]{"stop", id, "--redeploy"});
     assertThat(output.toString())
-        .contains("Stopping vert.x application '" + id + "'")
-        .contains("Application '" + id + "' terminated with status 0");
+            .contains("Stopping vert.x application '" + id + "'")
+            .contains("Application '" + id + "' terminated with status 0");
 
     waitForShutdown();
 
@@ -183,7 +181,7 @@ public class StartStopListCommandsTest extends CommandTestBase {
     record();
 
     cli.dispatch(new String[]{"start", "run", HttpTestVerticle.class.getName(),
-        "--launcher-class", Launcher.class.getName(), "--vertx-id=hello", "-cluster"});
+      "--launcher-class", Launcher.class.getName(), "--vertx-id=hello", "-cluster"});
 
     waitForStartup();
     assertThat(output.toString()).contains("Starting vert.x application").contains("hello");
@@ -201,8 +199,8 @@ public class StartStopListCommandsTest extends CommandTestBase {
     // pass --redeploy to not call system.exit
     cli.dispatch(new String[]{"stop", id, "--redeploy"});
     assertThat(output.toString())
-        .contains("Stopping vert.x application '" + id + "'")
-        .contains("Application '" + id + "' terminated with status 0");
+            .contains("Stopping vert.x application '" + id + "'")
+            .contains("Application '" + id + "' terminated with status 0");
 
     waitForShutdown();
 
@@ -220,7 +218,7 @@ public class StartStopListCommandsTest extends CommandTestBase {
     record();
 
     cli.dispatch(new String[]{"start", "run", HttpTestVerticle.class.getName(),
-        "--launcher-class", Launcher.class.getName(), "-cluster", "--vertx-id=hello"});
+      "--launcher-class", Launcher.class.getName(), "-cluster", "--vertx-id=hello"});
 
     waitForStartup();
     assertThat(output.toString()).contains("Starting vert.x application").contains("hello");
@@ -238,8 +236,8 @@ public class StartStopListCommandsTest extends CommandTestBase {
     // pass --redeploy to not call system.exit
     cli.dispatch(new String[]{"stop", id, "--redeploy"});
     assertThat(output.toString())
-        .contains("Stopping vert.x application '" + id + "'")
-        .contains("Application '" + id + "' terminated with status 0");
+            .contains("Stopping vert.x application '" + id + "'")
+            .contains("Application '" + id + "' terminated with status 0");
 
     waitForShutdown();
 
@@ -254,7 +252,7 @@ public class StartStopListCommandsTest extends CommandTestBase {
 
   private int getHttpCode() throws IOException {
     return ((HttpURLConnection) new URL("http://localhost:8080")
-        .openConnection()).getResponseCode();
+            .openConnection()).getResponseCode();
   }
 
   @Test
@@ -281,8 +279,8 @@ public class StartStopListCommandsTest extends CommandTestBase {
     // pass --redeploy to not call system.exit
     cli.dispatch(new String[]{"stop", id, "--redeploy"});
     assertThat(output.toString())
-        .contains("Stopping vert.x application '" + id + "'")
-        .contains("Cannot find process for application using the id");
+            .contains("Stopping vert.x application '" + id + "'")
+            .contains("Cannot find process for application using the id");
   }
 
   @Test

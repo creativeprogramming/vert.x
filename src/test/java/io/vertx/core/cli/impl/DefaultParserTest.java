@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.cli.impl;
 
 import io.vertx.core.cli.*;
@@ -47,7 +46,7 @@ public class DefaultParserTest {
   @Test
   public void testWithOneLongOption() throws CLIException {
     Option[] options = new Option[]{
-        new Option().setShortName("f").setLongName("file").setSingleValued(true)
+      new Option().setShortName("f").setLongName("file").setSingleValued(true)
     };
 
     cli.addOptions(Arrays.asList(options));
@@ -62,12 +61,11 @@ public class DefaultParserTest {
     assertThat(usage).contains("-f,--file <value>");
   }
 
-
   @Test
   public void testWithOneLongOptionUsingSpace() throws CLIException {
     Option[] options = new Option[]{
-        new Option().setShortName("f").setLongName("file")
-            .setSingleValued(true)
+      new Option().setShortName("f").setLongName("file")
+      .setSingleValued(true)
     };
 
     cli.addOptions(Arrays.asList(options));
@@ -84,7 +82,7 @@ public class DefaultParserTest {
   @Test
   public void testWithOneShortOption() throws CLIException {
     Option[] options = new Option[]{
-        new Option().setShortName("f").setLongName("file").setSingleValued(true)
+      new Option().setShortName("f").setLongName("file").setSingleValued(true)
     };
 
     cli.addOptions(Arrays.asList(options));
@@ -97,7 +95,7 @@ public class DefaultParserTest {
   @Test
   public void testWithOneShortOptionUsingSpace() throws CLIException {
     Option[] options = new Option[]{
-        new Option().setShortName("f").setLongName("file").setSingleValued(true)
+      new Option().setShortName("f").setLongName("file").setSingleValued(true)
     };
 
     cli.addOptions(Arrays.asList(options));
@@ -111,7 +109,7 @@ public class DefaultParserTest {
   public void testTheDifferentFormatForLongOption() throws CLIException {
 
     Option[] options = new Option[]{
-        new Option().setShortName("f").setLongName("file").setSingleValued(true)
+      new Option().setShortName("f").setLongName("file").setSingleValued(true)
     };
     cli.addOptions(Arrays.asList(options));
 
@@ -132,7 +130,7 @@ public class DefaultParserTest {
   public void testTheDifferentFormatForShortOption() throws CLIException {
 
     Option[] options = new Option[]{
-        new Option().setShortName("f").setLongName("file").setSingleValued(true)
+      new Option().setShortName("f").setLongName("file").setSingleValued(true)
     };
     cli.addOptions(Arrays.asList(options));
 
@@ -150,8 +148,8 @@ public class DefaultParserTest {
   public void testWithMultipleValues() throws CLIException {
 
     Option[] options = new Option[]{
-        new Option().setShortName("f").setLongName("file")
-            .setMultiValued(true)
+      new Option().setShortName("f").setLongName("file")
+      .setMultiValued(true)
     };
     cli.addOptions(Arrays.asList(options));
 
@@ -159,15 +157,15 @@ public class DefaultParserTest {
     assertThat(evaluated.cli().getOptions()).hasSize(1);
     assertThat((String) evaluated.getOptionValue("file")).isEqualTo("hello.txt");
     assertThat(evaluated.getOptionValues("f"))
-        .containsExactly("hello.txt", "hello2.txt");
+            .containsExactly("hello.txt", "hello2.txt");
   }
 
   @Test
   public void testWithList() throws CLIException {
     CLI cli = new DefaultCLI().setName("test");
     Option[] options = new Option[]{
-        new TypedOption<String>().setShortName("f").setLongName("file")
-            .setParsedAsList(true).setType(String.class)
+      new TypedOption<String>().setShortName("f").setLongName("file")
+      .setParsedAsList(true).setType(String.class)
     };
 
     cli.addOptions(Arrays.asList(options));
@@ -175,22 +173,22 @@ public class DefaultParserTest {
     assertThat(evaluated.cli().getOptions()).hasSize(1);
     assertThat((String) evaluated.getOptionValue("file")).isEqualTo("hello.txt,hello2.txt");
     assertThat(evaluated.getOptionValues("f"))
-        .containsExactly("hello.txt", "hello2.txt");
+            .containsExactly("hello.txt", "hello2.txt");
   }
 
   @Test
   public void testWithFlag() throws CLIException {
     CLI cli = new DefaultCLI().setName("test");
     Option[] options = new Option[]{
-        new TypedOption<Boolean>().setType(Boolean.TYPE)
-            .setShortName("f").setLongName("flag")
-            .setFlag(true).setSingleValued(true),
-        new TypedOption<Boolean>().setType(Boolean.TYPE)
-            .setShortName("f2").setLongName("flag2")
-            .setFlag(true).setSingleValued(true),
-        new TypedOption<Boolean>().setType(Boolean.TYPE)
-            .setShortName("f3").setLongName("flag3")
-            .setFlag(true)
+      new TypedOption<Boolean>().setType(Boolean.TYPE)
+      .setShortName("f").setLongName("flag")
+      .setFlag(true).setSingleValued(true),
+      new TypedOption<Boolean>().setType(Boolean.TYPE)
+      .setShortName("f2").setLongName("flag2")
+      .setFlag(true).setSingleValued(true),
+      new TypedOption<Boolean>().setType(Boolean.TYPE)
+      .setShortName("f3").setLongName("flag3")
+      .setFlag(true)
     };
 
     cli.addOptions(Arrays.asList(options));
@@ -218,7 +216,7 @@ public class DefaultParserTest {
   @Test
   public void testArguments() throws CLIException {
     Option[] options = new Option[]{
-        new TypedOption<Boolean>().setShortName("f").setLongName("flag").setType(Boolean.class).setSingleValued(true)
+      new TypedOption<Boolean>().setShortName("f").setLongName("flag").setType(Boolean.class).setSingleValued(true)
     };
 
     cli.addOptions(Arrays.asList(options));
@@ -235,8 +233,8 @@ public class DefaultParserTest {
   @Test
   public void testUnknownOption() throws CLIException {
     Option[] options = new Option[]{
-        new TypedOption<Boolean>().setShortName("f").setLongName("flag")
-            .setType(Boolean.class).setRequired(true).setSingleValued(true)
+      new TypedOption<Boolean>().setShortName("f").setLongName("flag")
+      .setType(Boolean.class).setRequired(true).setSingleValued(true)
     };
 
     cli.addOptions(Arrays.asList(options));
@@ -247,7 +245,7 @@ public class DefaultParserTest {
   @Test(expected = MissingOptionException.class)
   public void testNotFulfilledRequiredOptions() throws CLIException {
     Option[] options = new Option[]{
-        new TypedOption<Boolean>().setShortName("f").setLongName("flag").setType(Boolean.class).setRequired(true).setSingleValued(true)
+      new TypedOption<Boolean>().setShortName("f").setLongName("flag").setType(Boolean.class).setRequired(true).setSingleValued(true)
     };
     cli.addOptions(Arrays.asList(options));
     CommandLine evaluated = cli.parse(Collections.emptyList());
@@ -256,8 +254,8 @@ public class DefaultParserTest {
   @Test
   public void testRequiredOptions() throws CLIException {
     Option[] options = new Option[]{
-        new TypedOption<Boolean>().setShortName("f").setLongName("flag")
-            .setType(Boolean.class).setRequired(true).setFlag(true)
+      new TypedOption<Boolean>().setShortName("f").setLongName("flag")
+      .setType(Boolean.class).setRequired(true).setFlag(true)
     };
 
     cli.addOptions(Arrays.asList(options));
@@ -267,7 +265,7 @@ public class DefaultParserTest {
   @Test
   public void testQuotedValues() throws CLIException {
     Option[] options = new Option[]{
-        new Option().setShortName("f").setLongName("file").setSingleValued(true)
+      new Option().setShortName("f").setLongName("file").setSingleValued(true)
     };
 
     cli.addOptions(Arrays.asList(options));
@@ -281,8 +279,8 @@ public class DefaultParserTest {
   public void testNegativeNumbers() throws CLIException {
     CLI cli = new DefaultCLI().setName("test");
     Option[] options = new Option[]{
-        new TypedOption<Double>().setLongName("num").setSingleValued(true)
-            .setType(Double.class)
+      new TypedOption<Double>().setLongName("num").setSingleValued(true)
+      .setType(Double.class)
     };
 
     cli.addOptions(Arrays.asList(options));
@@ -300,7 +298,7 @@ public class DefaultParserTest {
   @Test(expected = MissingValueException.class)
   public void testMissingValue() throws CLIException {
     Option[] options = new Option[]{
-        new Option().setShortName("f").setLongName("file").setSingleValued(true)
+      new Option().setShortName("f").setLongName("file").setSingleValued(true)
     };
 
     cli.addOptions(Arrays.asList(options));
@@ -311,31 +309,31 @@ public class DefaultParserTest {
   public void testVertxRun() throws CLIException {
     CLI cli = new DefaultCLI().setName("test");
     Option[] options = new Option[]{
-        new TypedOption<String>().setLongName("conf").setType(String.class)
-            .setSingleValued(true),
-        new TypedOption<Integer>().setLongName("instances").setType(Integer.class)
-            .setSingleValued(true).setDefaultValue("1"),
-        new TypedOption<Boolean>().setLongName("worker").setType(Boolean.class)
-            .setFlag(true),
-        new TypedOption<String>().setLongName("classpath").setShortName("cp")
-            .setListSeparator(File.pathSeparator)
-            .setType(String.class).setSingleValued(true),
-        new TypedOption<Boolean>().setLongName("cluster").setType(Boolean.class)
-            .setFlag(true),
-        new TypedOption<Integer>().setLongName("cluster-port").setType(Integer.class)
-            .setSingleValued(true),
-        new TypedOption<String>().setLongName("cluster-host").setType(String.class)
-            .setSingleValued(true),
-        new TypedOption<Boolean>().setLongName("ha").setType(Boolean.class)
-            .setFlag(true).setSingleValued(true),
-        new TypedOption<Integer>().setLongName("quorum").setType(Integer.class)
-            .setSingleValued(true),
-        new TypedOption<String>().setLongName("ha-group").setType(String.class)
-            .setDefaultValue("__DEFAULT__").setSingleValued(true)
+      new TypedOption<String>().setLongName("conf").setType(String.class)
+      .setSingleValued(true),
+      new TypedOption<Integer>().setLongName("instances").setType(Integer.class)
+      .setSingleValued(true).setDefaultValue("1"),
+      new TypedOption<Boolean>().setLongName("worker").setType(Boolean.class)
+      .setFlag(true),
+      new TypedOption<String>().setLongName("classpath").setShortName("cp")
+      .setListSeparator(File.pathSeparator)
+      .setType(String.class).setSingleValued(true),
+      new TypedOption<Boolean>().setLongName("cluster").setType(Boolean.class)
+      .setFlag(true),
+      new TypedOption<Integer>().setLongName("cluster-port").setType(Integer.class)
+      .setSingleValued(true),
+      new TypedOption<String>().setLongName("cluster-host").setType(String.class)
+      .setSingleValued(true),
+      new TypedOption<Boolean>().setLongName("ha").setType(Boolean.class)
+      .setFlag(true).setSingleValued(true),
+      new TypedOption<Integer>().setLongName("quorum").setType(Integer.class)
+      .setSingleValued(true),
+      new TypedOption<String>().setLongName("ha-group").setType(String.class)
+      .setDefaultValue("__DEFAULT__").setSingleValued(true)
     };
     cli.addOptions(Arrays.asList(options));
     cli.addArgument(new TypedArgument<String>().setType(String.class)
-        .setArgName("verticle").setIndex(0).setRequired(false));
+            .setArgName("verticle").setIndex(0).setRequired(false));
 
     // Bare
     CommandLine evaluated = cli.parse(Collections.singletonList("-ha"));
@@ -353,11 +351,10 @@ public class DefaultParserTest {
     evaluated = cli.parse(Collections.singletonList("--ha=no"));
     assertThat((boolean) evaluated.getOptionValue("ha")).isFalse();
 
-
     // Verticle deployment
     evaluated = cli.parse(Arrays.asList("org.acme.FooVerticle",
-        "-instances=4",
-        "-cp", "." + File.pathSeparator + "my.jar"));
+            "-instances=4",
+            "-cp", "." + File.pathSeparator + "my.jar"));
     assertThat(evaluated.allArguments()).hasSize(1).containsExactly("org.acme.FooVerticle");
     assertThat((String) evaluated.getArgumentValue("verticle")).isEqualTo("org.acme.FooVerticle");
 
@@ -365,7 +362,6 @@ public class DefaultParserTest {
     List<String> classpath = evaluated.getOptionValues("classpath");
     assertThat(instances).isEqualTo(4);
     assertThat(classpath).containsExactly(".", "my.jar");
-
 
     // Cluster environment
     evaluated = cli.parse(Arrays.asList("org.acme.FooVerticle", "-cluster"));
@@ -386,7 +382,7 @@ public class DefaultParserTest {
     assertThat((String) evaluated.getArgumentValue(0)).isEqualTo("org.acme.FooVerticle");
     assertThat((boolean) evaluated.getOptionValue("cluster")).isTrue();
     assertThat((String) evaluated.getOptionValue("cluster-host"))
-        .isEqualTo("127.0.0.1");
+            .isEqualTo("127.0.0.1");
 
     evaluated = cli.parse(Arrays.asList("org.acme.FooVerticle", "-cluster", "--cluster-host", "127.0.0.1"));
     assertThat(evaluated.allArguments()).hasSize(1).containsExactly("org.acme.FooVerticle");
@@ -394,7 +390,7 @@ public class DefaultParserTest {
     assertThat((String) evaluated.getArgumentValue(0)).isEqualTo("org.acme.FooVerticle");
     assertThat((boolean) evaluated.getOptionValue("cluster")).isTrue();
     assertThat((String) evaluated.getOptionValue("cluster-host"))
-        .isEqualTo("127.0.0.1");
+            .isEqualTo("127.0.0.1");
 
     evaluated = cli.parse(Arrays.asList("org.acme.FooVerticle", "-cluster", "-cluster-host=127.0.0.1"));
     assertThat(evaluated.allArguments()).hasSize(1).containsExactly("org.acme.FooVerticle");
@@ -402,16 +398,16 @@ public class DefaultParserTest {
     assertThat((String) evaluated.getArgumentValue(0)).isEqualTo("org.acme.FooVerticle");
     assertThat((boolean) evaluated.getOptionValue("cluster")).isTrue();
     assertThat((String) evaluated.getOptionValue("cluster-host"))
-        .isEqualTo("127.0.0.1");
+            .isEqualTo("127.0.0.1");
 
     evaluated = cli.parse(Arrays.asList("org.acme.FooVerticle", "-cluster", "-cluster-host", "127.0.0.1",
-        "-cluster-port", "1234"));
+            "-cluster-port", "1234"));
     assertThat(evaluated.allArguments()).hasSize(1).containsExactly("org.acme.FooVerticle");
     assertThat((String) evaluated.getArgumentValue("verticle")).isEqualTo("org.acme.FooVerticle");
     assertThat((String) evaluated.getArgumentValue(0)).isEqualTo("org.acme.FooVerticle");
     assertThat((boolean) evaluated.getOptionValue("cluster")).isTrue();
     assertThat((String) evaluated.getOptionValue("cluster-host"))
-        .isEqualTo("127.0.0.1");
+            .isEqualTo("127.0.0.1");
     assertThat((int) evaluated.getOptionValue("cluster-port")).isEqualTo(1234);
 
   }
@@ -420,18 +416,18 @@ public class DefaultParserTest {
   public void testWithDashD() throws CLIException {
     CLI cli = new DefaultCLI().setName("test");
     Option[] options = new Option[]{
-        new TypedOption<String>().setShortName("D").setLongName("systemProperty")
-            .setMultiValued(true).setType(String.class),
-        new TypedOption<Boolean>().setShortName("F").setLongName("flag")
-            .setFlag(true)
-            .setType(Boolean.class)
+      new TypedOption<String>().setShortName("D").setLongName("systemProperty")
+      .setMultiValued(true).setType(String.class),
+      new TypedOption<Boolean>().setShortName("F").setLongName("flag")
+      .setFlag(true)
+      .setType(Boolean.class)
     };
 
     cli.addOptions(Arrays.asList(options));
     CommandLine evaluated = cli.parse(Arrays.asList("-Dx=y", "-F"));
     assertThat(evaluated.cli().getOptions()).hasSize(2);
     assertThat(evaluated.getRawValueForOption(evaluated.cli().getOption("systemProperty")))
-        .isEqualTo("x=y");
+            .isEqualTo("x=y");
     assertThat((boolean) evaluated.getOptionValue("flag")).isTrue();
   }
 
@@ -439,12 +435,12 @@ public class DefaultParserTest {
   public void testConcatenatedOptions() throws CLIException {
     CLI cli = new DefaultCLI().setName("test");
     Option[] options = new Option[]{
-        new TypedOption<Boolean>().setShortName("d").setFlag(true)
-            .setType(Boolean.class),
-        new TypedOption<Boolean>().setShortName("e").setFlag(true)
-            .setType(Boolean.class),
-        new TypedOption<Boolean>().setShortName("f").setFlag(true)
-            .setType(Boolean.class)
+      new TypedOption<Boolean>().setShortName("d").setFlag(true)
+      .setType(Boolean.class),
+      new TypedOption<Boolean>().setShortName("e").setFlag(true)
+      .setType(Boolean.class),
+      new TypedOption<Boolean>().setShortName("f").setFlag(true)
+      .setType(Boolean.class)
     };
 
     cli.addOptions(Arrays.asList(options));
@@ -620,7 +616,6 @@ public class DefaultParserTest {
     assertThat(line.isFlagEnabled("help")).isTrue();
     assertThat(line.isAskingForHelp()).isTrue();
 
-
     try {
       cli.parse(Collections.<String>emptyList());
       fail("Exception expected");
@@ -661,7 +656,6 @@ public class DefaultParserTest {
     assertThat(line.isFlagEnabled("help")).isTrue();
     assertThat(line.isAskingForHelp()).isTrue();
 
-
     try {
       cli.parse(Collections.<String>emptyList());
       fail("Exception expected");
@@ -678,8 +672,8 @@ public class DefaultParserTest {
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
     assertThat(builder)
-        .contains("[--color {blue, green, red}]") // Usage line
-        .contains("  --color {blue, green, red}"); // options
+            .contains("[--color {blue, green, red}]") // Usage line
+            .contains("  --color {blue, green, red}"); // options
 
     CommandLine line = cli.parse(Arrays.asList("--color", "blue"));
     assertThat((String) line.getOptionValue("color")).isEqualTo("blue");
@@ -696,13 +690,13 @@ public class DefaultParserTest {
   public void testOptionsWithChoicesAndDefault() {
     CLI cli = new DefaultCLI().setName("test");
     cli.addOption(new Option().setLongName("color").addChoice("red").addChoice("blue").addChoice("green")
-        .setDefaultValue("green"));
+            .setDefaultValue("green"));
 
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
     assertThat(builder)
-        .contains("[--color {blue, green, red}]") // Usage line
-        .contains("  --color {blue, green, red}"); // options
+            .contains("[--color {blue, green, red}]") // Usage line
+            .contains("  --color {blue, green, red}"); // options
 
     CommandLine line = cli.parse(Arrays.asList("--color", "blue"));
     assertThat((String) line.getOptionValue("color")).isEqualTo("blue");
@@ -726,8 +720,8 @@ public class DefaultParserTest {
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
     assertThat(builder)
-        .contains("[--retention {CLASS, RUNTIME, SOURCE}]") // Usage line
-        .contains("  --retention {CLASS, RUNTIME, SOURCE}"); // options
+            .contains("[--retention {CLASS, RUNTIME, SOURCE}]") // Usage line
+            .contains("  --retention {CLASS, RUNTIME, SOURCE}"); // options
 
     CommandLine line = cli.parse(Arrays.asList("--retention", "CLASS"));
     assertThat((RetentionPolicy) line.getOptionValue("retention")).isEqualTo(RetentionPolicy.CLASS);
@@ -747,8 +741,8 @@ public class DefaultParserTest {
     StringBuilder builder = new StringBuilder();
     cli.usage(builder);
     assertThat(builder)
-        .contains("[--retention {CLASS, RUNTIME, SOURCE}]") // Usage line
-        .contains("  --retention {CLASS, RUNTIME, SOURCE}"); // options
+            .contains("[--retention {CLASS, RUNTIME, SOURCE}]") // Usage line
+            .contains("  --retention {CLASS, RUNTIME, SOURCE}"); // options
 
     CommandLine line = cli.parse(Arrays.asList("--retention", "CLASS", "--foo", "bar"));
     assertThat((RetentionPolicy) line.getOptionValue("retention")).isEqualTo(RetentionPolicy.CLASS);
@@ -761,9 +755,9 @@ public class DefaultParserTest {
     }
   }
 
-
   @Name("test")
   private class CLIUsingAHelpOption {
+
     @io.vertx.core.cli.annotations.Option(help = true, flag = true, shortName = "h", longName = "help")
     public void setHelp(boolean b) {
 
@@ -777,6 +771,7 @@ public class DefaultParserTest {
 
   @Name("test")
   private class CLIUsingAEnumOption {
+
     @io.vertx.core.cli.annotations.Option(longName = "retention")
     public void setRetention(RetentionPolicy retention) {
 

@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl.ws;
 
 import io.netty.buffer.ByteBuf;
@@ -31,7 +30,6 @@ import io.vertx.core.http.impl.FrameType;
  * @version $Rev: 2080 $, $Date: 2010-01-26 18:04:19 +0900 (Tue, 26 Jan 2010) $
  */
 public class WebSocketFrameImpl implements WebSocketFrameInternal, ReferenceCounted {
-
 
   private final FrameType type;
   private final boolean isFinalFrame;
@@ -70,11 +68,12 @@ public class WebSocketFrameImpl implements WebSocketFrameInternal, ReferenceCoun
   /**
    * Creates a new frame with the specified frame type and the specified data.
    *
-   * @param type       the type of the frame. {@code 0} is the only allowed type currently.
-   * @param binaryData the content of the frame.  If <tt>(type &amp; 0x80 == 0)</tt>,
-   *                   it must be encoded in UTF-8.
-   * @throws IllegalArgumentException if If <tt>(type &amp; 0x80 == 0)</tt> and the data is not encoded
-   *                                  in UTF-8
+   * @param type the type of the frame. {@code 0} is the only allowed type
+   * currently.
+   * @param binaryData the content of the frame. If <tt>(type &amp; 0x80 ==
+   * 0)</tt>, it must be encoded in UTF-8.
+   * @throws IllegalArgumentException if If <tt>(type &amp; 0x80 == 0)</tt> and
+   * the data is not encoded in UTF-8
    */
   public WebSocketFrameImpl(FrameType type, ByteBuf binaryData) {
     this(type, binaryData, true);
@@ -83,12 +82,13 @@ public class WebSocketFrameImpl implements WebSocketFrameInternal, ReferenceCoun
   /**
    * Creates a new frame with the specified frame type and the specified data.
    *
-   * @param type       the type of the frame. {@code 0} is the only allowed type currently.
-   * @param binaryData the content of the frame.  If <tt>(type &amp; 0x80 == 0)</tt>,
-   *                   it must be encoded in UTF-8.
+   * @param type the type of the frame. {@code 0} is the only allowed type
+   * currently.
+   * @param binaryData the content of the frame. If <tt>(type &amp; 0x80 ==
+   * 0)</tt>, it must be encoded in UTF-8.
    * @param isFinalFrame If this is the final frame in a sequence
-   * @throws IllegalArgumentException if If <tt>(type &amp; 0x80 == 0)</tt> and the data is not encoded
-   *                                  in UTF-8
+   * @throws IllegalArgumentException if If <tt>(type &amp; 0x80 == 0)</tt> and
+   * the data is not encoded in UTF-8
    */
   public WebSocketFrameImpl(FrameType type, ByteBuf binaryData, boolean isFinalFrame) {
     this.type = type;
@@ -136,8 +136,8 @@ public class WebSocketFrameImpl implements WebSocketFrameInternal, ReferenceCoun
 
   @Override
   public String toString() {
-    return getClass().getSimpleName() +
-        "(type: " + type + ", " + "data: " + getBinaryData() + ')';
+    return getClass().getSimpleName()
+            + "(type: " + type + ", " + "data: " + getBinaryData() + ')';
   }
 
   @Override

@@ -13,7 +13,7 @@ public class LoggerFactoryTest {
 
       @Override
       public void run() {
-          LoggerFactory.getLogger(getClass()).info("I'm inside anonymous class");
+        LoggerFactory.getLogger(getClass()).info("I'm inside anonymous class");
       }
 
     }.run();

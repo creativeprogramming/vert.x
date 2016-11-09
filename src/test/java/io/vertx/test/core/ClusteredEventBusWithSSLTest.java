@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.test.core;
 
 import io.vertx.core.VertxOptions;
@@ -28,7 +27,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
 /**
  * Tests the clustered event bus with various SSL / TLS configuration.
  *
@@ -39,12 +37,11 @@ public class ClusteredEventBusWithSSLTest extends ClusteredEventBusTestBase {
 
   private final EventBusOptions options;
 
-
   public ClusteredEventBusWithSSLTest(Cert<?> cert, Trust<?> trust,
-                                      boolean requireClientAuth,
-                                      boolean clientTrustAll,
-                                      boolean useCrl,
-                                      List<String> enabledCipherSuites) {
+          boolean requireClientAuth,
+          boolean clientTrustAll,
+          boolean useCrl,
+          List<String> enabledCipherSuites) {
     options = new EventBusOptions();
     options.setSsl(true);
 
@@ -67,21 +64,19 @@ public class ClusteredEventBusWithSSLTest extends ClusteredEventBusTestBase {
     }
   }
 
-
   @Parameterized.Parameters(name = "{index}: event bus SSL ({0} {1} {2} {3} {4} {5}")
   public static Iterable<Object[]> data() {
     // Parameters:
     //KeyCert, Trust, requireClientAuth, clientTrustAll, useCrl, enabledCipherSuites
 
     return Arrays.asList(new Object[][]{
-        {Cert.SERVER_JKS, Trust.NONE, false, true, false, Collections.emptyList()}, // trusts all server certs
-        {Cert.SERVER_JKS, Trust.SERVER_JKS, false, false, true, Collections.emptyList()},
-        {Cert.SERVER_PKCS12, Trust.SERVER_JKS, false, false, false, Collections.emptyList()},
-        {Cert.SERVER_PEM, Trust.SERVER_JKS, false, false, false, Collections.emptyList()},
-        {Cert.SERVER_PKCS12_ROOT_CA, Trust.SERVER_JKS_ROOT_CA, false, false, false, Collections.emptyList()},
-        {Cert.SERVER_PEM_ROOT_CA, Trust.SERVER_PKCS12_ROOT_CA, false, false, false, Collections.emptyList()},
-        {Cert.SERVER_JKS, Trust.SERVER_PEM_ROOT_CA, false, true, false, Arrays.asList(Http1xTest.ENABLED_CIPHER_SUITES)},
-    });
+      {Cert.SERVER_JKS, Trust.NONE, false, true, false, Collections.emptyList()}, // trusts all server certs
+      {Cert.SERVER_JKS, Trust.SERVER_JKS, false, false, true, Collections.emptyList()},
+      {Cert.SERVER_PKCS12, Trust.SERVER_JKS, false, false, false, Collections.emptyList()},
+      {Cert.SERVER_PEM, Trust.SERVER_JKS, false, false, false, Collections.emptyList()},
+      {Cert.SERVER_PKCS12_ROOT_CA, Trust.SERVER_JKS_ROOT_CA, false, false, false, Collections.emptyList()},
+      {Cert.SERVER_PEM_ROOT_CA, Trust.SERVER_PKCS12_ROOT_CA, false, false, false, Collections.emptyList()},
+      {Cert.SERVER_JKS, Trust.SERVER_PEM_ROOT_CA, false, true, false, Arrays.asList(Http1xTest.ENABLED_CIPHER_SUITES)},});
   }
 
   @Override

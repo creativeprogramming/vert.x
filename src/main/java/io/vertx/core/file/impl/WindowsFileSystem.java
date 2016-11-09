@@ -13,7 +13,6 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.file.impl;
 
 import io.vertx.core.AsyncResult;
@@ -47,7 +46,7 @@ public class WindowsFileSystem extends FileSystemImpl {
 
   @Override
   protected BlockingAction<Void> chmodInternal(String path, String perms, String dirPerms,
-                                               Handler<AsyncResult<Void>> handler) {
+          Handler<AsyncResult<Void>> handler) {
     Objects.requireNonNull(path);
     Objects.requireNonNull(perms);
     logInternal(perms);
@@ -65,14 +64,14 @@ public class WindowsFileSystem extends FileSystemImpl {
 
   @Override
   protected BlockingAction<Void> mkdirInternal(String path, final String perms, final boolean createParents,
-                                               Handler<AsyncResult<Void>> handler) {
+          Handler<AsyncResult<Void>> handler) {
     logInternal(perms);
     return super.mkdirInternal(path, null, createParents, handler);
   }
 
   @Override
   protected AsyncFile doOpen(String path, OpenOptions options,
-                             ContextImpl context) {
+          ContextImpl context) {
     logInternal(options.getPerms());
     return new AsyncFileImpl(vertx, path, options, context);
   }

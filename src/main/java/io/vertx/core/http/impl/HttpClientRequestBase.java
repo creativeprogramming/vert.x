@@ -13,7 +13,6 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
-
 package io.vertx.core.http.impl;
 
 import io.vertx.core.Handler;
@@ -60,7 +59,9 @@ abstract class HttpClientRequestBase implements HttpClientRequest {
   }
 
   protected abstract Object getLock();
+
   protected abstract void doHandleResponse(HttpClientResponseImpl resp);
+
   protected abstract void checkComplete();
 
   public String query() {
